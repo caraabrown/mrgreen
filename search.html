@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ask The Whole Story — Search Black American History</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#080808;--surface:#101010;--card:#161616;--border:#242424;
+    --gold:#C8922A;--gold-lt:#E5B55A;--teal:#0D7C7C;--teal-lt:#1AACAC;
+    --crimson:#8B1F2F;--sapphire:#1B4F8A;--sapphire-lt:#2E72C0;
+    --text:#F0EDE6;--muted:#7A7A7A;--faint:#2A2A2A;
+    --font-disp:'Bebas Neue',sans-serif;
+    --font-head:'Oswald',sans-serif;
+    --font-body:'Raleway',sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-weight:400;line-height:1.6;overflow-x:hidden;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:rgba(8,8,8,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--faint);}
+  .nav-logo{font-family:var(--font-head);font-weight:600;font-size:1rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);text-decoration:none;}
+  .nav-logo span{color:var(--text);}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;}
+  .nav-links a{font-family:var(--font-head);font-weight:300;font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--text);}
+  .nav-cta{font-family:var(--font-head);font-size:0.75rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--bg);background:var(--gold);border:none;padding:0.55rem 1.4rem;cursor:pointer;text-decoration:none;}
+
+  /* SEARCH HERO */
+  .search-hero{
+    padding:12rem 4rem 5rem;
+    position:relative;overflow:hidden;
+    text-align:center;
+    border-bottom:1px solid var(--faint);
+  }
+  .search-hero-bg{
+    position:absolute;inset:0;
+    background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(13,124,124,0.07) 0%,transparent 70%),
+               linear-gradient(180deg,#080808 0%,#090a08 100%);
+  }
+  .search-eyebrow{font-family:var(--font-head);font-weight:300;font-size:0.75rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:1.5rem;position:relative;z-index:1;}
+  .search-title{font-family:var(--font-disp);font-size:clamp(4rem,8vw,8rem);line-height:0.9;color:var(--text);margin-bottom:0.5rem;position:relative;z-index:1;}
+  .search-title span{color:var(--teal-lt);}
+  .search-sub{font-family:var(--font-body);font-weight:300;font-size:1.05rem;color:rgba(240,237,230,0.5);margin-bottom:3.5rem;position:relative;z-index:1;}
+
+  /* SEARCH BAR */
+  .search-bar-wrap{position:relative;z-index:1;max-width:740px;margin:0 auto 2rem;}
+  .search-bar{
+    display:flex;gap:0;
+    border:1px solid var(--border);
+    background:var(--card);
+    transition:border-color 0.2s;
+  }
+  .search-bar:focus-within{border-color:var(--teal-lt);}
+  .search-input{
+    flex:1;padding:1.25rem 1.75rem;
+    background:transparent;border:none;outline:none;
+    font-family:var(--font-body);font-size:1rem;font-weight:300;
+    color:var(--text);
+  }
+  .search-input::placeholder{color:var(--muted);}
+  .search-btn{
+    padding:1.25rem 2rem;
+    background:var(--teal);border:none;
+    font-family:var(--font-head);font-size:0.78rem;font-weight:500;
+    letter-spacing:0.18em;text-transform:uppercase;
+    color:var(--text);cursor:pointer;transition:background 0.2s;
+    white-space:nowrap;
+  }
+  .search-btn:hover{background:var(--teal-lt);}
+
+  .search-suggestions{
+    display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;
+    position:relative;z-index:1;
+  }
+  .suggestion-chip{
+    font-family:var(--font-body);font-size:0.8rem;font-weight:300;
+    color:var(--muted);border:1px solid var(--faint);
+    padding:0.45rem 1rem;cursor:pointer;transition:all 0.2s;
+    background:transparent;
+  }
+  .suggestion-chip:hover{border-color:var(--teal-lt);color:var(--teal-lt);}
+
+  /* RESULTS AREA */
+  .results-area{display:none;padding:5rem 4rem;}
+  .results-area.visible{display:block;}
+
+  .results-query{
+    font-family:var(--font-head);font-weight:300;font-size:0.75rem;
+    letter-spacing:0.25em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:0.75rem;
+  }
+  .results-query strong{color:var(--teal-lt);}
+  .results-headline{
+    font-family:var(--font-head);font-weight:600;font-size:1.4rem;
+    color:var(--text);margin-bottom:3.5rem;line-height:1.3;
+  }
+
+  /* MR GREEN PRIMARY ANSWER */
+  .mr-green-answer{
+    background:var(--card);
+    border-left:3px solid var(--gold);
+    padding:3rem;margin-bottom:3rem;
+    position:relative;
+  }
+  .answer-badge{
+    display:inline-flex;align-items:center;gap:0.75rem;
+    font-family:var(--font-head);font-size:0.68rem;font-weight:500;
+    letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:1.5rem;
+  }
+  .answer-badge-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+  .answer-text{
+    font-family:var(--font-body);font-weight:300;font-size:1.05rem;
+    line-height:1.85;color:rgba(240,237,230,0.8);margin-bottom:1.5rem;
+  }
+  .answer-text strong{color:var(--gold);font-weight:600;}
+  .answer-source{
+    font-family:var(--font-head);font-size:0.65rem;letter-spacing:0.18em;
+    text-transform:uppercase;color:var(--muted);
+    border-top:1px solid var(--faint);padding-top:1.25rem;
+    display:flex;align-items:center;gap:0.75rem;
+  }
+  .source-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+
+  /* CROSS-REFERENCE SOURCES */
+  .sources-label{
+    font-family:var(--font-head);font-weight:300;font-size:0.72rem;
+    letter-spacing:0.3em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:1.5rem;
+    display:flex;align-items:center;gap:1rem;
+  }
+  .sources-label::before,.sources-label::after{content:'';flex:1;height:1px;background:var(--faint);}
+  .sources-label span{white-space:nowrap;}
+
+  .sources-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    gap:2px;margin-bottom:4rem;
+  }
+  .source-card{
+    background:var(--card);padding:2rem 1.75rem;
+    border-top:2px solid var(--faint);
+    transition:border-top-color 0.2s;
+    cursor:pointer;text-decoration:none;display:block;
+  }
+  .source-card:hover{border-top-color:var(--accent,var(--gold));}
+  .source-card.loc{--accent:#C8922A;}
+  .source-card.claude-src{--accent:#1AACAC;}
+  .source-card.gemini{--accent:#2E72C0;}
+  .source-card.gpt{--accent:#74aa9c;}
+
+  .source-name{
+    font-family:var(--font-head);font-weight:600;font-size:0.85rem;
+    color:var(--accent,var(--gold));margin-bottom:0.4rem;letter-spacing:0.05em;
+  }
+  .source-authority{
+    font-family:var(--font-head);font-size:0.62rem;font-weight:300;
+    letter-spacing:0.15em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:1rem;
+  }
+  .source-excerpt{
+    font-family:var(--font-body);font-size:0.82rem;font-weight:300;
+    line-height:1.65;color:rgba(240,237,230,0.5);margin-bottom:1.25rem;
+  }
+  .source-link{
+    font-family:var(--font-head);font-size:0.65rem;font-weight:500;
+    letter-spacing:0.18em;text-transform:uppercase;
+    color:var(--accent,var(--gold));
+    display:flex;align-items:center;gap:0.5rem;
+  }
+  .source-link::after{content:'→';transition:transform 0.2s;}
+  .source-card:hover .source-link::after{transform:translateX(3px);}
+
+  /* RELATED TOPICS */
+  .related-label{
+    font-family:var(--font-head);font-weight:600;font-size:0.78rem;
+    letter-spacing:0.2em;text-transform:uppercase;
+    color:var(--text);margin-bottom:1.5rem;
+  }
+  .related-chips{display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:5rem;}
+  .related-chip{
+    font-family:var(--font-body);font-size:0.85rem;font-weight:300;
+    color:var(--text);border:1px solid var(--border);
+    padding:0.6rem 1.25rem;cursor:pointer;
+    transition:all 0.2s;text-decoration:none;display:inline-block;
+  }
+  .related-chip:hover{border-color:var(--gold);color:var(--gold);}
+
+  /* EMPTY STATE */
+  .empty-state{
+    text-align:center;padding:6rem 2rem;
+    position:relative;z-index:1;
+  }
+  .empty-icon{width:60px;height:60px;margin:0 auto 2rem;opacity:0.12;}
+  .empty-title{font-family:var(--font-head);font-weight:600;font-size:1.2rem;color:var(--text);margin-bottom:0.75rem;}
+  .empty-sub{font-family:var(--font-body);font-weight:300;font-size:0.95rem;color:var(--muted);}
+
+  /* SUGGESTED QUESTIONS */
+  .suggested{padding:4rem;border-top:1px solid var(--faint);}
+  .suggested-label{font-family:var(--font-head);font-weight:300;font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;}
+  .suggested-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+  .suggested-card{
+    background:var(--card);padding:2rem;cursor:pointer;
+    border-left:2px solid transparent;transition:all 0.2s;
+  }
+  .suggested-card:hover{border-left-color:var(--teal-lt);background:#1a1a1a;}
+  .suggested-q{font-family:var(--font-body);font-size:0.95rem;line-height:1.55;color:rgba(240,237,230,0.75);}
+  .suggested-arrow{font-family:var(--font-head);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal-lt);margin-top:0.75rem;}
+
+  /* PROTOTYPE NOTE */
+  .proto-note{
+    background:rgba(13,124,124,0.08);border:1px solid rgba(26,172,172,0.2);
+    padding:1rem 1.5rem;margin:0 4rem 2rem;
+    font-family:var(--font-body);font-size:0.82rem;
+    color:var(--teal-lt);line-height:1.6;
+  }
+  .proto-note strong{font-weight:600;}
+
+  footer{padding:3rem 4rem;border-top:1px solid var(--faint);}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;}
+  .footer-copy{font-family:var(--font-body);font-size:0.78rem;color:var(--muted);}
+  .footer-copy strong{color:var(--gold);}
+
+  @media(max-width:900px){
+    nav{padding:1rem 1.5rem;}
+    .nav-links{display:none;}
+    .search-hero,.results-area,.suggested,.proto-note{padding-left:1.5rem;padding-right:1.5rem;}
+    .proto-note{margin-left:1.5rem;margin-right:1.5rem;}
+    .sources-grid{grid-template-columns:1fr;}
+    .suggested-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">The Whole <span>Story</span></a>
+  <ul class="nav-links">
+    <li><a href="about.html">About Mr. Green</a></li>
+    <li><a href="search.html" class="active">Explore History</a></li>
+    <li><a href="quiz.html">Find My Starting Point</a></li>
+  </ul>
+  <a href="quiz.html" class="nav-cta">Start Here</a>
+</nav>
+
+<!-- SEARCH HERO -->
+<section class="search-hero">
+  <div class="search-hero-bg"></div>
+  <div class="search-eyebrow">Black American History · Verified · Sourced</div>
+  <h1 class="search-title">Ask<br/><span>Anything.</span></h1>
+  <p class="search-sub">Every answer verified across multiple trusted sources.<br/>Mr. Green's perspective anchors each one.</p>
+
+  <div class="search-bar-wrap">
+    <div class="search-bar">
+      <input class="search-input" id="searchInput" type="text"
+             placeholder="Ask a question about Black American history…"
+             onkeydown="if(event.key==='Enter') triggerSearch()"/>
+      <button class="search-btn" onclick="triggerSearch()">Search</button>
+    </div>
+  </div>
+
+  <div class="search-suggestions">
+    <button class="suggestion-chip" onclick="loadDemo('Why do Black neighborhoods have less generational wealth?')">Generational wealth gap</button>
+    <button class="suggestion-chip" onclick="loadDemo('What was Black Wall Street?')">Black Wall Street</button>
+    <button class="suggestion-chip" onclick="loadDemo('What is redlining?')">What is redlining?</button>
+    <button class="suggestion-chip" onclick="loadDemo('Who were the Black Panthers really?')">The Black Panthers</button>
+    <button class="suggestion-chip" onclick="loadDemo('What is Juneteenth?')">Juneteenth</button>
+  </div>
+</section>
+
+<!-- PROTOTYPE NOTE -->
+<div class="proto-note" id="protoNote">
+  <strong>Prototype Demo:</strong> Click any suggested question above or type your own and press Search to see what a real result will look like. In the live version, answers will be dynamically generated and source links will be live.
+</div>
+
+<!-- RESULTS -->
+<div class="results-area" id="resultsArea">
+
+  <div class="results-query">You asked: <strong id="queryDisplay"></strong></div>
+  <div class="results-headline" id="resultsHeadline"></div>
+
+  <!-- MR GREEN'S ANSWER -->
+  <div class="mr-green-answer">
+    <div class="answer-badge">
+      <div class="answer-badge-dot"></div>
+      Mr. Green's Answer — 37 Years in the Classroom
+    </div>
+    <p class="answer-text" id="greenAnswer"></p>
+    <p class="answer-text" id="greenAnswer2"></p>
+    <div class="answer-source">
+      <div class="source-dot"></div>
+      <span id="greenSource"></span>
+    </div>
+  </div>
+
+  <!-- CROSS-REFERENCE LABEL -->
+  <div class="sources-label"><span>Verify Across Independent Sources</span></div>
+
+  <!-- SOURCE CARDS -->
+  <div class="sources-grid">
+    <div class="source-card loc">
+      <div class="source-name">Library of Congress</div>
+      <div class="source-authority">U.S. Federal Archive · Primary Source Authority</div>
+      <p class="source-excerpt" id="locExcerpt"></p>
+      <div class="source-link">View Primary Source</div>
+    </div>
+    <div class="source-card claude-src">
+      <div class="source-name">Claude (Anthropic)</div>
+      <div class="source-authority">AI Research Assistant</div>
+      <p class="source-excerpt" id="claudeExcerpt"></p>
+      <div class="source-link">Explore with Claude</div>
+    </div>
+    <div class="source-card gemini">
+      <div class="source-name">Google Gemini</div>
+      <div class="source-authority">AI Research Assistant</div>
+      <p class="source-excerpt" id="geminiExcerpt"></p>
+      <div class="source-link">Explore with Gemini</div>
+    </div>
+    <div class="source-card gpt">
+      <div class="source-name">ChatGPT</div>
+      <div class="source-authority">AI Research Assistant</div>
+      <p class="source-excerpt" id="gptExcerpt"></p>
+      <div class="source-link">Explore with ChatGPT</div>
+    </div>
+  </div>
+
+  <!-- RELATED -->
+  <div class="related-label">Explore Related Topics</div>
+  <div class="related-chips" id="relatedChips"></div>
+
+</div>
+
+<!-- SUGGESTED QUESTIONS (shown before search) -->
+<div class="suggested" id="suggestedSection">
+  <div class="suggested-label">Questions People Are Asking</div>
+  <div class="suggested-grid">
+    <div class="suggested-card" onclick="loadDemo('Why do Black neighborhoods have less generational wealth?')">
+      <div class="suggested-q">Why do Black neighborhoods have less generational wealth than white neighborhoods?</div>
+      <div class="suggested-arrow">Ask this →</div>
+    </div>
+    <div class="suggested-card" onclick="loadDemo('What was Black Wall Street?')">
+      <div class="suggested-q">What was Black Wall Street, and what happened to it?</div>
+      <div class="suggested-arrow">Ask this →</div>
+    </div>
+    <div class="suggested-card" onclick="loadDemo('What is redlining?')">
+      <div class="suggested-q">What is redlining and does it still affect people today?</div>
+      <div class="suggested-arrow">Ask this →</div>
+    </div>
+    <div class="suggested-card" onclick="loadDemo('Who were the Black Panthers really?')">
+      <div class="suggested-q">Who were the Black Panthers really? Were they actually violent?</div>
+      <div class="suggested-arrow">Ask this →</div>
+    </div>
+    <div class="suggested-card" onclick="loadDemo('What is Juneteenth?')">
+      <div class="suggested-q">What is Juneteenth and why didn't I learn about it in school?</div>
+      <div class="suggested-arrow">Ask this →</div>
+    </div>
+    <div class="suggested-card" onclick="loadDemo('What was Reconstruction?')">
+      <div class="suggested-q">What was Reconstruction, and why did it end the way it did?</div>
+      <div class="suggested-arrow">Ask this →</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 The Whole Story. Prototype — <strong>for Mr. Anthony Green</strong>.</div>
+    <div class="footer-copy">All facts cited. All history documented.</div>
+  </div>
+</footer>
+
+<script>
+const DEMO_DATA = {
+  'Why do Black neighborhoods have less generational wealth?': {
+    headline: 'Why do Black neighborhoods have less generational wealth?',
+    greenAnswer: `The wealth gap between Black and white families in America is not the result of culture, behavior, or effort. It is the result of federal policy — specifically, policies designed to build wealth for white families while explicitly excluding Black families from the same programs. The most direct cause is the <strong>Federal Housing Act of 1934</strong>, which authorized the Home Owners' Loan Corporation to grade neighborhoods for mortgage risk. Black neighborhoods were systematically graded "hazardous" — marked in red on government maps. Banks would not lend there. This is redlining.`,
+    greenAnswer2: `Homeownership is the primary vehicle through which American families build and transfer wealth across generations. When Black families were excluded from purchasing homes in appreciating neighborhoods — by law, not by choice — they were excluded from the single greatest wealth-building mechanism in American history. That exclusion lasted for decades. Its effects are still visible in property values, school district funding, and net worth statistics today. This is not ancient history. It is the financial biography of living Americans.`,
+    greenSource: 'Sources: HOLC Residential Security Maps (1935–1940), National Archives; Rothstein, R. The Color of Law (2017); Federal Housing Administration Underwriting Manual (1938)',
+    locExcerpt: 'The Library of Congress holds the original HOLC "Residential Security Maps" from 1935–1940, which document the federal government\'s systematic designation of Black neighborhoods as high-risk for mortgage lending. These maps are primary evidence of the policy mechanism behind the wealth gap.',
+    claudeExcerpt: 'Research confirms that the racial wealth gap is directly traceable to exclusionary federal housing policy from the 1930s–1960s, including the GI Bill\'s unequal implementation, redlining, and racially restrictive covenants — all of which were legal and federally sanctioned.',
+    geminiExcerpt: 'Federal data from the Federal Reserve\'s Survey of Consumer Finances shows the median white family holds approximately 8x the wealth of the median Black family. Economists trace the root cause to differential access to homeownership during the mid-20th century wealth-building era.',
+    gptExcerpt: 'The racial wealth gap is well-documented across academic literature. Studies from the National Bureau of Economic Research, Brookings Institution, and Federal Reserve consistently identify mid-century housing discrimination as the primary structural cause.',
+    related: ['Redlining', 'The GI Bill & Racial Exclusion', 'Black Wall Street', 'Restrictive Covenants', 'Fair Housing Act 1968', 'Homeownership Rates Today']
+  },
+  'What was Black Wall Street?': {
+    headline: 'What was Black Wall Street — and what happened to it?',
+    greenAnswer: `"Black Wall Street" is the name given to the Greenwood District of Tulsa, Oklahoma — a thriving, self-sufficient Black community that by 1921 contained over <strong>300 Black-owned businesses</strong>, a hospital, law offices, a hotel, a library, and a school system. It was called Black Wall Street because of its extraordinary economic productivity and the wealth circulating within the community. Greenwood was what happens when Black people are left to build — unimpeded, in the brief window between slavery and the full enforcement of Jim Crow.`,
+    greenAnswer2: `On the night of May 31, 1921, a white mob — aided by city police and deputized civilians — invaded Greenwood. They burned it to the ground. Over 35 blocks were destroyed. Hundreds of Black residents were killed. Over 10,000 people were left homeless. Airplanes — privately owned and possibly government-assisted — fired on residents from above. The city then prevented Greenwood from rebuilding on its own land. The Tulsa Race Massacre was one of the worst acts of racial violence in American history. It was not taught in Oklahoma schools until 2020. Most Americans have never heard of it.`,
+    greenSource: 'Sources: Tulsa Race Riot Commission Report (2001), Oklahoma Commission; Library of Congress, Prints & Photographs Division; Hirsch, J. Riot and Remembrance (2002)',
+    locExcerpt: 'The Library of Congress holds photographic documentation of the Greenwood District before and after the 1921 massacre, as well as congressional testimony and federal investigation records from the period. These constitute primary evidence of the event\'s scale and governmental involvement.',
+    claudeExcerpt: 'The 1921 Tulsa Race Massacre destroyed what was recognized as one of the wealthiest Black communities in the United States. The Tulsa Race Riot Commission\'s 2001 report confirmed the massacre\'s scale and recommended reparations — which were never enacted.',
+    geminiExcerpt: 'The destruction of Greenwood in 1921 represents one of the most significant single-event destructions of Black wealth in American history. Adjusted for inflation, property losses are estimated in the hundreds of millions of dollars — none of which was compensated.',
+    gptExcerpt: 'The Tulsa Race Massacre of 1921 is now increasingly documented in mainstream American history. It was officially recognized by the Oklahoma state legislature only in 1996, and mandatory school curriculum inclusion came even later.',
+    related: ['Tulsa Race Massacre 1921', 'Jim Crow Era', 'Black Economic History', 'Reparations Debate', 'Other Black Communities Destroyed', 'Greenwood Today']
+  },
+  'What is redlining?': {
+    headline: 'What is redlining — and does it still affect people today?',
+    greenAnswer: `Redlining was a federal government practice, begun in 1934, in which the Home Owners' Loan Corporation (HOLC) created color-coded maps of American cities — grading neighborhoods by their perceived "mortgage risk." Neighborhoods marked in red were deemed hazardous. <strong>Nearly every Black neighborhood in America was marked red.</strong> Banks would not issue mortgages to buyers in redlined areas. Federal mortgage insurance — which subsidized the postwar suburban housing boom — was unavailable to Black buyers almost anywhere.`,
+    greenAnswer2: `The practical effect was this: the largest wealth-transfer program in American history — the postwar suburban expansion — was funded by federal dollars and available almost exclusively to white families. Black families were locked out by law. The neighborhoods that were redlined received no investment, deteriorated, and became the "dangerous neighborhoods" the maps had falsely predicted. This is a self-fulfilling policy, not an organic outcome. The HOLC maps are archived and publicly available. You can look up your own city.`,
+    greenSource: 'Sources: HOLC Residential Security Maps (1935), National Archives; Jackson, K. Crabgrass Frontier (1985); Rothstein, R. The Color of Law (2017)',
+    locExcerpt: 'The Library of Congress and National Archives hold the original HOLC Residential Security Maps for over 200 American cities. Researchers have digitized these maps and overlaid them with present-day demographic and economic data — showing a near-perfect correlation between redlined areas and current poverty rates.',
+    claudeExcerpt: 'Yes, redlining\'s effects persist today. Studies comparing 1930s HOLC maps with current census data show that formerly redlined neighborhoods are significantly more likely to have lower property values, lower school funding, higher rates of chronic illness, and less access to credit — 80+ years later.',
+    geminiExcerpt: 'A 2018 NCRC study found that 74% of neighborhoods rated "hazardous" (redlined) in the 1930s remain low-to-moderate income today. 64% are still majority-minority. The correlation between historical redlining and current economic conditions is among the strongest in social science research.',
+    gptExcerpt: 'Redlining was officially prohibited by the Fair Housing Act of 1968 — 34 years after it began. However, discriminatory lending practices continued under different names for decades after. The legacy effects on neighborhood wealth, school quality, and environmental conditions remain well-documented.',
+    related: ['HOLC Maps & Your City', 'Generational Wealth Gap', 'Fair Housing Act 1968', 'School Funding & Property Taxes', 'Environmental Racism', 'Black Wall Street']
+  },
+  'Who were the Black Panthers really?': {
+    headline: 'Who were the Black Panthers really — were they actually violent?',
+    greenAnswer: `The Black Panther Party for Self-Defense was founded in <strong>Oakland, California in October 1966</strong> by Huey P. Newton and Bobby Seale. They were founded not as a violent organization, but as a community defense organization — specifically, to monitor Oakland police, who were routinely brutalizing Black residents with no accountability. California law at the time permitted open carry of firearms. The Panthers exercised that right legally, following police on patrol to document and deter misconduct. The image of the armed Black man in a beret came from this legal, documented, First and Second Amendment exercise.`,
+    greenAnswer2: `What is less remembered: the Black Panther Party ran <strong>free breakfast programs</strong> that fed thousands of children before school — a program so successful the FBI considered it a greater threat than their firearms. They ran free medical clinics, legal aid programs, and education initiatives. The FBI's COINTELPRO program — now documented through declassified files — conducted an illegal federal campaign to destroy the Panthers through infiltration, assassination, and manufactured evidence. Understanding the Black Panthers requires understanding COINTELPRO first.`,
+    greenSource: 'Sources: FBI COINTELPRO Files (declassified, available at National Archives); Seale, B. Seize the Time (1970); Churchill, W. & Vander Wall, J. Agents of Repression (1988)',
+    locExcerpt: 'The Library of Congress and National Archives hold declassified FBI COINTELPRO documents detailing the federal government\'s covert operations against the Black Panther Party — including surveillance, infiltration, and coordinated law enforcement raids. These are primary government documents.',
+    claudeExcerpt: 'Historical scholarship has significantly revised the popular image of the Black Panthers. Declassified FBI documents confirm that COINTELPRO explicitly targeted the Party\'s community programs as threats to the political order — particularly the free breakfast program, which served 20,000+ children per week at its peak.',
+    geminiExcerpt: 'The Black Panther Party\'s Ten-Point Program called for housing, employment, education, healthcare, and end to police brutality — demands that align closely with contemporary progressive policy platforms. The "violent" framing was substantially shaped by FBI press manipulation, as documented in declassified records.',
+    gptExcerpt: 'Academic consensus has shifted on the Black Panthers. Peer-reviewed scholarship increasingly characterizes the organization as a community welfare and civil rights organization whose militant image was amplified by government disinformation and disproportionate media coverage of violent incidents.',
+    related: ['COINTELPRO', 'Oakland Black Panther History', 'Free Breakfast Program', 'Black Power Movement', 'FBI vs. Civil Rights Leaders', 'Huey Newton & Bobby Seale']
+  },
+  'What is Juneteenth?': {
+    headline: 'What is Juneteenth — and why didn\'t I learn about it in school?',
+    greenAnswer: `Juneteenth — June 19th — marks the day in 1865 when Union soldiers arrived in Galveston, Texas and announced that enslaved people were free. The Emancipation Proclamation had been issued two and a half years earlier, on January 1, 1863. <strong>Enslaved people in Texas were not informed.</strong> Their enslavers withheld the information to extract additional free labor through two more planting and harvest seasons. When freedom finally arrived on June 19, 1865, it came two and a half years late — and only because of the physical presence of federal troops.`,
+    greenAnswer2: `Why didn't you learn about it? Because Juneteenth was celebrated within Black communities for over 150 years while American institutions — schools, textbooks, federal calendars — largely ignored it. Texas made it a state holiday in 1980. It became a federal holiday only in 2021 — 156 years after the event. The question of why certain history is included in public memory and certain history is not is itself one of the most important questions this platform exists to answer.`,
+    greenSource: 'Sources: General Order No. 3, June 19, 1865, Galveston TX; Library of Congress, African American History Collection; National Museum of African American History and Culture',
+    locExcerpt: 'The Library of Congress holds General Order No. 3, issued June 19, 1865 in Galveston, Texas — the original document announcing emancipation to enslaved people in Texas. This primary document is the founding artifact of Juneteenth.',
+    claudeExcerpt: 'Juneteenth\'s 156-year journey from community celebration to federal holiday reflects broader patterns in American historical memory — specifically, whose history is institutionally recognized and whose is preserved only within the community it belongs to.',
+    geminiExcerpt: 'The two-and-a-half year delay between the Emancipation Proclamation and Juneteenth is documented in Union military records. Historians note that the delay was not merely logistical — it represented the continued exploitation of enslaved labor by enslavers who deliberately withheld knowledge of emancipation.',
+    gptExcerpt: 'Juneteenth was recognized as a federal holiday on June 17, 2021 — signed into law by President Biden. Its belated federal recognition is itself a commentary on whose history American institutions have historically chosen to commemorate.',
+    related: ['Emancipation Proclamation', 'The 13th Amendment', 'Reconstruction', 'Black Codes After Emancipation', 'Freedmen\'s Bureau', 'Why History Gets Left Out']
+  },
+  'What was Reconstruction?': {
+    headline: 'What was Reconstruction — and why did it end the way it did?',
+    greenAnswer: `Reconstruction (1865–1877) was the period following the Civil War in which the federal government attempted to reintegrate the Confederate states and establish political and civil rights for four million formerly enslaved people. In its brief, extraordinary window, Reconstruction produced: <strong>the 13th, 14th, and 15th Amendments</strong> to the Constitution; over 2,000 Black elected officials, including 16 U.S. Congressmen and 2 U.S. Senators; Black-founded public schools serving both Black and white children; and a genuine, if fragile, experiment in multiracial democracy in the American South.`,
+    greenAnswer2: `Reconstruction ended not because it failed — but because it was ended. The Compromise of 1877 removed federal troops from the South in exchange for settling the disputed 1876 presidential election. Without federal enforcement, the former Confederate states systematically dismantled every protection Reconstruction had built. Black elected officials were removed by violence and intimidation. Black Codes and then Jim Crow laws replaced slavery in function. The Freedmen's Bureau was defunded. What Reconstruction shows us is what America was capable of building — and what it chose to dismantle. That is the most important history lesson in the country.`,
+    greenSource: 'Sources: Du Bois, W.E.B. Black Reconstruction in America (1935); Foner, E. Reconstruction: America\'s Unfinished Revolution (1988); Library of Congress, Reconstruction Era Collections',
+    locExcerpt: 'The Library of Congress holds the records of the Freedmen\'s Bureau (1865–1872), the Congressional Reconstruction Acts, and legislative records of the 13th, 14th, and 15th Amendments — the primary documents of the Reconstruction era and its achievements.',
+    claudeExcerpt: 'Eric Foner\'s Reconstruction: America\'s Unfinished Revolution is widely considered the definitive academic account. It documents both the extraordinary achievements of the Reconstruction period and the systematic, violent campaign to end it — reframing Reconstruction from "failure" to "unfinished project."',
+    geminiExcerpt: 'W.E.B. Du Bois\'s Black Reconstruction in America (1935) was the first major scholarly work to challenge the "Lost Cause" interpretation of Reconstruction as a corrupt failure. Du Bois\'s analysis — that Reconstruction was a genuine democratic experiment destroyed by white supremacist violence — is now the consensus view in historical scholarship.',
+    gptExcerpt: 'The historiography of Reconstruction has shifted dramatically in the past 50 years. Early 20th century accounts, influenced by the "Dunning School," portrayed Reconstruction as a period of corruption and Black incompetence. Contemporary scholarship — based on primary sources — tells a fundamentally different story.',
+    related: ['The Compromise of 1877', 'Black Codes After Reconstruction', 'The 13th, 14th & 15th Amendments', 'Freedmen\'s Bureau', 'Jim Crow Laws', 'The Lost Cause Myth']
+  }
+};
+
+function triggerSearch() {
+  const val = document.getElementById('searchInput').value.trim();
+  if (!val) return;
+  // try to find a close match
+  const keys = Object.keys(DEMO_DATA);
+  const match = keys.find(k => k.toLowerCase().includes(val.toLowerCase()) || val.toLowerCase().includes(k.toLowerCase().split(' ').slice(0,3).join(' ')));
+  loadDemo(match || keys[0]);
+}
+
+function loadDemo(question) {
+  const data = DEMO_DATA[question];
+  if (!data) return;
+
+  document.getElementById('searchInput').value = question;
+  document.getElementById('queryDisplay').textContent = question;
+  document.getElementById('resultsHeadline').textContent = data.headline;
+  document.getElementById('greenAnswer').innerHTML = data.greenAnswer;
+  document.getElementById('greenAnswer2').innerHTML = data.greenAnswer2;
+  document.getElementById('greenSource').textContent = data.greenSource;
+  document.getElementById('locExcerpt').textContent = data.locExcerpt;
+  document.getElementById('claudeExcerpt').textContent = data.claudeExcerpt;
+  document.getElementById('geminiExcerpt').textContent = data.geminiExcerpt;
+  document.getElementById('gptExcerpt').textContent = data.gptExcerpt;
+
+  const chips = document.getElementById('relatedChips');
+  chips.innerHTML = data.related.map(r => `<a href="#" class="related-chip" onclick="event.preventDefault();loadDemo('${Object.keys(DEMO_DATA)[0]}')">${r}</a>`).join('');
+
+  document.getElementById('resultsArea').classList.add('visible');
+  document.getElementById('suggestedSection').style.display = 'none';
+  document.getElementById('protoNote').style.display = 'none';
+
+  setTimeout(() => {
+    document.getElementById('resultsArea').scrollIntoView({behavior:'smooth', block:'start'});
+  }, 100);
+}
+</script>
+</body>
+</html>
