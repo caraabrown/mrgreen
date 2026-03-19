@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mr. Green's Bookshelf — The Whole Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#080808;--surface:#101010;--card:#161616;--border:#242424;
+    --gold:#C8922A;--gold-lt:#E5B55A;--teal:#0D7C7C;--teal-lt:#1AACAC;
+    --text:#F0EDE6;--muted:#7A7A7A;--faint:#2A2A2A;
+    --font-disp:'Bebas Neue',sans-serif;
+    --font-head:'Oswald',sans-serif;
+    --font-body:'Raleway',sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-weight:400;line-height:1.6;overflow-x:hidden;}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:rgba(8,8,8,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--faint);}
+  .nav-logo{font-family:var(--font-head);font-weight:600;font-size:1rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);text-decoration:none;}
+  .nav-logo span{color:var(--text);}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;}
+  .nav-links a{font-family:var(--font-head);font-weight:300;font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--text);}
+  .nav-cta{font-family:var(--font-head);font-size:0.75rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--bg);background:var(--gold);border:none;padding:0.55rem 1.4rem;cursor:pointer;text-decoration:none;}
+
+  /* HERO */
+  .page-hero{padding:13rem 4rem 5rem;position:relative;overflow:hidden;border-bottom:1px solid var(--faint);}
+  .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 30% 50%,rgba(200,146,42,0.07) 0%,transparent 60%),linear-gradient(180deg,#080808 0%,#0c0a06 100%);}
+  .hero-eyebrow{font-family:var(--font-head);font-weight:300;font-size:0.75rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;position:relative;z-index:1;}
+  .hero-eyebrow::before{content:'';width:40px;height:1px;background:var(--gold);display:block;}
+  .hero-title{font-family:var(--font-disp);font-size:clamp(5rem,10vw,9rem);line-height:0.9;color:var(--text);position:relative;z-index:1;}
+  .hero-title em{color:var(--gold);font-style:normal;display:block;}
+  .hero-sub{font-family:var(--font-body);font-weight:300;font-size:1.05rem;line-height:1.8;color:rgba(240,237,230,0.55);max-width:580px;margin-top:1.5rem;position:relative;z-index:1;}
+  .hero-sub strong{color:var(--text);font-weight:500;}
+  .breadcrumb{font-family:var(--font-head);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);position:relative;z-index:1;margin-bottom:1.5rem;}
+  .breadcrumb a{color:var(--muted);text-decoration:none;}
+  .breadcrumb a:hover{color:var(--gold);}
+  .breadcrumb span{color:var(--faint);margin:0 0.5rem;}
+
+  /* FILTER */
+  .filter-bar{padding:2rem 4rem;border-bottom:1px solid var(--faint);background:var(--surface);display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;position:sticky;top:66px;z-index:50;}
+  .filter-label{font-family:var(--font-head);font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-right:0.5rem;}
+  .filter-btn{font-family:var(--font-head);font-size:0.68rem;font-weight:400;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);border:1px solid var(--faint);background:transparent;padding:0.45rem 1.1rem;cursor:pointer;transition:all 0.2s;}
+  .filter-btn:hover{border-color:var(--text);color:var(--text);}
+  .filter-btn.active{border-color:var(--gold);color:var(--gold);}
+
+  /* BOOK GRID */
+  .books-section{padding:5rem 4rem;}
+  .books-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+
+  /* BOOK TILE */
+  .book-tile{
+    background:var(--card);
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+    transition:transform 0.25s;
+    display:block;
+    text-decoration:none;
+  }
+  .book-tile:hover{transform:translateY(-4px);}
+  .book-tile::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:3px;
+    background:var(--gold);transform:scaleX(0);transform-origin:left;
+    transition:transform 0.3s;
+  }
+  .book-tile:hover::before{transform:scaleX(1);}
+
+  .book-cover{
+    width:100%;aspect-ratio:2/3;
+    background:var(--surface);
+    display:flex;align-items:center;justify-content:center;
+    position:relative;overflow:hidden;
+  }
+  .book-cover-placeholder{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:2rem;text-align:center;height:100%;
+    background:linear-gradient(135deg,#101010 0%,#1a1508 100%);
+  }
+  .book-cover-title{
+    font-family:var(--font-head);font-weight:700;font-size:0.95rem;
+    color:var(--text);line-height:1.3;margin-bottom:0.75rem;
+  }
+  .book-cover-author{
+    font-family:var(--font-body);font-size:0.72rem;font-weight:300;
+    color:var(--gold);
+  }
+  .book-cover-line{
+    width:40px;height:1px;background:var(--gold);margin:1rem auto;
+  }
+  .book-cover-placeholder-label{
+    font-family:var(--font-head);font-size:0.55rem;letter-spacing:0.2em;
+    text-transform:uppercase;color:var(--faint);margin-top:1rem;
+  }
+
+  .book-info{padding:1.75rem;}
+  .book-num{
+    font-family:var(--font-disp);font-size:1.8rem;color:var(--faint);
+    line-height:1;margin-bottom:0.5rem;
+    transition:color 0.2s;
+  }
+  .book-tile:hover .book-num{color:var(--gold);}
+  .book-title{
+    font-family:var(--font-head);font-weight:600;font-size:0.92rem;
+    color:var(--text);margin-bottom:0.25rem;line-height:1.3;
+  }
+  .book-author{
+    font-family:var(--font-body);font-size:0.78rem;color:var(--muted);
+    margin-bottom:1rem;
+  }
+  .book-quote{
+    font-family:var(--font-body);font-style:italic;font-weight:300;
+    font-size:0.82rem;line-height:1.65;
+    color:rgba(240,237,230,0.5);
+    border-left:2px solid var(--gold);
+    padding-left:0.75rem;
+    display:none;/* placeholder — shown when Mr. Green provides his words */
+  }
+  .book-quote-placeholder{
+    font-family:var(--font-body);font-size:0.75rem;font-weight:300;
+    color:var(--faint);line-height:1.55;font-style:italic;
+  }
+  .book-tag{
+    display:inline-block;
+    font-family:var(--font-head);font-size:0.58rem;font-weight:400;
+    letter-spacing:0.15em;text-transform:uppercase;
+    color:var(--teal-lt);border:1px solid rgba(26,172,172,0.3);
+    padding:0.2rem 0.6rem;margin-top:0.75rem;
+  }
+
+  /* COMING SOON BANNER */
+  .coming-soon-bar{
+    background:rgba(200,146,42,0.08);border:1px solid rgba(200,146,42,0.2);
+    padding:1.5rem 4rem;
+    display:flex;align-items:center;justify-content:space-between;
+    margin-bottom:0;
+  }
+  .cs-text{font-family:var(--font-body);font-size:0.88rem;font-weight:300;color:rgba(240,237,230,0.6);}
+  .cs-text strong{color:var(--gold);}
+  .cs-badge{font-family:var(--font-head);font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold);padding:0.4rem 1rem;}
+
+  footer{padding:3rem 4rem;border-top:1px solid var(--faint);}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+  .footer-copy{font-family:var(--font-body);font-size:0.78rem;color:var(--muted);}
+  .footer-copy strong{color:var(--gold);}
+  .footer-copy a{color:var(--gold);text-decoration:none;}
+
+  @media(max-width:900px){
+    nav{padding:1rem 1.5rem;}
+    .nav-links{display:none;}
+    .page-hero,.filter-bar,.books-section,.coming-soon-bar{padding-left:1.5rem;padding-right:1.5rem;}
+    .books-grid{grid-template-columns:repeat(2,1fr);}
+    footer{padding:2rem 1.5rem;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">The Whole <span>Story</span></a>
+  <ul class="nav-links">
+    <li><a href="about.html">About Mr. Green</a></li>
+    <li><a href="search.html" class="active">Explore History</a></li>
+    <li><a href="myths.html">Myth vs. Reality</a></li>
+    <li><a href="about.html#reading">Reading List</a></li>
+    <li><a href="index.html#stories">Light Bulb Stories</a></li>
+    <li><a href="model.html">Learn the Model</a></li>
+  </ul>
+  <a href="quiz.html" class="nav-cta">Start Here</a>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="breadcrumb"><a href="search.html">Explore History</a><span>›</span>Mr. Green's Bookshelf</div>
+  <div class="hero-eyebrow">Curated by Mr. Anthony Green · 46 Years in the Classroom</div>
+  <h1 class="hero-title">
+    The Bookshelf.
+    <em>In His Words.</em>
+  </h1>
+  <p class="hero-sub">
+    These are not assigned readings. They are <strong>personal recommendations</strong> — 
+    the books Mr. Green returns to when someone says "I want to understand this better." 
+    Each entry will carry his own two-sentence take: why this book, why now, 
+    why it matters to the world you're living in today.
+  </p>
+</section>
+
+<!-- COMING SOON -->
+<div class="coming-soon-bar">
+  <p class="cs-text">Mr. Green's personal commentary on each book is <strong>coming soon</strong> — this page will be updated in his own words.</p>
+  <div class="cs-badge">Content In Progress</div>
+</div>
+
+<!-- FILTER -->
+<div class="filter-bar">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" onclick="filterBooks('all',this)">All</button>
+  <button class="filter-btn" onclick="filterBooks('history',this)">Black History</button>
+  <button class="filter-btn" onclick="filterBooks('identity',this)">Identity & Race</button>
+  <button class="filter-btn" onclick="filterBooks('biography',this)">Biography</button>
+  <button class="filter-btn" onclick="filterBooks('fiction',this)">Fiction</button>
+  <button class="filter-btn" onclick="filterBooks('politics',this)">Politics & Power</button>
+</div>
+
+<!-- BOOKS -->
+<section class="books-section">
+  <div class="books-grid" id="booksGrid">
+
+    <div class="book-tile" data-cat="fiction">
+      <div class="book-cover">
+        <div class="book-cover-placeholder">
+          <div class="book-cover-line"></div>
+          <div class="book-cover-title">The Spook Who Sat by the Door</div>
+          <div class="book-cover-author">Sam Greenlee</div>
+          <div class="book-cover-line"></div>
+          <div class="book-cover-placeholder-label">Cover Photo Placeholder</div>
+        </div>
+      </div>
+      <div class="book-info">
+        <div class="book-num">01</div>
+        <div class="book-title">The Spook Who Sat by the Door</div>
+        <div class="book-author">Sam Greenlee · 1969</div>
+        <p class="book-quote-placeholder">[Mr. Green's 2-sentence take — coming soon]</p>
+        <div class="book-tag">Fiction</div>
+      </div>
+    </div>
+
+    <div class="book-tile" data-cat="biography">
+      <div class="book-cover">
+        <div class="book-cover-placeholder">
+          <div class="book-cover-line"></div>
+          <div class="book-cover-title">The Autobiography of Malcolm X</div>
+          <div class="book-cover-author">Alex Haley</div>
+          <div class="book-cover-line"></div>
+          <div class="book-cover-placeholder-label">Cover Photo Placeholder</div>
+        </div>
+      </div>
+      <div class="book-info">
+        <div class="book-num">02</div>
+        <div class="book-title">The Autobiography of Malcolm X</div>
+        <div class="book-author">Alex Haley · 1965</div>
+        <p class="book-quote-placeholder">[Mr. Green's 2-sentence take — coming soon]</p>
+        <div class="book-tag">Biography</div>
+      </div>
+    </div>
+
+    <div class="book-tile" data-cat="history">
+      <div class="book-cover">
+        <div class="book-cover-placeholder">
+          <div class="book-cover-line"></div>
+          <div class="book-cover-title">Miseducation of the Negro</div>
+          <div class="book-cover-author">Carter G. Woodson</div>
+          <div class="book-cover-line"></div>
+          <div class="book-cover-placeholder-label">Cover Photo Placeholder</div>
+        </div>
+      </div>
+      <div class="book-info">
+        <div class="book-num">03</div>
+        <div class="book-title">Miseducation of the Negro</div>
+        <div class="book-author">Carter G. Woodson · 1933</div>
+        <p class="book-quote-placeholder">[Mr. Green's 2-sentence take — coming soon]</p>
+        <div class="book-tag">History</div>
+      </div>
+    </div>
+
+    <div class="book-tile" data-cat="fiction">
+      <div class="book-cover">
+        <div class="book-cover-placeholder">
+          <div class="book-cover-line"></div>
+          <div class="book-cover-title">Invisible Man</div>
+          <div class="book-cover-author">Ralph Ellison</div>
+          <div class="book-cover-line"></div>
+          <div class="book-cover-placeholder-label">Cover Photo Placeholder</div>
+        </div>
+      </div>
+      <div class="book-info">
+        <div class="book-num">04</div>
+        <div class="book-title">Invisible Man</div>
+        <div class="book-author">Ralph Ellison · 1952</div>
+        <p class="book-quote-placeholder">[Mr. Green's 2-sentence take — coming soon]</p>
+        <div class="book-tag">Fiction</div>
+      </div>
+    </div>
+
+    <div class="book-tile" data-cat="politics">
+      <div class="book-cover">
+        <div class="book-cover-placeholder">
+          <div class="book-cover-line"></div>
+          <div class="book-cover-title">Race Matters</div>
+          <div class="book-cover-author">Cornel West</div>
+          <div class="book-cover-line"></div>
+          <div class="book-cover-placeholder-label">Cover Photo Placeholder</div>
+        </div>
+      </div>
+      <div class="book-info">
+        <div class="book-num">05</div>
+        <div class="book-title">Race Matters</div>
+        <div class="book-author">Cornel West · 1993</div>
+        <p class="book-quote-placeholder">[Mr. Green's 2-sentence take — coming soon]</p>
+        <div class="book-tag">Politics & Power</div>
+      </div>
+    </div>
+
+    <div class="book-tile" data-cat="biography">
+      <div class="book-cover">
+        <div class="book-cover-placeholder">
+          <div class="book-cover-line"></div>
+          <div class="book-cover-title">Up From Slavery</div>
+          <div class="book-cover-author">Booker T. Washington</div>
+          <div class="book-cover-line"></div>
+          <div class="book-cover-placeholder-label">Cover Photo Placeholder</div>
+        </div>
+      </div>
+      <div class="book-info">
+        <div class="book-num">06</div>
+        <div class="book-title">Up From Slavery</div>
+        <div class="book-author">Booker T. Washington · 1901</div>
+        <p class="book-quote-placeholder">[Mr. Green's 2-sentence take — coming soon]</p>
+        <div class="book-tag">Biography</div>
+      </div>
+    </div>
+
+    <div class="book-tile" data-cat="biography">
+      <div class="book-cover">
+        <div class="book-cover-placeholder">
+          <div class="book-cover-line"></div>
+          <div class="book-cover-title">Malcolm X: A Life of Reinvention</div>
+          <div class="book-cover-author">Manning Marable</div>
+          <div class="book-cover-line"></div>
+          <div class="book-cover-placeholder-label">Cover Photo Placeholder</div>
+        </div>
+      </div>
+      <div class="book-info">
+        <div class="book-num">07</div>
+        <div class="book-title">Malcolm X: A Life of Reinvention</div>
+        <div class="book-author">Manning Marable · 2011</div>
+        <p class="book-quote-placeholder">[Mr. Green's 2-sentence take — coming soon]</p>
+        <div class="book-tag">Biography</div>
+      </div>
+    </div>
+
+    <!-- Placeholder tile for more books -->
+    <div class="book-tile" data-cat="history" style="opacity:0.4;cursor:default;" onclick="return false;">
+      <div class="book-cover">
+        <div class="book-cover-placeholder" style="background:var(--bg);">
+          <div style="font-family:var(--font-head);font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--faint);text-align:center;">More titles<br/>being added</div>
+        </div>
+      </div>
+      <div class="book-info">
+        <div class="book-num" style="color:var(--faint);">—</div>
+        <div class="book-title" style="color:var(--faint);">More titles coming</div>
+        <div class="book-author" style="color:var(--faint);">Mr. Green is still building this shelf</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 The Whole Story. Prototype — <strong>for Mr. Anthony Green</strong>.</div>
+    <div class="footer-copy">All facts cited. All history documented.</div>
+    <div class="footer-copy">Created by <a href="https://www.getclarity.consulting" target="_blank">Alanne International</a></div>
+  </div>
+</footer>
+
+<script>
+function filterBooks(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.book-tile').forEach(tile => {
+    tile.style.display = (cat === 'all' || tile.dataset.cat === cat) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>

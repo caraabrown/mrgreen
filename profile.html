@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Add Your Profile — The Whole Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#080808;--surface:#101010;--card:#161616;--border:#242424;
+    --gold:#C8922A;--gold-lt:#E5B55A;--teal:#0D7C7C;--teal-lt:#1AACAC;
+    --text:#F0EDE6;--muted:#7A7A7A;--faint:#2A2A2A;
+    --font-disp:'Bebas Neue',sans-serif;
+    --font-head:'Oswald',sans-serif;
+    --font-body:'Raleway',sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-weight:400;line-height:1.6;overflow-x:hidden;}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:rgba(8,8,8,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--faint);}
+  .nav-logo{font-family:var(--font-head);font-weight:600;font-size:1rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);text-decoration:none;}
+  .nav-logo span{color:var(--text);}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;}
+  .nav-links a{font-family:var(--font-head);font-weight:300;font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+  .nav-links a:hover{color:var(--text);}
+  .nav-cta{font-family:var(--font-head);font-size:0.75rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--bg);background:var(--gold);border:none;padding:0.55rem 1.4rem;cursor:pointer;text-decoration:none;}
+
+  /* PAGE */
+  .page-wrap{
+    max-width:820px;margin:0 auto;
+    padding:11rem 2rem 6rem;
+  }
+  .page-eyebrow{font-family:var(--font-head);font-weight:300;font-size:0.75rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;}
+  .page-eyebrow::before{content:'';width:40px;height:1px;background:var(--gold);display:block;}
+  .page-title{font-family:var(--font-disp);font-size:clamp(4rem,8vw,7rem);line-height:0.9;color:var(--text);margin-bottom:0.75rem;}
+  .page-title span{color:var(--gold);}
+  .page-sub{font-family:var(--font-body);font-weight:300;font-size:1rem;line-height:1.75;color:rgba(240,237,230,0.55);margin-bottom:3.5rem;max-width:560px;}
+
+  /* FORM */
+  .form-card{background:var(--card);border:1px solid var(--border);padding:3.5rem;}
+  .form-section-title{font-family:var(--font-head);font-weight:600;font-size:0.85rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text);margin-bottom:1.5rem;margin-top:2.5rem;padding-top:2.5rem;border-top:1px solid var(--faint);}
+  .form-section-title:first-child{margin-top:0;padding-top:0;border-top:none;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+  .form-group{margin-bottom:1rem;}
+  .form-label{font-family:var(--font-head);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:0.5rem;}
+  .form-label span{color:var(--crimson,#B8374A);}
+  .form-input{width:100%;padding:0.9rem 1.2rem;background:var(--surface);border:1px solid var(--border);color:var(--text);font-family:var(--font-body);font-size:0.92rem;font-weight:300;outline:none;transition:border-color 0.2s;}
+  .form-input:focus{border-color:var(--gold);}
+  .form-input::placeholder{color:var(--muted);}
+  textarea.form-input{resize:vertical;min-height:110px;line-height:1.6;}
+
+  /* CHECKBOX */
+  .checkbox-wrap{display:flex;align-items:center;gap:0.85rem;cursor:pointer;margin-bottom:1rem;}
+  .checkbox-wrap input{width:18px;height:18px;accent-color:var(--gold);cursor:pointer;flex-shrink:0;}
+  .checkbox-label{font-family:var(--font-body);font-size:0.9rem;color:rgba(240,237,230,0.7);}
+
+  /* GRAD YEAR — hidden until checked */
+  .conditional-field{display:none;margin-bottom:1rem;}
+  .conditional-field.visible{display:block;}
+
+  /* SOCIAL ICONS */
+  .social-section{margin-bottom:1rem;}
+  .social-icons-row{display:flex;gap:0.75rem;margin-bottom:1rem;flex-wrap:wrap;}
+  .social-icon-btn{
+    display:flex;align-items:center;gap:0.6rem;
+    padding:0.65rem 1.1rem;
+    border:1px solid var(--border);background:transparent;
+    font-family:var(--font-head);font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;
+    color:var(--muted);cursor:pointer;transition:all 0.2s;
+  }
+  .social-icon-btn:hover,.social-icon-btn.active{border-color:var(--gold);color:var(--gold);}
+  .social-icon-btn svg{width:16px;height:16px;fill:currentColor;flex-shrink:0;}
+  .social-input-group{display:none;margin-bottom:0.75rem;}
+  .social-input-group.visible{display:block;}
+
+  /* IMAGE UPLOAD */
+  .upload-zone{
+    border:1px dashed var(--border);
+    padding:2.5rem;text-align:center;cursor:pointer;
+    transition:border-color 0.2s;background:var(--surface);
+    position:relative;
+  }
+  .upload-zone:hover{border-color:var(--gold);}
+  .upload-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+  .upload-icon{width:36px;height:36px;margin:0 auto 1rem;opacity:0.2;}
+  .upload-label{font-family:var(--font-head);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);}
+  .upload-sub{font-family:var(--font-body);font-size:0.78rem;color:var(--faint);margin-top:0.4rem;}
+  .upload-preview{display:none;margin-top:1rem;}
+  .upload-preview img{width:80px;height:80px;object-fit:cover;border-radius:50%;border:2px solid var(--gold);}
+
+  /* SUBMIT */
+  .form-submit{
+    width:100%;padding:1.2rem;background:var(--gold);border:none;
+    font-family:var(--font-head);font-size:0.82rem;font-weight:500;
+    letter-spacing:0.2em;text-transform:uppercase;
+    color:var(--bg);cursor:pointer;transition:background 0.2s;margin-top:0.5rem;
+  }
+  .form-submit:hover{background:var(--gold-lt);}
+  .form-note{font-family:var(--font-body);font-size:0.78rem;font-weight:300;color:var(--muted);text-align:center;margin-top:1rem;line-height:1.6;}
+
+  /* SUCCESS */
+  .success-wrap{display:none;text-align:center;padding:4rem 2rem;}
+  .success-wrap.visible{display:block;}
+  .success-num{font-family:var(--font-disp);font-size:7rem;color:var(--gold);line-height:1;}
+  .success-title{font-family:var(--font-head);font-weight:700;font-size:1.6rem;color:var(--text);margin-bottom:1rem;}
+  .success-sub{font-family:var(--font-body);font-weight:300;font-size:1rem;color:rgba(240,237,230,0.55);line-height:1.75;max-width:460px;margin:0 auto 2rem;}
+  .btn-back{font-family:var(--font-head);font-size:0.78rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--bg);background:var(--gold);border:none;padding:1rem 2.5rem;cursor:pointer;text-decoration:none;display:inline-block;}
+
+  footer{padding:3rem 4rem;border-top:1px solid var(--faint);margin-top:4rem;}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+  .footer-copy{font-family:var(--font-body);font-size:0.78rem;color:var(--muted);}
+  .footer-copy strong{color:var(--gold);}
+  .footer-copy a{color:var(--gold);text-decoration:none;}
+
+  @media(max-width:700px){
+    nav{padding:1rem 1.5rem;}
+    .nav-links{display:none;}
+    .page-wrap{padding:9rem 1.5rem 4rem;}
+    .form-card{padding:2rem 1.5rem;}
+    .form-row{grid-template-columns:1fr;}
+    footer{padding:2rem 1.5rem;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">The Whole <span>Story</span></a>
+  <ul class="nav-links">
+    <li><a href="about.html">About Mr. Green</a></li>
+    <li><a href="blackpeople.html">Real Black People You Don't See</a></li>
+    <li><a href="index.html">Home</a></li>
+  </ul>
+  <a href="quiz.html" class="nav-cta">Start Here</a>
+</nav>
+
+<div class="page-wrap">
+  <div class="page-eyebrow">You Break Stereotypes</div>
+  <h1 class="page-title">Tell the<br/><span>World.</span></h1>
+  <p class="page-sub">
+    <em style="font-style:normal;font-family:var(--font-head);font-size:1.35rem;color:var(--teal-lt);display:block;margin-bottom:1rem;font-weight:600;">We know who we are. The world doesn't.</em>
+    You are Young, Gifted &amp; Black — and you break stereotypes just by existing and excelling. 
+    Mr. Green invites you to combat the narratives that erroneously pigeonhole us by sharing who <em>you</em> are, really. 
+    Our successes are something the news doesn't show enough. 
+    Fill out your profile below and, once approved, your tile joins the record.
+  </p>
+
+  <!-- FORM -->
+  <div class="form-card" id="formCard">
+
+    <div class="form-section-title">Your Information</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">First Name <span>*</span></label>
+        <input class="form-input" type="text" id="firstName" placeholder="First name"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Last Name <span>*</span></label>
+        <input class="form-input" type="text" id="lastName" placeholder="Last name"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Professional Title <span>*</span></label>
+      <input class="form-input" type="text" id="proTitle" placeholder="e.g. Principal Service Designer, NFL Linebacker, Filmmaker…"/>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Field / Industry <span>*</span></label>
+      <select class="form-input" id="fieldSelect">
+        <option value="" disabled selected>Select your field</option>
+        <option value="arts">Arts & Culture</option>
+        <option value="business">Business & Finance</option>
+        <option value="science">Science & Medicine</option>
+        <option value="stem">Technology & Engineering</option>
+        <option value="justice">Law & Justice</option>
+        <option value="sports">Sports & Leadership</option>
+        <option value="education">Education</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+
+    <div class="form-section-title">O'Dowd Connection</div>
+    <label class="checkbox-wrap">
+      <input type="checkbox" id="odowdCheck" onchange="toggleGradYear()"/>
+      <span class="checkbox-label">I am a Bishop O'Dowd High School alum</span>
+    </label>
+    <div class="conditional-field" id="gradYearField">
+      <label class="form-label">O'Dowd Graduation Year</label>
+      <input class="form-input" type="text" id="gradYear" placeholder="e.g. 1998"/>
+    </div>
+
+    <div class="form-section-title">Your Story</div>
+    <div class="form-group">
+      <label class="form-label">Your Most Cherished Accomplishments <span>*</span></label>
+      <textarea class="form-input" id="accomplishments" placeholder="In 2–4 sentences, tell the world what you've built, done, or contributed. This will appear on your tile when people hover over it."></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">One-Line Achievement (for your tile) <span>*</span></label>
+      <input class="form-input" type="text" id="achievement" placeholder="e.g. First Black Woman to Patent a Medical Device · Inventor"/>
+    </div>
+
+    <div class="form-section-title">Your Photo</div>
+    <div class="upload-zone" onclick="document.getElementById('photoInput').click()">
+      <input type="file" id="photoInput" accept="image/*" onchange="previewPhoto(this)" style="display:none"/>
+      <svg class="upload-icon" viewBox="0 0 36 36"><circle cx="18" cy="12" r="7" stroke="#F0EDE6" stroke-width="1.5" fill="none"/><path d="M4 32 C4 24 10 20 18 20 C26 20 32 24 32 32" stroke="#F0EDE6" stroke-width="1.5" fill="none"/></svg>
+      <div class="upload-label">Click to upload your photo</div>
+      <div class="upload-sub">JPG or PNG · Max 5MB · Square crop preferred</div>
+      <div class="upload-preview" id="uploadPreview">
+        <img id="previewImg" src="" alt="Preview"/>
+      </div>
+    </div>
+
+    <div class="form-section-title">Your Links (Optional)</div>
+    <p style="font-family:var(--font-body);font-size:0.85rem;font-weight:300;color:var(--muted);margin-bottom:1.25rem;">Select any platforms you'd like to include — a text field will appear.</p>
+    <div class="social-icons-row">
+      <button type="button" class="social-icon-btn" onclick="toggleSocial('instagram',this)">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Instagram
+      </button>
+      <button type="button" class="social-icon-btn" onclick="toggleSocial('linkedin',this)">
+        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </button>
+      <button type="button" class="social-icon-btn" onclick="toggleSocial('website',this)">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M12 2 C8 7 8 17 12 22 M12 2 C16 7 16 17 12 22 M2 12 L22 12 M3 7 L21 7 M3 17 L21 17" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+        Website
+      </button>
+    </div>
+    <div class="social-input-group" id="instagram-input">
+      <label class="form-label">Instagram Handle</label>
+      <input class="form-input" type="text" placeholder="@yourhandle"/>
+    </div>
+    <div class="social-input-group" id="linkedin-input">
+      <label class="form-label">LinkedIn URL</label>
+      <input class="form-input" type="url" placeholder="https://linkedin.com/in/yourname"/>
+    </div>
+    <div class="social-input-group" id="website-input">
+      <label class="form-label">Website URL</label>
+      <input class="form-input" type="url" placeholder="https://yourwebsite.com"/>
+    </div>
+
+    <div class="form-section-title">A Message for Mr. Green</div>
+    <div class="form-group">
+      <label class="form-label">Send Mr. Green a Personal Message of Appreciation</label>
+      <p style="font-family:var(--font-body);font-size:0.82rem;font-weight:300;color:var(--muted);margin-bottom:0.75rem;line-height:1.65;">
+        Optional — but deeply meaningful. This message will <strong style="color:var(--text);">only ever be seen by Mr. Green</strong>. 
+        It will never appear on your tile, on the site, or anywhere else. Just between you and him.
+      </p>
+      <textarea class="form-input" id="extraNote" placeholder="A memory from his class, a thank you, something you've always wanted to say — whatever feels right…" style="min-height:120px;"></textarea>
+      <a id="mailtoLink" href="#" style="display:none;margin-top:0.75rem;font-family:var(--font-head);font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal-lt);text-decoration:none;">
+        Or send directly via email →
+      </a>
+    </div>
+
+    <button class="form-submit" onclick="submitProfile()">Submit My Profile for Approval →</button>
+    <p class="form-note">
+      Your submission goes directly to Mr. Green and the site team for review.<br/>
+      Once approved, your tile will appear on the <em>Real Black People You Don't See</em> page.
+    </p>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="success-wrap" id="successWrap">
+    <div class="success-num">&#10003;</div>
+    <h2 class="success-title">You're submitted.</h2>
+    <p class="success-sub">
+      Your profile is now with Mr. Green for review. Once approved, 
+      your tile goes live on the <em>Real Black People You Don't See</em> page — 
+      visible to everyone who comes here to learn the whole story.
+    </p>
+    <a href="blackpeople.html" class="btn-back">See the Page →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 The Whole Story. Prototype — <strong>for Mr. Anthony Green</strong>.</div>
+    <div class="footer-copy">All facts cited. All history documented.</div>
+    <div class="footer-copy">Created by <a href="https://www.getclarity.consulting" target="_blank">Alanne International</a></div>
+  </div>
+</footer>
+
+<script>
+function toggleGradYear() {
+  const checked = document.getElementById('odowdCheck').checked;
+  document.getElementById('gradYearField').classList.toggle('visible', checked);
+}
+
+function toggleSocial(platform, btn) {
+  btn.classList.toggle('active');
+  document.getElementById(platform + '-input').classList.toggle('visible', btn.classList.contains('active'));
+}
+
+function previewPhoto(input) {
+  if (input.files && input.files[0]) {
+    const reader = new FileReader();
+    reader.onload = e => {
+      document.getElementById('previewImg').src = e.target.result;
+      document.getElementById('uploadPreview').style.display = 'block';
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+// Update mailto link live as user types
+document.addEventListener('DOMContentLoaded', () => {
+  const noteEl = document.getElementById('extraNote');
+  const mailEl = document.getElementById('mailtoLink');
+  noteEl.addEventListener('input', () => {
+    const msg = noteEl.value.trim();
+    if (msg.length > 5) {
+      const subject = encodeURIComponent('A personal message of appreciation from thewholestory website.');
+      const body    = encodeURIComponent(msg);
+      mailEl.href   = 'mailto:tgreen@bishopodowd.org?subject=' + subject + '&body=' + body;
+      mailEl.style.display = 'inline-block';
+    } else {
+      mailEl.style.display = 'none';
+    }
+  });
+});
+
+function submitProfile() {
+  const first   = document.getElementById('firstName').value.trim();
+  const last    = document.getElementById('lastName').value.trim();
+  const title   = document.getElementById('proTitle').value.trim();
+  const acc     = document.getElementById('accomplishments').value.trim();
+  const isOdowd = document.getElementById('odowdCheck').checked;
+  const gradYr  = document.getElementById('gradYear').value.trim();
+
+  if (!first || !last || !title || !acc) {
+    alert('Please fill in all required fields marked with *');
+    return;
+  }
+  // 4. Grad year mandatory if O'Dowd checked
+  if (isOdowd && !gradYr) {
+    alert('Please enter your O'Dowd graduation year.');
+    document.getElementById('gradYear').focus();
+    return;
+  }
+
+  // If they typed a personal message, open mailto
+  const msg = document.getElementById('extraNote').value.trim();
+  if (msg.length > 5) {
+    const subject = encodeURIComponent('A personal message of appreciation from thewholestory website.');
+    const body    = encodeURIComponent(msg);
+    window.open('mailto:tgreen@bishopodowd.org?subject=' + subject + '&body=' + body, '_blank');
+  }
+
+  document.getElementById('formCard').style.display = 'none';
+  document.getElementById('successWrap').classList.add('visible');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+</script>
+</body>
+</html>
