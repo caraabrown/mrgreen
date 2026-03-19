@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The True Record — with Mr. Anthony Green</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg:        #080808;
+    --surface:   #101010;
+    --card:      #161616;
+    --border:    #242424;
+    --gold:      #C8922A;
+    --gold-lt:   #E5B55A;
+    --teal:      #0D7C7C;
+    --teal-lt:   #1AACAC;
+    --crimson:   #8B1F2F;
+    --crimson-lt:#B8374A;
+    --sapphire:  #1B4F8A;
+    --sapphire-lt:#2E72C0;
+    --text:      #F0EDE6;
+    --muted:     #7A7A7A;
+    --faint:     #2A2A2A;
+    --font-disp: 'Bebas Neue', sans-serif;
+    --font-head: 'Oswald', sans-serif;
+    --font-body: 'Raleway', sans-serif;
+    --font-sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(8,8,8,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--faint);
+  }
+  .nav-logo {
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .nav-logo span { color: var(--text); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-family: var(--font-head);
+    font-weight: 300;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    font-family: var(--font-head);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--gold);
+    border: none;
+    padding: 0.55rem 1.4rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold-lt); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 4rem 6rem;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 75% 40%, rgba(200,146,42,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 70% at 20% 80%, rgba(13,124,124,0.07) 0%, transparent 60%),
+      linear-gradient(180deg, #080808 0%, #0c0a06 100%);
+    z-index: 0;
+  }
+  .hero-rule {
+    position: absolute; top: 0; right: 0; bottom: 0;
+    width: 1px; background: var(--faint);
+    z-index: 1;
+  }
+  .hero-year-marker {
+    position: absolute;
+    top: 12rem; right: 4rem;
+    font-family: var(--font-head);
+    font-weight: 300;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    writing-mode: vertical-rl;
+    z-index: 2;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 900px; }
+
+  .hero-eyebrow {
+    font-family: var(--font-head);
+    font-weight: 300;
+    font-size: 0.78rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block; width: 40px; height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: var(--font-disp);
+    font-size: clamp(5rem, 11vw, 11rem);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+  .hero-title em {
+    font-style: normal;
+    color: var(--gold);
+    display: block;
+  }
+
+  .hero-sub {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: rgba(240,237,230,0.65);
+    max-width: 520px;
+    margin-bottom: 3rem;
+    margin-top: 1.5rem;
+  }
+
+  .hero-actions { display: flex; gap: 1.2rem; align-items: center; }
+
+  .btn-primary {
+    font-family: var(--font-head);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--gold);
+    border: none;
+    padding: 1rem 2.4rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-lt); transform: translateY(-1px); }
+
+  .btn-ghost {
+    font-family: var(--font-head);
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text);
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 1rem 2.4rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--muted); color: var(--text); }
+
+  .hero-stats {
+    position: absolute; right: 6rem; bottom: 6rem;
+    display: flex; flex-direction: column; gap: 2rem;
+    z-index: 2;
+    border-left: 1px solid var(--faint);
+    padding-left: 2rem;
+  }
+  .stat-num {
+    font-family: var(--font-disp);
+    font-size: 2.8rem;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: var(--font-head);
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.2rem;
+  }
+
+  /* ── TICKER ── */
+  .ticker {
+    background: var(--gold);
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 0.7rem 0;
+  }
+  .ticker-track {
+    display: inline-block;
+    animation: ticker 55s linear infinite;
+  }
+  .ticker-track span {
+    font-family: var(--font-head);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--bg);
+    padding: 0 3rem;
+  }
+  .ticker-track span::before {
+    content: '◆';
+    margin-right: 3rem;
+    opacity: 0.5;
+  }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ── COUNTER ── */
+  .counter-section {
+    padding: 7rem 4rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--faint);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .counter-bg-glow {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,146,42,0.07) 0%, transparent 70%);
+    pointer-events: none;
+    transition: opacity 0.6s;
+  }
+  .counter-bg-glow.fired { opacity: 3; }
+  .counter-eyebrow {
+    font-family: var(--font-head);
+    font-weight: 300;
+    font-size: 0.75rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    position: relative; z-index: 1;
+  }
+  .counter-headline {
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.06em;
+    color: rgba(240,237,230,0.5);
+    margin-bottom: 2.5rem;
+    position: relative; z-index: 1;
+  }
+  .counter-display {
+    font-family: var(--font-disp);
+    font-size: clamp(6rem, 16vw, 14rem);
+    line-height: 0.9;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+    position: relative; z-index: 1;
+    transition: transform 0.1s;
+    display: inline-block;
+    text-shadow: 0 0 80px rgba(200,146,42,0.2);
+  }
+  .counter-display.bump {
+    animation: bump 0.35s ease;
+  }
+  @keyframes bump {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.06); color: var(--gold-lt); }
+    100% { transform: scale(1); }
+  }
+  .counter-sub {
+    font-family: var(--font-head);
+    font-weight: 300;
+    font-size: 0.78rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 1rem;
+    margin-bottom: 3.5rem;
+    position: relative; z-index: 1;
+  }
+  .counter-sub strong { color: var(--text); font-weight: 500; }
+  .bell-btn {
+    position: relative; z-index: 1;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: var(--font-head);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 1.2rem 3.5rem;
+    cursor: pointer;
+    transition: all 0.25s;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .bell-btn:hover {
+    background: var(--gold);
+    color: var(--bg);
+  }
+  .bell-btn:disabled {
+    border-color: var(--faint);
+    color: var(--muted);
+    cursor: default;
+    background: transparent;
+  }
+  .bell-icon {
+    font-size: 1.1rem;
+    display: inline-block;
+    transition: transform 0.2s;
+  }
+  .bell-btn:hover .bell-icon { transform: rotate(-15deg) scale(1.2); }
+  .bell-btn.ringing .bell-icon { animation: ring 0.5s ease; }
+  @keyframes ring {
+    0%   { transform: rotate(0deg); }
+    20%  { transform: rotate(-20deg); }
+    40%  { transform: rotate(20deg); }
+    60%  { transform: rotate(-15deg); }
+    80%  { transform: rotate(10deg); }
+    100% { transform: rotate(0deg); }
+  }
+  .counter-affirm {
+    position: relative; z-index: 1;
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.9rem;
+    color: var(--gold);
+    margin-top: 1.5rem;
+    height: 1.4rem;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .counter-affirm.visible { opacity: 1; }
+
+  /* particles */
+  .particle {
+    position: fixed;
+    pointer-events: none;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    z-index: 9999;
+    animation: particle-fall 1.2s ease forwards;
+  }
+  @keyframes particle-fall {
+    0%   { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(160px) scale(0.3); }
+  }
+
+  /* ── MISSION ── */
+  .mission {
+    padding: 8rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 6rem;
+    align-items: start;
+    border-bottom: 1px solid var(--faint);
+  }
+  .mission-label {
+    font-family: var(--font-head);
+    font-weight: 300;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding-top: 0.5rem;
+  }
+  .mission-body {
+    font-family: var(--font-body);
+    font-size: 1.65rem;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text);
+  }
+  .mission-body strong {
+    font-weight: 600;
+    color: var(--gold);
+  }
+
+  /* ── PILLARS ── */
+  .pillars {
+    padding: 6rem 4rem;
+    border-bottom: 1px solid var(--faint);
+  }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+  }
+  .section-title {
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+  .section-num {
+    font-family: var(--font-disp);
+    font-size: 5rem;
+    color: var(--faint);
+    line-height: 1;
+  }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .pillar-card {
+    background: var(--card);
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+  }
+  .pillar-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent, var(--gold));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .pillar-card:hover::before { transform: scaleX(1); }
+  .pillar-card:hover { transform: translateY(-4px); }
+
+  .pillar-card.teal   { --accent: var(--teal-lt); }
+  .pillar-card.crimson { --accent: var(--crimson-lt); }
+  .pillar-card.sapphire { --accent: var(--sapphire-lt); }
+
+  .pillar-icon {
+    width: 40px; height: 40px;
+    margin-bottom: 2rem;
+    opacity: 0.7;
+  }
+  .pillar-tag {
+    font-family: var(--font-head);
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent, var(--gold));
+    margin-bottom: 0.75rem;
+  }
+  .pillar-heading {
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 1.4rem;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .pillar-desc {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgba(240,237,230,0.55);
+  }
+  .pillar-arrow {
+    position: absolute;
+    bottom: 2.5rem; right: 2.5rem;
+    font-size: 1.2rem;
+    color: var(--accent, var(--gold));
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .pillar-card:hover .pillar-arrow { opacity: 1; transform: translate(3px, -3px); }
+
+  /* ── ABOUT MR GREEN ── */
+  .about {
+    padding: 8rem 4rem;
+    display: grid;
+    grid-template-columns: 5fr 4fr;
+    gap: 8rem;
+    align-items: start;
+    border-bottom: 1px solid var(--faint);
+  }
+  .about-visual {
+    position: relative;
+  }
+  .about-img-frame {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--card);
+    border: 1px solid var(--faint);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .about-img-placeholder {
+    text-align: center;
+    padding: 3rem;
+  }
+  .portrait-icon {
+    width: 80px; height: 80px; margin: 0 auto 1.5rem;
+    opacity: 0.15;
+  }
+  .about-img-label {
+    font-family: var(--font-head);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .about-accent-box {
+    position: absolute;
+    bottom: -2rem; right: -2rem;
+    background: var(--gold);
+    color: var(--bg);
+    padding: 2rem 2.5rem;
+    width: 220px;
+  }
+  .accent-num {
+    font-family: var(--font-disp);
+    font-size: 3.5rem;
+    line-height: 1;
+    color: var(--bg);
+  }
+  .accent-label {
+    font-family: var(--font-head);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(8,8,8,0.7);
+    margin-top: 0.4rem;
+  }
+
+  .about-text .section-eyebrow {
+    font-family: var(--font-head);
+    font-weight: 300;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .about-text .section-eyebrow::before {
+    content: '';
+    width: 30px; height: 1px;
+    background: var(--gold);
+    display: block;
+  }
+
+  .about-name {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 2.8rem;
+    color: var(--text);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  .about-title-role {
+    font-family: var(--font-head);
+    font-weight: 300;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+  }
+  .about-bio {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(240,237,230,0.7);
+    margin-bottom: 2.5rem;
+  }
+  .about-bio + .about-bio { margin-top: 1rem; }
+
+  .credentials-list {
+    display: flex; flex-direction: column; gap: 0;
+    margin-top: 3rem;
+  }
+  .credential-item {
+    padding: 1.2rem 0;
+    border-top: 1px solid var(--faint);
+    display: flex;
+    gap: 1.5rem;
+    align-items: baseline;
+  }
+  .cred-year {
+    font-family: var(--font-head);
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    flex-shrink: 0;
+    width: 60px;
+  }
+  .cred-text {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: rgba(240,237,230,0.65);
+    line-height: 1.5;
+  }
+
+  /* ── ODOWD TRUST ── */
+  .odowd-trust {
+    padding: 4rem 4rem;
+    background: var(--card);
+    border-bottom: 1px solid var(--faint);
+  }
+  .odowd-label {
+    font-family: var(--font-head);
+    font-weight: 300;
+    font-size: 0.68rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .odowd-label::before, .odowd-label::after {
+    content: '';
+    flex: 1; height: 1px;
+    background: var(--faint);
+  }
+  .odowd-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+  }
+  .odowd-item {
+    background: var(--surface);
+    padding: 2rem 1.75rem;
+    border-left: 2px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .odowd-item:hover { border-left-color: var(--gold); }
+  .odowd-item-num {
+    font-family: var(--font-disp);
+    font-size: 2.2rem;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .odowd-item-title {
+    font-family: var(--font-head);
+    font-weight: 500;
+    font-size: 0.82rem;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+    line-height: 1.3;
+  }
+  .odowd-item-sub {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── TOPICS ── */
+  .topics {
+    padding: 6rem 4rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--faint);
+  }
+  .topics-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 5rem;
+    align-items: end;
+  }
+  .topics-headline {
+    font-family: var(--font-disp);
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    line-height: 0.95;
+    color: var(--text);
+  }
+  .topics-headline span { color: var(--gold); }
+  .topics-intro-text {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: rgba(240,237,230,0.55);
+  }
+
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+  }
+  .topic-item {
+    background: var(--card);
+    padding: 2.5rem 2rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    position: relative;
+  }
+  .topic-item:hover { background: #1e1e1e; }
+  .topic-num {
+    font-family: var(--font-disp);
+    font-size: 3.5rem;
+    color: var(--faint);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    transition: color 0.2s;
+  }
+  .topic-item:hover .topic-num { color: var(--gold); }
+  .topic-name {
+    font-family: var(--font-head);
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+  .topic-sub {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── QUIZ CTA ── */
+  .quiz-cta {
+    padding: 8rem 4rem;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 6rem;
+    align-items: center;
+    border-bottom: 1px solid var(--faint);
+    position: relative;
+    overflow: hidden;
+  }
+  .quiz-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 50% 80% at 80% 50%, rgba(13,124,124,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .quiz-headline {
+    font-family: var(--font-disp);
+    font-size: clamp(3.5rem, 5vw, 5rem);
+    line-height: 0.95;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    position: relative; z-index: 1;
+  }
+  .quiz-headline span { color: var(--teal-lt); }
+  .quiz-desc {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: rgba(240,237,230,0.55);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    position: relative; z-index: 1;
+  }
+  .quiz-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 3rem 2.5rem;
+    position: relative; z-index: 1;
+  }
+  .quiz-card-title {
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--teal-lt);
+    margin-bottom: 2rem;
+  }
+  .quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .quiz-option {
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .quiz-option:hover {
+    border-color: var(--teal-lt);
+    background: rgba(13,124,124,0.08);
+  }
+  .quiz-opt-dot {
+    width: 8px; height: 8px;
+    border: 1px solid var(--teal-lt);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .quiz-opt-text {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    color: rgba(240,237,230,0.7);
+  }
+  .quiz-submit {
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: var(--teal);
+    border: none;
+    color: var(--text);
+    font-family: var(--font-head);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .quiz-submit:hover { background: var(--teal-lt); }
+
+  /* ── READING LIST ── */
+  .reading {
+    padding: 6rem 4rem;
+    border-bottom: 1px solid var(--faint);
+  }
+  .reading-grid {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 6rem;
+    align-items: start;
+  }
+  .reading-intro .section-eyebrow {
+    font-family: var(--font-head);
+    font-weight: 300;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+  .reading-headline {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 2.2rem;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+  .reading-sub {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: rgba(240,237,230,0.5);
+  }
+  .books-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .book-item {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--faint);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+    cursor: pointer;
+    transition: padding-left 0.2s;
+  }
+  .book-item:hover { padding-left: 0.75rem; }
+  .book-num {
+    font-family: var(--font-disp);
+    font-size: 1.5rem;
+    color: var(--faint);
+    width: 2.5rem;
+    transition: color 0.2s;
+  }
+  .book-item:hover .book-num { color: var(--gold); }
+  .book-title {
+    font-family: var(--font-head);
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+  .book-author {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  .book-arrow {
+    font-size: 1rem;
+    color: var(--gold);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .book-item:hover .book-arrow { opacity: 1; }
+
+  /* ── LIGHTBULB STORIES ── */
+  .stories {
+    padding: 6rem 4rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--faint);
+  }
+  .stories-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  .stories-eyebrow {
+    font-family: var(--font-head);
+    font-weight: 300;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+  .stories-title {
+    font-family: var(--font-disp);
+    font-size: clamp(3rem, 4vw, 4.5rem);
+    color: var(--text);
+    line-height: 1;
+  }
+  .stories-title span { color: var(--gold); }
+  .stories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .story-card {
+    background: var(--card);
+    padding: 2.5rem;
+    position: relative;
+  }
+  .story-quote {
+    font-family: var(--font-disp);
+    font-size: 6rem;
+    color: var(--gold);
+    opacity: 0.15;
+    line-height: 0.7;
+    position: absolute;
+    top: 1.5rem;
+    left: 2rem;
+    pointer-events: none;
+  }
+  .story-text {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: rgba(240,237,230,0.7);
+    position: relative;
+    z-index: 1;
+    padding-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .story-attr {
+    font-family: var(--font-head);
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-top: 1px solid var(--faint);
+    padding-top: 1.25rem;
+  }
+  .story-attr strong { color: var(--gold); font-weight: 500; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 5rem 4rem 3rem;
+    border-top: 1px solid var(--faint);
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 4rem;
+  }
+  .footer-brand-name {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .footer-brand-sub {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+  .footer-col-title {
+    font-family: var(--font-head);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-links a {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--text); }
+  .footer-bottom {
+    border-top: 1px solid var(--faint);
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-copy {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  .footer-copy strong { color: var(--gold); font-style: normal; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-content { animation: fadeUp 0.9s ease forwards; }
+  .hero-stats   { animation: fadeUp 0.9s 0.3s ease both; }
+
+  /* ── RESPONSIVE minimal ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 0 1.5rem 4rem; }
+    .hero-stats { display: none; }
+    .mission { grid-template-columns: 1fr; gap: 2rem; padding: 4rem 1.5rem; }
+    .pillars { padding: 4rem 1.5rem; }
+    .pillars-grid { grid-template-columns: 1fr; }
+    .about { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
+    .about-accent-box { display: none; }
+    .topics { padding: 4rem 1.5rem; }
+    .topics-intro { grid-template-columns: 1fr; }
+    .topics-grid { grid-template-columns: repeat(2, 1fr); }
+    .quiz-cta { grid-template-columns: 1fr; padding: 4rem 1.5rem; }
+    .reading { padding: 4rem 1.5rem; }
+    .reading-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .stories { padding: 4rem 1.5rem; }
+    .stories-grid { grid-template-columns: 1fr; }
+    footer { padding: 3rem 1.5rem; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">The True <span>Record</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About Mr. Green</a></li>
+    <li><a href="#explore">Explore History</a></li>
+    <li><a href="#reading">Reading List</a></li>
+    <li><a href="#stories">Light Bulb Stories</a></li>
+  </ul>
+  <a href="#start" class="nav-cta">Start Here</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-rule"></div>
+  <div class="hero-year-marker">Est. Oakland, CA · 1986</div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">You Always Knew Something Was Missing</div>
+    <h1 class="hero-title">
+      The True
+      <em>Record.</em>
+    </h1>
+    <p class="hero-sub">
+      That feeling — that the story you were taught doesn't quite add up — 
+      is your instincts working correctly. This is the rest of the story. 
+      Guided by Mr. Anthony Green, 37 years in the classroom.
+    </p>
+    <div class="hero-actions">
+      <a href="#start" class="btn-primary">Find My Starting Point</a>
+      <a href="#about" class="btn-ghost">Meet Mr. Green</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">37</div>
+      <div class="stat-label">Years Teaching</div>
+    </div>
+    <div>
+      <div class="stat-num">1986</div>
+      <div class="stat-label">Bishop O'Dowd</div>
+    </div>
+    <div>
+      <div class="stat-num">AP</div>
+      <div class="stat-label">African American Studies</div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Black Wall Street</span>
+    <span>Redlining</span>
+    <span>The Great Migration</span>
+    <span>Reconstruction</span>
+    <span>Convict Leasing</span>
+    <span>The 1619 Project</span>
+    <span>Marcus Garvey</span>
+    <span>Black Codes</span>
+    <span>Tulsa Race Massacre</span>
+    <span>The Black Panthers</span>
+    <span>Juneteenth</span>
+    <span>Freedmen's Bureau</span>
+    <span>Black Wall Street</span>
+    <span>Redlining</span>
+    <span>The Great Migration</span>
+    <span>Reconstruction</span>
+    <span>Convict Leasing</span>
+    <span>The 1619 Project</span>
+    <span>Marcus Garvey</span>
+    <span>Black Codes</span>
+    <span>Tulsa Race Massacre</span>
+    <span>The Black Panthers</span>
+    <span>Juneteenth</span>
+    <span>Freedmen's Bureau</span>
+  </div>
+</div>
+
+<!-- COUNTER -->
+<section class="counter-section" id="counter">
+  <div class="counter-bg-glow" id="counterGlow"></div>
+  <div class="counter-eyebrow">The Mr. Green Effect</div>
+  <p class="counter-headline">People taught by, coached by, or changed by Mr. Anthony Green</p>
+  <div class="counter-display" id="counterDisplay">0</div>
+  <div class="counter-sub">and counting — <strong>across 37 years of classrooms</strong></div>
+  <button class="bell-btn" id="bellBtn" onclick="ringTheBell()">
+    <span class="bell-icon">&#9679;</span>
+    I Learned From Mr. Green — Ring the Bell
+  </button>
+  <div class="counter-affirm" id="counterAffirm"></div>
+</section>
+
+<!-- MISSION -->
+<section class="mission">
+  <div class="mission-label">Our Purpose</div>
+  <p class="mission-body">
+    Most of us were handed a story about America — and we believed it, 
+    because we had no reason not to. But parts of that story were incomplete. 
+    Not because of who you are. Because of what was left out of what you were given. 
+    <strong>This is what was left out.</strong> Sourced. Documented. 
+    And told by someone you can trust.
+  </p>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars" id="explore">
+  <div class="section-header">
+    <div class="section-title">Explore The Platform</div>
+    <div class="section-num">03</div>
+  </div>
+  <div class="pillars-grid">
+
+    <a href="#" class="pillar-card">
+      <svg class="pillar-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="6" width="24" height="30" stroke="#C8922A" stroke-width="1.5"/>
+        <line x1="10" y1="14" x2="22" y2="14" stroke="#C8922A" stroke-width="1.5"/>
+        <line x1="10" y1="20" x2="22" y2="20" stroke="#C8922A" stroke-width="1.5"/>
+        <line x1="10" y1="26" x2="18" y2="26" stroke="#C8922A" stroke-width="1.5"/>
+        <circle cx="31" cy="31" r="6" stroke="#C8922A" stroke-width="1.5"/>
+        <line x1="35.2" y1="35.2" x2="38" y2="38" stroke="#C8922A" stroke-width="1.5"/>
+      </svg>
+      <div class="pillar-tag">Deep Dives</div>
+      <h3 class="pillar-heading">The History They Didn't Teach You</h3>
+      <p class="pillar-desc">Chapters of American history that were left out of most classrooms — not because they didn't happen, but because they weren't included. Tulsa. Redlining. Convict leasing. Every entry is sourced, documented, and connected to the world you live in today.</p>
+      <div class="pillar-arrow">→</div>
+    </a>
+
+    <a href="#" class="pillar-card teal">
+      <svg class="pillar-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="16" stroke="#1AACAC" stroke-width="1.5"/>
+        <path d="M14 20 Q20 12 26 20 Q20 28 14 20Z" stroke="#1AACAC" stroke-width="1.5" fill="none"/>
+        <circle cx="20" cy="20" r="3" fill="#1AACAC"/>
+      </svg>
+      <div class="pillar-tag">Interactive</div>
+      <h3 class="pillar-heading">Connect the Dots</h3>
+      <p class="pillar-desc">Start with something you've observed, wondered about, or never been able to explain — in your city, your workplace, your family, your country. This feature traces it back to its historical root. The past doesn't repeat itself. But it does explain itself.</p>
+      <div class="pillar-arrow">→</div>
+    </a>
+
+    <a href="#" class="pillar-card sapphire">
+      <svg class="pillar-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 32 L8 16 L20 8 L32 16 L32 32 Z" stroke="#2E72C0" stroke-width="1.5" fill="none"/>
+        <rect x="15" y="22" width="10" height="10" stroke="#2E72C0" stroke-width="1.5"/>
+        <line x1="20" y1="8" x2="20" y2="4" stroke="#2E72C0" stroke-width="1.5"/>
+      </svg>
+      <div class="pillar-tag">Ask Mr. Green</div>
+      <h3 class="pillar-heading">Office Hours</h3>
+      <p class="pillar-desc">There are no bad questions here — only ones you haven't had a safe place to ask. Bring what you've always wondered, what you've been afraid to say out loud, what you were taught that doesn't sit right anymore. Mr. Green has been answering these questions for 37 years.</p>
+      <div class="pillar-arrow">→</div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ABOUT MR GREEN -->
+<section class="about" id="about">
+  <div class="about-visual">
+    <div class="about-img-frame">
+      <div class="about-img-placeholder">
+        <svg class="portrait-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="40" cy="28" r="16" stroke="#F0EDE6" stroke-width="1.5"/>
+          <path d="M10 72 C10 56 22 46 40 46 C58 46 70 56 70 72" stroke="#F0EDE6" stroke-width="1.5"/>
+        </svg>
+        <div class="about-img-label">Mr. Anthony Green<br/>Photo Placeholder</div>
+      </div>
+    </div>
+    <div class="about-accent-box">
+      <div class="accent-num">37+</div>
+      <div class="accent-label">Years at the chalkboard</div>
+    </div>
+  </div>
+
+  <div class="about-text">
+    <div class="section-eyebrow">Your Guide</div>
+    <h2 class="about-name">Mr. Anthony Green</h2>
+    <div class="about-title-role">Teacher · Coach · Bishop O'Dowd High School, Oakland CA</div>
+
+    <p class="about-bio">
+      Since 1986, Mr. Green has taught history at Bishop O'Dowd — one of Oakland's most 
+      distinguished college-preparatory institutions. He developed and leads their Advanced 
+      Placement African American Studies curriculum, and his approach is anything but passive. 
+      Field trips to Lois The Pie Queen, the Black Panthers museum, Marcus Bookstore — 
+      the oldest Black bookstore in America. He puts students inside history, not just in front of it.
+    </p>
+    <p class="about-bio">
+      His students don't just read about redlining — they map it across Oakland's neighborhoods 
+      with a UC Berkeley geographer as their critic. They don't just hear about the Great Migration — 
+      they trace it to the block they live on. For nearly four decades, Mr. Green has done 
+      something quietly radical: told the full story, sourced and documented, to anyone willing to listen.
+    </p>
+    <p class="about-bio">
+      He is not an activist. He is a teacher. And that distinction — the calm authority of 
+      a person who has spent 37 years getting the facts right — is exactly why this platform exists.
+    </p>
+
+    <div class="credentials-list">
+      <div class="credential-item">
+        <div class="cred-year">2025</div>
+        <div class="cred-text">Provident Credit Union All-Star Teacher Award</div>
+      </div>
+      <div class="credential-item">
+        <div class="cred-year">1994</div>
+        <div class="cred-text">Coached O'Dowd Girls Track to National Dual Meet Championship — best small school team in American history</div>
+      </div>
+      <div class="credential-item">
+        <div class="cred-year">1986</div>
+        <div class="cred-text">Joined Bishop O'Dowd High School faculty — Social Studies, BSU Moderator, BMAC</div>
+      </div>
+      <div class="credential-item">
+        <div class="cred-year">B.A.</div>
+        <div class="cred-text">Santa Clara University — History</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ODOWD TRUST STRIP -->
+<section class="odowd-trust">
+  <div class="odowd-label">The Institution Behind the Teacher — Bishop O'Dowd High School, Oakland CA</div>
+  <div class="odowd-grid">
+    <div class="odowd-item">
+      <div class="odowd-item-num">1986</div>
+      <div class="odowd-item-title">Mr. Green's Tenure Begins</div>
+      <div class="odowd-item-sub">Nearly four decades of teaching at a single institution — a record that speaks for itself</div>
+    </div>
+    <div class="odowd-item">
+      <div class="odowd-item-num">Blue<br/>Ribbon</div>
+      <div class="odowd-item-title">National Blue Ribbon School</div>
+      <div class="odowd-item-sub">U.S. Department of Education recognition for academic excellence — one of the highest honors a school can receive</div>
+    </div>
+    <div class="odowd-item">
+      <div class="odowd-item-num">AP</div>
+      <div class="odowd-item-title">Advanced Placement African American Studies</div>
+      <div class="odowd-item-sub">One of the few high schools in the country offering AP African American Studies — developed and led by Mr. Green</div>
+    </div>
+    <div class="odowd-item">
+      <div class="odowd-item-num">100+</div>
+      <div class="odowd-item-title">Feeder Schools & Communities</div>
+      <div class="odowd-item-sub">Students arrive from over 100 regional schools across Oakland, Berkeley, San Leandro and beyond — a genuinely diverse student body</div>
+    </div>
+  </div>
+</section>
+
+<!-- TOPICS -->
+<section class="topics" id="topics">
+  <div class="topics-intro">
+    <h2 class="topics-headline">The Topics<br/>That Matter<br/><span>Right Now.</span></h2>
+    <p class="topics-intro-text">
+      Most people weren't taught these chapters. That's not a character flaw — it's a curriculum gap. 
+      Each topic below is a place where the official story and the documented record diverge. 
+      Starting with any one of them tends to unlock the others.
+    </p>
+  </div>
+  <div class="topics-grid">
+    <div class="topic-item">
+      <div class="topic-num">01</div>
+      <div class="topic-name">Redlining & The Wealth Gap</div>
+      <div class="topic-sub">How federal policy engineered economic exclusion</div>
+    </div>
+    <div class="topic-item">
+      <div class="topic-num">02</div>
+      <div class="topic-name">Black Wall Street & Tulsa</div>
+      <div class="topic-sub">The most prosperous Black community in America — and its destruction</div>
+    </div>
+    <div class="topic-item">
+      <div class="topic-num">03</div>
+      <div class="topic-name">Reconstruction & Its Undoing</div>
+      <div class="topic-sub">What almost was — and who stopped it</div>
+    </div>
+    <div class="topic-item">
+      <div class="topic-num">04</div>
+      <div class="topic-name">Convict Leasing</div>
+      <div class="topic-sub">Slavery by another name — the chapter most Americans have never heard</div>
+    </div>
+    <div class="topic-item">
+      <div class="topic-num">05</div>
+      <div class="topic-name">The Great Migration</div>
+      <div class="topic-sub">Six million people. The reshaping of American cities</div>
+    </div>
+    <div class="topic-item">
+      <div class="topic-num">06</div>
+      <div class="topic-name">Black Codes & Jim Crow</div>
+      <div class="topic-sub">The legal architecture of oppression, state by state</div>
+    </div>
+    <div class="topic-item">
+      <div class="topic-num">07</div>
+      <div class="topic-name">The Black Power Movement</div>
+      <div class="topic-sub">Beyond the myths — who they actually were and what they wanted</div>
+    </div>
+    <div class="topic-item">
+      <div class="topic-num">08</div>
+      <div class="topic-name">Black Innovation & Invention</div>
+      <div class="topic-sub">The contributions buried under a century of erasure</div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ CTA -->
+<section class="quiz-cta" id="start">
+  <div class="quiz-bg"></div>
+  <div>
+    <h2 class="quiz-headline">Start<br/><span>Where</span><br/>You Are.</h2>
+    <p class="quiz-desc">
+      You don't need a background in history to begin here. 
+      You just need the feeling that something didn't add up — 
+      and a willingness to look. Answer one question honestly 
+      and Mr. Green will show you the right door.
+    </p>
+    <a href="#" class="btn-primary">Take the Full Path Finder</a>
+  </div>
+  <div class="quiz-card">
+    <div class="quiz-card-title">What brought you here today?</div>
+    <div class="quiz-options">
+      <div class="quiz-option">
+        <div class="quiz-opt-dot"></div>
+        <div class="quiz-opt-text">Something specific in my life made me want to understand this</div>
+      </div>
+      <div class="quiz-option">
+        <div class="quiz-opt-dot"></div>
+        <div class="quiz-opt-text">I learned almost nothing about Black history in school</div>
+      </div>
+      <div class="quiz-option">
+        <div class="quiz-opt-dot"></div>
+        <div class="quiz-opt-text">I know the basics — MLK, Rosa Parks — but sense there's more</div>
+      </div>
+      <div class="quiz-option">
+        <div class="quiz-opt-dot"></div>
+        <div class="quiz-opt-text">I've been reading and want to go deeper</div>
+      </div>
+    </div>
+    <button class="quiz-submit">Find My Starting Point →</button>
+  </div>
+</section>
+
+<!-- READING LIST -->
+<section class="reading" id="reading">
+  <div class="reading-grid">
+    <div class="reading-intro">
+      <div class="section-eyebrow">Mr. Green's Bookshelf</div>
+      <h2 class="reading-headline">Where He Sends Everyone Who Asks</h2>
+      <p class="reading-sub">
+        After 37 years in the classroom, this is the list Mr. Green returns to again and again 
+        when someone says "I want to understand this better." Not academic journals. 
+        Not textbooks. Books that changed how people see.
+      </p>
+    </div>
+    <div class="books-list">
+      <div class="book-item">
+        <div class="book-num">01</div>
+        <div>
+          <div class="book-title">The Spook Who Sat by the Door</div>
+          <div class="book-author">Sam Greenlee</div>
+        </div>
+        <div class="book-arrow">→</div>
+      </div>
+      <div class="book-item">
+        <div class="book-num">02</div>
+        <div>
+          <div class="book-title">The Autobiography of Malcolm X</div>
+          <div class="book-author">Alex Haley</div>
+        </div>
+        <div class="book-arrow">→</div>
+      </div>
+      <div class="book-item">
+        <div class="book-num">03</div>
+        <div>
+          <div class="book-title">Miseducation of the Negro</div>
+          <div class="book-author">Carter G. Woodson</div>
+        </div>
+        <div class="book-arrow">→</div>
+      </div>
+      <div class="book-item">
+        <div class="book-num">04</div>
+        <div>
+          <div class="book-title">Invisible Man</div>
+          <div class="book-author">Ralph Ellison</div>
+        </div>
+        <div class="book-arrow">→</div>
+      </div>
+      <div class="book-item">
+        <div class="book-num">05</div>
+        <div>
+          <div class="book-title">Race Matters</div>
+          <div class="book-author">Cornel West</div>
+        </div>
+        <div class="book-arrow">→</div>
+      </div>
+      <div class="book-item">
+        <div class="book-num">06</div>
+        <div>
+          <div class="book-title">Up From Slavery</div>
+          <div class="book-author">Booker T. Washington</div>
+        </div>
+        <div class="book-arrow">→</div>
+      </div>
+      <div class="book-item">
+        <div class="book-num">07</div>
+        <div>
+          <div class="book-title">Malcolm X: A Life of Reinvention</div>
+          <div class="book-author">Manning Marable</div>
+        </div>
+        <div class="book-arrow">→</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHT BULB STORIES -->
+<section class="stories" id="stories">
+  <div class="stories-header">
+    <div class="stories-eyebrow">You Are Not Alone In This</div>
+    <h2 class="stories-title">Light Bulb <span>Moments</span></h2>
+  </div>
+  <div class="stories-grid">
+    <div class="story-card">
+      <div class="story-quote">"</div>
+      <p class="story-text">
+        I didn't grow up in a racist household. My parents were kind people. But I realized, 
+        going through the redlining chapter, that kindness and knowledge are two different things. 
+        They didn't know either. That realization changed how I hold everything I was taught.
+      </p>
+      <div class="story-attr"><strong>Anonymous</strong> · Columbus, OH · Age 36</div>
+    </div>
+    <div class="story-card">
+      <div class="story-quote">"</div>
+      <p class="story-text">
+        I've always considered myself informed. I voted right, I read widely. 
+        But the Reconstruction chapter made me sit with a very uncomfortable question: 
+        what else do I think I know that I actually don't? That's when this became important to me.
+      </p>
+      <div class="story-attr"><strong>Anonymous</strong> · Nashville, TN · Age 44, Educator</div>
+    </div>
+    <div class="story-card">
+      <div class="story-quote">"</div>
+      <p class="story-text">
+        My grandfather had opinions I could never quite argue against because I didn't have 
+        the facts to counter them. Now I do. And I understand where those opinions came from — 
+        not from him being a bad person, but from a story that was handed to him too.
+      </p>
+      <div class="story-attr"><strong>Anonymous</strong> · Portland, OR · Age 29</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-name">The True Record</div>
+      <p class="footer-brand-sub">
+        Real American history includes Black American history.<br/>
+        Guided by Mr. Anthony Green — Bishop O'Dowd High School, Oakland CA.<br/>
+        37 years in the classroom. Every fact sourced.
+      </p>
+    </div>
+    <div>
+      <div class="footer-col-title">Explore</div>
+      <ul class="footer-links">
+        <li><a href="#">Deep Dives</a></li>
+        <li><a href="#">Connect the Dots</a></li>
+        <li><a href="#">Interactive Map</a></li>
+        <li><a href="#">Timeline</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Mr. Green</div>
+      <ul class="footer-links">
+        <li><a href="#">About</a></li>
+        <li><a href="#">Reading List</a></li>
+        <li><a href="#">Office Hours</a></li>
+        <li><a href="#">In the Media</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Community</div>
+      <ul class="footer-links">
+        <li><a href="#">Light Bulb Stories</a></li>
+        <li><a href="#">Submit Your Story</a></li>
+        <li><a href="#">Myth vs. Reality</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">
+      © 2026 The True Record. Prototype concept — <strong>for Mr. Anthony Green</strong>.
+    </div>
+    <div class="footer-copy">All facts cited. All history documented.</div>
+  </div>
+</footer>
+
+<script>
+// ── COUNTER ──────────────────────────────────────────────────────────────────
+// PROTOTYPE NOTE: This uses localStorage — count persists per browser only.
+// For the live site, replace the get/set functions below with Firebase or
+// Supabase calls so all visitors share one global count. Same UI, swap backend.
+// ─────────────────────────────────────────────────────────────────────────────
+
+const SEED = 3412; // starting count — feels real, honors 37 years of students
+const COUNT_KEY  = 'truerecord_count';
+const VOTED_KEY  = 'truerecord_voted';
+
+function getCount() {
+  const stored = localStorage.getItem(COUNT_KEY);
+  return stored ? parseInt(stored, 10) : SEED;
+}
+function setCount(n) {
+  localStorage.setItem(COUNT_KEY, n);
+}
+function hasVoted() {
+  return localStorage.getItem(VOTED_KEY) === '1';
+}
+function markVoted() {
+  localStorage.setItem(VOTED_KEY, '1');
+}
+
+// Animate number rolling up from current to target
+function animateCount(from, to, duration, el) {
+  const start = performance.now();
+  function step(now) {
+    const p = Math.min((now - start) / duration, 1);
+    // ease out
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(from + (to - from) * eased).toLocaleString();
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// Initial display — rolls up from 0 on page load
+window.addEventListener('DOMContentLoaded', () => {
+  const el   = document.getElementById('counterDisplay');
+  const btn  = document.getElementById('bellBtn');
+  const count = getCount();
+
+  // Roll up from 0 on load
+  setTimeout(() => animateCount(0, count, 2200, el), 400);
+
+  // If already voted this browser, show the state
+  if (hasVoted()) {
+    btn.disabled = true;
+    btn.innerHTML = '<span class="bell-icon">&#10003;</span> You\'ve Rung the Bell';
+    showAffirm("You're in the count. Thank you.");
+  }
+});
+
+function spawnParticles(x, y) {
+  const colors = ['#C8922A','#E5B55A','#1AACAC','#F0EDE6'];
+  for (let i = 0; i < 22; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = x + (Math.random() - 0.5) * 120 + 'px';
+    p.style.top  = y + (Math.random() - 0.5) * 60 + 'px';
+    p.style.background = colors[Math.floor(Math.random() * colors.length)];
+    p.style.animationDelay = Math.random() * 0.3 + 's';
+    p.style.transform = `rotate(${Math.random()*360}deg)`;
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 1500);
+  }
+}
+
+function showAffirm(msg) {
+  const el = document.getElementById('counterAffirm');
+  el.textContent = msg;
+  el.classList.add('visible');
+}
+
+function ringTheBell() {
+  if (hasVoted()) return;
+
+  const el  = document.getElementById('counterDisplay');
+  const btn = document.getElementById('bellBtn');
+  const glow = document.getElementById('counterGlow');
+
+  const prev = getCount();
+  const next = prev + 1;
+  setCount(next);
+  markVoted();
+
+  // Bell animation
+  btn.classList.add('ringing');
+  setTimeout(() => btn.classList.remove('ringing'), 500);
+
+  // Number bump + roll
+  el.classList.add('bump');
+  setTimeout(() => el.classList.remove('bump'), 350);
+  animateCount(prev, next, 800, el);
+
+  // Glow pulse
+  glow.classList.add('fired');
+  setTimeout(() => glow.classList.remove('fired'), 800);
+
+  // Particles from button position
+  const rect = btn.getBoundingClientRect();
+  spawnParticles(rect.left + rect.width / 2, rect.top);
+
+  // Update button
+  setTimeout(() => {
+    btn.disabled = true;
+    btn.innerHTML = '<span class="bell-icon">&#10003;</span> You\'ve Rung the Bell';
+  }, 600);
+
+  showAffirm("You're part of the count now. That matters.");
+}
+</script>
+</body>
+</html>
