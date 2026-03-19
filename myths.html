@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Myth vs. Reality — The Whole Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#080808;--surface:#101010;--card:#161616;--border:#242424;
+    --gold:#C8922A;--gold-lt:#E5B55A;
+    --teal:#0D7C7C;--teal-lt:#1AACAC;
+    --crimson:#8B1F2F;--crimson-lt:#B8374A;
+    --sapphire:#1B4F8A;--sapphire-lt:#2E72C0;
+    --text:#F0EDE6;--muted:#7A7A7A;--faint:#2A2A2A;
+    --font-disp:'Bebas Neue',sans-serif;
+    --font-head:'Oswald',sans-serif;
+    --font-body:'Raleway',sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-weight:400;line-height:1.6;overflow-x:hidden;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:rgba(8,8,8,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--faint);}
+  .nav-logo{font-family:var(--font-head);font-weight:600;font-size:1rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);text-decoration:none;}
+  .nav-logo span{color:var(--text);}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;}
+  .nav-links a{font-family:var(--font-head);font-weight:300;font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--text);}
+  .nav-cta{font-family:var(--font-head);font-size:0.75rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--bg);background:var(--gold);border:none;padding:0.55rem 1.4rem;cursor:pointer;text-decoration:none;transition:background 0.2s;}
+  .nav-cta:hover{background:var(--gold-lt);}
+
+  /* PAGE HERO */
+  .page-hero{
+    padding:14rem 4rem 6rem;
+    position:relative;overflow:hidden;
+    border-bottom:1px solid var(--faint);
+    display:grid;
+    grid-template-columns:3fr 2fr;
+    gap:6rem;
+    align-items:end;
+  }
+  .hero-bg{
+    position:absolute;inset:0;
+    background:
+      radial-gradient(ellipse 50% 80% at 20% 50%,rgba(139,31,47,0.08) 0%,transparent 60%),
+      radial-gradient(ellipse 40% 60% at 80% 30%,rgba(200,146,42,0.06) 0%,transparent 60%),
+      linear-gradient(180deg,#080808 0%,#0a0808 100%);
+    z-index:0;
+  }
+  .hero-left{position:relative;z-index:1;}
+  .hero-eyebrow{font-family:var(--font-head);font-weight:300;font-size:0.75rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--crimson-lt);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;}
+  .hero-eyebrow::before{content:'';width:40px;height:1px;background:var(--crimson-lt);display:block;}
+  .hero-title{font-family:var(--font-disp);font-size:clamp(5rem,10vw,10rem);line-height:0.88;color:var(--text);}
+  .hero-title .vs{color:var(--crimson-lt);display:block;}
+  .hero-title .reality{color:var(--gold);}
+  .hero-sub{font-family:var(--font-body);font-weight:300;font-size:1.05rem;line-height:1.8;color:rgba(240,237,230,0.55);margin-top:2rem;max-width:520px;}
+
+  .hero-right{position:relative;z-index:1;}
+  .hero-instruction{
+    background:var(--card);border:1px solid var(--faint);
+    padding:2.5rem;
+  }
+  .instruction-title{font-family:var(--font-head);font-weight:600;font-size:0.85rem;letter-spacing:0.1em;color:var(--text);margin-bottom:1.5rem;}
+  .instruction-steps{display:flex;flex-direction:column;gap:1rem;}
+  .instruction-step{display:flex;gap:1rem;align-items:flex-start;}
+  .step-n{font-family:var(--font-disp);font-size:1.8rem;color:var(--faint);line-height:1;flex-shrink:0;width:2rem;}
+  .step-text{font-family:var(--font-body);font-size:0.85rem;font-weight:300;color:var(--muted);line-height:1.55;padding-top:0.2rem;}
+  .step-text strong{color:var(--text);font-weight:500;}
+
+  /* FILTER BAR */
+  .filter-bar{
+    padding:2.5rem 4rem;
+    border-bottom:1px solid var(--faint);
+    display:flex;align-items:center;gap:1rem;flex-wrap:wrap;
+    background:var(--surface);
+    position:sticky;top:66px;z-index:50;
+  }
+  .filter-label{font-family:var(--font-head);font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-right:0.5rem;white-space:nowrap;}
+  .filter-btn{
+    font-family:var(--font-head);font-size:0.7rem;font-weight:400;
+    letter-spacing:0.15em;text-transform:uppercase;
+    color:var(--muted);border:1px solid var(--faint);
+    background:transparent;padding:0.5rem 1.2rem;cursor:pointer;
+    transition:all 0.2s;white-space:nowrap;
+  }
+  .filter-btn:hover{border-color:var(--text);color:var(--text);}
+  .filter-btn.active{border-color:var(--gold);color:var(--gold);}
+
+  /* SCORE BAR */
+  .score-bar{
+    padding:2rem 4rem;
+    background:var(--bg);
+    border-bottom:1px solid var(--faint);
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .score-label{font-family:var(--font-head);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);}
+  .score-count{font-family:var(--font-disp);font-size:2.2rem;color:var(--gold);line-height:1;}
+  .score-count span{font-size:1rem;color:var(--muted);font-family:var(--font-head);font-weight:300;letter-spacing:0.1em;margin-left:0.5rem;}
+  .score-progress{
+    height:4px;background:var(--faint);flex:1;margin:0 3rem;
+    position:relative;overflow:hidden;
+  }
+  .score-fill{height:100%;background:var(--gold);width:0%;transition:width 0.6s ease;}
+
+  /* CARDS GRID */
+  .cards-section{padding:5rem 4rem;}
+  .cards-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:3px;
+  }
+
+  /* FLIP CARD */
+  .flip-card{
+    perspective:1200px;
+    cursor:pointer;
+    min-height:380px;
+  }
+  .flip-inner{
+    position:relative;width:100%;height:100%;
+    transform-style:preserve-3d;
+    transition:transform 0.65s cubic-bezier(0.4,0.2,0.2,1);
+    min-height:380px;
+  }
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+
+  .flip-front,.flip-back{
+    position:absolute;inset:0;
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+    padding:3rem;
+    display:flex;flex-direction:column;
+    justify-content:space-between;
+  }
+  .flip-front{
+    background:var(--card);
+    border-top:3px solid var(--crimson-lt);
+  }
+  .flip-back{
+    background:#0f1810;
+    border-top:3px solid var(--gold);
+    transform:rotateY(180deg);
+  }
+
+  /* front */
+  .myth-tag{
+    font-family:var(--font-head);font-size:0.62rem;font-weight:600;
+    letter-spacing:0.28em;text-transform:uppercase;
+    color:var(--crimson-lt);margin-bottom:1.25rem;
+    display:flex;align-items:center;gap:0.75rem;
+  }
+  .myth-tag::before{content:'';width:20px;height:1px;background:var(--crimson-lt);display:block;}
+  .myth-statement{
+    font-family:var(--font-head);font-weight:600;font-size:1.25rem;
+    color:var(--text);line-height:1.35;flex:1;
+    display:flex;align-items:center;
+  }
+  .myth-category{
+    font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.18em;
+    text-transform:uppercase;color:var(--faint);
+    margin-top:1.5rem;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .flip-hint{
+    font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;
+    text-transform:uppercase;color:var(--crimson-lt);opacity:0.6;
+    display:flex;align-items:center;gap:0.4rem;
+  }
+  .flip-hint::after{content:'→';}
+
+  /* back */
+  .reality-tag{
+    font-family:var(--font-head);font-size:0.62rem;font-weight:600;
+    letter-spacing:0.28em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:1.25rem;
+    display:flex;align-items:center;gap:0.75rem;
+  }
+  .reality-tag::before{content:'';width:20px;height:1px;background:var(--gold);display:block;}
+  .reality-statement{
+    font-family:var(--font-head);font-weight:600;font-size:1.1rem;
+    color:var(--text);line-height:1.4;margin-bottom:1.25rem;
+  }
+  .reality-detail{
+    font-family:var(--font-body);font-weight:300;font-size:0.88rem;
+    color:rgba(240,237,230,0.62);line-height:1.75;flex:1;
+  }
+  .reality-detail strong{color:var(--gold-lt);font-weight:500;}
+  .reality-source{
+    font-family:var(--font-head);font-size:0.6rem;letter-spacing:0.15em;
+    text-transform:uppercase;color:var(--muted);
+    border-top:1px solid rgba(42,42,42,0.8);
+    padding-top:1rem;margin-top:1rem;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .flip-back-hint{
+    font-family:var(--font-head);font-size:0.6rem;letter-spacing:0.15em;
+    text-transform:uppercase;color:var(--gold);opacity:0.5;
+    display:flex;align-items:center;gap:0.4rem;
+  }
+  .flip-back-hint::before{content:'←';}
+
+  /* CTA BOTTOM */
+  .mvr-cta{
+    padding:6rem 4rem;
+    background:var(--surface);
+    border-top:1px solid var(--faint);
+    text-align:center;
+  }
+  .mvr-cta-eyebrow{font-family:var(--font-head);font-weight:300;font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;}
+  .mvr-cta-title{font-family:var(--font-disp);font-size:clamp(3rem,5vw,5rem);color:var(--text);line-height:0.95;margin-bottom:1.5rem;}
+  .mvr-cta-title span{color:var(--gold);}
+  .mvr-cta-sub{font-family:var(--font-body);font-weight:300;font-size:1rem;color:rgba(240,237,230,0.5);margin-bottom:2.5rem;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.75;}
+  .btn-primary{font-family:var(--font-head);font-size:0.8rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--bg);background:var(--gold);border:none;padding:1rem 2.5rem;cursor:pointer;text-decoration:none;display:inline-block;transition:background 0.2s,transform 0.15s;margin:0 0.5rem;}
+  .btn-primary:hover{background:var(--gold-lt);transform:translateY(-1px);}
+  .btn-ghost{font-family:var(--font-head);font-size:0.8rem;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;color:var(--text);background:transparent;border:1px solid var(--border);padding:1rem 2.5rem;cursor:pointer;text-decoration:none;display:inline-block;transition:border-color 0.2s;}
+  .btn-ghost:hover{border-color:var(--muted);}
+
+  footer{padding:3rem 4rem;border-top:1px solid var(--faint);}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;}
+  .footer-copy{font-family:var(--font-body);font-size:0.78rem;color:var(--muted);}
+  .footer-copy strong{color:var(--gold);}
+
+  @media(max-width:900px){
+    nav{padding:1rem 1.5rem;}
+    .nav-links{display:none;}
+    .page-hero{grid-template-columns:1fr;padding:10rem 1.5rem 4rem;gap:3rem;}
+    .hero-right{display:none;}
+    .filter-bar,.score-bar,.cards-section,.mvr-cta{padding-left:1.5rem;padding-right:1.5rem;}
+    .cards-grid{grid-template-columns:1fr;}
+    footer{padding:2rem 1.5rem;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">The Whole <span>Story</span></a>
+  <ul class="nav-links">
+    <li><a href="about.html">About Mr. Green</a></li>
+    <li><a href="search.html">Explore History</a></li>
+    <li><a href="myths.html" class="active">Myth vs. Reality</a></li>
+    <li><a href="quiz.html">Find My Starting Point</a></li>
+  </ul>
+  <a href="quiz.html" class="nav-cta">Start Here</a>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="hero-left">
+    <div class="hero-eyebrow">What You Were Told vs. What Is Documented</div>
+    <h1 class="hero-title">
+      Myth<br/>
+      <span class="vs">vs.</span>
+      <span class="reality">Reality.</span>
+    </h1>
+    <p class="hero-sub">
+      These aren't opinions. They're documented facts set against widely held beliefs — 
+      many of which were taught in schools, repeated in media, and passed through families 
+      for generations. No shame in having believed them. You were given what you were given. 
+      Now here's the rest.
+    </p>
+  </div>
+  <div class="hero-right">
+    <div class="hero-instruction">
+      <div class="instruction-title">How This Works</div>
+      <div class="instruction-steps">
+        <div class="instruction-step">
+          <div class="step-n">01</div>
+          <div class="step-text">Each card shows a <strong>commonly held belief</strong> — something many Americans were taught or absorbed</div>
+        </div>
+        <div class="instruction-step">
+          <div class="step-n">02</div>
+          <div class="step-text"><strong>Click the card</strong> to flip it and see what the documented historical record actually shows</div>
+        </div>
+        <div class="instruction-step">
+          <div class="step-n">03</div>
+          <div class="step-text">Every reality is <strong>sourced</strong> — Library of Congress, peer-reviewed scholarship, primary documents</div>
+        </div>
+        <div class="instruction-step">
+          <div class="step-n">04</div>
+          <div class="step-text">Use the search tool to <strong>go deeper</strong> on any topic that lands</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <span class="filter-label">Filter by topic:</span>
+  <button class="filter-btn active" onclick="filterCards('all',this)">All</button>
+  <button class="filter-btn" onclick="filterCards('economics',this)">Economics & Wealth</button>
+  <button class="filter-btn" onclick="filterCards('law',this)">Law & Policy</button>
+  <button class="filter-btn" onclick="filterCards('culture',this)">Culture & Identity</button>
+  <button class="filter-btn" onclick="filterCards('politics',this)">Politics & Power</button>
+  <button class="filter-btn" onclick="filterCards('history',this)">Hidden History</button>
+</div>
+
+<!-- SCORE BAR -->
+<div class="score-bar">
+  <div>
+    <div class="score-label">Cards you've flipped</div>
+    <div class="score-count"><span id="flippedCount">0</span> <span>of <span id="totalCount">12</span> revealed</span></div>
+  </div>
+  <div class="score-progress"><div class="score-fill" id="scoreFill"></div></div>
+  <div>
+    <div class="score-label" style="text-align:right;">Keep going</div>
+    <div style="font-family:var(--font-head);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);text-align:right;" id="scoreMsg">Flip your first card</div>
+  </div>
+</div>
+
+<!-- CARDS -->
+<section class="cards-section">
+  <div class="cards-grid" id="cardsGrid">
+
+    <!-- 1 -->
+    <div class="flip-card" data-category="economics" onclick="flipCard(this)">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div>
+            <div class="myth-tag">Common Belief</div>
+            <div class="myth-statement">"Black communities are poor because of cultural choices and lack of work ethic."</div>
+          </div>
+          <div class="myth-category">
+            <span>Economics & Wealth</span>
+            <span class="flip-hint">Flip for the record</span>
+          </div>
+        </div>
+        <div class="flip-back">
+          <div>
+            <div class="reality-tag">The Documented Record</div>
+            <div class="reality-statement">The racial wealth gap was engineered by federal policy — not produced by behavior.</div>
+            <p class="reality-detail">
+              From 1934–1968, the federal government's Home Owners' Loan Corporation 
+              systematically denied mortgages to Black families through redlining — 
+              while subsidizing white suburban homeownership at massive scale. 
+              <strong>Homeownership is the primary vehicle of generational wealth in America.</strong> 
+              Black families were excluded by law, not by choice. The gap that exists today 
+              is a direct, documented, measurable result of that policy.
+            </p>
+          </div>
+          <div class="reality-source">
+            <span>Rothstein, The Color of Law (2017) · HOLC Maps, National Archives</span>
+            <span class="flip-back-hint">Flip back</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="flip-card" data-category="history" onclick="flipCard(this)">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div>
+            <div class="myth-tag">Common Belief</div>
+            <div class="myth-statement">"Slavery ended and Black people were free to move forward on equal footing."</div>
+          </div>
+          <div class="myth-category">
+            <span>Hidden History</span>
+            <span class="flip-hint">Flip for the record</span>
+          </div>
+        </div>
+        <div class="flip-back">
+          <div>
+            <div class="reality-tag">The Documented Record</div>
+            <div class="reality-statement">Within months of emancipation, Southern states passed Black Codes that recreated slavery's conditions through law.</div>
+            <p class="reality-detail">
+              Black Codes (1865–1866) criminalized unemployment, vagrancy, and "impudence." 
+              Black people could be arrested for not having a labor contract and 
+              <strong>leased to plantations as convict labor</strong> — a system that lasted 
+              well into the 20th century. Equal footing was never the intention, 
+              and the 13th Amendment's "except as punishment for crime" clause 
+              made this legal. This is documented in state legislative records.
+            </p>
+          </div>
+          <div class="reality-source">
+            <span>Black Codes, State Legislative Records (1865) · Library of Congress</span>
+            <span class="flip-back-hint">Flip back</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="flip-card" data-category="politics" onclick="flipCard(this)">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div>
+            <div class="myth-tag">Common Belief</div>
+            <div class="myth-statement">"The Black Panthers were a violent, anti-white hate group."</div>
+          </div>
+          <div class="myth-category">
+            <span>Politics & Power</span>
+            <span class="flip-hint">Flip for the record</span>
+          </div>
+        </div>
+        <div class="flip-back">
+          <div>
+            <div class="reality-tag">The Documented Record</div>
+            <div class="reality-statement">The FBI considered the Panthers' free breakfast program — not their weapons — their greatest threat.</div>
+            <p class="reality-detail">
+              Declassified FBI COINTELPRO files show the government conducted an 
+              illegal campaign to destroy the Black Panther Party — 
+              including assassinations, infiltration, and fabricated evidence. 
+              The Panthers' <strong>free breakfast program fed 20,000+ children weekly</strong> 
+              and their free medical clinics served thousands. 
+              The "violent" image was substantially shaped by government disinformation, 
+              now documented in primary federal records.
+            </p>
+          </div>
+          <div class="reality-source">
+            <span>FBI COINTELPRO Files (declassified) · National Archives</span>
+            <span class="flip-back-hint">Flip back</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="flip-card" data-category="history" onclick="flipCard(this)">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div>
+            <div class="myth-tag">Common Belief</div>
+            <div class="myth-statement">"Reconstruction was a corrupt failure — a chaotic period when unqualified people took power."</div>
+          </div>
+          <div class="myth-category">
+            <span>Hidden History</span>
+            <span class="flip-hint">Flip for the record</span>
+          </div>
+        </div>
+        <div class="flip-back">
+          <div>
+            <div class="reality-tag">The Documented Record</div>
+            <div class="reality-statement">Reconstruction was a functioning multiracial democracy — deliberately destroyed, not organically failed.</div>
+            <p class="reality-detail">
+              During Reconstruction, Black Americans served as U.S. Senators, 
+              Congressmen, judges, and governors. <strong>Public schools were built 
+              for Black and white children alike</strong> — many for the first time. 
+              The "failure" narrative came from white supremacist historians in the early 1900s 
+              and was taught in textbooks for decades. 
+              The Compromise of 1877 removed federal troops, 
+              and the democratic experiment was ended by organized violence — not incompetence.
+            </p>
+          </div>
+          <div class="reality-source">
+            <span>Foner, Reconstruction: America's Unfinished Revolution (1988) · Congressional Records</span>
+            <span class="flip-back-hint">Flip back</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="flip-card" data-category="law" onclick="flipCard(this)">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div>
+            <div class="myth-tag">Common Belief</div>
+            <div class="myth-statement">"The Civil Rights Act of 1964 solved racial inequality in America."</div>
+          </div>
+          <div class="myth-category">
+            <span>Law & Policy</span>
+            <span class="flip-hint">Flip for the record</span>
+          </div>
+        </div>
+        <div class="flip-back">
+          <div>
+            <div class="reality-tag">The Documented Record</div>
+            <div class="reality-statement">The Civil Rights Act outlawed discrimination — but did not undo 90 years of legally accumulated disadvantage.</div>
+            <p class="reality-detail">
+              The Act prohibited discrimination going forward — but it did not restore 
+              the land taken during Reconstruction, compensate for decades of 
+              wage theft under Jim Crow, reverse the wealth effects of redlining, 
+              or address segregation in school funding tied to property taxes. 
+              <strong>Ending a policy does not undo its accumulated effects.</strong> 
+              A family blocked from buying a home in 1950 
+              did not gain that home's 2024 value when discrimination became illegal in 1964.
+            </p>
+          </div>
+          <div class="reality-source">
+            <span>Civil Rights Act (1964) · Federal Reserve Survey of Consumer Finances (2022)</span>
+            <span class="flip-back-hint">Flip back</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="flip-card" data-category="culture" onclick="flipCard(this)">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div>
+            <div class="myth-tag">Common Belief</div>
+            <div class="myth-statement">"Black families have weaker family structures — that's the root of poverty in Black communities."</div>
+          </div>
+          <div class="myth-category">
+            <span>Culture & Identity</span>
+            <span class="flip-hint">Flip for the record</span>
+          </div>
+        </div>
+        <div class="flip-back">
+          <div>
+            <div class="reality-tag">The Documented Record</div>
+            <div class="reality-statement">Slavery systematically destroyed family bonds — the "broken family" narrative inverts cause and effect.</div>
+            <p class="reality-detail">
+              During slavery, families were legally separated at auction. 
+              After emancipation, Black families spent decades and fortunes 
+              searching for separated relatives — documented in Freedmen's Bureau records. 
+              Mass incarceration, which disproportionately removes Black men from households, 
+              is a <strong>documented policy outcome</strong> — not a cultural tendency. 
+              Scholarship consistently shows that controlling for income and policy environment, 
+              Black family structures are not statistically different from others.
+            </p>
+          </div>
+          <div class="reality-source">
+            <span>Freedmen's Bureau Records · Alexander, The New Jim Crow (2010)</span>
+            <span class="flip-back-hint">Flip back</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="flip-card" data-category="history" onclick="flipCard(this)">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div>
+            <div class="myth-tag">Common Belief</div>
+            <div class="myth-statement">"Black Wall Street was just a neighborhood. It wasn't that significant."</div>
+          </div>
+          <div class="myth-category">
+            <span>Hidden History</span>
+            <span class="flip-hint">Flip for the record</span>
+          </div>
+        </div>
+        <div class="flip-back">
+          <div>
+            <div class="reality-tag">The Documented Record</div>
+            <div class="reality-statement">Greenwood was the wealthiest Black community in American history — and it was burned to the ground by a mob aided by city government.</div>
+            <p class="reality-detail">
+              By 1921, the Greenwood District in Tulsa, Oklahoma contained 
+              <strong>300+ Black-owned businesses</strong>, a hospital, hotel, 
+              law offices, and a school system. On May 31–June 1, 1921, 
+              a white mob — with police participation and possible government aircraft — 
+              destroyed 35 blocks, killed hundreds, and left 10,000 homeless. 
+              Oklahoma did not require this to be taught in schools until 2020. 
+              This was not taught in most American classrooms for 99 years.
+            </p>
+          </div>
+          <div class="reality-source">
+            <span>Tulsa Race Riot Commission Report (2001) · Library of Congress Photo Archive</span>
+            <span class="flip-back-hint">Flip back</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="flip-card" data-category="law" onclick="flipCard(this)">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div>
+            <div class="myth-tag">Common Belief</div>
+            <div class="myth-statement">"The GI Bill gave all veterans equal opportunities after World War II."</div>
+          </div>
+          <div class="myth-category">
+            <span>Law & Policy</span>
+            <span class="flip-hint">Flip for the record</span>
+          </div>
+        </div>
+        <div class="flip-back">
+          <div>
+            <div class="reality-tag">The Documented Record</div>
+            <div class="reality-statement">The GI Bill was administered locally — and in most of the country, Black veterans were systematically excluded from its benefits.</div>
+            <p class="reality-detail">
+              The Servicemen's Readjustment Act of 1944 was federally funded 
+              but locally administered. Banks in redlined areas refused GI Bill mortgages 
+              to Black veterans. Most Southern universities refused Black enrollment 
+              for the education benefit. <strong>Of the first 67,000 mortgages 
+              issued under the GI Bill in New York and New Jersey, fewer than 100 
+              went to non-white veterans.</strong> The bill that built white middle-class 
+              America explicitly did not build Black middle-class America.
+            </p>
+          </div>
+          <div class="reality-source">
+            <span>Katznelson, When Affirmative Action Was White (2005) · VA Records</span>
+            <span class="flip-back-hint">Flip back</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="flip-card" data-category="culture" onclick="flipCard(this)">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div>
+            <div class="myth-tag">Common Belief</div>
+            <div class="myth-statement">"Affirmative action gives unqualified Black people advantages over more qualified white people."</div>
+          </div>
+          <div class="myth-category">
+            <span>Culture & Identity</span>
+            <span class="flip-hint">Flip for the record</span>
+          </div>
+        </div>
+        <div class="flip-back">
+          <div>
+            <div class="reality-tag">The Documented Record</div>
+            <div class="reality-statement">Affirmative action was a direct response to documented, federally enforced exclusion — and its primary beneficiaries by numbers are white women.</div>
+            <p class="reality-detail">
+              Affirmative action was introduced in 1961 precisely because 
+              the existing "merit" system had been built on a foundation of 
+              legal exclusion — segregated schools, restricted professional licensing, 
+              discriminatory hiring, and redlining. 
+              <strong>Statistical studies consistently show white women 
+              have been the largest demographic beneficiary of affirmative action policies.</strong> 
+              The "unqualified" framing attaches to Black applicants specifically 
+              — a reflection of the bias the policy was designed to counter.
+            </p>
+          </div>
+          <div class="reality-source">
+            <span>EEOC Records · Department of Labor Studies on AA Implementation (1995)</span>
+            <span class="flip-back-hint">Flip back</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="flip-card" data-category="economics" onclick="flipCard(this)">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div>
+            <div class="myth-tag">Common Belief</div>
+            <div class="myth-statement">"Black people commit more crime — that's why policing looks the way it does."</div>
+          </div>
+          <div class="myth-category">
+            <span>Economics & Wealth</span>
+            <span class="flip-hint">Flip for the record</span>
+          </div>
+        </div>
+        <div class="flip-back">
+          <div>
+            <div class="reality-tag">The Documented Record</div>
+            <div class="reality-statement">Crime rates correlate with poverty and over-policing — not race. Black communities are policed more, which produces more arrests, which produces the statistic.</div>
+            <p class="reality-detail">
+              Criminologists consistently find that <strong>when you control for 
+              poverty and neighborhood disinvestment, racial crime disparities 
+              largely disappear.</strong> Over-policed communities produce 
+              more arrests per crime than under-policed ones — 
+              making arrest statistics a measure of policing intensity, 
+              not criminal behavior. The neighborhoods that were redlined 
+              are the same neighborhoods that are over-policed today. 
+              The cycle is documented, not coincidental.
+            </p>
+          </div>
+          <div class="reality-source">
+            <span>National Academy of Sciences, The Growth of Incarceration (2014) · BJS Data</span>
+            <span class="flip-back-hint">Flip back</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11 -->
+    <div class="flip-card" data-category="politics" onclick="flipCard(this)">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div>
+            <div class="myth-tag">Common Belief</div>
+            <div class="myth-statement">"Black people have had the right to vote since the 15th Amendment in 1870."</div>
+          </div>
+          <div class="myth-category">
+            <span>Politics & Power</span>
+            <span class="flip-hint">Flip for the record</span>
+          </div>
+        </div>
+        <div class="flip-back">
+          <div>
+            <div class="reality-tag">The Documented Record</div>
+            <div class="reality-statement">The 15th Amendment was effectively nullified for nearly 100 years through systematic voter suppression enforced by violence and law.</div>
+            <p class="reality-detail">
+              Poll taxes, literacy tests designed to fail, grandfather clauses, 
+              and outright violence — including murder — 
+              prevented the vast majority of Black Southerners from voting 
+              from the 1870s through the 1960s. 
+              <strong>The Voting Rights Act was passed in 1965 — 
+              95 years after the 15th Amendment.</strong> 
+              Formal legal rights and practical access to those rights 
+              are two entirely different things. 
+              Knowing the difference is essential to understanding American democracy.
+            </p>
+          </div>
+          <div class="reality-source">
+            <span>Voting Rights Act (1965) · Civil Rights Commission Reports · Library of Congress</span>
+            <span class="flip-back-hint">Flip back</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12 -->
+    <div class="flip-card" data-category="culture" onclick="flipCard(this)">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div>
+            <div class="myth-tag">Common Belief</div>
+            <div class="myth-statement">"America is a meritocracy — anyone who works hard enough can succeed equally."</div>
+          </div>
+          <div class="myth-category">
+            <span>Culture & Identity</span>
+            <span class="flip-hint">Flip for the record</span>
+          </div>
+        </div>
+        <div class="flip-back">
+          <div>
+            <div class="reality-tag">The Documented Record</div>
+            <div class="reality-statement">Meritocracy requires equal starting conditions. American policy deliberately created unequal starting conditions — and documented them.</div>
+            <p class="reality-detail">
+              The myth of meritocracy relies on the assumption that everyone begins 
+              on level ground. The documented record of American policy — 
+              slavery, Black Codes, convict leasing, redlining, 
+              the unequal GI Bill, school segregation, mass incarceration — 
+              shows a <strong>sustained, multi-generational effort 
+              to create and maintain unequal starting conditions.</strong> 
+              Hard work matters. It has never been sufficient 
+              to overcome structural disadvantage alone — 
+              for any group in any era of documented history.
+            </p>
+          </div>
+          <div class="reality-source">
+            <span>Chetty et al., Race and Economic Opportunity in the US (2018) · Opportunity Insights</span>
+            <span class="flip-back-hint">Flip back</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /cards-grid -->
+</section>
+
+<!-- CTA -->
+<div class="mvr-cta">
+  <div class="mvr-cta-eyebrow">Keep Going</div>
+  <h2 class="mvr-cta-title">Every Card Leads<br/><span>Somewhere Deeper.</span></h2>
+  <p class="mvr-cta-sub">Use the search tool to go further on any topic that landed — with primary sources, Mr. Green's perspective, and cross-references across four independent platforms.</p>
+  <a href="search.html" class="btn-primary">Search the Full Record</a>
+  <a href="quiz.html" class="btn-ghost">Find My Starting Point</a>
+</div>
+
+<footer>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 The Whole Story. Prototype — <strong>for Mr. Anthony Green</strong>.</div>
+    <div class="footer-copy">All facts cited. All history documented.</div>
+  </div>
+</footer>
+
+<script>
+let flipped = new Set();
+const total = document.querySelectorAll('.flip-card').length;
+document.getElementById('totalCount').textContent = total;
+
+const msgs = [
+  'Flip your first card',
+  'Keep going',
+  'Something is shifting',
+  'You\'re halfway there',
+  'More than halfway',
+  'Almost through',
+  'Nearly all revealed',
+  'You\'ve seen it all — now go deeper'
+];
+
+function flipCard(el) {
+  const wasFlipped = el.classList.contains('flipped');
+  el.classList.toggle('flipped');
+  if (!wasFlipped) {
+    flipped.add(el);
+  } else {
+    flipped.delete(el);
+  }
+  updateScore();
+}
+
+function updateScore() {
+  const count = flipped.size;
+  document.getElementById('flippedCount').textContent = count;
+  const pct = (count / total) * 100;
+  document.getElementById('scoreFill').style.width = pct + '%';
+  const msgIdx = Math.min(Math.floor((count / total) * (msgs.length - 1)), msgs.length - 1);
+  if (count === 0) {
+    document.getElementById('scoreMsg').textContent = msgs[0];
+  } else if (count === total) {
+    document.getElementById('scoreMsg').textContent = msgs[msgs.length - 1];
+  } else {
+    document.getElementById('scoreMsg').textContent = msgs[Math.ceil((count / total) * (msgs.length - 2))];
+  }
+}
+
+function filterCards(category, btn) {
+  // update active btn
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  document.querySelectorAll('.flip-card').forEach(card => {
+    if (category === 'all' || card.dataset.category === category) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  // update total count
+  const visible = document.querySelectorAll('.flip-card:not([style*="none"])').length;
+  document.getElementById('totalCount').textContent = visible;
+}
+</script>
+</body>
+</html>
