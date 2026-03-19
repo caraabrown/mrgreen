@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>About Mr. Green — The Whole Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg:#080808; --surface:#101010; --card:#161616; --border:#242424;
+    --gold:#C8922A; --gold-lt:#E5B55A; --teal:#0D7C7C; --teal-lt:#1AACAC;
+    --crimson:#8B1F2F; --sapphire:#1B4F8A; --sapphire-lt:#2E72C0;
+    --text:#F0EDE6; --muted:#7A7A7A; --faint:#2A2A2A;
+    --font-disp:'Bebas Neue',sans-serif;
+    --font-head:'Oswald',sans-serif;
+    --font-body:'Raleway',sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-weight:400;line-height:1.6;overflow-x:hidden;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:rgba(8,8,8,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--faint);}
+  .nav-logo{font-family:var(--font-head);font-weight:600;font-size:1rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);text-decoration:none;}
+  .nav-logo span{color:var(--text);}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;}
+  .nav-links a{font-family:var(--font-head);font-weight:300;font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--text);}
+  .nav-cta{font-family:var(--font-head);font-size:0.75rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--bg);background:var(--gold);border:none;padding:0.55rem 1.4rem;cursor:pointer;text-decoration:none;transition:background 0.2s;}
+  .nav-cta:hover{background:var(--gold-lt);}
+
+  /* PAGE HERO */
+  .page-hero{
+    padding: 14rem 4rem 6rem;
+    position:relative;overflow:hidden;
+    border-bottom:1px solid var(--faint);
+  }
+  .page-hero-bg{
+    position:absolute;inset:0;
+    background:radial-gradient(ellipse 60% 80% at 80% 30%, rgba(200,146,42,0.07) 0%, transparent 60%),
+               radial-gradient(ellipse 40% 60% at 10% 80%, rgba(13,124,124,0.05) 0%, transparent 60%),
+               linear-gradient(180deg,#080808 0%,#0c0a06 100%);
+  }
+  .page-hero-eyebrow{font-family:var(--font-head);font-weight:300;font-size:0.75rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;position:relative;z-index:1;}
+  .page-hero-eyebrow::before{content:'';width:40px;height:1px;background:var(--gold);display:block;}
+  .page-hero-title{font-family:var(--font-disp);font-size:clamp(5rem,10vw,10rem);line-height:0.9;color:var(--text);position:relative;z-index:1;margin-bottom:1rem;}
+  .page-hero-title em{color:var(--gold);font-style:normal;display:block;}
+  .page-hero-sub{font-family:var(--font-body);font-weight:300;font-size:1.15rem;line-height:1.75;color:rgba(240,237,230,0.6);max-width:600px;position:relative;z-index:1;margin-top:1.5rem;}
+
+  /* SUMMARY SECTION */
+  .summary{
+    display:grid;grid-template-columns:1fr 2fr;gap:8rem;
+    padding:8rem 4rem;border-bottom:1px solid var(--faint);
+    align-items:start;
+  }
+  .summary-portrait-col{}
+  .portrait-frame{
+    width:100%;aspect-ratio:3/4;
+    background:var(--card);border:1px solid var(--faint);
+    display:flex;align-items:center;justify-content:center;
+    position:relative;overflow:hidden;margin-bottom:2rem;
+  }
+  .portrait-inner{text-align:center;padding:2rem;}
+  .portrait-svg{width:70px;height:70px;margin:0 auto 1rem;opacity:0.12;}
+  .portrait-placeholder-label{font-family:var(--font-head);font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);}
+  .portrait-gold-tab{background:var(--gold);color:var(--bg);padding:1.25rem 1.5rem;text-align:center;}
+  .tab-num{font-family:var(--font-disp);font-size:3rem;color:var(--bg);line-height:1;}
+  .tab-label{font-family:var(--font-head);font-size:0.65rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:rgba(8,8,8,0.65);margin-top:0.3rem;}
+
+  .summary-text-col{}
+  .summary-eyebrow{font-family:var(--font-head);font-weight:300;font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.75rem;}
+  .summary-eyebrow::before{content:'';width:30px;height:1px;background:var(--gold);display:block;}
+  .summary-name{font-family:var(--font-head);font-weight:700;font-size:3rem;color:var(--text);line-height:1.1;margin-bottom:0.4rem;}
+  .summary-role{font-family:var(--font-head);font-weight:300;font-size:1rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:3rem;}
+  .summary-body{font-family:var(--font-body);font-weight:300;font-size:1.05rem;line-height:1.85;color:rgba(240,237,230,0.72);margin-bottom:1.5rem;}
+  .summary-body strong{color:var(--gold);font-weight:600;}
+
+  .impact-stats{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:3.5rem;
+  }
+  .impact-stat{background:var(--card);padding:2rem 1.75rem;}
+  .impact-num{font-family:var(--font-disp);font-size:3.5rem;color:var(--gold);line-height:1;margin-bottom:0.3rem;}
+  .impact-label{font-family:var(--font-head);font-size:0.68rem;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);line-height:1.4;}
+
+  /* TIMELINE SECTION */
+  .timeline-section{
+    padding:8rem 4rem;
+    position:relative;
+  }
+  .timeline-header{
+    display:grid;grid-template-columns:1fr 2fr;gap:6rem;
+    align-items:end;margin-bottom:7rem;
+    border-bottom:1px solid var(--faint);padding-bottom:4rem;
+  }
+  .timeline-title{font-family:var(--font-disp);font-size:clamp(4rem,7vw,7rem);line-height:0.9;color:var(--text);}
+  .timeline-title span{color:var(--gold);}
+  .timeline-intro{font-family:var(--font-body);font-weight:300;font-size:1rem;line-height:1.75;color:rgba(240,237,230,0.55);}
+  .timeline-scroll-note{font-family:var(--font-head);font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-top:1.5rem;display:flex;align-items:center;gap:0.75rem;}
+  .timeline-scroll-note::before{content:'↓';font-size:1rem;}
+
+  /* THE VERTICAL TIMELINE */
+  .timeline{
+    position:relative;
+    max-width:900px;margin:0 auto;
+    padding-bottom:4rem;
+  }
+  /* center spine */
+  .timeline::before{
+    content:'';
+    position:absolute;
+    left:50%;transform:translateX(-50%);
+    top:0;bottom:0;
+    width:1px;
+    background:linear-gradient(to bottom, var(--gold) 0%, var(--faint) 100%);
+  }
+
+  .timeline-item{
+    display:grid;
+    grid-template-columns:1fr 60px 1fr;
+    gap:0;
+    margin-bottom:5rem;
+    position:relative;
+  }
+  /* alternating: odd=content left, even=content right */
+  .timeline-item:nth-child(odd) .tl-content{grid-column:1;text-align:right;padding-right:3rem;}
+  .timeline-item:nth-child(odd) .tl-center{grid-column:2;}
+  .timeline-item:nth-child(odd) .tl-media{grid-column:3;padding-left:3rem;}
+  .timeline-item:nth-child(even) .tl-content{grid-column:3;text-align:left;padding-left:3rem;order:3;}
+  .timeline-item:nth-child(even) .tl-center{grid-column:2;order:2;}
+  .timeline-item:nth-child(even) .tl-media{grid-column:1;padding-right:3rem;order:1;}
+
+  .tl-center{
+    display:flex;flex-direction:column;align-items:center;
+    position:relative;z-index:2;
+  }
+  .tl-dot{
+    width:14px;height:14px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--gold);
+    margin-top:0.75rem;flex-shrink:0;
+    transition:background 0.3s;
+    position:relative;z-index:3;
+  }
+  .timeline-item:hover .tl-dot{background:var(--gold);}
+
+  .tl-year{
+    font-family:var(--font-disp);font-size:1.6rem;
+    color:var(--gold);line-height:1;
+    margin-bottom:0.5rem;
+    text-align:center;
+  }
+
+  .tl-content{}
+  .tl-tag{
+    font-family:var(--font-head);font-size:0.65rem;font-weight:400;
+    letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--teal-lt);margin-bottom:0.5rem;
+  }
+  .timeline-item:nth-child(even) .tl-tag{color:var(--gold);}
+  .tl-title{
+    font-family:var(--font-head);font-weight:600;font-size:1rem;
+    color:var(--text);margin-bottom:0.6rem;line-height:1.3;
+  }
+  .tl-desc{
+    font-family:var(--font-body);font-weight:300;font-size:0.88rem;
+    color:rgba(240,237,230,0.55);line-height:1.7;
+  }
+
+  .tl-media{
+    display:flex;align-items:flex-start;
+  }
+  .tl-img{
+    width:100%;aspect-ratio:4/3;
+    background:var(--card);border:1px solid var(--faint);
+    display:flex;align-items:center;justify-content:center;
+    position:relative;overflow:hidden;
+    transition:border-color 0.25s;
+  }
+  .timeline-item:hover .tl-img{border-color:var(--gold);}
+  .tl-img-label{
+    font-family:var(--font-head);font-size:0.62rem;
+    letter-spacing:0.18em;text-transform:uppercase;
+    color:var(--faint);text-align:center;padding:1rem;
+  }
+  .tl-img-icon{width:32px;height:32px;margin:0 auto 0.75rem;opacity:0.08;}
+
+  /* timeline end cap */
+  .timeline-endcap{
+    text-align:center;margin-top:2rem;
+    position:relative;z-index:2;
+  }
+  .endcap-label{
+    font-family:var(--font-head);font-size:0.7rem;letter-spacing:0.28em;
+    text-transform:uppercase;color:var(--muted);
+    background:var(--bg);display:inline-block;padding:0 1.5rem;
+    position:relative;
+  }
+  .endcap-label::before,.endcap-label::after{
+    content:'';position:absolute;top:50%;
+    width:60px;height:1px;background:var(--faint);
+  }
+  .endcap-label::before{right:100%;}
+  .endcap-label::after{left:100%;}
+
+  /* BSU HIGHLIGHT */
+  .bsu-highlight{
+    background:var(--card);
+    border-left:3px solid var(--gold);
+    padding:4rem;margin:0 4rem;
+    border-bottom:1px solid var(--faint);
+  }
+  .bsu-eyebrow{font-family:var(--font-head);font-weight:300;font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+  .bsu-headline{font-family:var(--font-disp);font-size:clamp(2.5rem,4vw,4rem);color:var(--text);line-height:0.95;margin-bottom:2rem;}
+  .bsu-body{font-family:var(--font-body);font-weight:300;font-size:1.05rem;line-height:1.8;color:rgba(240,237,230,0.65);max-width:700px;}
+
+  /* VISITORS SECTION */
+  .visitors{padding:6rem 4rem;border-bottom:1px solid var(--faint);}
+  .visitors-eyebrow{font-family:var(--font-head);font-weight:300;font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+  .visitors-headline{font-family:var(--font-head);font-weight:700;font-size:2rem;color:var(--text);margin-bottom:3.5rem;line-height:1.2;}
+  .visitors-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+  .visitor-card{background:var(--card);padding:2.5rem 2rem;border-top:2px solid transparent;transition:border-color 0.2s;}
+  .visitor-card:hover{border-top-color:var(--gold);}
+  .visitor-img{width:100%;aspect-ratio:1/1;background:var(--surface);border:1px solid var(--faint);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;}
+  .visitor-img-label{font-family:var(--font-head);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--faint);text-align:center;padding:0.5rem;}
+  .visitor-name{font-family:var(--font-head);font-weight:600;font-size:0.9rem;color:var(--text);margin-bottom:0.3rem;}
+  .visitor-role{font-family:var(--font-body);font-size:0.78rem;color:var(--muted);}
+
+  /* FOOTER */
+  footer{padding:4rem;border-top:1px solid var(--faint);}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;}
+  .footer-copy{font-family:var(--font-body);font-size:0.78rem;color:var(--muted);}
+  .footer-copy strong{color:var(--gold);}
+
+  @media(max-width:900px){
+    nav{padding:1rem 1.5rem;}
+    .nav-links{display:none;}
+    .page-hero,.summary,.timeline-section,.bsu-highlight,.visitors{padding-left:1.5rem;padding-right:1.5rem;}
+    .bsu-highlight{margin:0;}
+    .summary{grid-template-columns:1fr;gap:3rem;}
+    .timeline::before{left:28px;}
+    .timeline-item{grid-template-columns:56px 1fr;}
+    .timeline-item:nth-child(odd) .tl-content,
+    .timeline-item:nth-child(even) .tl-content{grid-column:2;text-align:left;padding-left:2rem;padding-right:0;}
+    .timeline-item:nth-child(odd) .tl-center,
+    .timeline-item:nth-child(even) .tl-center{grid-column:1;order:1;}
+    .timeline-item:nth-child(odd) .tl-media,
+    .timeline-item:nth-child(even) .tl-media{display:none;}
+    .timeline-item:nth-child(even) .tl-content{order:2;}
+    .impact-stats{grid-template-columns:1fr 1fr;}
+    .visitors-grid{grid-template-columns:repeat(2,1fr);}
+    .timeline-header{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">The Whole <span>Story</span></a>
+  <ul class="nav-links">
+    <li><a href="about.html" class="active">About Mr. Green</a></li>
+    <li><a href="search.html">Explore History</a></li>
+    <li><a href="quiz.html">Find My Starting Point</a></li>
+  </ul>
+  <a href="quiz.html" class="nav-cta">Start Here</a>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-eyebrow">Your Guide</div>
+  <h1 class="page-hero-title">
+    Mr. Anthony
+    <em>Green.</em>
+  </h1>
+  <p class="page-hero-sub">
+    37 years. One classroom. Thousands of students who left knowing more — 
+    about history, about America, about themselves — than when they arrived.
+  </p>
+</section>
+
+<!-- SUMMARY -->
+<section class="summary">
+  <div class="summary-portrait-col">
+    <div class="portrait-frame">
+      <div class="portrait-inner">
+        <svg class="portrait-svg" viewBox="0 0 70 70" fill="none">
+          <circle cx="35" cy="24" r="14" stroke="#F0EDE6" stroke-width="1.5"/>
+          <path d="M8 64 C8 48 20 40 35 40 C50 40 62 48 62 64" stroke="#F0EDE6" stroke-width="1.5"/>
+        </svg>
+        <div class="portrait-placeholder-label">Photo of Mr. Green<br/>Placeholder</div>
+      </div>
+    </div>
+    <div class="portrait-gold-tab">
+      <div class="tab-num">37</div>
+      <div class="tab-label">Years at the Chalkboard</div>
+    </div>
+  </div>
+
+  <div class="summary-text-col">
+    <div class="summary-eyebrow">The Man Behind The Platform</div>
+    <h2 class="summary-name">Mr. Anthony Green</h2>
+    <div class="summary-role">History Instructor · BSU Moderator · Coach · Bishop O'Dowd High School</div>
+
+    <p class="summary-body">
+      There is a particular kind of teacher who doesn't just teach a subject — they teach 
+      students how to think about the world they live in. Mr. Anthony Green is that teacher. 
+      Since 1986, he has stood in the same institution, in front of thousands of students 
+      from over 100 communities across the Oakland Bay Area, and done something quietly extraordinary: 
+      he has told the full story of America.
+    </p>
+    <p class="summary-body">
+      Mr. Green helped co-found what is recognized as the <strong>oldest continuously running 
+      Black Student Union in the nation</strong> at Bishop O'Dowd High School — a living institution 
+      that has hosted some of the most significant civil rights voices of the last four decades, 
+      including figures from the civil rights movement, Black Power era, and contemporary activism.
+    </p>
+    <p class="summary-body">
+      He developed and leads O'Dowd's <strong>Advanced Placement African American Studies</strong> 
+      curriculum — one of the few programs of its kind at any high school in the country. 
+      His classes don't happen only in a classroom. They happen at the Black Panthers museum in 
+      West Oakland. At Marcus Bookstore — the oldest Black bookstore in America. At Lois The Pie Queen. 
+      History you can walk through, not just read about.
+    </p>
+    <p class="summary-body">
+      He is not an activist. He is a teacher. And after 37 years of getting the facts right, 
+      his record speaks with an authority that no single opinion can touch.
+    </p>
+
+    <div class="impact-stats">
+      <div class="impact-stat">
+        <div class="impact-num">37+</div>
+        <div class="impact-label">Years Teaching at O'Dowd</div>
+      </div>
+      <div class="impact-stat">
+        <div class="impact-num">∞</div>
+        <div class="impact-label">Students Whose Thinking He Changed</div>
+      </div>
+      <div class="impact-stat">
+        <div class="impact-num">1</div>
+        <div class="impact-label">Oldest Running Black Student Union in the Nation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BSU HIGHLIGHT -->
+<div class="bsu-highlight">
+  <div class="bsu-eyebrow">A Living Legacy</div>
+  <h3 class="bsu-headline">The Oldest Running Black<br/>Student Union in America</h3>
+  <p class="bsu-body">
+    Mr. Green helped co-found the Bishop O'Dowd Black Student Union — and it never stopped running. 
+    Decades later, it remains an active, student-led institution that has brought civil rights icons, 
+    scholars, activists, and community leaders into a high school auditorium in Oakland, CA. 
+    What began as an act of advocacy became a permanent feature of one of California's most 
+    respected academic institutions. That is not an accident. That is the result of one person 
+    who believed students deserved access to their full history — and built something to give it to them.
+    <br/><br/>
+    <em style="color:var(--muted);font-size:0.85rem;">[Mr. Green — please add founding year and any additional context you'd like here]</em>
+  </p>
+</div>
+
+<!-- CIVIL RIGHTS VISITORS -->
+<section class="visitors">
+  <div class="visitors-eyebrow">They Came to His Classroom</div>
+  <h2 class="visitors-headline">Civil Rights Figures Who Have Presented<br/>at Bishop O'Dowd's BSU</h2>
+  <div class="visitors-grid">
+    <div class="visitor-card">
+      <div class="visitor-img"><div class="visitor-img-label">Photo Placeholder</div></div>
+      <div class="visitor-name">[Name — Placeholder]</div>
+      <div class="visitor-role">Civil Rights Era Figure · Year TBD</div>
+    </div>
+    <div class="visitor-card">
+      <div class="visitor-img"><div class="visitor-img-label">Photo Placeholder</div></div>
+      <div class="visitor-name">[Name — Placeholder]</div>
+      <div class="visitor-role">Activist & Author · Year TBD</div>
+    </div>
+    <div class="visitor-card">
+      <div class="visitor-img"><div class="visitor-img-label">Photo Placeholder</div></div>
+      <div class="visitor-name">[Name — Placeholder]</div>
+      <div class="visitor-role">Community Leader · Year TBD</div>
+    </div>
+    <div class="visitor-card">
+      <div class="visitor-img"><div class="visitor-img-label">Photo Placeholder</div></div>
+      <div class="visitor-name">[Name — Placeholder]</div>
+      <div class="visitor-role">Scholar & Educator · Year TBD</div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section">
+  <div class="timeline-header">
+    <div>
+      <h2 class="timeline-title">A Legacy<br/><span>Built</span><br/>Year by Year.</h2>
+    </div>
+    <div>
+      <p class="timeline-intro">
+        Scroll down through nearly four decades of milestones — from 2026 back to where it all began. 
+        Each entry is a moment where Mr. Green showed up, did the work, and left something 
+        more permanent than a lesson plan behind.
+      </p>
+      <div class="timeline-scroll-note">Scroll down to travel back through time</div>
+    </div>
+  </div>
+
+  <div class="timeline">
+
+    <!-- 2026 -->
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Present Day</div>
+        <div class="tl-title">The Whole Story Platform Launches</div>
+        <div class="tl-desc">Mr. Green's 37 years of curriculum, field trips, and classroom wisdom become the foundation for a national public history platform — brought forward by a former student who never forgot.</div>
+      </div>
+      <div class="tl-center">
+        <div class="tl-year">2026</div>
+        <div class="tl-dot"></div>
+      </div>
+      <div class="tl-media">
+        <div class="tl-img">
+          <div>
+            <svg class="tl-img-icon" viewBox="0 0 32 32" fill="none"><rect x="2" y="4" width="20" height="24" stroke="#F0EDE6" stroke-width="1.5"/><line x1="6" y1="10" x2="16" y2="10" stroke="#F0EDE6" stroke-width="1.5"/><line x1="6" y1="15" x2="16" y2="15" stroke="#F0EDE6" stroke-width="1.5"/></svg>
+            <div class="tl-img-label">Site Launch<br/>Image Placeholder</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2025 -->
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Recognition</div>
+        <div class="tl-title">Provident Credit Union All-Star Teacher Award</div>
+        <div class="tl-desc">Named among the Bay Area's most distinguished educators — joining a list of honorees stretching back to 2007 and representing the region's best classroom talent.</div>
+      </div>
+      <div class="tl-center">
+        <div class="tl-year">2025</div>
+        <div class="tl-dot"></div>
+      </div>
+      <div class="tl-media">
+        <div class="tl-img">
+          <div class="tl-img-label">Award Ceremony<br/>Photo Placeholder</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2024 -->
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">AP African American Studies</div>
+        <div class="tl-title">Redlining & Gentrification Field Trip — Oakland</div>
+        <div class="tl-desc">65 students toured historic North and West Oakland — visiting Lois The Pie Queen, the Black Panther Party museum, and Marcus Bookstore. Student projects were critiqued by UC Berkeley Urban Geographer Dr. Brandi Thompson Summers.</div>
+      </div>
+      <div class="tl-center">
+        <div class="tl-year">2024</div>
+        <div class="tl-dot"></div>
+      </div>
+      <div class="tl-media">
+        <div class="tl-img">
+          <div class="tl-img-label">Field Trip<br/>Photo Placeholder</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2022 -->
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Curriculum</div>
+        <div class="tl-title">AP African American Studies — College Board Certified</div>
+        <div class="tl-desc">The College Board launches its first-ever AP African American Studies course nationally. Mr. Green has been teaching this material for decades — the curriculum arrived late to a classroom he'd already built.</div>
+      </div>
+      <div class="tl-center">
+        <div class="tl-year">2022</div>
+        <div class="tl-dot"></div>
+      </div>
+      <div class="tl-media">
+        <div class="tl-img">
+          <div class="tl-img-label">Classroom<br/>Photo Placeholder</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2020 -->
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Milestone</div>
+        <div class="tl-title">[Milestone — Placeholder]</div>
+        <div class="tl-desc">Mr. Green — please add any significant moment from this period. BSU event, notable speaker, community recognition, or classroom milestone.</div>
+      </div>
+      <div class="tl-center">
+        <div class="tl-year">2020</div>
+        <div class="tl-dot"></div>
+      </div>
+      <div class="tl-media">
+        <div class="tl-img">
+          <div class="tl-img-label">Photo Placeholder</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2016 -->
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Milestone</div>
+        <div class="tl-title">30 Years at Bishop O'Dowd</div>
+        <div class="tl-desc">Three decades at a single institution — an extraordinary act of commitment to one community, one school, and one mission: that every student who walks through those doors understands the full story of the country they live in.</div>
+      </div>
+      <div class="tl-center">
+        <div class="tl-year">2016</div>
+        <div class="tl-dot"></div>
+      </div>
+      <div class="tl-media">
+        <div class="tl-img">
+          <div class="tl-img-label">30-Year Milestone<br/>Photo Placeholder</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2010 -->
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">BSU · Civil Rights Guest</div>
+        <div class="tl-title">[Notable Speaker — Placeholder]</div>
+        <div class="tl-desc">One of countless civil rights figures, scholars, or activists who came to Bishop O'Dowd to speak at Mr. Green's invitation. Mr. Green — please add names and years for this and other guest entries.</div>
+      </div>
+      <div class="tl-center">
+        <div class="tl-year">2010s</div>
+        <div class="tl-dot"></div>
+      </div>
+      <div class="tl-media">
+        <div class="tl-img">
+          <div class="tl-img-label">BSU Speaker Event<br/>Photo Placeholder</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2000 -->
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Milestone</div>
+        <div class="tl-title">[Milestone — Placeholder]</div>
+        <div class="tl-desc">Mr. Green — please add any significant milestone from the early 2000s. Alumni recognition, curriculum development, community partnership, or other achievement.</div>
+      </div>
+      <div class="tl-center">
+        <div class="tl-year">2000s</div>
+        <div class="tl-dot"></div>
+      </div>
+      <div class="tl-media">
+        <div class="tl-img">
+          <div class="tl-img-label">Photo Placeholder</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1994 -->
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Athletics · National Championship</div>
+        <div class="tl-title">Girls Track — National Dual Meet Champions</div>
+        <div class="tl-desc">The 1994 Bishop O'Dowd Girls Track Team, coached by Mr. Green, is named the best small school track team in American history. National Dual Meet Champions. A record that still stands.</div>
+      </div>
+      <div class="tl-center">
+        <div class="tl-year">1994</div>
+        <div class="tl-dot"></div>
+      </div>
+      <div class="tl-media">
+        <div class="tl-img">
+          <div class="tl-img-label">1994 Championship<br/>Team Photo Placeholder</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1990s BSU -->
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">BSU · Civil Rights Guest</div>
+        <div class="tl-title">[Notable Speaker — Placeholder]</div>
+        <div class="tl-desc">The BSU's speaker series brings another significant voice to the O'Dowd campus. The practice of inviting living history into the classroom — not just reading about it — becomes a defining feature of the Green classroom experience.</div>
+      </div>
+      <div class="tl-center">
+        <div class="tl-year">1990s</div>
+        <div class="tl-dot"></div>
+      </div>
+      <div class="tl-media">
+        <div class="tl-img">
+          <div class="tl-img-label">BSU Event<br/>Photo Placeholder</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1990 Blue Ribbon -->
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Institutional Recognition</div>
+        <div class="tl-title">Bishop O'Dowd Named National Blue Ribbon School</div>
+        <div class="tl-desc">The U.S. Department of Education designates Bishop O'Dowd a National Blue Ribbon School — one of the highest honors in American education. Mr. Green is a four-year member of the faculty by this point, and a cornerstone of the institution.</div>
+      </div>
+      <div class="tl-center">
+        <div class="tl-year">1990</div>
+        <div class="tl-dot"></div>
+      </div>
+      <div class="tl-media">
+        <div class="tl-img">
+          <div class="tl-img-label">Blue Ribbon Award<br/>Photo Placeholder</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1986 -->
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">The Beginning</div>
+        <div class="tl-title">Mr. Green Joins Bishop O'Dowd High School</div>
+        <div class="tl-desc">Fresh from Santa Clara University with a History degree, Mr. Green takes his post at Bishop O'Dowd in Oakland, CA. He will not leave. He becomes a Social Studies teacher, BSU moderator, BMAC leader, and coach across five sports — all at once, for decades.</div>
+      </div>
+      <div class="tl-center">
+        <div class="tl-year">1986</div>
+        <div class="tl-dot"></div>
+      </div>
+      <div class="tl-media">
+        <div class="tl-img">
+          <div class="tl-img-label">O'Dowd Campus<br/>Photo Placeholder</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1985 -->
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Where It Started</div>
+        <div class="tl-title">The Teaching Career Begins</div>
+        <div class="tl-desc">Before O'Dowd, Mr. Green cut his teeth at four other schools — building the teaching philosophy, the curriculum instincts, and the uncompromising standard that would define four decades of impact in Oakland classrooms.</div>
+      </div>
+      <div class="tl-center">
+        <div class="tl-year">1985</div>
+        <div class="tl-dot"></div>
+      </div>
+      <div class="tl-media">
+        <div class="tl-img">
+          <div class="tl-img-label">Early Career<br/>Photo Placeholder</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-endcap">
+      <span class="endcap-label">The story continues being written</span>
+    </div>
+
+  </div><!-- /timeline -->
+</section>
+
+<footer>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 The Whole Story. Prototype — <strong>for Mr. Anthony Green</strong>.</div>
+    <div class="footer-copy">All facts cited. All history documented.</div>
+  </div>
+</footer>
+
+</body>
+</html>
