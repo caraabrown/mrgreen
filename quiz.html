@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Find My Starting Point — The Whole Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#080808;--surface:#101010;--card:#161616;--border:#242424;
+    --gold:#C8922A;--gold-lt:#E5B55A;--teal:#0D7C7C;--teal-lt:#1AACAC;
+    --crimson:#8B1F2F;--crimson-lt:#B8374A;--sapphire:#1B4F8A;--sapphire-lt:#2E72C0;
+    --text:#F0EDE6;--muted:#7A7A7A;--faint:#2A2A2A;
+    --font-disp:'Bebas Neue',sans-serif;
+    --font-head:'Oswald',sans-serif;
+    --font-body:'Raleway',sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-weight:400;line-height:1.6;overflow-x:hidden;min-height:100vh;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:rgba(8,8,8,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--faint);}
+  .nav-logo{font-family:var(--font-head);font-weight:600;font-size:1rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);text-decoration:none;}
+  .nav-logo span{color:var(--text);}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;}
+  .nav-links a{font-family:var(--font-head);font-weight:300;font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--text);}
+  .nav-cta{font-family:var(--font-head);font-size:0.75rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--bg);background:var(--gold);border:none;padding:0.55rem 1.4rem;cursor:pointer;text-decoration:none;}
+
+  /* QUIZ WRAPPER */
+  .quiz-wrapper{
+    min-height:100vh;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    padding:10rem 2rem 6rem;
+    position:relative;
+  }
+  .quiz-bg{
+    position:fixed;inset:0;
+    background:radial-gradient(ellipse 60% 70% at 50% 50%,rgba(200,146,42,0.05) 0%,transparent 70%);
+    pointer-events:none;z-index:0;
+    transition:background 0.8s;
+  }
+
+  /* PROGRESS */
+  .progress-bar{
+    position:fixed;top:0;left:0;right:0;height:2px;
+    background:var(--faint);z-index:200;
+  }
+  .progress-fill{
+    height:100%;background:var(--gold);
+    transition:width 0.5s ease;width:0%;
+  }
+
+  /* STEP COUNTER */
+  .step-counter{
+    font-family:var(--font-head);font-size:0.7rem;font-weight:300;
+    letter-spacing:0.3em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:2rem;
+    text-align:center;position:relative;z-index:1;
+  }
+  .step-counter span{color:var(--gold);}
+
+  /* SCREEN */
+  .quiz-screen{
+    width:100%;max-width:700px;
+    position:relative;z-index:1;
+    display:none;
+    animation:fadeIn 0.45s ease forwards;
+  }
+  .quiz-screen.active{display:block;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+  .screen-eyebrow{
+    font-family:var(--font-head);font-weight:300;font-size:0.72rem;
+    letter-spacing:0.3em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:1.25rem;
+    display:flex;align-items:center;gap:0.75rem;
+  }
+  .screen-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold);display:block;}
+  .screen-question{
+    font-family:var(--font-head);font-weight:600;
+    font-size:clamp(1.6rem,3.5vw,2.4rem);
+    color:var(--text);line-height:1.25;margin-bottom:0.75rem;
+  }
+  .screen-sub{
+    font-family:var(--font-body);font-weight:300;font-size:0.95rem;
+    color:rgba(240,237,230,0.45);margin-bottom:3rem;line-height:1.65;
+  }
+
+  /* OPTIONS */
+  .options{display:flex;flex-direction:column;gap:0.75rem;}
+  .option-btn{
+    padding:1.4rem 1.75rem;
+    border:1px solid var(--border);
+    background:var(--card);cursor:pointer;
+    display:flex;align-items:center;gap:1.25rem;
+    transition:all 0.2s;text-align:left;width:100%;
+  }
+  .option-btn:hover{border-color:var(--gold);background:#1c1a14;}
+  .option-btn.selected{border-color:var(--gold);background:#1c1a14;}
+  .opt-indicator{
+    width:10px;height:10px;border-radius:50%;
+    border:1px solid var(--border);flex-shrink:0;
+    transition:all 0.2s;
+  }
+  .option-btn:hover .opt-indicator,
+  .option-btn.selected .opt-indicator{border-color:var(--gold);background:var(--gold);}
+  .opt-text{font-family:var(--font-body);font-size:0.98rem;color:rgba(240,237,230,0.75);line-height:1.5;}
+  .option-btn:hover .opt-text{color:var(--text);}
+
+  /* NEXT BTN */
+  .quiz-next{
+    margin-top:2rem;
+    padding:1rem 2.5rem;
+    background:var(--gold);border:none;
+    font-family:var(--font-head);font-size:0.8rem;font-weight:500;
+    letter-spacing:0.18em;text-transform:uppercase;
+    color:var(--bg);cursor:pointer;
+    transition:background 0.2s,transform 0.15s;
+    display:none;
+  }
+  .quiz-next.visible{display:inline-block;}
+  .quiz-next:hover{background:var(--gold-lt);transform:translateY(-1px);}
+
+  /* RESULT SCREEN */
+  .result-screen{
+    width:100%;max-width:800px;
+    position:relative;z-index:1;
+    display:none;animation:fadeIn 0.55s ease forwards;
+  }
+  .result-screen.active{display:block;}
+
+  .result-badge{
+    display:inline-flex;align-items:center;gap:0.75rem;
+    font-family:var(--font-head);font-size:0.68rem;font-weight:500;
+    letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:2rem;
+    border:1px solid var(--gold);padding:0.5rem 1rem;
+  }
+  .result-label{
+    font-family:var(--font-head);font-weight:300;font-size:0.75rem;
+    letter-spacing:0.3em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:1rem;
+  }
+  .result-title{
+    font-family:var(--font-disp);font-size:clamp(3.5rem,7vw,6rem);
+    line-height:0.9;color:var(--text);margin-bottom:0.5rem;
+  }
+  .result-title span{color:var(--gold);}
+  .result-intro{
+    font-family:var(--font-body);font-weight:300;font-size:1.05rem;
+    line-height:1.8;color:rgba(240,237,230,0.65);
+    margin-bottom:3rem;max-width:620px;
+  }
+  .result-intro strong{color:var(--text);font-weight:500;}
+
+  .result-path{
+    background:var(--card);border-left:3px solid var(--gold);
+    padding:2.5rem;margin-bottom:2.5rem;
+  }
+  .result-path-label{
+    font-family:var(--font-head);font-size:0.68rem;font-weight:400;
+    letter-spacing:0.2em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:1.25rem;
+  }
+  .result-steps{display:flex;flex-direction:column;gap:0;}
+  .result-step{
+    padding:1.1rem 0;border-bottom:1px solid var(--faint);
+    display:flex;gap:1.25rem;align-items:baseline;
+  }
+  .result-step:last-child{border-bottom:none;}
+  .step-num{
+    font-family:var(--font-disp);font-size:1.5rem;
+    color:var(--faint);width:2.5rem;flex-shrink:0;
+    transition:color 0.2s;
+  }
+  .step-title{font-family:var(--font-head);font-weight:500;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;}
+  .step-why{font-family:var(--font-body);font-size:0.8rem;color:var(--muted);}
+
+  .result-actions{display:flex;gap:1rem;flex-wrap:wrap;}
+  .btn-primary{font-family:var(--font-head);font-size:0.78rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--bg);background:var(--gold);border:none;padding:1rem 2.2rem;cursor:pointer;text-decoration:none;display:inline-block;transition:background 0.2s;}
+  .btn-primary:hover{background:var(--gold-lt);}
+  .btn-ghost{font-family:var(--font-head);font-size:0.78rem;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;color:var(--text);background:transparent;border:1px solid var(--border);padding:1rem 2.2rem;cursor:pointer;text-decoration:none;display:inline-block;transition:border-color 0.2s;}
+  .btn-ghost:hover{border-color:var(--muted);}
+  .restart-link{font-family:var(--font-head);font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);background:none;border:none;cursor:pointer;margin-top:1.5rem;display:block;padding:0;transition:color 0.2s;}
+  .restart-link:hover{color:var(--text);}
+
+  footer{padding:3rem 4rem;border-top:1px solid var(--faint);margin-top:6rem;}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;}
+  .footer-copy{font-family:var(--font-body);font-size:0.78rem;color:var(--muted);}
+  .footer-copy strong{color:var(--gold);}
+
+  @media(max-width:700px){
+    nav{padding:1rem 1.5rem;}
+    .nav-links{display:none;}
+    .quiz-wrapper{padding:8rem 1.5rem 4rem;}
+    footer{padding:2rem 1.5rem;}
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">The Whole <span>Story</span></a>
+  <ul class="nav-links">
+    <li><a href="about.html">About Mr. Green</a></li>
+    <li><a href="search.html">Explore History</a></li>
+    <li><a href="quiz.html" class="active">Find My Starting Point</a></li>
+  </ul>
+  <a href="quiz.html" class="nav-cta">Start Here</a>
+</nav>
+
+<div class="quiz-bg" id="quizBg"></div>
+
+<div class="quiz-wrapper">
+  <div class="step-counter" id="stepCounter">Step <span id="stepNum">1</span> of 4</div>
+
+  <!-- SCREEN 1 -->
+  <div class="quiz-screen active" id="screen1">
+    <div class="screen-eyebrow">Let's Find Your Entry Point</div>
+    <div class="screen-question">What brought you here today?</div>
+    <p class="screen-sub">There's no wrong answer. This just helps us point you in the right direction.</p>
+    <div class="options">
+      <button class="option-btn" onclick="selectOption(1,'life')">
+        <div class="opt-indicator"></div>
+        <div class="opt-text">Something specific happened in my life or the news that made me want to understand this</div>
+      </button>
+      <button class="option-btn" onclick="selectOption(1,'gap')">
+        <div class="opt-indicator"></div>
+        <div class="opt-text">I have a feeling that what I learned in school wasn't the whole picture</div>
+      </button>
+      <button class="option-btn" onclick="selectOption(1,'basics')">
+        <div class="opt-indicator"></div>
+        <div class="opt-text">I know the basics — MLK, Rosa Parks — but I sense there's much more</div>
+      </button>
+      <button class="option-btn" onclick="selectOption(1,'deep')">
+        <div class="opt-indicator"></div>
+        <div class="opt-text">I've been reading and researching, and I want to go deeper</div>
+      </button>
+    </div>
+    <button class="quiz-next" id="next1" onclick="goToScreen(2)">Continue →</button>
+  </div>
+
+  <!-- SCREEN 2 -->
+  <div class="quiz-screen" id="screen2">
+    <div class="screen-eyebrow">Tell Me a Little More</div>
+    <div class="screen-question">How do you feel when history challenges something you were taught?</div>
+    <p class="screen-sub">Be honest — all of these are human responses. Knowing this helps us get the tone right for you.</p>
+    <div class="options">
+      <button class="option-btn" onclick="selectOption(2,'curious')">
+        <div class="opt-indicator"></div>
+        <div class="opt-text">Curious — I want to know more, even if it's uncomfortable</div>
+      </button>
+      <button class="option-btn" onclick="selectOption(2,'defensive')">
+        <div class="opt-indicator"></div>
+        <div class="opt-text">A little defensive at first — but I'm willing to sit with it</div>
+      </button>
+      <button class="option-btn" onclick="selectOption(2,'overwhelmed')">
+        <div class="opt-indicator"></div>
+        <div class="opt-text">Overwhelmed — there's so much I apparently didn't know</div>
+      </button>
+      <button class="option-btn" onclick="selectOption(2,'skeptical')">
+        <div class="opt-indicator"></div>
+        <div class="opt-text">Skeptical — I need to see the sources before I accept something new</div>
+      </button>
+    </div>
+    <button class="quiz-next" id="next2" onclick="goToScreen(3)">Continue →</button>
+  </div>
+
+  <!-- SCREEN 3 -->
+  <div class="quiz-screen" id="screen3">
+    <div class="screen-eyebrow">Almost There</div>
+    <div class="screen-question">Is there a specific topic that's been on your mind?</div>
+    <p class="screen-sub">Pick the one that feels most urgent — even if you're not sure why.</p>
+    <div class="options">
+      <button class="option-btn" onclick="selectOption(3,'wealth')">
+        <div class="opt-indicator"></div>
+        <div class="opt-text">Why there are such stark economic differences between Black and white Americans</div>
+      </button>
+      <button class="option-btn" onclick="selectOption(3,'police')">
+        <div class="opt-indicator"></div>
+        <div class="opt-text">Police, criminal justice, and why these issues feel so different to different people</div>
+      </button>
+      <button class="option-btn" onclick="selectOption(3,'neighborhoods')">
+        <div class="opt-indicator"></div>
+        <div class="opt-text">Why American neighborhoods and cities look the way they do — who lives where, and why</div>
+      </button>
+      <button class="option-btn" onclick="selectOption(3,'culture')">
+        <div class="opt-indicator"></div>
+        <div class="opt-text">The history and origins of stereotypes, assumptions, and cultural narratives about Black people</div>
+      </button>
+      <button class="option-btn" onclick="selectOption(3,'any')">
+        <div class="opt-indicator"></div>
+        <div class="opt-text">I don't have a specific topic — I just want to start somewhere honest</div>
+      </button>
+    </div>
+    <button class="quiz-next" id="next3" onclick="goToScreen(4)">Continue →</button>
+  </div>
+
+  <!-- SCREEN 4 -->
+  <div class="quiz-screen" id="screen4">
+    <div class="screen-eyebrow">One Last Question</div>
+    <div class="screen-question">How much time do you want to give this right now?</div>
+    <p class="screen-sub">We'll calibrate your starting point to what you can actually do today.</p>
+    <div class="options">
+      <button class="option-btn" onclick="selectOption(4,'short')">
+        <div class="opt-indicator"></div>
+        <div class="opt-text">Just 10 minutes — give me one thing that'll stick</div>
+      </button>
+      <button class="option-btn" onclick="selectOption(4,'medium')">
+        <div class="opt-indicator"></div>
+        <div class="opt-text">30 minutes — I want to actually understand something</div>
+      </button>
+      <button class="option-btn" onclick="selectOption(4,'long')">
+        <div class="opt-indicator"></div>
+        <div class="opt-text">I'm settling in — show me a deeper path</div>
+      </button>
+    </div>
+    <button class="quiz-next" id="next4" onclick="showResult()">Show My Starting Point →</button>
+  </div>
+
+  <!-- RESULT -->
+  <div class="result-screen" id="resultScreen">
+    <div class="result-badge">Your Path — From Mr. Green</div>
+    <div class="result-label">Your Recommended Starting Point</div>
+    <div class="result-title" id="resultTitle">Your<br/><span>Path.</span></div>
+    <p class="result-intro" id="resultIntro"></p>
+
+    <div class="result-path">
+      <div class="result-path-label">Mr. Green Recommends — In This Order</div>
+      <div class="result-steps" id="resultSteps"></div>
+    </div>
+
+    <div class="result-actions">
+      <a href="search.html" class="btn-primary">Start Exploring</a>
+      <a href="about.html" class="btn-ghost">Meet Mr. Green First</a>
+    </div>
+    <button class="restart-link" onclick="restart()">← Start over</button>
+  </div>
+
+</div><!-- /quiz-wrapper -->
+
+<footer>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 The Whole Story. Prototype — <strong>for Mr. Anthony Green</strong>.</div>
+    <div class="footer-copy">All facts cited. All history documented.</div>
+  </div>
+</footer>
+
+<script>
+const answers = {};
+const totalScreens = 4;
+
+function selectOption(screen, value) {
+  answers[screen] = value;
+  // deselect all in this screen
+  const btns = document.querySelectorAll(`#screen${screen} .option-btn`);
+  btns.forEach(b => b.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  // show next btn
+  const next = document.getElementById(`next${screen}`);
+  next.classList.add('visible');
+}
+
+function goToScreen(num) {
+  // hide current
+  document.querySelectorAll('.quiz-screen').forEach(s => s.classList.remove('active'));
+  // show next
+  const next = document.getElementById(`screen${num}`);
+  next.classList.remove('active');
+  void next.offsetWidth; // reflow
+  next.classList.add('active');
+
+  // update progress & counter
+  const progress = ((num - 1) / totalScreens) * 100;
+  document.getElementById('progressFill').style.width = progress + '%';
+  document.getElementById('stepNum').textContent = num;
+
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function showResult() {
+  document.querySelectorAll('.quiz-screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('stepCounter').style.display = 'none';
+  document.getElementById('progressFill').style.width = '100%';
+
+  // determine result based on answers
+  const a1 = answers[1];
+  const a2 = answers[2];
+  const a3 = answers[3];
+  const a4 = answers[4];
+
+  let title, intro, steps;
+
+  if (a1 === 'life' || a1 === 'gap') {
+    title = `Your<br/><span>Starting</span><br/>Point.`;
+    intro = `Something already shifted in you before you got here. That instinct — that the story didn't add up — is correct. You're not starting from zero. You're starting from an honest question. Mr. Green's recommendation: <strong>don't start with slavery. Start with Reconstruction</strong> — the moment America chose what it would be, and what it chose to undo.`;
+    steps = [
+      {num:'01', title:'Read: What Was Reconstruction?', why:'It explains how rights were built and then deliberately dismantled — the root of most modern inequalities.'},
+      {num:'02', title:'Ask: "Why do Black neighborhoods have less wealth?"', why:'Use the search tool. See all four source confirmations. The answer will be concrete and documented.'},
+      {num:'03', title:'Explore: The Redlining Map of Your City', why:'This makes it personal. You can search your own zip code and see the federal policy that shaped it.'},
+      {num:'04', title:'Read: Mr. Green\'s recommended book list', why:'Start with Miseducation of the Negro — the shortest, sharpest argument for why this knowledge matters.'},
+    ];
+  } else if (a1 === 'basics') {
+    title = `Go<br/><span>Deeper.</span>`;
+    intro = `You have the foundation — now it's time to understand what connects MLK and Rosa Parks to everything that came before them. <strong>Civil Rights didn't emerge from nothing.</strong> It emerged from 90 years of accumulated policy, violence, and resistance after the Civil War. That's where Mr. Green wants you to start.`;
+    steps = [
+      {num:'01', title:'Read: Black Codes & Jim Crow — The Legal Architecture', why:'The step between slavery and the Civil Rights era most people skip entirely.'},
+      {num:'02', title:'Ask: "What was Reconstruction and why did it end?"', why:'This is the pivot point. Everything else makes more sense after this.'},
+      {num:'03', title:'Read: The Great Migration', why:'Six million people moving north — understanding why reveals what they were escaping.'},
+      {num:'04', title:'Explore: The Full Timeline', why:'See the full sweep of events from 1865 to 1965 as a connected story, not isolated moments.'},
+    ];
+  } else if (a1 === 'deep') {
+    title = `Go<br/><span>Further.</span>`;
+    intro = `You've been doing the work. Mr. Green's recommendation for experienced readers is to <strong>follow the money and the law</strong> — the mechanisms of policy that created outcomes, not just the events and people. Economic history is where the most important gaps in public knowledge live.`;
+    steps = [
+      {num:'01', title:'Deep Dive: Convict Leasing', why:'Possibly the least-known chapter in American history. The mechanism that made emancipation economic but not practical.'},
+      {num:'02', title:'Ask: "Who were the Black Panthers really?"', why:'Test the multi-source tool. See how documented history differs from the popular narrative.'},
+      {num:'03', title:'Read: The Spook Who Sat by the Door', why:'First on Mr. Green\'s list — fiction that tells a truth most histories don\'t.'},
+      {num:'04', title:'Deep Dive: COINTELPRO', why:'The documented federal campaign to suppress Black political power — with declassified primary sources.'},
+    ];
+  } else {
+    title = `Start<br/><span>Here.</span>`;
+    intro = `You came here because something made you — and that's the best possible reason to start. Mr. Green's recommendation for people who aren't sure where to begin: <strong>start with the thing that feels closest to your own life.</strong> The connection between history and your present is the fastest way in.`;
+    steps = [
+      {num:'01', title:'Ask: "What is redlining?"', why:'It\'s the most direct line between documented federal policy and present-day American neighborhoods.'},
+      {num:'02', title:'Take 10 minutes with: Black Wall Street', why:'A story most Americans have never heard — and one of the most documented events of the 20th century.'},
+      {num:'03', title:'Read: Mr. Green\'s note on why this matters', why:'Context from a teacher who\'s been explaining this for 37 years.'},
+      {num:'04', title:'Explore: Topics that connect to your daily life', why:'Use the topic browser to find what resonates — the entry point is wherever you feel it.'},
+    ];
+  }
+
+  // adjust depth by time
+  if (a4 === 'short') {
+    steps = steps.slice(0, 1);
+    intro += ' Since you have 10 minutes, we\'re giving you one thing — but one thing that will stay with you.';
+  } else if (a4 === 'medium') {
+    steps = steps.slice(0, 2);
+  }
+
+  document.getElementById('resultTitle').innerHTML = title;
+  document.getElementById('resultIntro').innerHTML = intro;
+  document.getElementById('resultSteps').innerHTML = steps.map(s => `
+    <div class="result-step">
+      <div class="step-num">${s.num}</div>
+      <div>
+        <div class="step-title">${s.title}</div>
+        <div class="step-why">${s.why}</div>
+      </div>
+    </div>
+  `).join('');
+
+  const result = document.getElementById('resultScreen');
+  result.classList.remove('active');
+  void result.offsetWidth;
+  result.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function restart() {
+  Object.keys(answers).forEach(k => delete answers[k]);
+  document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+  document.querySelectorAll('.quiz-next').forEach(b => b.classList.remove('visible'));
+  document.getElementById('resultScreen').classList.remove('active');
+  document.getElementById('stepCounter').style.display = 'block';
+  document.getElementById('progressFill').style.width = '0%';
+  document.getElementById('stepNum').textContent = '1';
+  document.getElementById('screen1').classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+</script>
+</body>
+</html>
