@@ -1204,8 +1204,8 @@
   <div class="counter-display" id="counterDisplay">0</div>
   <div class="counter-sub">and counting — <strong>across 37 years of classrooms</strong></div>
   <button class="bell-btn" id="bellBtn" onclick="ringTheBell()">
-    <span class="bell-icon">&#9679;</span>
-    I Learned From Mr. Green — Ring the Bell
+    <span class="bell-icon">&#x1F514;</span>
+    Mr. Green taught me — ring the bell &amp; add me to the count
   </button>
   <div class="counter-affirm" id="counterAffirm"></div>
 </section>
@@ -1659,7 +1659,7 @@ window.addEventListener('DOMContentLoaded', () => {
   // If already voted this browser, show the state
   if (hasVoted()) {
     btn.disabled = true;
-    btn.innerHTML = '<span class="bell-icon">&#10003;</span> You\'ve Rung the Bell';
+    btn.innerHTML = '<span class="bell-icon">&#10003;</span> You\'re in the count — thank you for ringing the bell';
     showAffirm("You're in the count. Thank you.");
   }
 });
@@ -1685,6 +1685,31 @@ function showAffirm(msg) {
   el.classList.add('visible');
 }
 
+function playBellSound() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    // Bell = sine wave fundamental + harmonics, decaying envelope
+    const frequencies = [880, 1760, 2640, 1320];
+    const gains      = [0.6,  0.25,  0.1,   0.2];
+    frequencies.forEach((freq, i) => {
+      const osc  = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, ctx.currentTime);
+      // Sharp attack, long decay — classic bell shape
+      gain.gain.setValueAtTime(0, ctx.currentTime);
+      gain.gain.linearRampToValueAtTime(gains[i], ctx.currentTime + 0.01);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 2.8);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 2.8);
+    });
+  } catch(e) {
+    // silently fail if browser blocks audio
+  }
+}
+
 function ringTheBell() {
   if (hasVoted()) return;
 
@@ -1696,6 +1721,9 @@ function ringTheBell() {
   const next = prev + 1;
   setCount(next);
   markVoted();
+
+  // Bell sound
+  playBellSound();
 
   // Bell animation
   btn.classList.add('ringing');
@@ -1717,7 +1745,7 @@ function ringTheBell() {
   // Update button
   setTimeout(() => {
     btn.disabled = true;
-    btn.innerHTML = '<span class="bell-icon">&#10003;</span> You\'ve Rung the Bell';
+    btn.innerHTML = '<span class="bell-icon">&#10003;</span> You\'re in the count — thank you for ringing the bell';
   }, 600);
 
   showAffirm("You're part of the count now. That matters.");
