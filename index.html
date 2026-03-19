@@ -15,8 +15,8 @@
     --border:    #242424;
     --gold:      #C8922A;
     --gold-lt:   #E5B55A;
-    --teal:      #0D7C7C;
-    --teal-lt:   #1AACAC;
+    --teal:      #1A7A3A;
+    --teal-lt:   #2ECC71;
     --crimson:   #8B1F2F;
     --crimson-lt:#B8374A;
     --sapphire:  #1B4F8A;
@@ -103,7 +103,7 @@
     position: absolute; inset: 0;
     background:
       radial-gradient(ellipse 70% 60% at 75% 40%, rgba(200,146,42,0.08) 0%, transparent 70%),
-      radial-gradient(ellipse 50% 70% at 20% 80%, rgba(13,124,124,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 70% at 20% 80%, rgba(26,122,58,0.07) 0%, transparent 60%),
       linear-gradient(180deg, #080808 0%, #0c0a06 100%);
     z-index: 0;
   }
@@ -791,7 +791,7 @@
   }
   .quiz-bg {
     position: absolute; inset: 0;
-    background: radial-gradient(ellipse 50% 80% at 80% 50%, rgba(13,124,124,0.06) 0%, transparent 70%);
+    background: radial-gradient(ellipse 50% 80% at 80% 50%, rgba(26,122,58,0.06) 0%, transparent 70%);
     pointer-events: none;
   }
   .quiz-headline {
@@ -842,7 +842,7 @@
   }
   .quiz-option:hover {
     border-color: var(--teal-lt);
-    background: rgba(13,124,124,0.08);
+    background: rgba(26,122,58,0.08);
   }
   .quiz-opt-dot {
     width: 8px; height: 8px;
@@ -1118,12 +1118,13 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">The Whole <span>Story</span></div>
-      <ul class="nav-links">
+        <ul class="nav-links">
     <li><a href="about.html">About Mr. Green</a></li>
     <li><a href="search.html">Explore History</a></li>
     <li><a href="myths.html">Myth vs. Reality</a></li>
-    <li><a href="about.html#reading">Reading List</a></li>
-    <li><a href="index.html#stories">Light Bulb Stories</a></li>
+    <li><a href="blackpeople.html">Black People You Don't See</a></li>
+    <li><a href="model.html">Learn the Model</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
   <a href="quiz.html" class="nav-cta">Start Here</a>
 </nav>
@@ -1209,6 +1210,11 @@
     Mr. Green taught me — ring the bell &amp; add me to the count
   </button>
   <div class="counter-affirm" id="counterAffirm"></div>
+  <div id="profileCta" style="display:none;margin-top:1.5rem;position:relative;z-index:1;">
+    <a href="profile.html" style="font-family:var(--font-head);font-size:0.72rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--teal-lt);border:1px solid var(--teal-lt);padding:0.7rem 1.5rem;text-decoration:none;display:inline-block;transition:all 0.2s;">
+      Want to be featured on the site? Add your profile →
+    </a>
+  </div>
 </section>
 
 <!-- MISSION -->
@@ -1248,9 +1254,9 @@
 
     <a href="search.html" class="pillar-card teal">
       <svg class="pillar-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="20" cy="20" r="16" stroke="#1AACAC" stroke-width="1.5"/>
-        <path d="M14 20 Q20 12 26 20 Q20 28 14 20Z" stroke="#1AACAC" stroke-width="1.5" fill="none"/>
-        <circle cx="20" cy="20" r="3" fill="#1AACAC"/>
+        <circle cx="20" cy="20" r="16" stroke="#2ECC71" stroke-width="1.5"/>
+        <path d="M14 20 Q20 12 26 20 Q20 28 14 20Z" stroke="#2ECC71" stroke-width="1.5" fill="none"/>
+        <circle cx="20" cy="20" r="3" fill="#2ECC71"/>
       </svg>
       <div class="pillar-tag">Interactive</div>
       <h3 class="pillar-heading">Connect the Dots</h3>
@@ -1607,6 +1613,7 @@
       © 2026 The Whole Story. Prototype concept — <strong>for Mr. Anthony Green</strong>.
     </div>
     <div class="footer-copy">All facts cited. All history documented.</div>
+    <div class="footer-copy">Created by <a href="https://www.getclarity.consulting" target="_blank" style="color:var(--gold);text-decoration:none;">Alanne International</a></div>
   </div>
 </footer>
 
@@ -1662,11 +1669,12 @@ window.addEventListener('DOMContentLoaded', () => {
     btn.disabled = true;
     btn.innerHTML = '<span class="bell-icon">&#10003;</span> You\'re in the count — thank you for ringing the bell';
     showAffirm("You're in the count. Thank you.");
+    document.getElementById('profileCta').style.display = 'block';
   }
 });
 
 function spawnParticles(x, y) {
-  const colors = ['#C8922A','#E5B55A','#1AACAC','#F0EDE6'];
+  const colors = ['#C8922A','#E5B55A','#2ECC71','#F0EDE6'];
   for (let i = 0; i < 22; i++) {
     const p = document.createElement('div');
     p.className = 'particle';
@@ -1750,6 +1758,9 @@ function ringTheBell() {
   }, 600);
 
   showAffirm("You're part of the count now. That matters.");
+  setTimeout(() => {
+    document.getElementById('profileCta').style.display = 'block';
+  }, 800);
 }
 </script>
 </body>
