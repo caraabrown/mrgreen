@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Real Black People You Don't See — The Whole Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#080808;--surface:#101010;--card:#161616;--border:#242424;
+    --gold:#C8922A;--gold-lt:#E5B55A;--teal:#078930;--teal-lt:#0FAD3C;
+    --crimson:#8B1F2F;--sapphire:#1B4F8A;--sapphire-lt:#2E72C0;
+    --text:#F0EDE6;--muted:#7A7A7A;--faint:#2A2A2A;
+    --font-disp:'Bebas Neue',sans-serif;
+    --font-head:'Oswald',sans-serif;
+    --font-body:'Raleway',sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-weight:400;line-height:1.6;overflow-x:hidden;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:rgba(8,8,8,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--faint);}
+  .nav-logo{font-family:var(--font-head);font-weight:600;font-size:1rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);text-decoration:none;}
+  .nav-logo span{color:var(--text);}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;}
+  .nav-links a{font-family:var(--font-head);font-weight:300;font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--text);}
+  .nav-cta{font-family:var(--font-head);font-size:0.75rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--bg);background:var(--gold);border:none;padding:0.55rem 1.4rem;cursor:pointer;text-decoration:none;transition:background 0.2s;}
+  .nav-cta:hover{background:var(--gold-lt);}
+
+  /* HERO */
+  .page-hero{
+    padding:12rem 4rem 5rem;
+    position:relative;overflow:hidden;
+    border-bottom:1px solid var(--faint);
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:6rem;align-items:end;
+  }
+  .hero-bg{
+    position:absolute;inset:0;
+    background:
+      radial-gradient(ellipse 60% 70% at 70% 30%,rgba(200,146,42,0.07) 0%,transparent 60%),
+      radial-gradient(ellipse 40% 60% at 20% 70%,rgba(7,137,48,0.05) 0%,transparent 60%),
+      linear-gradient(180deg,#080808 0%,#080a08 100%);
+    z-index:0;
+  }
+  .hero-left{position:relative;z-index:1;}
+  .hero-eyebrow{font-family:var(--font-head);font-weight:300;font-size:0.75rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;}
+  .hero-eyebrow::before{content:'';width:40px;height:1px;background:var(--gold);display:block;}
+  .hero-title{font-family:var(--font-disp);font-size:clamp(4.5rem,9vw,9rem);line-height:0.88;color:var(--text);}
+  .hero-title span{color:var(--gold);display:block;}
+  .hero-right{position:relative;z-index:1;}
+  .hero-sub{font-family:var(--font-body);font-weight:300;font-size:1.05rem;line-height:1.8;color:rgba(240,237,230,0.55);}
+  .hero-statement{
+    margin-top:2rem;
+    padding:1.5rem;
+    border-left:3px solid var(--gold);
+    font-family:var(--font-head);font-weight:500;font-size:1rem;
+    color:rgba(240,237,230,0.8);line-height:1.6;
+  }
+
+  /* FILTER BAR */
+  .filter-bar{
+    padding:2rem 4rem;
+    border-bottom:1px solid var(--faint);
+    background:var(--surface);
+    display:flex;align-items:center;gap:1rem;flex-wrap:wrap;
+    position:sticky;top:66px;z-index:50;
+  }
+  .filter-label{font-family:var(--font-head);font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-right:0.5rem;white-space:nowrap;}
+  .filter-btn{font-family:var(--font-head);font-size:0.68rem;font-weight:400;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);border:1px solid var(--faint);background:transparent;padding:0.45rem 1.1rem;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+  .filter-btn:hover{border-color:var(--text);color:var(--text);}
+  .filter-btn.active{border-color:var(--gold);color:var(--gold);}
+
+  /* TILES GRID */
+  .tiles-section{padding:0;}
+  .tiles-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:3px;
+    padding:3px;
+  }
+
+  /* PERSON TILE */
+  .person-tile{
+    position:relative;
+    aspect-ratio:3/4;
+    overflow:hidden;
+    cursor:pointer;
+    background:var(--card);
+  }
+  /* placeholder bg patterns per category */
+  .person-tile[data-cat="science"]    .tile-img-bg{background:linear-gradient(135deg,#0a1628 0%,#1B4F8A 100%);}
+  .person-tile[data-cat="arts"]       .tile-img-bg{background:linear-gradient(135deg,#180a0a 0%,#8B1F2F 100%);}
+  .person-tile[data-cat="business"]   .tile-img-bg{background:linear-gradient(135deg,#0a1208 0%,#1a4020 100%);}
+  .person-tile[data-cat="sports"]     .tile-img-bg{background:linear-gradient(135deg,#120808 0%,#6b2010 100%);}
+  .person-tile[data-cat="justice"]    .tile-img-bg{background:linear-gradient(135deg,#120c00 0%,#C8922A 60%,#8a6010 100%);}
+  .person-tile[data-cat="education"]  .tile-img-bg{background:linear-gradient(135deg,#0a0a1a 0%,#1B4F8A 100%);}
+  .person-tile[data-cat="stem"]       .tile-img-bg{background:linear-gradient(135deg,#060a12 0%,#078930 100%);}
+
+  .tile-img-bg{
+    position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .tile-img-placeholder{
+    font-family:var(--font-disp);font-size:5rem;
+    opacity:0.06;color:#fff;
+    user-select:none;
+  }
+  .tile-img{
+    position:absolute;inset:0;
+    background-size:cover;background-position:center top;
+    transition:transform 0.5s ease;
+  }
+  .person-tile:hover .tile-img{transform:scale(1.04);}
+
+  /* bottom bar always visible */
+  .tile-bar{
+    position:absolute;bottom:0;left:0;right:0;
+    background:linear-gradient(to top,rgba(8,8,8,0.95) 0%,rgba(8,8,8,0.6) 70%,transparent 100%);
+    padding:3rem 1.5rem 1.5rem;
+    transition:all 0.35s ease;
+  }
+  .tile-name{
+    font-family:var(--font-head);font-weight:600;font-size:1rem;
+    color:var(--text);line-height:1.2;margin-bottom:0.3rem;
+  }
+  .tile-achievement{
+    font-family:var(--font-head);font-weight:300;font-size:0.68rem;
+    letter-spacing:0.1em;color:var(--gold);
+    text-transform:uppercase;
+  }
+
+  /* hover overlay */
+  .tile-hover{
+    position:absolute;inset:0;
+    background:rgba(8,8,8,0.88);
+    display:flex;flex-direction:column;justify-content:flex-end;
+    padding:2rem 1.5rem;
+    opacity:0;
+    transition:opacity 0.35s ease;
+  }
+  .person-tile:hover .tile-hover{opacity:1;}
+  .hover-cat{
+    font-family:var(--font-head);font-size:0.6rem;font-weight:400;
+    letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:0.75rem;
+  }
+  .hover-name{
+    font-family:var(--font-head);font-weight:700;font-size:1.15rem;
+    color:var(--text);line-height:1.2;margin-bottom:0.4rem;
+  }
+  .hover-achievement{
+    font-family:var(--font-head);font-weight:400;font-size:0.78rem;
+    letter-spacing:0.05em;color:var(--gold);
+    margin-bottom:1.25rem;line-height:1.4;
+  }
+  .hover-detail{
+    font-family:var(--font-body);font-weight:300;font-size:0.82rem;
+    color:rgba(240,237,230,0.7);line-height:1.65;
+    border-top:1px solid var(--faint);
+    padding-top:1rem;
+  }
+
+  /* INVITE TOOL */
+  .invite-section{
+    padding:7rem 4rem;
+    background:var(--surface);
+    border-top:1px solid var(--faint);
+  }
+  .invite-inner{max-width:780px;margin:0 auto;}
+  .invite-eyebrow{font-family:var(--font-head);font-weight:300;font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:0.75rem;}
+  .invite-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold);display:block;}
+  .invite-title{font-family:var(--font-disp);font-size:clamp(2.8rem,5vw,4.5rem);color:var(--text);line-height:0.95;margin-bottom:1rem;}
+  .invite-title span{color:var(--gold);}
+  .invite-sub{font-family:var(--font-body);font-weight:300;font-size:1rem;color:rgba(240,237,230,0.5);max-width:560px;line-height:1.75;margin-bottom:3rem;}
+  .invite-card{background:var(--card);border:1px solid var(--border);padding:3rem;}
+  .invite-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+  .invite-group{margin-bottom:1rem;}
+  .invite-label{font-family:var(--font-head);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:0.5rem;}
+  .invite-input{width:100%;padding:0.9rem 1.2rem;background:var(--surface);border:1px solid var(--border);color:var(--text);font-family:var(--font-body);font-size:0.92rem;font-weight:300;outline:none;transition:border-color 0.2s;}
+  .invite-input:focus{border-color:var(--gold);}
+  .invite-input::placeholder{color:var(--muted);}
+  .invite-channel-row{display:flex;gap:0.75rem;margin-bottom:2rem;}
+  .channel-tab{flex:1;padding:1rem;border:1px solid var(--border);background:transparent;font-family:var(--font-head);font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all 0.2s;text-align:center;}
+  .channel-tab.active{border-color:var(--gold);color:var(--gold);background:rgba(200,146,42,0.07);}
+  .channel-tab:hover{border-color:var(--text);color:var(--text);}
+  .preview-box{background:var(--surface);border:1px solid var(--faint);padding:2rem;margin-bottom:1.5rem;min-height:120px;}
+  .preview-label{font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:0.75rem;}
+  .preview-subject{font-family:var(--font-head);font-weight:500;font-size:0.82rem;color:var(--gold);margin-bottom:0.75rem;}
+  .preview-body{font-family:var(--font-body);font-weight:300;font-size:0.88rem;line-height:1.75;color:rgba(240,237,230,0.65);white-space:pre-line;}
+  .invite-send-btn{width:100%;padding:1.1rem;background:var(--gold);border:none;font-family:var(--font-head);font-size:0.8rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--bg);cursor:pointer;transition:background 0.2s;}
+  .invite-send-btn:hover{background:var(--gold-lt);}
+  .invite-sent{display:none;text-align:center;padding:2rem 0;}
+  .invite-sent.visible{display:block;}
+  .invite-sent-check{font-family:var(--font-disp);font-size:4rem;color:var(--gold);line-height:1;margin-bottom:0.5rem;}
+  .invite-sent-msg{font-family:var(--font-head);font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text);}
+  .invite-sent-sub{font-family:var(--font-body);font-size:0.85rem;color:var(--muted);margin-top:0.5rem;}
+  .send-another{font-family:var(--font-head);font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);background:none;border:none;cursor:pointer;margin-top:1rem;display:block;text-align:center;width:100%;}
+  .send-another:hover{color:var(--text);}
+
+  footer{padding:3rem 4rem;border-top:1px solid var(--faint);}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;}
+  .footer-copy{font-family:var(--font-body);font-size:0.78rem;color:var(--muted);}
+  .footer-copy strong{color:var(--gold);}
+
+  /* ── SUBMIT SECTION ── */
+  .submit-section{padding:5rem 4rem;background:var(--surface);border-top:1px solid var(--faint);text-align:center;}
+  .submit-eyebrow{font-family:var(--font-head);font-weight:300;font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+  .submit-title{font-family:var(--font-disp);font-size:clamp(2.5rem,4vw,4rem);color:var(--text);line-height:0.95;margin-bottom:1.5rem;}
+  .submit-title span{color:var(--gold);}
+  .submit-sub{font-family:var(--font-body);font-weight:300;font-size:0.95rem;color:rgba(240,237,230,0.5);max-width:520px;margin:0 auto 2.5rem;line-height:1.75;}
+  .submit-form{display:flex;gap:0;max-width:520px;margin:0 auto 1rem;}
+  .submit-input{flex:1;padding:1rem 1.25rem;background:var(--card);border:1px solid var(--border);border-right:none;color:var(--text);font-family:var(--font-body);font-size:0.92rem;font-weight:300;outline:none;transition:border-color 0.2s;}
+  .submit-input:focus{border-color:var(--gold);}
+  .submit-input::placeholder{color:var(--muted);}
+  .submit-btn{padding:1rem 1.75rem;background:var(--gold);border:1px solid var(--gold);font-family:var(--font-head);font-size:0.78rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--bg);cursor:pointer;transition:background 0.2s;white-space:nowrap;}
+  .submit-btn:hover{background:var(--gold-lt);}
+  .submit-note{font-family:var(--font-body);font-size:0.78rem;font-weight:300;color:var(--muted);margin-top:0.75rem;}
+
+  @media(max-width:900px){
+    nav{padding:1rem 1.5rem;}
+    .nav-links{display:none;}
+    .page-hero{grid-template-columns:1fr;padding:8rem 1.5rem 4rem;gap:2rem;}
+    .filter-bar,.submit-section{padding-left:1.5rem;padding-right:1.5rem;}
+    .tiles-grid{grid-template-columns:repeat(2,1fr);}
+    footer{padding:2rem 1.5rem;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">The Whole <span>Story</span></a>
+    <ul class="nav-links">
+    <li><a href="about.html">About Mr. Green</a></li>
+    <li><a href="search.html">Explore History</a></li>
+    <li><a href="myths.html">Myth vs. Reality</a></li>
+    <li><a href="blackpeople.html" class="active"><span style="color:var(--teal-lt);">Real</span> Black People You Don't See</a></li>
+    <li><a href="model.html">Learn the Model</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="quiz.html" class="nav-cta">Start Here</a>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="hero-left">
+    <div class="hero-eyebrow">What the News Won't Show You</div>
+    <h1 class="hero-title">
+      <span style="color:var(--teal-lt);">Real</span> Black People
+      <span>You Don't<br/>See.</span>
+    </h1>
+  </div>
+  <div class="hero-right">
+    <p class="hero-sub">
+      Media shapes perception. And for decades, the dominant media narrative around Black people has been a narrow, distorted slice of reality — crime, poverty, conflict. Meet real Black people that don't make the front page.
+    </p>
+    <div class="hero-statement">
+      "When you only ever see one image of a people, you start to believe that image is the whole truth. It never is." — Mr. Anthony Green, Bishop O'Dowd High School
+    </div>
+  </div>
+</section>
+
+<!-- FILTER -->
+<div class="filter-bar">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" onclick="filterTiles('all',this)">All</button>
+  <button class="filter-btn" onclick="filterTiles('science',this)">Science & Medicine</button>
+  <button class="filter-btn" onclick="filterTiles('stem',this)">Technology & Engineering</button>
+  <button class="filter-btn" onclick="filterTiles('business',this)">Business & Finance</button>
+  <button class="filter-btn" onclick="filterTiles('arts',this)">Arts & Culture</button>
+  <button class="filter-btn" onclick="filterTiles('justice',this)">Law & Justice</button>
+  <button class="filter-btn" onclick="filterTiles('sports',this)">Sports & Leadership</button>
+  <button class="filter-btn" onclick="filterTiles('education',this)">Education</button>
+  <button class="filter-btn mr-green-filter" onclick="filterTiles('mrgreen',this)" title="O'Dowd alums who studied under Mr. Green">&#9733; Mr. Green's Students</button>
+</div>
+
+<!-- TILES -->
+<section class="tiles-section">
+  <div class="tiles-grid" id="tilesGrid">
+    <!-- Cara Brown -->
+    <div class="person-tile" data-cat="arts" data-mrgreen="true">
+      <div class="tile-img-bg"><div class="tile-img-placeholder">CB</div></div>
+      <div class="tile-bar">
+        <div class="tile-name">Cara Brown</div>
+        <div class="tile-achievement">Principal Service Designer · Strategist · O'Dowd Alum</div>
+      </div>
+      <div class="tile-hover">
+        <div class="hover-cat">Design & Strategy</div>
+        <div class="hover-name">Cara Brown, MBA</div>
+        <div class="hover-achievement">Principal Service Designer</div>
+        <div class="hover-detail">Service design leader whose work spans enterprise UX, brand systems, and human-centered design at scale. O'Dowd alum and the visionary behind The Whole Story platform — bringing Mr. Green's 46 years of curriculum to a national audience.</div>
+        <div class="hover-mrgreen">&#9733; Mr. Green's Student</div>
+      </div>
+    </div>
+
+    <!-- Ryan Coogler -->
+    <div class="person-tile" data-cat="arts" data-mrgreen="true">
+      <div class="tile-img-bg"><div class="tile-img-placeholder">RC</div></div>
+      <div class="tile-bar">
+        <div class="tile-name">Ryan Coogler</div>
+        <div class="tile-achievement">Film Director · Black Panther · Fruitvale Station · Creed</div>
+      </div>
+      <div class="tile-hover">
+        <div class="hover-cat">Arts & Culture</div>
+        <div class="hover-name">Ryan Coogler</div>
+        <div class="hover-achievement">Academy Award-Nominated Director</div>
+        <div class="hover-detail">Oakland-born director whose debut Fruitvale Station won Sundance and Cannes prizes. Directed Black Panther — the first superhero film nominated for Best Picture — which grossed over $1.3 billion worldwide. O'Dowd alum.</div>
+        <div class="hover-mrgreen">&#9733; Mr. Green's Student</div>
+      </div>
+    </div>
+
+    <!-- Trestin George -->
+    <div class="person-tile" data-cat="arts" data-mrgreen="true">
+      <div class="tile-img-bg"><div class="tile-img-placeholder">TG</div></div>
+      <div class="tile-bar">
+        <div class="tile-name">Trestin George</div>
+        <div class="tile-achievement">SAG Actor · Athletic Director, St. Mary's High School</div>
+      </div>
+      <div class="tile-hover">
+        <div class="hover-cat">Arts & Culture</div>
+        <div class="hover-name">Trestin George</div>
+        <div class="hover-achievement">SAG Actor · Athletic Administrator</div>
+        <div class="hover-detail">Screen Actors Guild member with a dual career spanning professional acting and athletic administration. Currently serves as Athletic Director at St. Mary's High School — shaping the next generation of student-athletes.</div>
+        <div class="hover-mrgreen">&#9733; Mr. Green's Student</div>
+      </div>
+    </div>
+
+    <!-- David Green -->
+    <div class="person-tile" data-cat="sports" data-mrgreen="true">
+      <div class="tile-img-bg"><div class="tile-img-placeholder">DG</div></div>
+      <div class="tile-bar">
+        <div class="tile-name">David Green</div>
+        <div class="tile-achievement">[Title / Field — Placeholder]</div>
+      </div>
+      <div class="tile-hover">
+        <div class="hover-cat">[Field — Placeholder]</div>
+        <div class="hover-name">David Green</div>
+        <div class="hover-achievement">[Main Achievement — Placeholder]</div>
+        <div class="hover-detail">[2-sentence bio — Placeholder]</div>
+        <div class="hover-mrgreen">&#9733; Mr. Green's Student</div>
+      </div>
+    </div>
+
+    <!-- Felicia Favroth -->
+    <div class="person-tile" data-cat="business" data-mrgreen="true">
+      <div class="tile-img-bg"><div class="tile-img-placeholder">FF</div></div>
+      <div class="tile-bar">
+        <div class="tile-name">Felicia Favroth</div>
+        <div class="tile-achievement">[Title / Field — Placeholder]</div>
+      </div>
+      <div class="tile-hover">
+        <div class="hover-cat">[Field — Placeholder]</div>
+        <div class="hover-name">Felicia Favroth</div>
+        <div class="hover-achievement">[Main Achievement — Placeholder]</div>
+        <div class="hover-detail">[2-sentence bio — Placeholder]</div>
+        <div class="hover-mrgreen">&#9733; Mr. Green's Student</div>
+      </div>
+    </div>
+
+    <!-- Kirk Morrison -->
+    <div class="person-tile" data-cat="sports" data-mrgreen="true">
+      <div class="tile-img-bg"><div class="tile-img-placeholder">KM</div></div>
+      <div class="tile-bar">
+        <div class="tile-name">Kirk Morrison</div>
+        <div class="tile-achievement">NFL Linebacker · ESPN/ABC Sports Analyst</div>
+      </div>
+      <div class="tile-hover">
+        <div class="hover-cat">Sports & Leadership</div>
+        <div class="hover-name">Kirk Morrison</div>
+        <div class="hover-achievement">NFL Linebacker · Sports Broadcaster</div>
+        <div class="hover-detail">Oakland native and O'Dowd alum who played 8 seasons in the NFL before becoming an analyst for ESPN and ABC Sports. A prominent voice in Oakland's sports and community landscape, and a champion for the next generation of Bay Area athletes.</div>
+        <div class="hover-mrgreen">&#9733; Mr. Green's Student</div>
+      </div>
+    </div>
+
+    <!-- Erin Dangerfield -->
+    <div class="person-tile" data-cat="justice" data-mrgreen="true">
+      <div class="tile-img-bg"><div class="tile-img-placeholder">ED</div></div>
+      <div class="tile-bar">
+        <div class="tile-name">Erin Dangerfield</div>
+        <div class="tile-achievement">[Title / Field — Placeholder]</div>
+      </div>
+      <div class="tile-hover">
+        <div class="hover-cat">[Field — Placeholder]</div>
+        <div class="hover-name">Erin Dangerfield</div>
+        <div class="hover-achievement">[Main Achievement — Placeholder]</div>
+        <div class="hover-detail">[2-sentence bio — Placeholder]</div>
+        <div class="hover-mrgreen">&#9733; Mr. Green's Student</div>
+      </div>
+    </div>
+
+    <!-- Brandon Smart -->
+    <div class="person-tile" data-cat="stem" data-mrgreen="true">
+      <div class="tile-img-bg"><div class="tile-img-placeholder">BS</div></div>
+      <div class="tile-bar">
+        <div class="tile-name">Brandon Smart</div>
+        <div class="tile-achievement">Solutions Engineer · Technology Sales Leader</div>
+      </div>
+      <div class="tile-hover">
+        <div class="hover-cat">Technology & Engineering</div>
+        <div class="hover-name">Brandon Smart</div>
+        <div class="hover-achievement">Solutions Engineer & Sales Leader</div>
+        <div class="hover-detail">A solutions engineer bridging the gap between complex technology and real-world business needs. A technical leader whose work spans engineering, sales strategy, and client solutions at enterprise scale. O'Dowd alum.</div>
+        <div class="hover-mrgreen">&#9733; Mr. Green's Student</div>
+      </div>
+    </div>
+
+    <!-- Corey Lynch -->
+    <div class="person-tile" data-cat="sports" data-mrgreen="true">
+      <div class="tile-img-bg"><div class="tile-img-placeholder">CL</div></div>
+      <div class="tile-bar">
+        <div class="tile-name">Corey Lynch</div>
+        <div class="tile-achievement">NFL Safety · Author · Motivational Speaker</div>
+      </div>
+      <div class="tile-hover">
+        <div class="hover-cat">Sports & Leadership</div>
+        <div class="hover-name">Corey Lynch</div>
+        <div class="hover-achievement">NFL Safety · Author</div>
+        <div class="hover-detail">O'Dowd alum who played in the NFL as a safety before becoming an author and motivational speaker. His post-NFL career has been defined by community impact, youth mentorship, and a commitment to showing young people what's possible.</div>
+        <div class="hover-mrgreen">&#9733; Mr. Green's Student</div>
+      </div>
+    </div>
+
+    <!-- Brady Thomas -->
+    <div class="person-tile" data-cat="business" data-mrgreen="true">
+      <div class="tile-img-bg"><div class="tile-img-placeholder">BT</div></div>
+      <div class="tile-bar">
+        <div class="tile-name">Brady Thomas</div>
+        <div class="tile-achievement">[Title / Field — Placeholder]</div>
+      </div>
+      <div class="tile-hover">
+        <div class="hover-cat">[Field — Placeholder]</div>
+        <div class="hover-name">Brady Thomas</div>
+        <div class="hover-achievement">[Main Achievement — Placeholder]</div>
+        <div class="hover-detail">[2-sentence bio — Placeholder]</div>
+        <div class="hover-mrgreen">&#9733; Mr. Green's Student</div>
+      </div>
+    </div>
+
+    <!-- Noah Coogler -->
+    <div class="person-tile" data-cat="arts" data-mrgreen="true">
+      <div class="tile-img-bg"><div class="tile-img-placeholder">NC</div></div>
+      <div class="tile-bar">
+        <div class="tile-name">Noah Coogler</div>
+        <div class="tile-achievement">[Title / Field — Placeholder]</div>
+      </div>
+      <div class="tile-hover">
+        <div class="hover-cat">[Field — Placeholder]</div>
+        <div class="hover-name">Noah Coogler</div>
+        <div class="hover-achievement">[Main Achievement — Placeholder]</div>
+        <div class="hover-detail">[2-sentence bio — Placeholder]</div>
+        <div class="hover-mrgreen">&#9733; Mr. Green's Student</div>
+      </div>
+    </div>
+
+    <!-- Sahli Negassi — NOT Mr. Green's student -->
+    <div class="person-tile" data-cat="stem">
+      <div class="tile-img-bg"><div class="tile-img-placeholder">SN</div></div>
+      <div class="tile-bar">
+        <div class="tile-name">Sahli Negassi</div>
+        <div class="tile-achievement">Perfect SAT Score · O'Dowd Alum</div>
+      </div>
+      <div class="tile-hover">
+        <div class="hover-cat">Academic Excellence</div>
+        <div class="hover-name">Sahli Negassi</div>
+        <div class="hover-achievement">Perfect SAT Score</div>
+        <div class="hover-detail">Bishop O'Dowd alumnus who achieved a perfect SAT score — a distinction attained by fewer than 0.1% of all test-takers nationwide. A testament to what preparation and brilliance can produce.</div>
+      </div>
+    </div>
+
+    <!-- Bisa Grant -->
+    <div class="person-tile" data-cat="sports" data-mrgreen="true">
+      <div class="tile-img-bg"><div class="tile-img-placeholder">BG</div></div>
+      <div class="tile-bar">
+        <div class="tile-name">Bisa Grant</div>
+        <div class="tile-achievement">NCAA All-American · UCLA Track · IAAF World Championships</div>
+      </div>
+      <div class="tile-hover">
+        <div class="hover-cat">Sports & Leadership</div>
+        <div class="hover-name">Bisa Grant</div>
+        <div class="hover-achievement">All-American Sprinter · International Athlete</div>
+        <div class="hover-detail">All-American sprinter for the UCLA Bruins who competed at the 2001 IAAF World Indoor Championships in Lisbon — anchoring UCLA's 4×100 relay team to a 4th-place finish at the 1998 NCAA Division I Outdoor Championships. O'Dowd alum.</div>
+        <div class="hover-mrgreen">&#9733; Mr. Green's Student</div>
+      </div>
+    </div>
+
+    <!-- Brenda Nelson -->
+    <div class="person-tile" data-cat="justice" data-mrgreen="true">
+      <div class="tile-img-bg"><div class="tile-img-placeholder">BN</div></div>
+      <div class="tile-bar">
+        <div class="tile-name">Brenda Nelson</div>
+        <div class="tile-achievement">[Title / Field — Placeholder]</div>
+      </div>
+      <div class="tile-hover">
+        <div class="hover-cat">[Field — Placeholder]</div>
+        <div class="hover-name">Brenda Nelson</div>
+        <div class="hover-achievement">[Main Achievement — Placeholder]</div>
+        <div class="hover-detail">[2-sentence bio — Placeholder]</div>
+        <div class="hover-mrgreen">&#9733; Mr. Green's Student</div>
+      </div>
+    </div>
+
+    <!-- Shaka Jamal -->
+    <div class="person-tile" data-cat="arts" data-mrgreen="true">
+      <div class="tile-img-bg"><div class="tile-img-placeholder">SJ</div></div>
+      <div class="tile-bar">
+        <div class="tile-name">Shaka Jamal</div>
+        <div class="tile-achievement">Emmy Award-Winning Filmmaker</div>
+      </div>
+      <div class="tile-hover">
+        <div class="hover-cat">Arts & Culture</div>
+        <div class="hover-name">Shaka Jamal</div>
+        <div class="hover-achievement">Emmy Award-Winning Filmmaker</div>
+        <div class="hover-detail">Award-winning filmmaker whose work has earned Emmy recognition — one of the highest distinctions in American television and documentary production. An O'Dowd alum whose storytelling is shaped by the history and community of Oakland.</div>
+        <div class="hover-mrgreen">&#9733; Mr. Green's Student</div>
+      </div>
+    </div>
+
+    <!-- Denisha Caldwell -->
+    <div class="person-tile" data-cat="education" data-mrgreen="true">
+      <div class="tile-img-bg"><div class="tile-img-placeholder">DC</div></div>
+      <div class="tile-bar">
+        <div class="tile-name">Denisha Caldwell</div>
+        <div class="tile-achievement">$24M+ in College Scholarships · Identical Twin Achievers</div>
+      </div>
+      <div class="tile-hover">
+        <div class="hover-cat">Education</div>
+        <div class="hover-name">Denisha Caldwell</div>
+        <div class="hover-achievement">$24M+ College Scholarships Earned</div>
+        <div class="hover-detail">Identical twin sisters Denisha and Destiny Caldwell collectively earned over $24 million in college scholarship offers — a staggering achievement that made national headlines and redefined what is possible for Black students from the Bay Area.</div>
+        <div class="hover-mrgreen">&#9733; Mr. Green's Student</div>
+      </div>
+    </div>
+
+    <!-- Destiny Caldwell -->
+    <div class="person-tile" data-cat="education" data-mrgreen="true">
+      <div class="tile-img-bg"><div class="tile-img-placeholder">DC2</div></div>
+      <div class="tile-bar">
+        <div class="tile-name">Destiny Caldwell</div>
+        <div class="tile-achievement">$24M+ in College Scholarships · Identical Twin Achievers</div>
+      </div>
+      <div class="tile-hover">
+        <div class="hover-cat">Education</div>
+        <div class="hover-name">Destiny Caldwell</div>
+        <div class="hover-achievement">$24M+ College Scholarships Earned</div>
+        <div class="hover-detail">Together with twin sister Denisha, Destiny earned over $24 million in college scholarship offers — one of the most remarkable academic achievement stories in recent Bay Area history. Their story is proof of what preparation, excellence, and access can produce.</div>
+        <div class="hover-mrgreen">&#9733; Mr. Green's Student</div>
+      </div>
+    </div>
+
+    <!-- Phoenix Hollingsworth -->
+    <div class="person-tile" data-cat="arts" data-mrgreen="true">
+      <div class="tile-img-bg"><div class="tile-img-placeholder">PH</div></div>
+      <div class="tile-bar">
+        <div class="tile-name">Phoenix Hollingsworth</div>
+        <div class="tile-achievement">[Title / Field — Placeholder]</div>
+      </div>
+      <div class="tile-hover">
+        <div class="hover-cat">[Field — Placeholder]</div>
+        <div class="hover-name">Phoenix Hollingsworth</div>
+        <div class="hover-achievement">[Main Achievement — Placeholder]</div>
+        <div class="hover-detail">[2-sentence bio — Placeholder]</div>
+        <div class="hover-mrgreen">&#9733; Mr. Green's Student</div>
+      </div>
+    </div>
+
+    <!-- Burl Toler III -->
+    <div class="person-tile" data-cat="sports" data-mrgreen="true">
+      <div class="tile-img-bg"><div class="tile-img-placeholder">BT3</div></div>
+      <div class="tile-bar">
+        <div class="tile-name">Burl Toler III</div>
+        <div class="tile-achievement">Cal Wide Receivers Coach · NFL Legacy · O'Dowd Alum</div>
+      </div>
+      <div class="tile-hover">
+        <div class="hover-cat">Sports & Leadership</div>
+        <div class="hover-name">Burl Toler III</div>
+        <div class="hover-achievement">University of California Football Coach</div>
+        <div class="hover-detail">O'Dowd alum and grandson of Burl Toler Sr. — the first Black official in any major American professional sport. Burl III carries the family legacy forward as Wide Receivers and Recruiting Coordinator at UC Berkeley, where his grandfather once played.</div>
+        <div class="hover-mrgreen">&#9733; Mr. Green's Student</div>
+      </div>
+    </div>
+
+    <!-- Nick James -->
+    <div class="person-tile" data-cat="business" data-mrgreen="true">
+      <div class="tile-img-bg"><div class="tile-img-placeholder">NJ</div></div>
+      <div class="tile-bar">
+        <div class="tile-name">Nick James</div>
+        <div class="tile-achievement">[Title / Field — Placeholder]</div>
+      </div>
+      <div class="tile-hover">
+        <div class="hover-cat">[Field — Placeholder]</div>
+        <div class="hover-name">Nick James</div>
+        <div class="hover-achievement">[Main Achievement — Placeholder]</div>
+        <div class="hover-detail">[2-sentence bio — Placeholder]</div>
+        <div class="hover-mrgreen">&#9733; Mr. Green's Student</div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- SUBMIT -->
+<section class="invite-section">
+  <div class="invite-inner">
+    <div class="invite-eyebrow">Know Someone Who Belongs Here?</div>
+    <h2 class="invite-title">Send Them<br/>an <span>Invite.</span></h2>
+    <p class="invite-sub">
+      This page is for any Black person doing remarkable things — O'Dowd alum or not.
+      Fill in their name and contact info below. Your device opens your email or texting app
+      with a pre-written message ready to send. No middleman. No waiting on anyone.
+      The invite comes directly from you.
+    </p>
+
+    <!-- INVITE CARD -->
+    <div class="invite-card" id="inviteCard">
+
+      <!-- EMAIL / SMS TOGGLE -->
+      <div class="invite-channel-row">
+        <button id="tabEmail" class="channel-tab active" onclick="switchChannel('email')">Send via Email</button>
+        <button id="tabSms"   class="channel-tab"        onclick="switchChannel('sms')">Send via Text</button>
+      </div>
+
+      <!-- NAME + YOUR NAME -->
+      <div class="invite-row">
+        <div class="invite-group">
+          <label class="invite-label">Their First Name <span style="color:#B8374A;">*</span></label>
+          <input class="invite-input" id="invFirstName" type="text" placeholder="First name"/>
+        </div>
+        <div class="invite-group">
+          <label class="invite-label">Their Last Name</label>
+          <input class="invite-input" id="invLastName" type="text" placeholder="Last name (optional)"/>
+        </div>
+      </div>
+      <div class="invite-group">
+        <label class="invite-label">Your Name (so they know who sent it)</label>
+        <input class="invite-input" id="invFrom" type="text" placeholder="Your name"/>
+      </div>
+
+      <!-- EMAIL FIELDS -->
+      <div id="emailFields">
+        <div class="invite-group">
+          <label class="invite-label">Their Email Address <span style="color:#B8374A;">*</span></label>
+          <input class="invite-input" id="invEmail" type="email" placeholder="their@email.com"/>
+        </div>
+      </div>
+
+      <!-- SMS FIELDS -->
+      <div id="smsFields" style="display:none;">
+        <div class="invite-group">
+          <label class="invite-label">Their Phone Number <span style="color:#B8374A;">*</span></label>
+          <input class="invite-input" id="invPhone" type="tel" placeholder="+1 (555) 000-0000"/>
+        </div>
+      </div>
+
+      <button class="invite-send-btn" onclick="sendInvite()">Open in My Email / Text App →</button>
+      <p style="font-family:var(--font-body);font-size:0.75rem;color:var(--muted);text-align:center;margin-top:0.75rem;line-height:1.5;">
+        This opens your personal email or messaging app — the invite sends from you, not the site.
+      </p>
+    </div>
+
+    <!-- SUCCESS STATE -->
+    <div class="invite-sent" id="inviteSent">
+      <div class="invite-sent-check">&#10003;</div>
+      <div class="invite-sent-msg" id="inviteSentName"></div>
+      <div class="invite-sent-sub">Once they fill out their profile, they'll be reviewed and added to the page.</div>
+      <button onclick="resetInvite()" style="margin-top:1.5rem;font-family:var(--font-head);font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);background:none;border:none;cursor:pointer;padding:0;">Invite someone else →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 The Whole Story. Prototype — <strong>for Mr. Anthony Green</strong>.</div>
+    <div class="footer-copy">All facts cited. All history documented.</div>
+    <div class="footer-copy">Created by <a href="https://www.getclarity.consulting" target="_blank" style="color:var(--gold);text-decoration:none;">Alanne International</a></div>
+  </div>
+</footer>
+
+<script>
+function filterTiles(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.person-tile').forEach(tile => {
+    if (cat === 'all') {
+      tile.style.display = '';
+    } else if (cat === 'mrgreen') {
+      tile.style.display = tile.dataset.mrgreen === 'true' ? '' : 'none';
+    } else {
+      tile.style.display = tile.dataset.cat === cat ? '' : 'none';
+    }
+  });
+}
+</script>
+
+<script>
+var inviteChannel = 'email';
+
+const EMAIL_SUBJECT = 'Mr. Green wants you on The Whole Story';
+
+function getEmailBody(firstName, fromName) {
+  return `${firstName ? firstName + ',' : 'Hi,'}
+
+You know Mr. Green — Bishop O'Dowd. He's building something, and he wants you in on it.
+
+The Whole Story is a platform that puts real Black excellence front and center — people who break stereotypes and are a real representation of us. ${fromName || 'Mr. Green'} thought of you specifically.
+
+It takes about 3 minutes to fill out a simple profile.
+
+Add your profile here:
+https://caraabrown.github.io/mrgreen/profile.html
+
+— The Whole Story Team, on behalf of Mr. Anthony Green`;
+}
+
+function getSmsBody(firstName, fromName) {
+  return `Mr. Green (Bishop O'Dowd) wants you on The Whole Story — a platform he built celebrating real Black excellence. He thought you should be included. Have 3 min to add your profile? Click here: https://caraabrown.github.io/mrgreen/profile.html 🔔`;
+}
+
+function switchChannel(ch) {
+  inviteChannel = ch;
+  document.getElementById('tabEmail').classList.toggle('active', ch === 'email');
+  document.getElementById('tabSms').classList.toggle('active', ch === 'sms');
+  document.getElementById('emailFields').style.display = ch === 'email' ? 'block' : 'none';
+  document.getElementById('smsFields').style.display  = ch === 'sms'   ? 'block' : 'none';
+  updatePreview();
+}
+
+}
+
+function sendInvite() {
+  const first = document.getElementById('invFirstName').value.trim();
+  const last  = document.getElementById('invLastName').value.trim();
+  const from  = document.getElementById('invFrom').value.trim();
+
+  if (!first) { alert('Please enter their first name.'); return; }
+
+  if (inviteChannel === 'email') {
+    const email = document.getElementById('invEmail').value.trim();
+    if (!email) { alert('Please enter their email address.'); return; }
+    const subject = encodeURIComponent(EMAIL_SUBJECT);
+    const body    = encodeURIComponent(getEmailBody(first, from));
+    window.open(`mailto:${email}?subject=${subject}&body=${body}`, '_blank');
+  } else {
+    const phone = document.getElementById('invPhone').value.trim();
+    if (!phone) { alert('Please enter their phone number.'); return; }
+    const body = encodeURIComponent(getSmsBody(first, from));
+    // sms: works on mobile; on desktop opens default SMS app if configured
+    window.open(`sms:${phone}${/iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ? '&' : '?'}body=${body}`, '_blank');
+  }
+
+  // Show success
+  document.getElementById('inviteCard').style.display = 'none';
+  const sentEl = document.getElementById('inviteSent');
+  sentEl.classList.add('visible');
+  document.getElementById('inviteSentName').textContent =
+    `Invite opened for ${first}${last ? ' ' + last : ''} via ${inviteChannel === 'email' ? 'email' : 'text message'}.`;
+}
+
+function resetInvite() {
+  document.getElementById('invFirstName').value = '';
+  document.getElementById('invLastName').value  = '';
+  document.getElementById('invFrom').value      = '';
+  document.getElementById('invEmail').value     = '';
+  document.getElementById('invPhone').value     = '';
+  updatePreview();
+  document.getElementById('inviteCard').style.display = 'block';
+  document.getElementById('inviteSent').classList.remove('visible');
+}
+
+// Init preview on load
+document.addEventListener('DOMContentLoaded', updatePreview);
+</script>
+</body>
+</html>
