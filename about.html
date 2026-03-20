@@ -10,7 +10,7 @@
 <style>
   :root {
     --bg:#080808; --surface:#101010; --card:#161616; --border:#242424;
-    --gold:#C8922A; --gold-lt:#E5B55A; --teal:#0D7C7C; --teal-lt:#1AACAC;
+    --gold:#C8922A; --gold-lt:#E5B55A; --teal:#078930; --teal-lt:#0FAD3C;
     --crimson:#8B1F2F; --sapphire:#1B4F8A; --sapphire-lt:#2E72C0;
     --text:#F0EDE6; --muted:#7A7A7A; --faint:#2A2A2A;
     --font-disp:'Bebas Neue',sans-serif;
@@ -40,7 +40,7 @@
   .page-hero-bg{
     position:absolute;inset:0;
     background:radial-gradient(ellipse 60% 80% at 80% 30%, rgba(200,146,42,0.07) 0%, transparent 60%),
-               radial-gradient(ellipse 40% 60% at 10% 80%, rgba(13,124,124,0.05) 0%, transparent 60%),
+               radial-gradient(ellipse 40% 60% at 10% 80%, rgba(7,137,48,0.05) 0%, transparent 60%),
                linear-gradient(180deg,#080808 0%,#0c0a06 100%);
   }
   .page-hero-eyebrow{font-family:var(--font-head);font-weight:300;font-size:0.75rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;position:relative;z-index:1;}
@@ -221,10 +221,16 @@
   .visitors-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
   .visitor-card{background:var(--card);padding:2.5rem 2rem;border-top:2px solid transparent;transition:border-color 0.2s;}
   .visitor-card:hover{border-top-color:var(--gold);}
+  .visitor-summary{font-family:var(--font-body);font-weight:300;font-size:0.8rem;line-height:1.65;color:rgba(240,237,230,0.55);margin-bottom:0.6rem;}
+  .visitor-full{display:none;}
+  .visitor-full.open{display:block;}
+  .visitor-toggle{font-family:var(--font-head);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);background:none;border:1px solid rgba(200,146,42,0.3);cursor:pointer;padding:0.3rem 0.7rem;margin-bottom:0.5rem;display:inline-flex;align-items:center;gap:0.35rem;}
+  .visitor-toggle:hover{border-color:var(--gold);}
   .visitor-img{width:100%;aspect-ratio:1/1;background:var(--surface);border:1px solid var(--faint);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;}
   .visitor-img-label{font-family:var(--font-head);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--faint);text-align:center;padding:0.5rem;}
   .visitor-name{font-family:var(--font-head);font-weight:600;font-size:0.9rem;color:var(--text);margin-bottom:0.3rem;}
-  .visitor-role{font-family:var(--font-body);font-size:0.78rem;color:var(--muted);}
+  .visitor-role{font-family:var(--font-body);font-size:0.78rem;color:var(--muted);margin-bottom:0.75rem;}
+  .visitor-quote{font-family:var(--font-body);font-style:italic;font-weight:300;font-size:0.8rem;line-height:1.65;color:rgba(240,237,230,0.45);border-left:2px solid var(--gold);padding-left:0.75rem;margin-top:0.5rem;}
 
   /* FOOTER */
   footer{padding:4rem;border-top:1px solid var(--faint);}
@@ -263,10 +269,11 @@
     <li><a href="myths.html">Myth vs. Reality</a></li>
     <li><a href="blackpeople.html">Black People You Don't See</a></li>
     <li><a href="model.html">Learn the Model</a></li>
-    <li><a href="index.html#stories">Light Bulb Stories</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
   <a href="quiz.html" class="nav-cta">Start Here</a>
 </nav>
+
 
 <!-- PAGE HERO -->
 <section class="page-hero">
@@ -283,20 +290,16 @@
 </section>
 
 <!-- SUMMARY -->
-<section class="summary">
+<section class="summary" id="summary">
   <div class="summary-portrait-col">
     <div class="portrait-frame">
-      <div class="portrait-inner">
-        <svg class="portrait-svg" viewBox="0 0 70 70" fill="none">
-          <circle cx="35" cy="24" r="14" stroke="#F0EDE6" stroke-width="1.5"/>
-          <path d="M8 64 C8 48 20 40 35 40 C50 40 62 48 62 64" stroke="#F0EDE6" stroke-width="1.5"/>
-        </svg>
-        <div class="portrait-placeholder-label">Photo of Mr. Green<br/>Placeholder</div>
+      <div class="portrait-inner" style="padding:0;overflow:hidden;">
+        <img src="mr_green_headshot.jpg" alt="Mr. Anthony Green" style="width:100%;height:100%;object-fit:cover;display:block;"/>
       </div>
     </div>
     <div class="portrait-gold-tab">
-      <div class="tab-num">46</div>
-      <div class="tab-label">Years at the Chalkboard</div>
+      <div class="tab-num">1986</div>
+      <div class="tab-label">O'Dowd — Then & Now</div>
     </div>
   </div>
 
@@ -304,7 +307,7 @@
     <div class="summary-eyebrow">The Man Behind The Platform</div>
     <h2 class="summary-name">Mr. Green</h2>
     <div class="summary-role">Everyone's favorite history teacher · dedicated coach · difference maker</div>
-    <a href="https://www.linkedin.com/in/tony-green-5127aa23/" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-head);font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal-lt);text-decoration:none;margin-bottom:2.5rem;border:1px solid var(--teal-lt);padding:0.4rem 1rem;">&#128279; Connect on LinkedIn</a>
+
 
     <p class="summary-body">
       His full name is <strong>Anthony Martin DePorrus Green</strong> — named after two African Saints, 
@@ -370,7 +373,7 @@
 </section>
 
 <!-- ORIGIN STORY -->
-<section style="padding:7rem 4rem;border-bottom:1px solid var(--faint);background:var(--surface);">
+<section id="origins" style="padding:7rem 4rem;border-bottom:1px solid var(--faint);background:var(--surface);">
   <div style="max-width:900px;margin:0 auto;">
     <div style="font-family:var(--font-head);font-weight:300;font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;">Where He Comes From</div>
     <h2 style="font-family:var(--font-head);font-weight:700;font-size:2.4rem;color:var(--text);line-height:1.15;margin-bottom:2.5rem;">His Family, His Foundation.</h2>
@@ -463,35 +466,64 @@
 </div>
 
 <!-- CIVIL RIGHTS VISITORS -->
-<section class="visitors">
+<section class="visitors" id="visitors">
   <div class="visitors-eyebrow">They Came to His Classroom</div>
   <h2 class="visitors-headline">Civil Rights Figures Who Have Presented<br/>in His AP African American History Class</h2>
   <div class="visitors-grid">
+
     <div class="visitor-card">
       <div class="visitor-img"><div class="visitor-img-label">Photo Placeholder</div></div>
-      <div class="visitor-name">[Name — Placeholder]</div>
-      <div class="visitor-role">Civil Rights Era Figure · Year TBD</div>
+      <div class="visitor-name">Watani Stiner</div>
+      <div class="visitor-role">US Organization · Black Nationalist Movement · Co-Founder of Kwanzaa</div>
+      <p class="visitor-summary">Original member of US, the Black Nationalist organization that gave the world Kwanzaa.</p>
+      <button class="visitor-toggle" onclick="toggleVisitor(this)">Read more <span>↓</span></button>
+      <div class="visitor-full">
+        <p style="font-family:var(--font-body);font-weight:300;font-size:0.82rem;line-height:1.75;color:rgba(240,237,230,0.6);margin-bottom:0.75rem;">An original member of US — the Black Nationalist organization founded by Maulana Karenga — Stiner was part of the movement that gave the world Kwanzaa, the pan-African holiday now celebrated by millions. The FBI's COINTELPRO program deliberately targeted and dismantled US through covert harassment and manufactured conflict, a documented chapter of government-sanctioned suppression of Black political organizing in America.</p>
+        <div class="visitor-quote">Spoke in Mr. Green's AP African American History class.</div>
+      </div>
     </div>
+
     <div class="visitor-card">
       <div class="visitor-img"><div class="visitor-img-label">Photo Placeholder</div></div>
-      <div class="visitor-name">[Name — Placeholder]</div>
-      <div class="visitor-role">Activist & Author · Year TBD</div>
+      <div class="visitor-name">Al Lorena</div>
+      <div class="visitor-role">Oakland Brown Berets · Personal Security for Famous Black Panther Bobby Seale</div>
+      <p class="visitor-summary">Founding member of Oakland's Brown Berets, initiating the Black and Brown solidarity movement.</p>
+      <button class="visitor-toggle" onclick="toggleVisitor(this)">Read more <span>↓</span></button>
+      <div class="visitor-full">
+        <p style="font-family:var(--font-body);font-weight:300;font-size:0.82rem;line-height:1.75;color:rgba(240,237,230,0.6);margin-bottom:0.75rem;">One of the founding members of Oakland's Brown Berets, Lorena served as personal security for Black Panther Party co-founder Bobby Seale. The Brown Berets stood in solidarity with the Panthers in the belief that the struggle for equality was inseparable across Black and Brown communities — a coalition that the establishment feared and worked to suppress.</p>
+        <div class="visitor-quote">Spoke to students in Room 213 — Mr. Green's classroom.</div>
+      </div>
     </div>
+
     <div class="visitor-card">
       <div class="visitor-img"><div class="visitor-img-label">Photo Placeholder</div></div>
-      <div class="visitor-name">[Name — Placeholder]</div>
-      <div class="visitor-role">Community Leader · Year TBD</div>
+      <div class="visitor-name">Gloria Arellanes</div>
+      <div class="visitor-role">Brown Beret · First Female Minister · Founder of La Causa</div>
+      <p class="visitor-summary">The first woman to serve as minister in the Brown Berets. She didn't just hold a title — she built free clinics, a feminist movement, and a newspaper.</p>
+      <button class="visitor-toggle" onclick="toggleVisitor(this)">Read more <span>↓</span></button>
+      <div class="visitor-full">
+        <p style="font-family:var(--font-body);font-weight:300;font-size:0.82rem;line-height:1.75;color:rgba(240,237,230,0.6);margin-bottom:0.75rem;">The first woman to serve as minister in the Brown Berets, Arellanes didn't just hold the title — she built infrastructure. She established free clinics serving communities that mainstream healthcare ignored, helped give rise to the Chicana Feminist movement, and founded <em>La Causa</em>, the organization's newspaper that put their mission in print and in the hands of the people.</p>
+        <div class="visitor-quote">Spoke in Mr. Green's AP African American History class.</div>
+      </div>
     </div>
+
     <div class="visitor-card">
       <div class="visitor-img"><div class="visitor-img-label">Photo Placeholder</div></div>
-      <div class="visitor-name">[Name — Placeholder]</div>
-      <div class="visitor-role">Scholar & Educator · Year TBD</div>
+      <div class="visitor-name">Yuri Kochiyama</div>
+      <div class="visitor-role">Japanese American Activist</div>
+      <p class="visitor-summary">A Japanese American interned during WWII who became one of Malcolm X's closest confidantes. When he was assassinated in 1965, she held his head in her lap. She told that story in Room 213 in 2009.</p>
+      <button class="visitor-toggle" onclick="toggleVisitor(this)">Read more <span>↓</span></button>
+      <div class="visitor-full">
+        <p style="font-family:var(--font-body);font-weight:300;font-size:0.82rem;line-height:1.75;color:rgba(240,237,230,0.6);margin-bottom:0.75rem;">A Nisei — second-generation Japanese American — Kochiyama was interned by the U.S. government during WWII, an experience that forged her lifelong commitment to human rights. She befriended Malcolm X during his years in New York, and on February 21, 1965, she was in the audience at the Audubon Ballroom when he was assassinated. She rushed to the stage and held his head in her lap as he died — a moment captured by Life magazine. In 2009, she told that story in Room 213.</p>
+        <div class="visitor-quote">"I didn't wake up and decide to become an activist. But you couldn't help notice the inequities, the injustices. It was all around you." — Yuri Kochiyama, 2004</div>
+      </div>
     </div>
+
   </div>
 </section>
 
 <!-- IN THE MEDIA -->
-<section style="padding:6rem 4rem;border-bottom:1px solid var(--faint);">
+<section id="media" style="padding:6rem 4rem;border-bottom:1px solid var(--faint);">
   <div style="font-family:var(--font-head);font-weight:300;font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;">Media Coverage</div>
   <h2 style="font-family:var(--font-head);font-weight:700;font-size:2rem;color:var(--text);line-height:1.2;margin-bottom:3rem;">In the Media</h2>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:5rem;">
@@ -816,7 +848,7 @@
 </section>
 
 <!-- TIMELINE -->
-<section class="timeline-section">
+<section class="timeline-section" id="timeline">
   <div class="timeline-header">
     <div>
       <h2 class="timeline-title">A Legacy<br/><span>Built</span><br/>Year by Year.</h2>
@@ -999,6 +1031,31 @@
 </footer>
 
 <script>
+function toggleVisitor(btn) {
+  const full = btn.nextElementSibling;
+  const open = full.classList.toggle('open');
+  btn.querySelector('span').textContent = open ? '↑' : '↓';
+  btn.firstChild.textContent = open ? 'Read less ' : 'Read more ';
+}
+
+function setPNav(el) {
+  document.querySelectorAll('.pnav-link').forEach(a => a.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// Highlight active section on scroll
+window.addEventListener('scroll', () => {
+  const sections = ['summary','origins','visitors','media','recognition','reading','timeline'];
+  let current = sections[0];
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top < 140) current = id;
+  });
+  document.querySelectorAll('.pnav-link').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+
 function toggleBio() {
   const full = document.getElementById('bioFull');
   const btn  = document.getElementById('bioReadMoreBtn');
@@ -1016,6 +1073,24 @@ function toggleAccordion(id) {
   panel.style.display = open ? 'none' : 'block';
   icon.textContent    = open ? '+' : '−';
 }
+</script>
+
+<!-- FLOATING TIMELINE BUTTON -->
+<a href="#timeline" id="timelineFloat" style="position:fixed;right:1.5rem;bottom:2rem;z-index:200;display:flex;flex-direction:column;align-items:center;gap:0.3rem;background:var(--gold);padding:0.85rem 1.1rem;text-decoration:none;box-shadow:0 4px 24px rgba(0,0,0,0.5);transition:transform 0.2s,opacity 0.3s;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+  <span style="font-family:var(--font-head);font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--bg);line-height:1;">Jump to</span>
+  <span style="font-family:var(--font-disp);font-size:1.1rem;color:var(--bg);line-height:1;">Timeline</span>
+  <span style="color:var(--bg);font-size:0.85rem;line-height:1;">↓</span>
+</a>
+
+<script>
+// Hide the float button once timeline is in view
+window.addEventListener('scroll', () => {
+  const tl = document.getElementById('timeline');
+  const btn = document.getElementById('timelineFloat');
+  if (!tl || !btn) return;
+  btn.style.opacity = tl.getBoundingClientRect().top > 100 ? '1' : '0';
+  btn.style.pointerEvents = tl.getBoundingClientRect().top > 100 ? 'auto' : 'none';
+});
 </script>
 </body>
 </html>
