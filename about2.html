@@ -278,6 +278,24 @@
     .band-body-inner{padding:2rem 1.5rem;}
     .band-title{font-size:2.2rem;}
   }
+
+  .nav-dropdown{position:relative;}
+  .nav-dropdown-menu{
+    display:none;position:absolute;top:100%;left:0;
+    background:rgba(8,8,8,0.97);border:1px solid var(--faint);
+    border-top:2px solid var(--gold);min-width:200px;z-index:200;
+  }
+  .nav-dropdown:hover .nav-dropdown-menu{display:block;}
+  .nav-dropdown-menu a{
+    display:block;padding:0.75rem 1.25rem;
+    font-family:var(--font-head);font-size:0.72rem;font-weight:300;
+    letter-spacing:0.15em;text-transform:uppercase;
+    color:var(--muted);text-decoration:none;
+    border-bottom:1px solid var(--faint);transition:color 0.2s;
+  }
+  .nav-dropdown-menu a:last-child{border-bottom:none;}
+  .nav-dropdown-menu a:hover{color:var(--gold);}
+  .nav-dropdown > a::after{content:' ▾';font-size:0.6rem;}
 </style>
 </head>
 <body>
@@ -285,7 +303,13 @@
 <nav>
   <a href="index.html" class="nav-logo">The Whole <span>Story</span></a>
         <ul class="nav-links">
-    <li><a href="about.html" class="active">About Mr. Green</a></li>
+    <li class="nav-dropdown">
+      <a href="about.html" class="active">About Mr. Green</a>
+      <div class="nav-dropdown-menu">
+        <a href="about.html">About — Version 1</a>
+        <a href="about2.html">About — Version 2 ★</a>
+      </div>
+    </li>
     <li><a href="search.html">Explore History</a></li>
     <li><a href="myths.html">Myth vs. Reality</a></li>
     <li><a href="blackpeople.html">Black People You Don't See</a></li>
