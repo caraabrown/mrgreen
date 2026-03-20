@@ -1,0 +1,1852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>About Mr. Green — The Whole Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg:#080808; --surface:#101010; --card:#161616; --border:#242424;
+    --gold:#C8922A; --gold-lt:#E5B55A; --teal:#078930; --teal-lt:#0FAD3C;
+    --crimson:#8B1F2F; --sapphire:#1B4F8A; --sapphire-lt:#2E72C0;
+    --text:#F0EDE6; --muted:#7A7A7A; --faint:#2A2A2A;
+    --font-disp:'Bebas Neue',sans-serif;
+    --font-head:'Oswald',sans-serif;
+    --font-body:'Raleway',sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-weight:400;line-height:1.6;overflow-x:hidden;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:rgba(8,8,8,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--faint);}
+  .nav-logo{font-family:var(--font-head);font-weight:600;font-size:1rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);text-decoration:none;}
+  .nav-logo span{color:var(--text);}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;}
+  .nav-links a{font-family:var(--font-head);font-weight:300;font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--text);}
+  .nav-cta{font-family:var(--font-head);font-size:0.75rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--bg);background:var(--gold);border:none;padding:0.55rem 1.4rem;cursor:pointer;text-decoration:none;transition:background 0.2s;}
+  .nav-cta:hover{background:var(--gold-lt);}
+
+  /* PAGE HERO */
+  .page-hero{
+    padding: 14rem 4rem 6rem;
+    position:relative;overflow:hidden;
+    border-bottom:1px solid var(--faint);
+  }
+  .page-hero-bg{
+    position:absolute;inset:0;
+    background:radial-gradient(ellipse 60% 80% at 80% 30%, rgba(200,146,42,0.07) 0%, transparent 60%),
+               radial-gradient(ellipse 40% 60% at 10% 80%, rgba(7,137,48,0.05) 0%, transparent 60%),
+               linear-gradient(180deg,#080808 0%,#0c0a06 100%);
+  }
+  .page-hero-eyebrow{font-family:var(--font-head);font-weight:300;font-size:0.75rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;position:relative;z-index:1;}
+  .page-hero-eyebrow::before{content:'';width:40px;height:1px;background:var(--gold);display:block;}
+  .page-hero-title{font-family:var(--font-disp);font-size:clamp(5rem,10vw,10rem);line-height:0.9;color:var(--text);position:relative;z-index:1;margin-bottom:1rem;}
+  .page-hero-title em{color:var(--gold);font-style:normal;display:block;}
+  .page-hero-sub{font-family:var(--font-body);font-weight:300;font-size:1.15rem;line-height:1.75;color:rgba(240,237,230,0.6);max-width:600px;position:relative;z-index:1;margin-top:1.5rem;}
+
+  /* SUMMARY SECTION */
+  .summary{
+    display:grid;grid-template-columns:1fr 2fr;gap:8rem;
+    padding:8rem 4rem;border-bottom:1px solid var(--faint);
+    align-items:start;
+  }
+  .summary-portrait-col{}
+  .portrait-frame{
+    width:100%;aspect-ratio:3/4;
+    background:var(--card);border:1px solid var(--faint);
+    display:flex;align-items:center;justify-content:center;
+    position:relative;overflow:hidden;margin-bottom:2rem;
+  }
+  .portrait-inner{text-align:center;padding:2rem;}
+  .portrait-svg{width:70px;height:70px;margin:0 auto 1rem;opacity:0.12;}
+  .portrait-placeholder-label{font-family:var(--font-head);font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);}
+  .portrait-gold-tab{background:var(--gold);color:var(--bg);padding:1.25rem 1.5rem;text-align:center;}
+  .tab-num{font-family:var(--font-disp);font-size:3rem;color:var(--bg);line-height:1;}
+  .tab-label{font-family:var(--font-head);font-size:0.65rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:rgba(8,8,8,0.65);margin-top:0.3rem;}
+
+  .summary-text-col{}
+  .summary-eyebrow{font-family:var(--font-head);font-weight:300;font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.75rem;}
+  .summary-eyebrow::before{content:'';width:30px;height:1px;background:var(--gold);display:block;}
+  .summary-name{font-family:var(--font-head);font-weight:700;font-size:3rem;color:var(--text);line-height:1.1;margin-bottom:0.4rem;}
+  .summary-role{font-family:var(--font-head);font-weight:300;font-size:1rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:3rem;}
+  .summary-body{font-family:var(--font-body);font-weight:300;font-size:1.05rem;line-height:1.85;color:rgba(240,237,230,0.72);margin-bottom:1.5rem;}
+  .summary-body strong{color:var(--gold);font-weight:600;}
+
+  .impact-stats{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:3.5rem;
+  }
+  .impact-stat{background:var(--card);padding:2rem 1.75rem;}
+  .impact-num{font-family:var(--font-disp);font-size:3.5rem;color:var(--gold);line-height:1;margin-bottom:0.3rem;}
+  .impact-label{font-family:var(--font-head);font-size:0.68rem;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);line-height:1.4;}
+
+  /* TIMELINE SECTION */
+  .timeline-section{
+    padding:8rem 4rem;
+    position:relative;
+  }
+  .timeline-header{
+    display:grid;grid-template-columns:1fr 2fr;gap:6rem;
+    align-items:end;margin-bottom:7rem;
+    border-bottom:1px solid var(--faint);padding-bottom:4rem;
+  }
+  .timeline-title{font-family:var(--font-disp);font-size:clamp(4rem,7vw,7rem);line-height:0.9;color:var(--text);}
+  .timeline-title span{color:var(--gold);}
+  .timeline-intro{font-family:var(--font-body);font-weight:300;font-size:1rem;line-height:1.75;color:rgba(240,237,230,0.55);}
+  .timeline-scroll-note{font-family:var(--font-head);font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-top:1.5rem;display:flex;align-items:center;gap:0.75rem;}
+  .timeline-scroll-note::before{content:'↓';font-size:1rem;}
+
+  /* THE VERTICAL TIMELINE */
+  .timeline{
+    position:relative;
+    max-width:900px;margin:0 auto;
+    padding-bottom:4rem;
+  }
+  /* center spine */
+  .timeline::before{
+    content:'';
+    position:absolute;
+    left:50%;transform:translateX(-50%);
+    top:0;bottom:0;
+    width:1px;
+    background:linear-gradient(to bottom, var(--gold) 0%, var(--faint) 100%);
+  }
+
+  .timeline-item{
+    display:grid;
+    grid-template-columns:1fr 60px 1fr;
+    gap:0;
+    margin-bottom:5rem;
+    position:relative;
+  }
+  /* alternating: odd=content left, even=content right */
+  .timeline-item:nth-child(odd) .tl-content{grid-column:1;text-align:right;padding-right:3rem;}
+  .timeline-item:nth-child(odd) .tl-center{grid-column:2;}
+  .timeline-item:nth-child(odd) .tl-media{grid-column:3;padding-left:3rem;}
+  .timeline-item:nth-child(even) .tl-content{grid-column:3;text-align:left;padding-left:3rem;order:3;}
+  .timeline-item:nth-child(even) .tl-center{grid-column:2;order:2;}
+  .timeline-item:nth-child(even) .tl-media{grid-column:1;padding-right:3rem;order:1;}
+
+  .tl-center{
+    display:flex;flex-direction:column;align-items:center;
+    position:relative;z-index:2;
+  }
+  .tl-dot{
+    width:14px;height:14px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--gold);
+    margin-top:0.75rem;flex-shrink:0;
+    transition:background 0.3s;
+    position:relative;z-index:3;
+  }
+  .timeline-item:hover .tl-dot{background:var(--gold);}
+
+  .tl-year{
+    font-family:var(--font-disp);font-size:1.6rem;
+    color:var(--gold);line-height:1;
+    margin-bottom:0.5rem;
+    text-align:center;
+  }
+
+  .tl-content{}
+  .tl-tag{
+    font-family:var(--font-head);font-size:0.65rem;font-weight:400;
+    letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--teal-lt);margin-bottom:0.5rem;
+  }
+  .timeline-item:nth-child(even) .tl-tag{color:var(--gold);}
+  .tl-title{
+    font-family:var(--font-head);font-weight:600;font-size:1rem;
+    color:var(--text);margin-bottom:0.6rem;line-height:1.3;
+  }
+  .tl-desc{
+    font-family:var(--font-body);font-weight:300;font-size:0.88rem;
+    color:rgba(240,237,230,0.55);line-height:1.7;
+  }
+
+  .tl-media{
+    display:flex;align-items:flex-start;
+  }
+  .tl-img{
+    width:100%;aspect-ratio:4/3;
+    background:var(--card);border:1px solid var(--faint);
+    display:flex;align-items:center;justify-content:center;
+    position:relative;overflow:hidden;
+    transition:border-color 0.25s;
+  }
+  .timeline-item:hover .tl-img{border-color:var(--gold);}
+  .tl-img-label{
+    font-family:var(--font-head);font-size:0.62rem;
+    letter-spacing:0.18em;text-transform:uppercase;
+    color:var(--faint);text-align:center;padding:1rem;
+  }
+  .tl-img-icon{width:32px;height:32px;margin:0 auto 0.75rem;opacity:0.08;}
+
+  /* timeline end cap */
+  .timeline-endcap{
+    text-align:center;margin-top:2rem;
+    position:relative;z-index:2;
+  }
+  .endcap-label{
+    font-family:var(--font-head);font-size:0.7rem;letter-spacing:0.28em;
+    text-transform:uppercase;color:var(--muted);
+    background:var(--bg);display:inline-block;padding:0 1.5rem;
+    position:relative;
+  }
+  .endcap-label::before,.endcap-label::after{
+    content:'';position:absolute;top:50%;
+    width:60px;height:1px;background:var(--faint);
+  }
+  .endcap-label::before{right:100%;}
+  .endcap-label::after{left:100%;}
+
+  /* BSU HIGHLIGHT */
+  .bsu-highlight{
+    background:var(--card);
+    border-left:3px solid var(--gold);
+    padding:4rem;margin:0 4rem;
+    border-bottom:1px solid var(--faint);
+  }
+  .bsu-eyebrow{font-family:var(--font-head);font-weight:300;font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+  .bsu-headline{font-family:var(--font-disp);font-size:clamp(2.5rem,4vw,4rem);color:var(--text);line-height:0.95;margin-bottom:2rem;}
+  .bsu-body{font-family:var(--font-body);font-weight:300;font-size:1.05rem;line-height:1.8;color:rgba(240,237,230,0.65);max-width:700px;}
+
+  /* VISITORS SECTION */
+  .visitors{padding:6rem 4rem;border-bottom:1px solid var(--faint);}
+  .visitors-eyebrow{font-family:var(--font-head);font-weight:300;font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+  .visitors-headline{font-family:var(--font-head);font-weight:700;font-size:2rem;color:var(--text);margin-bottom:3.5rem;line-height:1.2;}
+  .visitors-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+  .visitor-card{background:var(--card);padding:2.5rem 2rem;border-top:2px solid transparent;transition:border-color 0.2s;}
+  .visitor-card:hover{border-top-color:var(--gold);}
+  .visitor-summary{font-family:var(--font-body);font-weight:300;font-size:0.8rem;line-height:1.65;color:rgba(240,237,230,0.55);margin-bottom:0.6rem;}
+  .visitor-full{display:none;}
+  .visitor-full.open{display:block;}
+  .visitor-toggle{font-family:var(--font-head);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);background:none;border:1px solid rgba(200,146,42,0.3);cursor:pointer;padding:0.3rem 0.7rem;margin-bottom:0.5rem;display:inline-flex;align-items:center;gap:0.35rem;}
+  .visitor-toggle:hover{border-color:var(--gold);}
+  .visitor-img{width:100%;aspect-ratio:1/1;background:var(--surface);border:1px solid var(--faint);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;}
+  .visitor-img-label{font-family:var(--font-head);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--faint);text-align:center;padding:0.5rem;}
+  .visitor-name{font-family:var(--font-head);font-weight:600;font-size:0.9rem;color:var(--text);margin-bottom:0.3rem;}
+  .visitor-role{font-family:var(--font-body);font-size:0.78rem;color:var(--muted);margin-bottom:0.75rem;}
+  .visitor-quote{font-family:var(--font-body);font-style:italic;font-weight:300;font-size:0.8rem;line-height:1.65;color:rgba(240,237,230,0.45);border-left:2px solid var(--gold);padding-left:0.75rem;margin-top:0.5rem;}
+
+  /* FOOTER */
+  footer{padding:4rem;border-top:1px solid var(--faint);}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;}
+  .footer-copy{font-family:var(--font-body);font-size:0.78rem;color:var(--muted);}
+  .footer-copy strong{color:var(--gold);}
+
+  @media(max-width:900px){
+    nav{padding:1rem 1.5rem;}
+    .nav-links{display:none;}
+    .page-hero,.summary,.timeline-section,.bsu-highlight,.visitors{padding-left:1.5rem;padding-right:1.5rem;}
+    .bsu-highlight{margin:0;}
+    .summary{grid-template-columns:1fr;gap:3rem;}
+    .timeline::before{left:28px;}
+    .timeline-item{grid-template-columns:56px 1fr;}
+    .timeline-item:nth-child(odd) .tl-content,
+    .timeline-item:nth-child(even) .tl-content{grid-column:2;text-align:left;padding-left:2rem;padding-right:0;}
+    .timeline-item:nth-child(odd) .tl-center,
+    .timeline-item:nth-child(even) .tl-center{grid-column:1;order:1;}
+    .timeline-item:nth-child(odd) .tl-media,
+    .timeline-item:nth-child(even) .tl-media{display:none;}
+    .timeline-item:nth-child(even) .tl-content{order:2;}
+    .impact-stats{grid-template-columns:1fr 1fr;}
+    .visitors-grid{grid-template-columns:repeat(2,1fr);}
+    .timeline-header{grid-template-columns:1fr;}
+  }
+
+  /* ── ACCORDION BANDS ── */
+  .band{border-bottom:1px solid var(--faint);position:relative;overflow:hidden;background-size:cover;background-position:center;}
+  .band-header{padding:3.5rem 4rem 2rem;display:flex;flex-direction:column;align-items:flex-start;cursor:pointer;position:relative;z-index:2;min-height:180px;justify-content:flex-end;opacity:0;transform:translateY(20px);transition:opacity 0.55s ease,transform 0.55s ease,background 0.2s;}
+  .band-header.visible{opacity:1;transform:translateY(0);}
+  .band-header::before{content:'';position:absolute;inset:0;background:rgba(8,8,8,0.65);z-index:-1;transition:background 0.2s;}
+  .band-header:hover::before{background:rgba(8,8,8,0.55);}
+  .band-label{font-family:var(--font-head);font-weight:300;font-size:0.68rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;}
+  .band-title{font-family:var(--font-disp);font-size:clamp(2.8rem,5vw,5rem);color:var(--text);line-height:0.92;margin-bottom:1rem;}
+  .band-title em{color:var(--gold);font-style:normal;}
+  .band-cta{font-family:var(--font-head);font-size:0.65rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(200,146,42,0.4);padding:0.45rem 1.1rem;display:inline-flex;align-items:center;gap:0.4rem;transition:all 0.2s;background:none;}
+  .band-header:hover .band-cta{background:rgba(200,146,42,0.1);border-color:var(--gold);}
+  .band-body{max-height:0;overflow:hidden;transition:max-height 0.55s cubic-bezier(0.4,0,0.2,1);}
+  .band-body.open{max-height:5000px;}
+  .band-body-inner{padding:3rem 4rem 4rem;background:var(--bg);}
+  .band.right .band-header{align-items:flex-end;text-align:right;}
+  @media(max-width:900px){
+    .band-header{padding:2.5rem 1.5rem 1.5rem;min-height:140px;}
+    .band-body-inner{padding:2rem 1.5rem;}
+    .band-title{font-size:2.2rem;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">The Whole <span>Story</span></a>
+        <ul class="nav-links">
+    <li><a href="about.html" class="active">About Mr. Green</a></li>
+    <li><a href="search.html">Explore History</a></li>
+    <li><a href="myths.html">Myth vs. Reality</a></li>
+    <li><a href="blackpeople.html">Black People You Don't See</a></li>
+    <li><a href="model.html">Learn the Model</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="quiz.html" class="nav-cta">Start Here</a>
+</nav>
+
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-eyebrow">Your Guide</div>
+  <h1 class="page-hero-title">
+    Mr. Anthony
+    <em>Green.</em>
+  </h1>
+  <p class="page-hero-sub">
+    46 years in classrooms across California and the world. Thousands of students who left knowing more — 
+    about history, about America, about themselves. This is his story.
+  </p>
+</section>
+
+<div id="accordionBands">
+<div class="band right" id="summary">
+  <div class="band-header" onclick="toggleBand(this)">
+    <div class="band-label">The Man Behind The Platform</div>
+    <div class="band-title">Mr. <em>Green.</em></div>
+    <button class="band-cta">Expand <span class="band-arrow">↓</span></button>
+  </div>
+  <div class="band-body">
+    <div class="band-body-inner" >
+<p class="summary-body">
+      His full name is <strong>Anthony Martin DePorrus Green</strong> — named after two African Saints, 
+      St. Anthony of Egypt and the African-Portuguese Saint Martin DePorrus. He was born on the Portuguese 
+      island of Terceira, became an American citizen at 18, and brought with him a lineage that is itself 
+      a living history of Black America. For 46 years he has taught African American history in classrooms, 
+      universities, and communities across California and the world — and he is not done yet.
+    </p>
+
+    <button onclick="toggleBio()" id="bioReadMoreBtn" style="background:none;border:none;padding:0;font-family:var(--font-head);font-size:0.72rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--teal-lt);cursor:pointer;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.5rem;">
+      Read Full Bio <span id="bioArrow">↓</span>
+    </button>
+
+    <div id="bioFull" style="display:none;">
+      <p class="summary-body">
+        He grew up in the Floyd Terrace Housing Project in Vallejo, California, where his breakfast program 
+        was connected to the Black Panthers — and where he was first taught Black History. His neighborhood 
+        athletics were organized by mentors from Alpha Phi Alpha through the Omega Boys Club. 
+        <strong>He was introduced to athletics and Black History at exactly the same time.</strong> 
+        That parallel has never left his teaching.
+      </p>
+      <p class="summary-body">
+        Since 1986, he has taught at Bishop O'Dowd High School in Oakland — one of California's most 
+        distinguished National Blue Ribbon institutions. He is one of the <strong>founding teachers of 
+        the College Board's Advanced Placement African American Studies course</strong>, works with the 
+        College Board on curriculum development and AI policy, and has been invited to present before 
+        the California State Assembly, the Black Caucus, Stanford's Riles Conference, the University 
+        of Ghana, the NCAA Black Student Athlete Summit, the Chan Zuckerberg Initiative, and UC Davis, 
+        among many others.
+      </p>
+      <p class="summary-body">
+        He has been married to the love of his life for 40 years — his wife works alongside him as 
+        Assistant Activities Director and Events Planner at O'Dowd. His daughter is a high-level 
+        executive at Apple. His son is an Oakland firefighter and paramedic. He coached in his 
+        neighborhood specifically to create a positive environment for young men caught in drugs 
+        and violence — and has maintained those relationships for decades. He recently learned that 
+        a young man he once coached off a corner has worked at the same hospital for 20 years.
+      </p>
+      <p class="summary-body">
+        Most recently, he was honored with the 
+        <strong><a href="https://www.linkedin.com/posts/tony-green-5127aa23_feeling-blessed-and-honored-to-be-selected-activity-7419602000037863424-y3Hq/" target="_blank" style="color:var(--gold);text-decoration:none;">Vanguard Award</a></strong> 
+        by The Dr. Betty Shabazz and Malcolm X International Education Institute in Harlem, New York — 
+        recognized as a <em>cultural leader, educator, and community advocate</em> dedicated to 
+        intergenerational dialogue and the empowerment of the next generation of decision makers.
+      </p>
+    </div>
+
+    <div class="impact-stats">
+      <div class="impact-stat">
+        <div class="impact-num">46</div>
+        <div class="impact-label">Years Teaching Black History</div>
+      </div>
+      <div class="impact-stat">
+        <div class="impact-num">7</div>
+        <div class="impact-label">Super Bowl Players Coached</div>
+      </div>
+      <div class="impact-stat">
+        <div class="impact-num">94%</div>
+        <div class="impact-label">AP Exam Pass Rate</div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+<div class="band left" id="origins">
+  <div class="band-header" onclick="toggleBand(this)">
+    <div class="band-label">Where He Comes From</div>
+    <div class="band-title">His Family, <em>His Foundation.</em></div>
+    <button class="band-cta">Expand <span class="band-arrow">↓</span></button>
+  </div>
+  <!-- <div class="band-body">
+    <div class="band-body-inner" >
+<div style="max-width:900px;margin:0 auto;">
+    <div style="font-family:var(--font-head);font-weight:300;font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;">Where He Comes From</div>
+    <h2 style="font-family:var(--font-head);font-weight:700;font-size:2.4rem;color:var(--text);line-height:1.15;margin-bottom:2.5rem;">His Family, His Foundation.</h2>
+    <div style="display:flex;flex-direction:column;gap:2px;"> -->
+
+      <div style="background:var(--card);">
+        <button onclick="toggleAccordion('acc1')" style="width:100%;display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2rem;background:transparent;border:none;cursor:pointer;text-align:left;">
+          <span style="font-family:var(--font-head);font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--teal-lt);">His Stepfather's Story</span>
+          <span id="acc1-icon" style="color:var(--teal-lt);font-family:var(--font-head);font-size:0.8rem;flex-shrink:0;margin-left:1rem;">+</span>
+        </button>
+        <div id="acc1" style="display:none;padding:0 2rem 1.75rem;">
+          <p style="font-family:var(--font-body);font-weight:300;font-size:0.95rem;line-height:1.85;color:rgba(240,237,230,0.7);">
+            His stepfather's father was lynched when he was 15 years old in Scotlandville, Louisiana.
+            Two years later, he was drafted into the Marines. He served as a stretcher-bearer at Iwo Jima —
+            collecting the bodies and body parts of fallen white GIs while under fire, never receiving
+            recognition for that sacrifice. He later helped retrofit Air Force One after the assassination
+            of President Kennedy to shield Lyndon B. Johnson from harm, and was personally awarded by Johnson
+            for his efforts. He served in three wars. His story of service, survival, and erasure lives in
+            every lesson Mr. Green has ever taught.
+          </p>
+        </div>
+      </div>
+
+      <div style="background:var(--card);">
+        <button onclick="toggleAccordion('acc2')" style="width:100%;display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2rem;background:transparent;border:none;cursor:pointer;text-align:left;">
+          <span style="font-family:var(--font-head);font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);">His Mother's Legacy</span>
+          <span id="acc2-icon" style="color:var(--gold);font-family:var(--font-head);font-size:0.8rem;flex-shrink:0;margin-left:1rem;">+</span>
+        </button>
+        <div id="acc2" style="display:none;padding:0 2rem 1.75rem;">
+          <p style="font-family:var(--font-body);font-weight:300;font-size:0.95rem;line-height:1.85;color:rgba(240,237,230,0.7);">
+            His mother was a 1950 graduate of Florida A&M University and a member of Sigma Gamma Rho sorority.
+            She was politically active throughout her life — working with the NAACP, voting rights organizations,
+            the local food pantry, and elderly care programs. She personally paid the college tuition of
+            25 students from her community. Mr. Green's love of community service, he says, is tied
+            directly to her example.
+          </p>
+        </div>
+      </div>
+
+      <div style="background:var(--card);">
+        <button onclick="toggleAccordion('acc3')" style="width:100%;display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2rem;background:transparent;border:none;cursor:pointer;text-align:left;">
+          <span style="font-family:var(--font-head);font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--teal-lt);">His Philosophy — MAAT</span>
+          <span id="acc3-icon" style="color:var(--teal-lt);font-family:var(--font-head);font-size:0.8rem;flex-shrink:0;margin-left:1rem;">+</span>
+        </button>
+        <div id="acc3" style="display:none;padding:0 2rem 1.75rem;">
+          <p style="font-family:var(--font-body);font-weight:300;font-size:0.95rem;line-height:1.85;color:rgba(240,237,230,0.7);">
+            Mr. Green teaches through the <em>Kemitic Philosophy of MAAT</em> — 42 principles
+            focused on balance of the whole person, reaching human potential through effort,
+            focus, and morality. His courses — African American History, The Rise of Black Nationalism,
+            U.S. History, World History — all teach the same fundamental truth: what we know as "race"
+            is a man-made idea with no scientific validity. Education and community activism are the keys
+            to civic virtue and to healing the Republic.
+          </p>
+        </div>
+      </div>
+
+      <div style="background:var(--card);">
+        <button onclick="toggleAccordion('acc4')" style="width:100%;display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2rem;background:transparent;border:none;cursor:pointer;text-align:left;">
+          <span style="font-family:var(--font-head);font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);">The DC Comics Connection</span>
+          <span id="acc4-icon" style="color:var(--gold);font-family:var(--font-head);font-size:0.8rem;flex-shrink:0;margin-left:1rem;">+</span>
+        </button>
+        <div id="acc4" style="display:none;padding:0 2rem 1.75rem;">
+          <p style="font-family:var(--font-body);font-weight:300;font-size:0.95rem;line-height:1.85;color:rgba(240,237,230,0.7);">
+            Mr. Green recently served as a historian reviewer on the DC Comics Superman Graphic Novel
+            <em>"Superman Smashes the Ku Klux Klan"</em> — a work that tells heroic stories of Black
+            servicemen. In a full-circle moment, DC Comics agreed to include a photograph of his stepfather
+            as a 17-year-old draftee inside the book — recognition, finally, for a man whose sacrifice
+            was never acknowledged in his lifetime.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+    </div>
+  </div>
+</div>
+<div class="band right" id="bsu">
+  <div class="band-header" onclick="toggleBand(this)">
+    <div class="band-label">33 Years &amp; Counting</div>
+    <div class="band-title">The <em>BSU.</em></div>
+    <button class="band-cta">Expand <span class="band-arrow">↓</span></button>
+  </div>
+  <div class="band-body">
+    <div class="band-body-inner" >
+<div class="bsu-highlight">
+  <div class="bsu-eyebrow">A Living Legacy — Founded 33 Years Ago</div>
+  <h3 class="bsu-headline">The Oldest Running Black<br/>Student Union in America</h3>
+  <p class="bsu-body">
+    Mr. Green founded the Bishop O'Dowd Black Student Union 33 years ago — through the mentorship 
+    of Dr. Oba T'Shaka, Dr. Richard Navies, and Dr. David Skinner. It never stopped running. 
+    Decades later, it remains an active, student-led institution that has brought civil rights icons, 
+    scholars, activists, and community leaders into a high school auditorium in Oakland, CA. 
+    What began as an act of advocacy became a permanent feature of one of California's most 
+    respected academic institutions. That is not an accident. That is the result of one person 
+    who believed students deserved access to their full history — and built something to give it to them.
+  </p>
+</div>
+    </div>
+  </div>
+</div>
+<div class="band left" id="visitors">
+  <div class="band-header" onclick="toggleBand(this)">
+    <div class="band-label">They Spoke in Room 213- His Classroom</div>
+    <div class="band-title">Civil Rights <em>Legends.</em></div>
+    <button class="band-cta">Expand <span class="band-arrow">↓</span></button>
+  </div>
+  <div class="band-body">
+    <div class="band-body-inner" >
+<div class="visitors-grid">
+
+    <div class="visitor-card">
+      <div class="visitor-img"><div class="visitor-img-label">Photo Placeholder</div></div>
+      <div class="visitor-name">Watani Stiner</div>
+      <div class="visitor-role">US Organization · Black Nationalist Movement · Co-Founder of Kwanzaa</div>
+      <p class="visitor-summary">Original member of US, the Black Nationalist organization that gave the world Kwanzaa.</p>
+      <button class="visitor-toggle" onclick="toggleVisitor(this)">Read more <span>↓</span></button>
+      <div class="visitor-full">
+        <p style="font-family:var(--font-body);font-weight:300;font-size:0.82rem;line-height:1.75;color:rgba(240,237,230,0.6);margin-bottom:0.75rem;">An original member of US — the Black Nationalist organization founded by Maulana Karenga — Stiner was part of the movement that gave the world Kwanzaa, the pan-African holiday now celebrated by millions. The FBI's COINTELPRO program deliberately targeted and dismantled US through covert harassment and manufactured conflict, a documented chapter of government-sanctioned suppression of Black political organizing in America.</p>
+        <div class="visitor-quote">year.</div>
+      </div>
+    </div>
+
+    <div class="visitor-card">
+      <div class="visitor-img"><div class="visitor-img-label">Photo Placeholder</div></div>
+      <div class="visitor-name">Al Lorena</div>
+      <div class="visitor-role">Oakland's Brown Berets · Personal Security for Famous Black Panther Bobby Seale</div>
+      <p class="visitor-summary">Founding member of Oakland's Brown Berets, initiating the Black and Brown solidarity movement.</p>
+      <button class="visitor-toggle" onclick="toggleVisitor(this)">Read more <span>↓</span></button>
+      <div class="visitor-full">
+        <p style="font-family:var(--font-body);font-weight:300;font-size:0.82rem;line-height:1.75;color:rgba(240,237,230,0.6);margin-bottom:0.75rem;">One of the founding members of Oakland's Brown Berets, Lorena served as personal security for Black Panther Party co-founder Bobby Seale. The Brown Berets stood in solidarity with the Panthers in the belief that the struggle for equality was inseparable across Black and Brown communities — a coalition that the establishment feared and worked to suppress.</p>
+        <div class="visitor-quote">year</div>
+      </div>
+    </div>
+
+    <div class="visitor-card">
+      <div class="visitor-img"><div class="visitor-img-label">Photo Placeholder</div></div>
+      <div class="visitor-name">Gloria Arellanes</div>
+      <div class="visitor-role">Brown Beret · First Female Minister · Founder of La Causa</div>
+      <p class="visitor-summary">The first woman to serve as minister in the Brown Berets. She didn't just hold a title — she built free clinics, a feminist movement, and a newspaper.</p>
+      <button class="visitor-toggle" onclick="toggleVisitor(this)">Read more <span>↓</span></button>
+      <div class="visitor-full">
+        <p style="font-family:var(--font-body);font-weight:300;font-size:0.82rem;line-height:1.75;color:rgba(240,237,230,0.6);margin-bottom:0.75rem;">The first woman to serve as minister in the Brown Berets, Arellanes didn't just hold the title — she built infrastructure. She established free clinics serving communities that mainstream healthcare ignored, helped give rise to the Chicana Feminist movement, and founded <em>La Causa</em>, the organization's newspaper that put their mission in print and in the hands of the people.</p>
+        <div class="visitor-quote">year</div>
+      </div>
+    </div>
+
+    <div class="visitor-card">
+      <div class="visitor-img"><div class="visitor-img-label">Photo Placeholder</div></div>
+      <div class="visitor-name">Yuri Kochiyama</div>
+      <div class="visitor-role">Japanese American Activist</div>
+      <p class="visitor-summary">A Japanese American interned during WWII who became one of Malcolm X's closest confidantes. When he was assassinated in 1965, she held his head in her lap. She told that story in Room 213 in 2009.</p>
+      <button class="visitor-toggle" onclick="toggleVisitor(this)">Read more <span>↓</span></button>
+      <div class="visitor-full">
+        <p style="font-family:var(--font-body);font-weight:300;font-size:0.82rem;line-height:1.75;color:rgba(240,237,230,0.6);margin-bottom:0.75rem;">A Nisei — second-generation Japanese American — Kochiyama was interned by the U.S. government during WWII, an experience that forged her lifelong commitment to human rights. She befriended Malcolm X during his years in New York, and on February 21, 1965, she was in the audience at the Audubon Ballroom when he was assassinated. She rushed to the stage and held his head in her lap as he died — a moment captured by Life magazine. In 2009, she told that story in Room 213.</p>
+        <div class="visitor-quote">"I didn't wake up and decide to become an activist. But you couldn't help notice the inequities, the injustices. It was all around you." — Yuri Kochiyama, 2004</div>
+      </div>
+    </div>
+
+  </div>
+    </div>
+  </div>
+</div>
+<div class="band right" id="media">
+  <div class="band-header" onclick="toggleBand(this)">
+    <div class="band-label">National Coverage</div>
+    <div class="band-title">In the <em>Media.</em></div>
+    <button class="band-cta">Expand <span class="band-arrow">↓</span></button>
+  </div>
+  <div class="band-body">
+    <div class="band-body-inner" >
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:5rem;">
+    <a href="https://www.pbs.org/newshour/show/inside-the-african-american-studies-class-praised-by-some-and-fiercely-opposed-by-others" target="_blank" style="background:var(--card);padding:0;display:block;text-decoration:none;border-top:3px solid var(--teal-lt);overflow:hidden;transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+      <img src="img_pbs_tv.jpg" alt="PBS NewsHour coverage" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;"/>
+      <div style="padding:2rem;">
+        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:0.5rem;">PBS NewsHour · June 2023</div>
+        <div style="font-family:var(--font-head);font-weight:600;font-size:1rem;color:var(--text);margin-bottom:0.5rem;line-height:1.3;">Inside the African American Studies Class Praised by Some and Fiercely Opposed by Others</div>
+        <div style="font-family:var(--font-body);font-size:0.82rem;color:var(--muted);">National PBS coverage of Mr. Green's classroom and the fight to teach the full story of American history.</div>
+      </div>
+    </a>
+    <a href="https://www.ktvu.com/video/1602123" target="_blank" style="background:var(--card);padding:0;display:block;text-decoration:none;border-top:3px solid var(--gold);overflow:hidden;transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+      <img src="img_pbs_crew.jpg" alt="KTVU coverage" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;"/>
+      <div style="padding:2rem;">
+        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;">KTVU FOX 2 San Francisco</div>
+        <div style="font-family:var(--font-head);font-weight:600;font-size:1rem;color:var(--text);margin-bottom:0.5rem;line-height:1.3;">The Importance of African American Studies in Schools</div>
+        <div style="font-family:var(--font-body);font-size:0.82rem;color:var(--muted);">Bay Area news coverage featuring Mr. Green's work at Bishop O'Dowd High School in Oakland.</div>
+      </div>
+    </a>
+  </div>
+    </div>
+  </div>
+</div>
+<div class="band left" id="gallery">
+  <div class="band-header" onclick="toggleBand(this)">
+    <div class="band-label">The Record in Photos</div>
+    <div class="band-title">Photo <em>Gallery.</em></div>
+    <button class="band-cta">Expand <span class="band-arrow">↓</span></button>
+  </div>
+  <div class="band-body">
+    <div class="band-body-inner" style="padding-left:0;padding-right:0;">
+<!-- PHOTO GALLERY -->
+  <div style="font-family:var(--font-head);font-weight:300;font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;">Photo Gallery</div>
+  <div style="position:relative;">
+    <div id="photoStrip" style="display:flex;gap:3px;overflow:hidden;">
+      <div id="photoTrack" style="display:flex;gap:3px;animation:photoScroll 36s linear infinite;" onmouseover="this.style.animationPlayState='paused'" onmouseout="this.style.animationPlayState='running'">
+
+    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
+      <img src="img_vanguard_couple.jpg" alt="Mr. & Mrs. Green at Vanguard Award" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;" />
+      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
+        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">Vanguard Award 2026</div>
+        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">Mr. & Mrs. Green at the Malcolm X 61st Commemoration, Audubon Ballroom, Harlem</div>
+      </div>
+    </div>
+
+    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
+      <img src="img_vanguard_trophy.jpg" alt="Vanguard Award Trophy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;" />
+      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
+        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">Vanguard Award Trophy</div>
+        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">Malcolm X & Dr. Betty Shabazz Memorial and Educational Center</div>
+      </div>
+    </div>
+
+    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
+      <img src="img_vanguard_stage.jpg" alt="Vanguard stage" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;" />
+      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
+        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">Vanguard Ceremony · Harlem</div>
+        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">With honorees at the 61st Annual Commemoration of Malcolm X</div>
+      </div>
+    </div>
+
+    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
+      <img src="img_ny_gov.jpg" alt="NY Governor Certificate" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;" />
+      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
+        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">State of New York</div>
+        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">Certificate of Recognition — Governor Kathy Hochul, February 21, 2026</div>
+      </div>
+    </div>
+
+    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
+      <img src="img_capitol.jpg" alt="California State Capitol" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;" />
+      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
+        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">California State Capitol</div>
+        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">Presenting AP African American Studies to the State Assembly</div>
+      </div>
+    </div>
+
+    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
+      <img src="img_naacp.jpg" alt="NAACP Award" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;" />
+      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
+        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">NAACP 2022</div>
+        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">Civic Engagement Award Recipients — Mr. & Mrs. Green</div>
+      </div>
+    </div>
+
+    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
+      <img src="img_nba.jpg" alt="NBA All Star Teacher" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;" />
+      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
+        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">NBC Sports · All-Star Teacher</div>
+        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">Tony Green recognized as All-Star Teacher Candidate at live event</div>
+      </div>
+    </div>
+
+    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
+      <img src="img_stanford_kwanzaa.jpg" alt="Stanford Kwanzaa Keynote" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;" />
+      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
+        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">Stanford University</div>
+        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">Kwanzaa Keynote — Stanford University Hospital</div>
+      </div>
+    </div>
+
+    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
+      <img src="img_ghana.jpg" alt="ASWAAD Conference Ghana" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;" />
+      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
+        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">University of Ghana</div>
+        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">ASWAAD 11th Biennial Conference · August 2023</div>
+      </div>
+    </div>
+
+    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
+      <img src="img_aha.jpg" alt="American Historical Association" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;" />
+      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
+        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">American Historical Association</div>
+        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">National Meeting Presentation</div>
+      </div>
+    </div>
+
+    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
+      <img src="img_freight_salvage.jpg" alt="Freight and Salvage" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;" />
+      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
+        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">Freight & Salvage · Berkeley</div>
+        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">Oral History Presentation</div>
+      </div>
+    </div>
+
+    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
+      <img src="img_blk_activism.jpg" alt="Black Activism in the Bay" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;" />
+      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
+        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">Stanford University</div>
+        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">Black Activism in the Bay — 55th Anniversary of the Black Panther Party</div>
+      </div>
+    </div>
+
+      </div><!-- /photoTrack -->
+      <!-- Duplicate for seamless loop -->
+      <div style="display:flex;gap:3px;animation:photoScroll 36s linear infinite;flex-shrink:0;" onmouseover="this.style.animationPlayState='paused'" onmouseout="this.style.animationPlayState='running'">
+        <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0"><img src="img_vanguard_couple.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"/><div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1rem;opacity:0;transition:opacity 0.25s;"><div style="font-family:var(--font-head);font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);">Vanguard Award 2026</div></div></div>
+        <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0"><img src="img_vanguard_trophy.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"/><div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1rem;opacity:0;transition:opacity 0.25s;"><div style="font-family:var(--font-head);font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);">Vanguard Trophy</div></div></div>
+        <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0"><img src="img_capitol.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"/><div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1rem;opacity:0;transition:opacity 0.25s;"><div style="font-family:var(--font-head);font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);">California State Capitol</div></div></div>
+        <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0"><img src="img_ghana.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"/><div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1rem;opacity:0;transition:opacity 0.25s;"><div style="font-family:var(--font-head);font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);">University of Ghana</div></div></div>
+        <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0"><img src="img_naacp.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"/><div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1rem;opacity:0;transition:opacity 0.25s;"><div style="font-family:var(--font-head);font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);">NAACP 2022</div></div></div>
+        <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0"><img src="img_stanford_kwanzaa.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"/><div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1rem;opacity:0;transition:opacity 0.25s;"><div style="font-family:var(--font-head);font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);">Stanford Kwanzaa</div></div></div>
+      </div><!-- /duplicate -->
+    </div><!-- /photoStrip -->
+    <!-- fade edges -->
+    <div style="position:absolute;top:0;left:0;bottom:0;width:80px;background:linear-gradient(to right,var(--bg),transparent);pointer-events:none;z-index:2;"></div>
+    <div style="position:absolute;top:0;right:0;bottom:0;width:80px;background:linear-gradient(to left,var(--bg),transparent);pointer-events:none;z-index:2;"></div>
+  </div>
+</section>
+
+<style>
+@keyframes photoScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+</style>
+
+<!-- RECOGNITION -->
+<section style="padding:7rem 4rem;background:var(--surface);border-bottom:1px solid var(--faint);" id="recognition">
+  <div style="font-family:var(--font-head);font-weight:300;font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;text-align:center;">The Record</div>
+  <h2 style="font-family:var(--font-disp);font-size:clamp(3rem,5vw,5rem);color:var(--text);text-align:center;line-height:0.95;margin-bottom:5rem;">Teaching &amp; Coaching <span style="color:var(--gold);">Recognition</span></h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;">
+
+    <div style="background:var(--card);padding:3rem;">
+      <div style="font-family:var(--font-head);font-weight:600;font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:2rem;">Teaching Awards &amp; Recognition</div>
+      <div style="display:flex;flex-direction:column;gap:0;">
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>Noble National Teacher of the Year
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>NBC Sports Teacher of the Year
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>National Geographic Teacher of the Week
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>2019 Golden State Warriors "Impact Warrior" — Community Leadership &amp; Social Justice
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>"Tony Green Day" — City of Oakland, for coaching and community activism
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>NAACP Community Service Award — City of Oakland
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>Founding Teacher, College Board AP African American Studies
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>Carter Larke Award — Texas A&M University, Excellence in African American Studies
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>Acorn Award — College Board, Curriculum Development
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span><a href="https://www.linkedin.com/posts/tony-green-5127aa23_feeling-blessed-and-honored-to-be-selected-activity-7419602000037863424-y3Hq/" target="_blank" style="color:rgba(240,237,230,0.75);text-decoration:none;">Vanguard Award — Dr. Betty Shabazz &amp; Malcolm X International Education Institute, Harlem</a>
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>Provident Credit Union All-Star Teacher Award (2025)
+        </div>
+        <div style="padding:1rem 0;font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>Nominated, City of Vallejo Athletic Hall of Fame
+        </div>
+      </div>
+    </div>
+
+    <div style="background:var(--card);padding:3rem;">
+      <div style="font-family:var(--font-head);font-weight:600;font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;">Coaching Awards &amp; Athlete Legacy</div>
+      <div style="display:flex;flex-direction:column;gap:0;">
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>National Track Coach of the Year
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>California Coach of the Year
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>Northern California &amp; League Coach of the Year
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>National Girls Track Team Championship — Best Small School Team in American History (1994)
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>Coached 7 Super Bowl players
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>Coached 2 World Series players · 1 Olympian · Numerous National Champions
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>Eric Bjornson (Dallas Cowboys) · Kevin King (Green Bay Packers)
+        </div>
+        <div style="padding:1rem 0;font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>94% AP exam pass rate · 98% of students earning college credit
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- LECTURES & PRESENTATIONS -->
+<section style="padding:6rem 4rem;border-bottom:1px solid var(--faint);">
+  <div style="font-family:var(--font-head);font-weight:300;font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;">He Has Taken This Work Everywhere</div>
+  <h2 style="font-family:var(--font-head);font-weight:700;font-size:2rem;color:var(--text);line-height:1.2;margin-bottom:3rem;">Lectures, Presentations &amp; Keynotes</h2>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;">
+    <div style="background:var(--card);padding:2rem 1.75rem;">
+      <div style="font-family:var(--font-disp);font-size:2rem;color:var(--gold);margin-bottom:0.75rem;line-height:1;">Ghana</div>
+      <div style="font-family:var(--font-head);font-weight:500;font-size:0.82rem;color:var(--text);margin-bottom:0.3rem;">ASWAAD Conference</div>
+      <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--muted);">University of Ghana</div>
+    </div>
+    <div style="background:var(--card);padding:2rem 1.75rem;">
+      <div style="font-family:var(--font-disp);font-size:2rem;color:var(--gold);margin-bottom:0.75rem;line-height:1;">Stanford</div>
+      <div style="font-family:var(--font-head);font-weight:500;font-size:0.82rem;color:var(--text);margin-bottom:0.3rem;">Riles Conference · Black Panther Project</div>
+      <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--muted);">Stanford University</div>
+    </div>
+    <div style="background:var(--card);padding:2rem 1.75rem;">
+      <div style="font-family:var(--font-disp);font-size:2rem;color:var(--gold);margin-bottom:0.75rem;line-height:1;">Texas</div>
+      <div style="font-family:var(--font-head);font-weight:500;font-size:0.82rem;color:var(--text);margin-bottom:0.3rem;">NCAA Black Student Athlete Summit</div>
+      <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--muted);">University of Texas · Texas A&M</div>
+    </div>
+    <div style="background:var(--card);padding:2rem 1.75rem;">
+      <div style="font-family:var(--font-disp);font-size:2rem;color:var(--gold);margin-bottom:0.75rem;line-height:1;">CA</div>
+      <div style="font-family:var(--font-head);font-weight:500;font-size:0.82rem;color:var(--text);margin-bottom:0.3rem;">State Assembly · Black Caucus · Farkas Committee</div>
+      <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--muted);">Sacramento · San Francisco · UC Davis</div>
+    </div>
+    <div style="background:var(--card);padding:2rem 1.75rem;">
+      <div style="font-family:var(--font-disp);font-size:2rem;color:var(--gold);margin-bottom:0.75rem;line-height:1;">Meta</div>
+      <div style="font-family:var(--font-head);font-weight:500;font-size:0.82rem;color:var(--text);margin-bottom:0.3rem;">Summer of Protest</div>
+      <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--muted);">Chan Zuckerberg Initiative · Facebook</div>
+    </div>
+    <div style="background:var(--card);padding:2rem 1.75rem;">
+      <div style="font-family:var(--font-disp);font-size:2rem;color:var(--gold);margin-bottom:0.75rem;line-height:1;">Davis</div>
+      <div style="font-family:var(--font-head);font-weight:500;font-size:0.82rem;color:var(--text);margin-bottom:0.3rem;">Black Studies Symposium</div>
+      <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--muted);">UC Davis</div>
+    </div>
+    <div style="background:var(--card);padding:2rem 1.75rem;">
+      <div style="font-family:var(--font-disp);font-size:2rem;color:var(--gold);margin-bottom:0.75rem;line-height:1;">DC</div>
+      <div style="font-family:var(--font-head);font-weight:500;font-size:0.82rem;color:var(--text);margin-bottom:0.3rem;">Superman Smashes the KKK</div>
+      <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--muted);">DC Comics · Historian Reviewer</div>
+    </div>
+    <div style="background:var(--card);padding:2rem 1.75rem;">
+      <div style="font-family:var(--font-disp);font-size:2rem;color:var(--gold);margin-bottom:0.75rem;line-height:1;">CB</div>
+      <div style="font-family:var(--font-head);font-weight:500;font-size:0.82rem;color:var(--text);margin-bottom:0.3rem;">Curriculum Development · AI Policy</div>
+      <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--muted);">The College Board</div>
+    </div>
+  </div>
+</section>
+
+<!-- READING LIST -->
+<section style="padding:6rem 4rem;border-bottom:1px solid var(--faint);" id="reading">
+  <div style="display:grid;grid-template-columns:2fr 3fr;gap:6rem;align-items:start;">
+    <div>
+      <div style="font-family:var(--font-head);font-weight:300;font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;">Mr. Green's Bookshelf</div>
+      <h2 style="font-family:var(--font-head);font-weight:700;font-size:2.2rem;color:var(--text);line-height:1.2;margin-bottom:1.5rem;">Where He Sends Everyone Who Asks</h2>
+      <p style="font-family:var(--font-body);font-weight:300;font-size:0.95rem;line-height:1.75;color:rgba(240,237,230,0.5);">
+        After 46 years in the classroom, this is the list Mr. Green returns to again and again 
+        when someone says "I want to understand this better."
+      </p>
+      <a href="bookshelf.html" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-head);font-size:0.72rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid var(--gold);padding:0.6rem 1.25rem;margin-top:1.5rem;transition:all 0.2s;" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Get the Whole Bookshelf →</a>
+      <p style="display:none;">
+      </p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0;">
+      <div style="padding:1.5rem 0;border-bottom:1px solid var(--faint);display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;cursor:pointer;">
+        <div style="font-family:var(--font-disp);font-size:1.5rem;color:var(--faint);width:2.5rem;">01</div>
+        <div><div style="font-family:var(--font-head);font-weight:500;font-size:0.95rem;color:var(--text);margin-bottom:0.2rem;">The Spook Who Sat by the Door</div><div style="font-family:var(--font-body);font-size:0.8rem;color:var(--muted);">Sam Greenlee</div></div>
+      </div>
+      <div style="padding:1.5rem 0;border-bottom:1px solid var(--faint);display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;">
+        <div style="font-family:var(--font-disp);font-size:1.5rem;color:var(--faint);width:2.5rem;">02</div>
+        <div><div style="font-family:var(--font-head);font-weight:500;font-size:0.95rem;color:var(--text);margin-bottom:0.2rem;">The Autobiography of Malcolm X</div><div style="font-family:var(--font-body);font-size:0.8rem;color:var(--muted);">Alex Haley</div></div>
+      </div>
+      <div style="padding:1.5rem 0;border-bottom:1px solid var(--faint);display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;">
+        <div style="font-family:var(--font-disp);font-size:1.5rem;color:var(--faint);width:2.5rem;">03</div>
+        <div><div style="font-family:var(--font-head);font-weight:500;font-size:0.95rem;color:var(--text);margin-bottom:0.2rem;">Miseducation of the Negro</div><div style="font-family:var(--font-body);font-size:0.8rem;color:var(--muted);">Carter G. Woodson</div></div>
+      </div>
+      <div style="padding:1.5rem 0;border-bottom:1px solid var(--faint);display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;">
+        <div style="font-family:var(--font-disp);font-size:1.5rem;color:var(--faint);width:2.5rem;">04</div>
+        <div><div style="font-family:var(--font-head);font-weight:500;font-size:0.95rem;color:var(--text);margin-bottom:0.2rem;">Invisible Man</div><div style="font-family:var(--font-body);font-size:0.8rem;color:var(--muted);">Ralph Ellison</div></div>
+      </div>
+      <div style="padding:1.5rem 0;border-bottom:1px solid var(--faint);display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;">
+        <div style="font-family:var(--font-disp);font-size:1.5rem;color:var(--faint);width:2.5rem;">05</div>
+        <div><div style="font-family:var(--font-head);font-weight:500;font-size:0.95rem;color:var(--text);margin-bottom:0.2rem;">Race Matters</div><div style="font-family:var(--font-body);font-size:0.8rem;color:var(--muted);">Cornel West</div></div>
+      </div>
+      <div style="padding:1.5rem 0;border-bottom:1px solid var(--faint);display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;">
+        <div style="font-family:var(--font-disp);font-size:1.5rem;color:var(--faint);width:2.5rem;">06</div>
+        <div><div style="font-family:var(--font-head);font-weight:500;font-size:0.95rem;color:var(--text);margin-bottom:0.2rem;">Up From Slavery</div><div style="font-family:var(--font-body);font-size:0.8rem;color:var(--muted);">Booker T. Washington</div></div>
+      </div>
+      <div style="padding:1.5rem 0;display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;">
+        <div style="font-family:var(--font-disp);font-size:1.5rem;color:var(--faint);width:2.5rem;">07</div>
+        <div><div style="font-family:var(--font-head);font-weight:500;font-size:0.95rem;color:var(--text);margin-bottom:0.2rem;">Malcolm X: A Life of Reinvention</div><div style="font-family:var(--font-body);font-size:0.8rem;color:var(--muted);">Manning Marable</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section" id="timeline">
+  <div class="timeline-header">
+    <div>
+      <h2 class="timeline-title">A Legacy<br/><span>Built</span><br/>Year by Year.</h2>
+    </div>
+    <div>
+      <p class="timeline-intro">
+        Scroll down through nearly five decades of milestones — from 2026 back to where it all began 
+        in the housing projects of Vallejo, California. Each entry is a moment where Mr. Green 
+        showed up, did the work, and left something more permanent than a lesson plan behind.
+      </p>
+      <div class="timeline-scroll-note">Scroll down to travel back through time</div>
+    </div>
+  </div>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Present Day</div>
+        <div class="tl-title">The Whole Story Platform Launches</div>
+        <div class="tl-desc">Mr. Green's 46 years of curriculum, field trips, and classroom wisdom become the foundation for a national public history platform — brought forward by a former student who never forgot.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2026</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Site Launch · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Recognition · Harlem, New York</div>
+        <div class="tl-title"><a href="https://www.linkedin.com/posts/tony-green-5127aa23_feeling-blessed-and-honored-to-be-selected-activity-7419602000037863424-y3Hq/" target="_blank" style="color:var(--text);text-decoration:none;">Vanguard Award — Dr. Betty Shabazz &amp; Malcolm X International Education Institute</a></div>
+        <div class="tl-desc">Honored in Harlem for visionary educational leadership and sustained community advocacy — recognized as a cultural leader dedicated to intergenerational dialogue and the empowerment of the next generation of decision makers.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2025</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Vanguard Award · Photo Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Recognition</div>
+        <div class="tl-title">Provident Credit Union All-Star Teacher Award</div>
+        <div class="tl-desc">Named among the Bay Area's most distinguished educators — joining a list of honorees representing the region's best classroom talent since 2007.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2025</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Award Photo Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">AP African American Studies</div>
+        <div class="tl-title">Redlining &amp; Gentrification Field Trip — Oakland</div>
+        <div class="tl-desc">65 students toured historic North and West Oakland — visiting Lois The Pie Queen, the Black Panther Party museum, and Marcus Bookstore. Projects critiqued by UC Berkeley Urban Geographer Dr. Brandi Thompson Summers.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2024</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Field Trip · Photo Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">College Board · Curriculum</div>
+        <div class="tl-title">AP African American Studies — College Board Certified Nationally</div>
+        <div class="tl-desc">The College Board launches AP African American Studies nationally. Mr. Green is among the founding teachers — having been teaching this material for decades before the College Board formalized it.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2022</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">College Board · Photo Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Golden State Warriors</div>
+        <div class="tl-title">"Impact Warrior" — Community Leadership &amp; Social Justice</div>
+        <div class="tl-desc">The Golden State Warriors recognize Mr. Green as an Impact Warrior for his decades of community leadership and social justice work in Oakland and the surrounding Bay Area.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2019</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Warriors Award · Photo Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">City of Oakland</div>
+        <div class="tl-title">Tony Green Day — Oakland</div>
+        <div class="tl-desc">The City of Oakland officially designates "Tony Green Day" — honoring his decades of coaching, teaching, and community activism that have shaped Oakland youth for generations.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2010s</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Oakland · Photo Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">BSU · Civil Rights Speaker</div>
+        <div class="tl-title">[Notable Speaker — Placeholder]</div>
+        <div class="tl-desc">One of countless civil rights figures, scholars, or activists who came to Bishop O'Dowd to speak at Mr. Green's invitation. Mr. Green — please add names and years for BSU guest entries.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2010s</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">BSU Event · Photo Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Milestone</div>
+        <div class="tl-title">20 Years at Bishop O'Dowd</div>
+        <div class="tl-desc">Two decades at the same institution. By this point, Mr. Green has coached athletes to national championships, built the BSU into a nationally recognized program, and taught thousands of students the history their textbooks left out.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2006</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">O'Dowd Campus · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Athletics · National Championship</div>
+        <div class="tl-title">Girls Track — National Dual Meet Champions</div>
+        <div class="tl-desc">The 1994 Bishop O'Dowd Girls Track Team, coached by Mr. Green, is named the best small school track team in American history. National Dual Meet Champions. A record that still stands.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">1994</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">1994 Championship Team · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">BSU Founded · Oakland</div>
+        <div class="tl-title">Black Student Union — Bishop O'Dowd High School</div>
+        <div class="tl-desc">Mr. Green founds the BSU through the mentorship of Dr. Oba T'Shaka, Dr. Richard Navies, and Dr. David Skinner. It will become the oldest continuously running Black Student Union in the United States.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">1993</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">BSU Founding · Photo Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Institutional Recognition</div>
+        <div class="tl-title">Bishop O'Dowd Named National Blue Ribbon School</div>
+        <div class="tl-desc">The U.S. Department of Education designates Bishop O'Dowd a National Blue Ribbon School. Mr. Green has been building his program here for four years by this point — a cornerstone of the institution.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">1990</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Blue Ribbon · Photo Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Oakland</div>
+        <div class="tl-title">Joins Bishop O'Dowd High School</div>
+        <div class="tl-desc">Mr. Green arrives at Bishop O'Dowd — Social Studies teacher, coach, mentor. He will not leave. The 38-year tenure that follows will define one of the most consequential teaching careers in California history.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">1986</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">O'Dowd Campus · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Cupertino, CA — Where It Began</div>
+        <div class="tl-title">Career Begins — Homestead High School, Cupertino</div>
+        <div class="tl-desc">Mr. Green begins his teaching career at Homestead High School — alma mater of Apple co-founder Steve Wozniak. From Silicon Valley's backyard, he develops the standard of rigor and truth-telling that will define 46 years of teaching.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">1980</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Homestead HS · Cupertino · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Vallejo, CA — The Origin</div>
+        <div class="tl-title">Grows Up in Floyd Terrace — Black Panthers, Athletics &amp; Black History</div>
+        <div class="tl-desc">In the Floyd Terrace Housing Project in Vallejo, young Anthony Green is introduced to athletics and Black History at the same time. His breakfast program is connected to the Black Panthers. His neighborhood athletics are organized by Alpha Phi Alpha mentors through the Omega Boys Club. Both will shape everything that follows.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">1960s</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Vallejo · Floyd Terrace · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-endcap">
+      <span class="endcap-label">The story continues being written</span>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 The Whole Story. Prototype — <strong>for Mr. Anthony Green</strong>.</div>
+    <div class="footer-copy">All facts cited. All history documented.</div>
+    <div class="footer-copy">Created by <a href="https://www.getclarity.consulting" target="_blank" style="color:var(--gold);text-decoration:none;">Alanne International</a></div>
+  </div>
+</footer>
+
+<script>
+function toggleVisitor(btn) {
+  const full = btn.nextElementSibling;
+  const open = full.classList.toggle('open');
+  btn.querySelector('span').textContent = open ? '↑' : '↓';
+  btn.firstChild.textContent = open ? 'Read less ' : 'Read more ';
+}
+
+function setPNav(el) {
+  document.querySelectorAll('.pnav-link').forEach(a => a.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// Highlight active section on scroll
+window.addEventListener('scroll', () => {
+  const sections = ['summary','origins','visitors','media','recognition','reading','timeline'];
+  let current = sections[0];
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top < 140) current = id;
+  });
+  document.querySelectorAll('.pnav-link').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+
+function toggleBio() {
+  const full = document.getElementById('bioFull');
+  const btn  = document.getElementById('bioReadMoreBtn');
+  const arr  = document.getElementById('bioArrow');
+  const open = full.style.display === 'block';
+  full.style.display = open ? 'none' : 'block';
+  btn.childNodes[0].textContent = open ? 'Read Full Bio ' : 'Read Less ';
+  arr.textContent = open ? '↓' : '↑';
+}
+
+function toggleAccordion(id) {
+  const panel = document.getElementById(id);
+  const icon  = document.getElementById(id + '-icon');
+  const open  = panel.style.display === 'block';
+  panel.style.display = open ? 'none' : 'block';
+  icon.textContent    = open ? '+' : '−';
+}
+</script>
+
+<!-- FLOATING TIMELINE BUTTON -->
+<a href="#timeline" id="timelineFloat" style="position:fixed;right:1.5rem;bottom:2rem;z-index:200;display:flex;flex-direction:column;align-items:center;gap:0.3rem;background:var(--gold);padding:0.85rem 1.1rem;text-decoration:none;box-shadow:0 4px 24px rgba(0,0,0,0.5);transition:transform 0.2s,opacity 0.3s;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+  <span style="font-family:var(--font-head);font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--bg);line-height:1;">Jump to</span>
+  <span style="font-family:var(--font-disp);font-size:1.1rem;color:var(--bg);line-height:1;">Timeline</span>
+  <span style="color:var(--bg);font-size:0.85rem;line-height:1;">↓</span>
+</a>
+
+<script>
+// Hide the float button once timeline is in view
+window.addEventListener('scroll', () => {
+  const tl = document.getElementById('timeline');
+  const btn = document.getElementById('timelineFloat');
+  if (!tl || !btn) return;
+  btn.style.opacity = tl.getBoundingClientRect().top > 100 ? '1' : '0';
+  btn.style.pointerEvents = tl.getBoundingClientRect().top > 100 ? 'auto' : 'none';
+});
+</script>
+</body>
+</html>
+    </div>
+  </div>
+</div>
+<div class="band right" id="recognition">
+  <div class="band-header" onclick="toggleBand(this)">
+    <div class="band-label">Awards &amp; Honors</div>
+    <div class="band-title">The <em>Recognition.</em></div>
+    <button class="band-cta">Expand <span class="band-arrow">↓</span></button>
+  </div>
+  <div class="band-body">
+    <div class="band-body-inner" >
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;">
+
+    <div style="background:var(--card);padding:3rem;">
+      <div style="font-family:var(--font-head);font-weight:600;font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:2rem;">Teaching Awards &amp; Recognition</div>
+      <div style="display:flex;flex-direction:column;gap:0;">
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>Noble National Teacher of the Year
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>NBC Sports Teacher of the Year
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>National Geographic Teacher of the Week
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>2019 Golden State Warriors "Impact Warrior" — Community Leadership &amp; Social Justice
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>"Tony Green Day" — City of Oakland, for coaching and community activism
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>NAACP Community Service Award — City of Oakland
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>Founding Teacher, College Board AP African American Studies
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>Carter Larke Award — Texas A&M University, Excellence in African American Studies
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>Acorn Award — College Board, Curriculum Development
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span><a href="https://www.linkedin.com/posts/tony-green-5127aa23_feeling-blessed-and-honored-to-be-selected-activity-7419602000037863424-y3Hq/" target="_blank" style="color:rgba(240,237,230,0.75);text-decoration:none;">Vanguard Award — Dr. Betty Shabazz &amp; Malcolm X International Education Institute, Harlem</a>
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>Provident Credit Union All-Star Teacher Award (2025)
+        </div>
+        <div style="padding:1rem 0;font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>Nominated, City of Vallejo Athletic Hall of Fame
+        </div>
+      </div>
+    </div>
+
+    <div style="background:var(--card);padding:3rem;">
+      <div style="font-family:var(--font-head);font-weight:600;font-size:0.8rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;">Coaching Awards &amp; Athlete Legacy</div>
+      <div style="display:flex;flex-direction:column;gap:0;">
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>National Track Coach of the Year
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>California Coach of the Year
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>Northern California &amp; League Coach of the Year
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>National Girls Track Team Championship — Best Small School Team in American History (1994)
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>Coached 7 Super Bowl players
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>Coached 2 World Series players · 1 Olympian · Numerous National Champions
+        </div>
+        <div style="padding:1rem 0;border-bottom:1px solid var(--faint);font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>Eric Bjornson (Dallas Cowboys) · Kevin King (Green Bay Packers)
+        </div>
+        <div style="padding:1rem 0;font-family:var(--font-body);font-size:0.9rem;font-weight:300;color:rgba(240,237,230,0.75);display:flex;gap:1rem;align-items:baseline;">
+          <span style="color:var(--gold);font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;flex-shrink:0;">—</span>94% AP exam pass rate · 98% of students earning college credit
+        </div>
+      </div>
+    </div>
+
+  </div>
+    </div>
+  </div>
+</div>
+<div class="band left" id="lectures">
+  <div class="band-header" onclick="toggleBand(this)">
+    <div class="band-label">Universities · Conferences · Assemblies</div>
+    <div class="band-title">Lectures &amp; <em>Presentations.</em></div>
+    <button class="band-cta">Expand <span class="band-arrow">↓</span></button>
+  </div>
+  <div class="band-body">
+    <div class="band-body-inner" >
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;">
+    <div style="background:var(--card);padding:2rem 1.75rem;">
+      <div style="font-family:var(--font-disp);font-size:2rem;color:var(--gold);margin-bottom:0.75rem;line-height:1;">Ghana</div>
+      <div style="font-family:var(--font-head);font-weight:500;font-size:0.82rem;color:var(--text);margin-bottom:0.3rem;">ASWAAD Conference</div>
+      <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--muted);">University of Ghana</div>
+    </div>
+    <div style="background:var(--card);padding:2rem 1.75rem;">
+      <div style="font-family:var(--font-disp);font-size:2rem;color:var(--gold);margin-bottom:0.75rem;line-height:1;">Stanford</div>
+      <div style="font-family:var(--font-head);font-weight:500;font-size:0.82rem;color:var(--text);margin-bottom:0.3rem;">Riles Conference · Black Panther Project</div>
+      <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--muted);">Stanford University</div>
+    </div>
+    <div style="background:var(--card);padding:2rem 1.75rem;">
+      <div style="font-family:var(--font-disp);font-size:2rem;color:var(--gold);margin-bottom:0.75rem;line-height:1;">Texas</div>
+      <div style="font-family:var(--font-head);font-weight:500;font-size:0.82rem;color:var(--text);margin-bottom:0.3rem;">NCAA Black Student Athlete Summit</div>
+      <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--muted);">University of Texas · Texas A&M</div>
+    </div>
+    <div style="background:var(--card);padding:2rem 1.75rem;">
+      <div style="font-family:var(--font-disp);font-size:2rem;color:var(--gold);margin-bottom:0.75rem;line-height:1;">CA</div>
+      <div style="font-family:var(--font-head);font-weight:500;font-size:0.82rem;color:var(--text);margin-bottom:0.3rem;">State Assembly · Black Caucus · Farkas Committee</div>
+      <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--muted);">Sacramento · San Francisco · UC Davis</div>
+    </div>
+    <div style="background:var(--card);padding:2rem 1.75rem;">
+      <div style="font-family:var(--font-disp);font-size:2rem;color:var(--gold);margin-bottom:0.75rem;line-height:1;">Meta</div>
+      <div style="font-family:var(--font-head);font-weight:500;font-size:0.82rem;color:var(--text);margin-bottom:0.3rem;">Summer of Protest</div>
+      <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--muted);">Chan Zuckerberg Initiative · Facebook</div>
+    </div>
+    <div style="background:var(--card);padding:2rem 1.75rem;">
+      <div style="font-family:var(--font-disp);font-size:2rem;color:var(--gold);margin-bottom:0.75rem;line-height:1;">Davis</div>
+      <div style="font-family:var(--font-head);font-weight:500;font-size:0.82rem;color:var(--text);margin-bottom:0.3rem;">Black Studies Symposium</div>
+      <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--muted);">UC Davis</div>
+    </div>
+    <div style="background:var(--card);padding:2rem 1.75rem;">
+      <div style="font-family:var(--font-disp);font-size:2rem;color:var(--gold);margin-bottom:0.75rem;line-height:1;">DC</div>
+      <div style="font-family:var(--font-head);font-weight:500;font-size:0.82rem;color:var(--text);margin-bottom:0.3rem;">Superman Smashes the KKK</div>
+      <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--muted);">DC Comics · Historian Reviewer</div>
+    </div>
+    <div style="background:var(--card);padding:2rem 1.75rem;">
+      <div style="font-family:var(--font-disp);font-size:2rem;color:var(--gold);margin-bottom:0.75rem;line-height:1;">CB</div>
+      <div style="font-family:var(--font-head);font-weight:500;font-size:0.82rem;color:var(--text);margin-bottom:0.3rem;">Curriculum Development · AI Policy</div>
+      <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--muted);">The College Board</div>
+    </div>
+  </div>
+</section>
+
+<!-- READING LIST -->
+<section style="padding:6rem 4rem;border-bottom:1px solid var(--faint);" id="reading">
+  <div style="display:grid;grid-template-columns:2fr 3fr;gap:6rem;align-items:start;">
+    <div>
+      <div style="font-family:var(--font-head);font-weight:300;font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;">Mr. Green's Bookshelf</div>
+      <h2 style="font-family:var(--font-head);font-weight:700;font-size:2.2rem;color:var(--text);line-height:1.2;margin-bottom:1.5rem;">Where He Sends Everyone Who Asks</h2>
+      <p style="font-family:var(--font-body);font-weight:300;font-size:0.95rem;line-height:1.75;color:rgba(240,237,230,0.5);">
+        After 46 years in the classroom, this is the list Mr. Green returns to again and again 
+        when someone says "I want to understand this better."
+      </p>
+      <a href="bookshelf.html" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-head);font-size:0.72rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid var(--gold);padding:0.6rem 1.25rem;margin-top:1.5rem;transition:all 0.2s;" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Get the Whole Bookshelf →</a>
+      <p style="display:none;">
+      </p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0;">
+      <div style="padding:1.5rem 0;border-bottom:1px solid var(--faint);display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;cursor:pointer;">
+        <div style="font-family:var(--font-disp);font-size:1.5rem;color:var(--faint);width:2.5rem;">01</div>
+        <div><div style="font-family:var(--font-head);font-weight:500;font-size:0.95rem;color:var(--text);margin-bottom:0.2rem;">The Spook Who Sat by the Door</div><div style="font-family:var(--font-body);font-size:0.8rem;color:var(--muted);">Sam Greenlee</div></div>
+      </div>
+      <div style="padding:1.5rem 0;border-bottom:1px solid var(--faint);display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;">
+        <div style="font-family:var(--font-disp);font-size:1.5rem;color:var(--faint);width:2.5rem;">02</div>
+        <div><div style="font-family:var(--font-head);font-weight:500;font-size:0.95rem;color:var(--text);margin-bottom:0.2rem;">The Autobiography of Malcolm X</div><div style="font-family:var(--font-body);font-size:0.8rem;color:var(--muted);">Alex Haley</div></div>
+      </div>
+      <div style="padding:1.5rem 0;border-bottom:1px solid var(--faint);display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;">
+        <div style="font-family:var(--font-disp);font-size:1.5rem;color:var(--faint);width:2.5rem;">03</div>
+        <div><div style="font-family:var(--font-head);font-weight:500;font-size:0.95rem;color:var(--text);margin-bottom:0.2rem;">Miseducation of the Negro</div><div style="font-family:var(--font-body);font-size:0.8rem;color:var(--muted);">Carter G. Woodson</div></div>
+      </div>
+      <div style="padding:1.5rem 0;border-bottom:1px solid var(--faint);display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;">
+        <div style="font-family:var(--font-disp);font-size:1.5rem;color:var(--faint);width:2.5rem;">04</div>
+        <div><div style="font-family:var(--font-head);font-weight:500;font-size:0.95rem;color:var(--text);margin-bottom:0.2rem;">Invisible Man</div><div style="font-family:var(--font-body);font-size:0.8rem;color:var(--muted);">Ralph Ellison</div></div>
+      </div>
+      <div style="padding:1.5rem 0;border-bottom:1px solid var(--faint);display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;">
+        <div style="font-family:var(--font-disp);font-size:1.5rem;color:var(--faint);width:2.5rem;">05</div>
+        <div><div style="font-family:var(--font-head);font-weight:500;font-size:0.95rem;color:var(--text);margin-bottom:0.2rem;">Race Matters</div><div style="font-family:var(--font-body);font-size:0.8rem;color:var(--muted);">Cornel West</div></div>
+      </div>
+      <div style="padding:1.5rem 0;border-bottom:1px solid var(--faint);display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;">
+        <div style="font-family:var(--font-disp);font-size:1.5rem;color:var(--faint);width:2.5rem;">06</div>
+        <div><div style="font-family:var(--font-head);font-weight:500;font-size:0.95rem;color:var(--text);margin-bottom:0.2rem;">Up From Slavery</div><div style="font-family:var(--font-body);font-size:0.8rem;color:var(--muted);">Booker T. Washington</div></div>
+      </div>
+      <div style="padding:1.5rem 0;display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;">
+        <div style="font-family:var(--font-disp);font-size:1.5rem;color:var(--faint);width:2.5rem;">07</div>
+        <div><div style="font-family:var(--font-head);font-weight:500;font-size:0.95rem;color:var(--text);margin-bottom:0.2rem;">Malcolm X: A Life of Reinvention</div><div style="font-family:var(--font-body);font-size:0.8rem;color:var(--muted);">Manning Marable</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section" id="timeline">
+  <div class="timeline-header">
+    <div>
+      <h2 class="timeline-title">A Legacy<br/><span>Built</span><br/>Year by Year.</h2>
+    </div>
+    <div>
+      <p class="timeline-intro">
+        Scroll down through nearly five decades of milestones — from 2026 back to where it all began 
+        in the housing projects of Vallejo, California. Each entry is a moment where Mr. Green 
+        showed up, did the work, and left something more permanent than a lesson plan behind.
+      </p>
+      <div class="timeline-scroll-note">Scroll down to travel back through time</div>
+    </div>
+  </div>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Present Day</div>
+        <div class="tl-title">The Whole Story Platform Launches</div>
+        <div class="tl-desc">Mr. Green's 46 years of curriculum, field trips, and classroom wisdom become the foundation for a national public history platform — brought forward by a former student who never forgot.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2026</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Site Launch · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Recognition · Harlem, New York</div>
+        <div class="tl-title"><a href="https://www.linkedin.com/posts/tony-green-5127aa23_feeling-blessed-and-honored-to-be-selected-activity-7419602000037863424-y3Hq/" target="_blank" style="color:var(--text);text-decoration:none;">Vanguard Award — Dr. Betty Shabazz &amp; Malcolm X International Education Institute</a></div>
+        <div class="tl-desc">Honored in Harlem for visionary educational leadership and sustained community advocacy — recognized as a cultural leader dedicated to intergenerational dialogue and the empowerment of the next generation of decision makers.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2025</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Vanguard Award · Photo Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Recognition</div>
+        <div class="tl-title">Provident Credit Union All-Star Teacher Award</div>
+        <div class="tl-desc">Named among the Bay Area's most distinguished educators — joining a list of honorees representing the region's best classroom talent since 2007.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2025</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Award Photo Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">AP African American Studies</div>
+        <div class="tl-title">Redlining &amp; Gentrification Field Trip — Oakland</div>
+        <div class="tl-desc">65 students toured historic North and West Oakland — visiting Lois The Pie Queen, the Black Panther Party museum, and Marcus Bookstore. Projects critiqued by UC Berkeley Urban Geographer Dr. Brandi Thompson Summers.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2024</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Field Trip · Photo Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">College Board · Curriculum</div>
+        <div class="tl-title">AP African American Studies — College Board Certified Nationally</div>
+        <div class="tl-desc">The College Board launches AP African American Studies nationally. Mr. Green is among the founding teachers — having been teaching this material for decades before the College Board formalized it.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2022</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">College Board · Photo Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Golden State Warriors</div>
+        <div class="tl-title">"Impact Warrior" — Community Leadership &amp; Social Justice</div>
+        <div class="tl-desc">The Golden State Warriors recognize Mr. Green as an Impact Warrior for his decades of community leadership and social justice work in Oakland and the surrounding Bay Area.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2019</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Warriors Award · Photo Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">City of Oakland</div>
+        <div class="tl-title">Tony Green Day — Oakland</div>
+        <div class="tl-desc">The City of Oakland officially designates "Tony Green Day" — honoring his decades of coaching, teaching, and community activism that have shaped Oakland youth for generations.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2010s</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Oakland · Photo Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">BSU · Civil Rights Speaker</div>
+        <div class="tl-title">[Notable Speaker — Placeholder]</div>
+        <div class="tl-desc">One of countless civil rights figures, scholars, or activists who came to Bishop O'Dowd to speak at Mr. Green's invitation. Mr. Green — please add names and years for BSU guest entries.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2010s</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">BSU Event · Photo Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Milestone</div>
+        <div class="tl-title">20 Years at Bishop O'Dowd</div>
+        <div class="tl-desc">Two decades at the same institution. By this point, Mr. Green has coached athletes to national championships, built the BSU into a nationally recognized program, and taught thousands of students the history their textbooks left out.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2006</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">O'Dowd Campus · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Athletics · National Championship</div>
+        <div class="tl-title">Girls Track — National Dual Meet Champions</div>
+        <div class="tl-desc">The 1994 Bishop O'Dowd Girls Track Team, coached by Mr. Green, is named the best small school track team in American history. National Dual Meet Champions. A record that still stands.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">1994</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">1994 Championship Team · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">BSU Founded · Oakland</div>
+        <div class="tl-title">Black Student Union — Bishop O'Dowd High School</div>
+        <div class="tl-desc">Mr. Green founds the BSU through the mentorship of Dr. Oba T'Shaka, Dr. Richard Navies, and Dr. David Skinner. It will become the oldest continuously running Black Student Union in the United States.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">1993</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">BSU Founding · Photo Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Institutional Recognition</div>
+        <div class="tl-title">Bishop O'Dowd Named National Blue Ribbon School</div>
+        <div class="tl-desc">The U.S. Department of Education designates Bishop O'Dowd a National Blue Ribbon School. Mr. Green has been building his program here for four years by this point — a cornerstone of the institution.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">1990</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Blue Ribbon · Photo Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Oakland</div>
+        <div class="tl-title">Joins Bishop O'Dowd High School</div>
+        <div class="tl-desc">Mr. Green arrives at Bishop O'Dowd — Social Studies teacher, coach, mentor. He will not leave. The 38-year tenure that follows will define one of the most consequential teaching careers in California history.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">1986</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">O'Dowd Campus · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Cupertino, CA — Where It Began</div>
+        <div class="tl-title">Career Begins — Homestead High School, Cupertino</div>
+        <div class="tl-desc">Mr. Green begins his teaching career at Homestead High School — alma mater of Apple co-founder Steve Wozniak. From Silicon Valley's backyard, he develops the standard of rigor and truth-telling that will define 46 years of teaching.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">1980</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Homestead HS · Cupertino · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Vallejo, CA — The Origin</div>
+        <div class="tl-title">Grows Up in Floyd Terrace — Black Panthers, Athletics &amp; Black History</div>
+        <div class="tl-desc">In the Floyd Terrace Housing Project in Vallejo, young Anthony Green is introduced to athletics and Black History at the same time. His breakfast program is connected to the Black Panthers. His neighborhood athletics are organized by Alpha Phi Alpha mentors through the Omega Boys Club. Both will shape everything that follows.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">1960s</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Vallejo · Floyd Terrace · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-endcap">
+      <span class="endcap-label">The story continues being written</span>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 The Whole Story. Prototype — <strong>for Mr. Anthony Green</strong>.</div>
+    <div class="footer-copy">All facts cited. All history documented.</div>
+    <div class="footer-copy">Created by <a href="https://www.getclarity.consulting" target="_blank" style="color:var(--gold);text-decoration:none;">Alanne International</a></div>
+  </div>
+</footer>
+
+<script>
+function toggleVisitor(btn) {
+  const full = btn.nextElementSibling;
+  const open = full.classList.toggle('open');
+  btn.querySelector('span').textContent = open ? '↑' : '↓';
+  btn.firstChild.textContent = open ? 'Read less ' : 'Read more ';
+}
+
+function setPNav(el) {
+  document.querySelectorAll('.pnav-link').forEach(a => a.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// Highlight active section on scroll
+window.addEventListener('scroll', () => {
+  const sections = ['summary','origins','visitors','media','recognition','reading','timeline'];
+  let current = sections[0];
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top < 140) current = id;
+  });
+  document.querySelectorAll('.pnav-link').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+
+function toggleBio() {
+  const full = document.getElementById('bioFull');
+  const btn  = document.getElementById('bioReadMoreBtn');
+  const arr  = document.getElementById('bioArrow');
+  const open = full.style.display === 'block';
+  full.style.display = open ? 'none' : 'block';
+  btn.childNodes[0].textContent = open ? 'Read Full Bio ' : 'Read Less ';
+  arr.textContent = open ? '↓' : '↑';
+}
+
+function toggleAccordion(id) {
+  const panel = document.getElementById(id);
+  const icon  = document.getElementById(id + '-icon');
+  const open  = panel.style.display === 'block';
+  panel.style.display = open ? 'none' : 'block';
+  icon.textContent    = open ? '+' : '−';
+}
+</script>
+
+<!-- FLOATING TIMELINE BUTTON -->
+<a href="#timeline" id="timelineFloat" style="position:fixed;right:1.5rem;bottom:2rem;z-index:200;display:flex;flex-direction:column;align-items:center;gap:0.3rem;background:var(--gold);padding:0.85rem 1.1rem;text-decoration:none;box-shadow:0 4px 24px rgba(0,0,0,0.5);transition:transform 0.2s,opacity 0.3s;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+  <span style="font-family:var(--font-head);font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--bg);line-height:1;">Jump to</span>
+  <span style="font-family:var(--font-disp);font-size:1.1rem;color:var(--bg);line-height:1;">Timeline</span>
+  <span style="color:var(--bg);font-size:0.85rem;line-height:1;">↓</span>
+</a>
+
+<script>
+// Hide the float button once timeline is in view
+window.addEventListener('scroll', () => {
+  const tl = document.getElementById('timeline');
+  const btn = document.getElementById('timelineFloat');
+  if (!tl || !btn) return;
+  btn.style.opacity = tl.getBoundingClientRect().top > 100 ? '1' : '0';
+  btn.style.pointerEvents = tl.getBoundingClientRect().top > 100 ? 'auto' : 'none';
+});
+</script>
+</body>
+</html>
+    </div>
+  </div>
+</div>
+<div class="band right" id="reading">
+  <div class="band-header" onclick="toggleBand(this)">
+    <div class="band-label">Mr. Green's Bookshelf</div>
+    <div class="band-title">Where He Sends <em>Everyone.</em></div>
+    <button class="band-cta">Expand <span class="band-arrow">↓</span></button>
+  </div>
+  <div class="band-body">
+    <div class="band-body-inner" >
+<div style="display:grid;grid-template-columns:2fr 3fr;gap:6rem;align-items:start;">
+    <div>
+      <div style="font-family:var(--font-head);font-weight:300;font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;">Mr. Green's Bookshelf</div>
+      <h2 style="font-family:var(--font-head);font-weight:700;font-size:2.2rem;color:var(--text);line-height:1.2;margin-bottom:1.5rem;">Where He Sends Everyone Who Asks</h2>
+      <p style="font-family:var(--font-body);font-weight:300;font-size:0.95rem;line-height:1.75;color:rgba(240,237,230,0.5);">
+        After 46 years in the classroom, this is the list Mr. Green returns to again and again 
+        when someone says "I want to understand this better."
+      </p>
+      <a href="bookshelf.html" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-head);font-size:0.72rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid var(--gold);padding:0.6rem 1.25rem;margin-top:1.5rem;transition:all 0.2s;" onmouseover="this.style.background='var(--gold)';this.style.color='var(--bg)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">Get the Whole Bookshelf →</a>
+      <p style="display:none;">
+      </p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0;">
+      <div style="padding:1.5rem 0;border-bottom:1px solid var(--faint);display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;cursor:pointer;">
+        <div style="font-family:var(--font-disp);font-size:1.5rem;color:var(--faint);width:2.5rem;">01</div>
+        <div><div style="font-family:var(--font-head);font-weight:500;font-size:0.95rem;color:var(--text);margin-bottom:0.2rem;">The Spook Who Sat by the Door</div><div style="font-family:var(--font-body);font-size:0.8rem;color:var(--muted);">Sam Greenlee</div></div>
+      </div>
+      <div style="padding:1.5rem 0;border-bottom:1px solid var(--faint);display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;">
+        <div style="font-family:var(--font-disp);font-size:1.5rem;color:var(--faint);width:2.5rem;">02</div>
+        <div><div style="font-family:var(--font-head);font-weight:500;font-size:0.95rem;color:var(--text);margin-bottom:0.2rem;">The Autobiography of Malcolm X</div><div style="font-family:var(--font-body);font-size:0.8rem;color:var(--muted);">Alex Haley</div></div>
+      </div>
+      <div style="padding:1.5rem 0;border-bottom:1px solid var(--faint);display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;">
+        <div style="font-family:var(--font-disp);font-size:1.5rem;color:var(--faint);width:2.5rem;">03</div>
+        <div><div style="font-family:var(--font-head);font-weight:500;font-size:0.95rem;color:var(--text);margin-bottom:0.2rem;">Miseducation of the Negro</div><div style="font-family:var(--font-body);font-size:0.8rem;color:var(--muted);">Carter G. Woodson</div></div>
+      </div>
+      <div style="padding:1.5rem 0;border-bottom:1px solid var(--faint);display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;">
+        <div style="font-family:var(--font-disp);font-size:1.5rem;color:var(--faint);width:2.5rem;">04</div>
+        <div><div style="font-family:var(--font-head);font-weight:500;font-size:0.95rem;color:var(--text);margin-bottom:0.2rem;">Invisible Man</div><div style="font-family:var(--font-body);font-size:0.8rem;color:var(--muted);">Ralph Ellison</div></div>
+      </div>
+      <div style="padding:1.5rem 0;border-bottom:1px solid var(--faint);display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;">
+        <div style="font-family:var(--font-disp);font-size:1.5rem;color:var(--faint);width:2.5rem;">05</div>
+        <div><div style="font-family:var(--font-head);font-weight:500;font-size:0.95rem;color:var(--text);margin-bottom:0.2rem;">Race Matters</div><div style="font-family:var(--font-body);font-size:0.8rem;color:var(--muted);">Cornel West</div></div>
+      </div>
+      <div style="padding:1.5rem 0;border-bottom:1px solid var(--faint);display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;">
+        <div style="font-family:var(--font-disp);font-size:1.5rem;color:var(--faint);width:2.5rem;">06</div>
+        <div><div style="font-family:var(--font-head);font-weight:500;font-size:0.95rem;color:var(--text);margin-bottom:0.2rem;">Up From Slavery</div><div style="font-family:var(--font-body);font-size:0.8rem;color:var(--muted);">Booker T. Washington</div></div>
+      </div>
+      <div style="padding:1.5rem 0;display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;">
+        <div style="font-family:var(--font-disp);font-size:1.5rem;color:var(--faint);width:2.5rem;">07</div>
+        <div><div style="font-family:var(--font-head);font-weight:500;font-size:0.95rem;color:var(--text);margin-bottom:0.2rem;">Malcolm X: A Life of Reinvention</div><div style="font-family:var(--font-body);font-size:0.8rem;color:var(--muted);">Manning Marable</div></div>
+      </div>
+    </div>
+  </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<section class="timeline-section" id="timeline">
+  <div class="timeline-header">
+    <div>
+      <h2 class="timeline-title">A Legacy<br/><span>Built</span><br/>Year by Year.</h2>
+    </div>
+    <div>
+      <p class="timeline-intro">
+        Scroll down through nearly five decades of milestones — from 2026 back to where it all began 
+        in the housing projects of Vallejo, California. Each entry is a moment where Mr. Green 
+        showed up, did the work, and left something more permanent than a lesson plan behind.
+      </p>
+      <div class="timeline-scroll-note">Scroll down to travel back through time</div>
+    </div>
+  </div>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Present Day</div>
+        <div class="tl-title">The Whole Story Platform Launches</div>
+        <div class="tl-desc">Mr. Green's 46 years of curriculum, field trips, and classroom wisdom become the foundation for a national public history platform — brought forward by a former student who never forgot.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2026</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Site Launch · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Recognition · Harlem, New York</div>
+        <div class="tl-title"><a href="https://www.linkedin.com/posts/tony-green-5127aa23_feeling-blessed-and-honored-to-be-selected-activity-7419602000037863424-y3Hq/" target="_blank" style="color:var(--text);text-decoration:none;">Vanguard Award — Dr. Betty Shabazz &amp; Malcolm X International Education Institute</a></div>
+        <div class="tl-desc">Honored in Harlem for visionary educational leadership and sustained community advocacy — recognized as a cultural leader dedicated to intergenerational dialogue and the empowerment of the next generation of decision makers.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2025</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Vanguard Award · Photo Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Recognition</div>
+        <div class="tl-title">Provident Credit Union All-Star Teacher Award</div>
+        <div class="tl-desc">Named among the Bay Area's most distinguished educators — joining a list of honorees representing the region's best classroom talent since 2007.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2025</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Award Photo Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">AP African American Studies</div>
+        <div class="tl-title">Redlining &amp; Gentrification Field Trip — Oakland</div>
+        <div class="tl-desc">65 students toured historic North and West Oakland — visiting Lois The Pie Queen, the Black Panther Party museum, and Marcus Bookstore. Projects critiqued by UC Berkeley Urban Geographer Dr. Brandi Thompson Summers.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2024</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Field Trip · Photo Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">College Board · Curriculum</div>
+        <div class="tl-title">AP African American Studies — College Board Certified Nationally</div>
+        <div class="tl-desc">The College Board launches AP African American Studies nationally. Mr. Green is among the founding teachers — having been teaching this material for decades before the College Board formalized it.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2022</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">College Board · Photo Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Golden State Warriors</div>
+        <div class="tl-title">"Impact Warrior" — Community Leadership &amp; Social Justice</div>
+        <div class="tl-desc">The Golden State Warriors recognize Mr. Green as an Impact Warrior for his decades of community leadership and social justice work in Oakland and the surrounding Bay Area.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2019</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Warriors Award · Photo Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">City of Oakland</div>
+        <div class="tl-title">Tony Green Day — Oakland</div>
+        <div class="tl-desc">The City of Oakland officially designates "Tony Green Day" — honoring his decades of coaching, teaching, and community activism that have shaped Oakland youth for generations.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2010s</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Oakland · Photo Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">BSU · Civil Rights Speaker</div>
+        <div class="tl-title">[Notable Speaker — Placeholder]</div>
+        <div class="tl-desc">One of countless civil rights figures, scholars, or activists who came to Bishop O'Dowd to speak at Mr. Green's invitation. Mr. Green — please add names and years for BSU guest entries.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2010s</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">BSU Event · Photo Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Milestone</div>
+        <div class="tl-title">20 Years at Bishop O'Dowd</div>
+        <div class="tl-desc">Two decades at the same institution. By this point, Mr. Green has coached athletes to national championships, built the BSU into a nationally recognized program, and taught thousands of students the history their textbooks left out.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2006</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">O'Dowd Campus · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Athletics · National Championship</div>
+        <div class="tl-title">Girls Track — National Dual Meet Champions</div>
+        <div class="tl-desc">The 1994 Bishop O'Dowd Girls Track Team, coached by Mr. Green, is named the best small school track team in American history. National Dual Meet Champions. A record that still stands.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">1994</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">1994 Championship Team · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">BSU Founded · Oakland</div>
+        <div class="tl-title">Black Student Union — Bishop O'Dowd High School</div>
+        <div class="tl-desc">Mr. Green founds the BSU through the mentorship of Dr. Oba T'Shaka, Dr. Richard Navies, and Dr. David Skinner. It will become the oldest continuously running Black Student Union in the United States.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">1993</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">BSU Founding · Photo Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Institutional Recognition</div>
+        <div class="tl-title">Bishop O'Dowd Named National Blue Ribbon School</div>
+        <div class="tl-desc">The U.S. Department of Education designates Bishop O'Dowd a National Blue Ribbon School. Mr. Green has been building his program here for four years by this point — a cornerstone of the institution.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">1990</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Blue Ribbon · Photo Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Oakland</div>
+        <div class="tl-title">Joins Bishop O'Dowd High School</div>
+        <div class="tl-desc">Mr. Green arrives at Bishop O'Dowd — Social Studies teacher, coach, mentor. He will not leave. The 38-year tenure that follows will define one of the most consequential teaching careers in California history.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">1986</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">O'Dowd Campus · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Cupertino, CA — Where It Began</div>
+        <div class="tl-title">Career Begins — Homestead High School, Cupertino</div>
+        <div class="tl-desc">Mr. Green begins his teaching career at Homestead High School — alma mater of Apple co-founder Steve Wozniak. From Silicon Valley's backyard, he develops the standard of rigor and truth-telling that will define 46 years of teaching.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">1980</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Homestead HS · Cupertino · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Vallejo, CA — The Origin</div>
+        <div class="tl-title">Grows Up in Floyd Terrace — Black Panthers, Athletics &amp; Black History</div>
+        <div class="tl-desc">In the Floyd Terrace Housing Project in Vallejo, young Anthony Green is introduced to athletics and Black History at the same time. His breakfast program is connected to the Black Panthers. His neighborhood athletics are organized by Alpha Phi Alpha mentors through the Omega Boys Club. Both will shape everything that follows.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">1960s</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Vallejo · Floyd Terrace · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-endcap">
+      <span class="endcap-label">The story continues being written</span>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 The Whole Story. Prototype — <strong>for Mr. Anthony Green</strong>.</div>
+    <div class="footer-copy">All facts cited. All history documented.</div>
+    <div class="footer-copy">Created by <a href="https://www.getclarity.consulting" target="_blank" style="color:var(--gold);text-decoration:none;">Alanne International</a></div>
+  </div>
+</footer>
+
+
+<!-- FLOATING TIMELINE BUTTON -->
+<a href="#timeline" id="timelineFloat" style="position:fixed;right:1.5rem;bottom:2rem;z-index:200;display:flex;flex-direction:column;align-items:center;gap:0.3rem;background:var(--gold);padding:0.85rem 1.1rem;text-decoration:none;box-shadow:0 4px 24px rgba(0,0,0,0.5);transition:transform 0.2s,opacity 0.3s;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+  <span style="font-family:var(--font-head);font-size:0.6rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--bg);line-height:1;">Jump to</span>
+  <span style="font-family:var(--font-disp);font-size:1.1rem;color:var(--bg);line-height:1;">Timeline</span>
+  <span style="color:var(--bg);font-size:0.85rem;line-height:1;">↓</span>
+</a>
+
+<script>
+// Hide the float button once timeline is in view
+window.addEventListener('scroll', () => {
+  const tl = document.getElementById('timeline');
+  const btn = document.getElementById('timelineFloat');
+  if (!tl || !btn) return;
+  btn.style.opacity = tl.getBoundingClientRect().top > 100 ? '1' : '0';
+  btn.style.pointerEvents = tl.getBoundingClientRect().top > 100 ? 'auto' : 'none';
+});
+</script>
+
+<script>
+function toggleBand(header) {
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.band-arrow');
+  const btn = header.querySelector('.band-cta');
+  const isOpen = body.classList.toggle('open');
+  arrow.textContent = isOpen ? '↑' : '↓';
+  btn.childNodes[0].textContent = isOpen ? 'Collapse ' : 'Expand ';
+}
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.1});
+document.querySelectorAll('.band-header').forEach(h => obs.observe(h));
+</script>
+</body>
+</html>
