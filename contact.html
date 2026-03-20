@@ -11,7 +11,7 @@
   :root{
     --bg:#080808;--surface:#101010;--card:#161616;--border:#242424;
     --gold:#C8922A;--gold-lt:#E5B55A;
-    --green:#1A7A3A;--green-lt:#2ECC71;
+    --green:#078930;--green-lt:#0FAD3C;
     --crimson:#8B1F2F;--crimson-lt:#B8374A;
     --text:#F0EDE6;--muted:#7A7A7A;--faint:#2A2A2A;
     --font-disp:'Bebas Neue',sans-serif;
@@ -32,7 +32,7 @@
   .nav-cta:hover{background:var(--gold-lt);}
 
   /* PAGE HERO */
-  .page-hero{padding:13rem 4rem 6rem;position:relative;overflow:hidden;border-bottom:1px solid var(--faint);}
+  .page-hero{padding:13rem 4rem 3rem;position:relative;overflow:hidden;border-bottom:1px solid var(--faint);}
   .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 80% 40%,rgba(200,146,42,0.07) 0%,transparent 60%),linear-gradient(180deg,#080808 0%,#0c0a06 100%);}
   .hero-eyebrow{font-family:var(--font-head);font-weight:300;font-size:0.75rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;position:relative;z-index:1;}
   .hero-eyebrow::before{content:'';width:40px;height:1px;background:var(--gold);display:block;}
@@ -151,7 +151,7 @@
     transition:all 0.2s;
   }
   .stereo-chip:hover{border-color:var(--green-lt);color:var(--text);}
-  .stereo-chip.selected{border-color:var(--green-lt);background:rgba(46,204,113,0.08);color:var(--green-lt);}
+  .stereo-chip.selected{border-color:var(--green-lt);background:rgba(15,173,60,0.08);color:var(--green-lt);}
 
   /* NAV BUTTONS */
   .step-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--faint);}
@@ -219,154 +219,71 @@
     <em>Touch.</em>
   </h1>
   <p class="hero-sub">
-    Connect with Mr. Green directly, or scroll down to share what this site opened up for you.
+    Connect with Mr. Green directly, or share what this site opened up for you.
     Both matter — and both get read.
   </p>
 </section>
 
-<!-- CONTACT INFO -->
-<section class="contact-section" id="contact">
+<!-- CONTACT INFO — compact horizontal strip -->
+<section id="contact" style="padding:2rem 4rem;border-bottom:1px solid var(--faint);">
+  
 
-  <div class="contact-left">
-    <div class="contact-col-label">Direct Contact</div>
-    <h2 class="contact-name">Mr. Anthony Green</h2>
-    <div class="contact-title-line">History Instructor · Coach · Bishop O'Dowd High School · Oakland, CA</div>
-
-    <div class="contact-items">
-      <div class="contact-item">
-        <div class="contact-item-label">Email</div>
-        <div class="contact-item-value">
-          <a href="mailto:tgreen@bishopodowd.org">tgreen@bishopodowd.org</a>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-label">LinkedIn</div>
-        <div class="contact-item-value">
-          <a href="https://www.linkedin.com/in/tony-green-5127aa23/" target="_blank">linkedin.com/in/tony-green-5127aa23</a>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-label">School</div>
-        <div class="contact-item-value">
-          <a href="https://www.bishopodowd.org/faculty-staff/anthony-green" target="_blank">Bishop O'Dowd High School</a><br/>
-          <span style="color:var(--muted);font-size:0.85rem;">9500 Stearns Ave, Oakland, CA 94605</span>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-label">O'Dowd Profile</div>
-        <div class="contact-item-value">
-          <a href="https://www.bishopodowd.org/faculty-staff/anthony-green" target="_blank">View Faculty Page →</a>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-label">Media Inquiry</div>
-        <div class="contact-item-value">
-          <a href="mailto:tgreen@bishopodowd.org?subject=Media%20Inquiry%20%E2%80%94%20The%20Whole%20Story">tgreen@bishopodowd.org</a><br/>
-          <span style="color:var(--muted);font-size:0.82rem;">Subject: Media Inquiry — The Whole Story</span>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-label">Speaking</div>
-        <div class="contact-item-value">
-          <a href="mailto:tgreen@bishopodowd.org?subject=Speaking%20%2F%20Presentation%20Request%20%E2%80%94%20The%20Whole%20Story">Request a Presentation →</a><br/>
-          <span style="color:var(--muted);font-size:0.82rem;">Mr. Green presents at universities, conferences, and community organizations</span>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-label">The Model</div>
-        <div class="contact-item-value">
-          <a href="model.html">Learn about educator training →</a><br/>
-          <span style="color:var(--muted);font-size:0.82rem;">AP African American Studies adoption for your school</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="contact-note">
-      <div class="contact-note-label">A Note on Response</div>
-      <p class="contact-note-text">
-        Mr. Green is an active full-time teacher and coach. He reads every message, 
-        but response times vary. If you have a time-sensitive inquiry, 
-        please include that context in your subject line.
-      </p>
-    </div>
   </div>
 
-  <div class="contact-right">
-    <div class="contact-col-label">Quick Links</div>
-    <div class="quick-links">
-      <a href="about.html" class="quick-link">
-        <div>
-          <div class="ql-label">About Mr. Green</div>
-          <div class="ql-sub">His full biography, awards, and 46-year record</div>
-        </div>
-        <div class="ql-arrow">→</div>
-      </a>
-      <a href="model.html" class="quick-link">
-        <div>
-          <div class="ql-label">Adopt the Model</div>
-          <div class="ql-sub">Bring AP African American Studies to your school</div>
-        </div>
-        <div class="ql-arrow">→</div>
-      </a>
-      <a href="search.html" class="quick-link">
-        <div>
-          <div class="ql-label">Explore History</div>
-          <div class="ql-sub">Ask any question — multi-source verified answers</div>
-        </div>
-        <div class="ql-arrow">→</div>
-      </a>
-      <a href="quiz.html" class="quick-link">
-        <div>
-          <div class="ql-label">Find My Starting Point</div>
-          <div class="ql-sub">4-question guide to where you should begin</div>
-        </div>
-        <div class="ql-arrow">→</div>
-      </a>
-      <a href="blackpeople.html" class="quick-link">
-        <div>
-          <div class="ql-label">Real Black People You Don't See</div>
-          <div class="ql-sub">The counter-narrative the news skips</div>
-        </div>
-        <div class="ql-arrow">→</div>
-      </a>
-      <a href="profile.html" class="quick-link">
-        <div>
-          <div class="ql-label">Add Your Profile</div>
-          <div class="ql-sub">If Mr. Green taught you — ring the bell and be counted</div>
-        </div>
-        <div class="ql-arrow">→</div>
-      </a>
-    </div>
+  <!-- Compact contact row -->
+  <div style="display:flex;gap:2px;flex-wrap:wrap;margin-bottom:2rem;">
+    
+    <a href="/cdn-cgi/l/email-protection#5e2a392c3b3b301e3c372d36312e313a31293a70312c39" style="flex:1;min-width:160px;padding:1.1rem 1.5rem;background:var(--card);text-decoration:none;border-top:2px solid var(--gold);transition:background 0.2s;" onmouseover="this.style.background='#1a1a1a'" onmouseout="this.style.background='var(--card)'">
+      <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;">Email</div>
+      <div style="font-family:var(--font-body);font-size:0.82rem;color:var(--text);"><span class="__cf_email__" data-cfemail="7400130611111a34161d071c1b041b101b03105a1b0613">[email&#160;protected]</span></div>
+    </a>
 
-    <!-- PBS + KTVU press links -->
-    <div style="margin-top:1rem;">
-      <div class="contact-col-label">Mr. Green in the Press</div>
-      <div style="display:flex;flex-direction:column;gap:2px;">
-        <a href="https://www.pbs.org/newshour/show/inside-the-african-american-studies-class-praised-by-some-and-fiercely-opposed-by-others" target="_blank" style="display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.5rem;background:var(--card);text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#1a1a1a'" onmouseout="this.style.background='var(--card)'">
-          <div>
-            <div style="font-family:var(--font-head);font-size:0.78rem;color:var(--text);">PBS NewsHour</div>
-            <div style="font-family:var(--font-body);font-size:0.75rem;color:var(--muted);">Inside the African American Studies class — 2023</div>
-          </div>
-          <span style="color:var(--gold);margin-left:1rem;">→</span>
-        </a>
-        <a href="https://www.ktvu.com/video/1602123" target="_blank" style="display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.5rem;background:var(--card);text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#1a1a1a'" onmouseout="this.style.background='var(--card)'">
-          <div>
-            <div style="font-family:var(--font-head);font-size:0.78rem;color:var(--text);">KTVU FOX 2 San Francisco</div>
-            <div style="font-family:var(--font-body);font-size:0.75rem;color:var(--muted);">The Importance of African American Studies</div>
-          </div>
-          <span style="color:var(--gold);margin-left:1rem;">→</span>
-        </a>
-      </div>
-    </div>
+    <a href="https://www.linkedin.com/in/tony-green-5127aa23/" target="_blank" style="flex:1;min-width:160px;padding:1.1rem 1.5rem;background:var(--card);text-decoration:none;border-top:2px solid var(--faint);transition:background 0.2s;" onmouseover="this.style.background='#1a1a1a'" onmouseout="this.style.background='var(--card)'">
+      <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:0.4rem;">LinkedIn</div>
+      <div style="font-family:var(--font-body);font-size:0.82rem;color:var(--text);">View Profile →</div>
+    </a>
+
+    <a href="https://www.bishopodowd.org/faculty-staff/anthony-green" target="_blank" style="flex:1;min-width:160px;padding:1.1rem 1.5rem;background:var(--card);text-decoration:none;border-top:2px solid var(--faint);transition:background 0.2s;" onmouseover="this.style.background='#1a1a1a'" onmouseout="this.style.background='var(--card)'">
+      <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:0.4rem;">O'Dowd Profile</div>
+      <div style="font-family:var(--font-body);font-size:0.82rem;color:var(--text);">View Faculty Page →</div>
+    </a>
+
+    <a href="/cdn-cgi/l/email-protection#0d796a7f6868634d6f647e65627d6269627a6923627f6a327e786f67686e7930406869646c283f3d44637c78647f74283f3d28483f28353d283439283f3d596568283f3d5a65626168283f3d5e79627f74" style="flex:1;min-width:160px;padding:1.1rem 1.5rem;background:var(--card);text-decoration:none;border-top:2px solid var(--faint);transition:background 0.2s;" onmouseover="this.style.background='#1a1a1a'" onmouseout="this.style.background='var(--card)'">
+      <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:0.4rem;">Media Inquiry</div>
+      <div style="font-family:var(--font-body);font-size:0.82rem;color:var(--text);">Send Email →</div>
+    </a>
+
+    <a href="/cdn-cgi/l/email-protection#bfcbd8cddadad1ffddd6ccd7d0cfd0dbd0c8db91d0cdd880cccaddd5dadccb82eccfdaded4d6d1d89a8d8f9a8df99a8d8fefcddaccdad1cbdecbd6d0d19a8d8feddacecadacccb9a8d8f9afa8d9a878f9a868b9a8d8febd7da9a8d8fe8d7d0d3da9a8d8feccbd0cdc6" style="flex:1;min-width:160px;padding:1.1rem 1.5rem;background:var(--card);text-decoration:none;border-top:2px solid var(--faint);transition:background 0.2s;" onmouseover="this.style.background='#1a1a1a'" onmouseout="this.style.background='var(--card)'">
+      <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:0.4rem;">Speaking Request</div>
+      <div style="font-family:var(--font-body);font-size:0.82rem;color:var(--text);">Request a Presentation →</div>
+    </a>
+
+    <a href="model.html" style="flex:1;min-width:160px;padding:1.1rem 1.5rem;background:var(--card);text-decoration:none;border-top:2px solid var(--faint);transition:background 0.2s;" onmouseover="this.style.background='#1a1a1a'" onmouseout="this.style.background='var(--card)'">
+      <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:0.4rem;">The Model</div>
+      <div style="font-family:var(--font-body);font-size:0.82rem;color:var(--text);">Educator Training →</div>
+    </a>
+
   </div>
+
+  <!-- Note on response — compact -->
+  <div style="font-family:var(--font-body);font-size:0.82rem;font-weight:300;color:var(--muted);line-height:1.65;border-left:2px solid var(--faint);padding-left:1rem;max-width:600px;">
+    <strong style="color:var(--text);font-weight:500;">A note on response:</strong> Mr. Green is an active full-time teacher and coach. He reads every message, but response times vary. Include urgency in your subject line if needed.
+  </div>
+
 
 </section>
 
-<!-- DIVIDER -->
-<div class="section-divider" id="story">
-  <div class="divider-line"></div>
-  <div class="divider-label">Share What This Opened Up For You</div>
-  <div class="divider-line"></div>
+<!-- STORY WAYFINDING BANNER -->
+<div id="story" style="padding:3.5rem 4rem;background:linear-gradient(135deg,rgba(200,146,42,0.08) 0%,transparent 60%);border-top:1px solid var(--faint);border-bottom:1px solid var(--faint);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;">
+  <div>
+    <div style="font-family:var(--font-head);font-weight:300;font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;">This Is the Important Part</div>
+    <div style="font-family:var(--font-disp);font-size:clamp(2rem,4vw,3.5rem);color:var(--text);line-height:0.95;">Share What This <span style="color:var(--gold);">Opened Up</span> For You.</div>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+    <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);">Scroll to begin</div>
+    <div style="width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent);"></div>
+    <div style="width:8px;height:8px;border-right:1px solid var(--gold);border-bottom:1px solid var(--gold);transform:rotate(45deg);"></div>
+  </div>
 </div>
 
 <!-- STORY FORM -->
@@ -648,7 +565,7 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 let currentStep = 1;
 
 function goStep(n) {
@@ -662,34 +579,4 @@ function goStep(n) {
   document.getElementById('storyFormWrap').scrollIntoView({behavior:'smooth', block:'start'});
 }
 
-const sentimentGroups = {};
-function selectSentiment(btn, group) {
-  const panel = btn.closest('.step-panel');
-  panel.querySelectorAll(`.sentiment-btn[onclick*="'${group}'"]`).forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
-}
-
-function submitStory() {
-  const story = document.getElementById('storyText').value.trim();
-  if (!story) {
-    alert('Please share your story — even a sentence or two.');
-    return;
-  }
-  document.getElementById('storyFormWrap').style.display = 'none';
-  document.getElementById('storySuccess').classList.add('visible');
-  document.getElementById('storySuccess').scrollIntoView({behavior:'smooth', block:'start'});
-}
-
-function tryBookmark() {
-  try {
-    window.sidebar?.addPanel(document.title, window.location.href, '');
-  } catch(e) {}
-  // Modern browsers — show keyboard shortcut tip
-  const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
-  alert(isMac
-    ? 'Press ⌘ + D to bookmark this page.'
-    : 'Press Ctrl + D to bookmark this page.');
-}
-</script>
-</body>
-</html>
+const
