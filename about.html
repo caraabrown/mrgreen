@@ -221,7 +221,7 @@
   .visitors-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
   .visitor-card{background:var(--card);padding:2.5rem 2rem;border-top:2px solid transparent;transition:border-color 0.2s;}
   .visitor-card:hover{border-top-color:var(--gold);}
-  .visitor-summary{font-family:var(--font-body);font-weight:300;font-size:0.8rem;line-height:1.65;color:rgba(240,237,230,0.55);margin-bottom:0.6rem;}
+  .visitor-summary{font-family:var(--font-body);font-weight:300;font-size:0.8rem;line-height:1.65;color:rgba(240,237,230,0.55);margin-bottom:0.6rem;min-height:4.5rem;}
   .visitor-full{display:none;}
   .visitor-full.open{display:block;}
   .visitor-toggle{font-family:var(--font-head);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);background:none;border:1px solid rgba(200,146,42,0.3);cursor:pointer;padding:0.3rem 0.7rem;margin-bottom:0.5rem;display:inline-flex;align-items:center;gap:0.35rem;}
@@ -257,6 +257,24 @@
     .visitors-grid{grid-template-columns:repeat(2,1fr);}
     .timeline-header{grid-template-columns:1fr;}
   }
+
+  .nav-dropdown{position:relative;}
+  .nav-dropdown-menu{
+    display:none;position:absolute;top:100%;left:0;
+    background:rgba(8,8,8,0.97);border:1px solid var(--faint);
+    border-top:2px solid var(--gold);min-width:200px;z-index:200;
+  }
+  .nav-dropdown:hover .nav-dropdown-menu{display:block;}
+  .nav-dropdown-menu a{
+    display:block;padding:0.75rem 1.25rem;
+    font-family:var(--font-head);font-size:0.72rem;font-weight:300;
+    letter-spacing:0.15em;text-transform:uppercase;
+    color:var(--muted);text-decoration:none;
+    border-bottom:1px solid var(--faint);transition:color 0.2s;
+  }
+  .nav-dropdown-menu a:last-child{border-bottom:none;}
+  .nav-dropdown-menu a:hover{color:var(--gold);}
+  .nav-dropdown > a::after{content:' ▾';font-size:0.6rem;}
 </style>
 </head>
 <body>
@@ -264,7 +282,13 @@
 <nav>
   <a href="index.html" class="nav-logo">The Whole <span>Story</span></a>
         <ul class="nav-links">
-    <li><a href="about.html" class="active">About Mr. Green</a></li>
+    <li class="nav-dropdown">
+      <a href="about.html" class="active">About Mr. Green</a>
+      <div class="nav-dropdown-menu">
+        <a href="about.html">About — Version 1</a>
+        <a href="about2.html">About — Version 2 ★</a>
+      </div>
+    </li>
     <li><a href="search.html">Explore History</a></li>
     <li><a href="myths.html">Myth vs. Reality</a></li>
     <li><a href="blackpeople.html">Black People You Don't See</a></li>
@@ -305,7 +329,7 @@
 
   <div class="summary-text-col">
     <div class="summary-eyebrow">The Man Behind The Platform</div>
-    <h2 class="summary-name">Mr. Green</h2>
+    <h2 class="summary-name">Meet Mr. Green</h2>
     <div class="summary-role">Everyone's favorite history teacher · dedicated coach · difference maker</div>
 
 
@@ -463,28 +487,58 @@
     respected academic institutions. That is not an accident. That is the result of one person 
     who believed students deserved access to their full history — and built something to give it to them.
   </p>
+  <!-- BSU Yearbook Photos -->
+  <div style="margin-top:2.5rem;">
+    <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;border-bottom:1px solid var(--faint);padding-bottom:0.75rem;">Then &amp; Now — From the Yearbooks</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:3px;">
+      <div style="position:relative;overflow:hidden;cursor:pointer;aspect-ratio:1/1;" onmouseover="this.querySelector('.bsu-cap').style.opacity=1" onmouseout="this.querySelector('.bsu-cap').style.opacity=0">
+        <img src="BSU_Yearbook_3.jpeg" alt="BSU early years" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
+        <div class="bsu-cap" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1rem;opacity:0;transition:opacity 0.25s;">
+          <div style="font-family:var(--font-head);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">Early BSU · O'Dowd</div>
+          <div style="font-family:var(--font-body);font-size:0.75rem;color:var(--text);">"I Am Somebody" — the BSU in its founding years</div>
+        </div>
+      </div>
+      <div style="position:relative;overflow:hidden;cursor:pointer;aspect-ratio:1/1;" onmouseover="this.querySelector('.bsu-cap').style.opacity=1" onmouseout="this.querySelector('.bsu-cap').style.opacity=0">
+        <img src="BSU_yearbook_2.jpg" alt="BSU giving students unity and confidence" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
+        <div class="bsu-cap" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1rem;opacity:0;transition:opacity 0.25s;">
+          <div style="font-family:var(--font-head);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">BSU · Giving Students Unity &amp; Confidence</div>
+          <div style="font-family:var(--font-body);font-size:0.75rem;color:var(--text);">Culture unification as the core mission — from the O'Dowd yearbook</div>
+        </div>
+      </div>
+      <div style="position:relative;overflow:hidden;cursor:pointer;aspect-ratio:1/1;" onmouseover="this.querySelector('.bsu-cap').style.opacity=1" onmouseout="this.querySelector('.bsu-cap').style.opacity=0">
+        <img src="BSU_yearbook.jpg" alt="BSU Black History Month Assembly" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
+        <div class="bsu-cap" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1rem;opacity:0;transition:opacity 0.25s;">
+          <div style="font-family:var(--font-head);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">Black History Month Assembly</div>
+          <div style="font-family:var(--font-body);font-size:0.75rem;color:var(--text);">Mr. Green educates the student body on the history of hip-hop</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- CIVIL RIGHTS VISITORS -->
 <section class="visitors" id="visitors">
   <div class="visitors-eyebrow">They Came to His Classroom</div>
   <h2 class="visitors-headline">Civil Rights Figures Who Have Presented<br/>in His AP African American History Class</h2>
-  <div class="visitors-grid">
+        <!-- Intro blurb -->
+      <p style="font-family:var(--font-body);font-weight:300;font-size:0.95rem;line-height:1.8;color:rgba(240,237,230,0.6);max-width:780px;margin-bottom:3rem;border-left:2px solid var(--gold);padding-left:1.25rem;">Mr. Green's classroom became a meeting place for activists, organizers, and leaders from across the Bay Area. Students heard firsthand stories of struggle, resistance, and change — lessons that inspired a generation of O'Dowd students to take pride in their history and responsibility for their future.</p>
+
+<div class="visitors-grid">
 
     <div class="visitor-card">
-      <div class="visitor-img"><div class="visitor-img-label">Photo Placeholder</div></div>
+      <div class="visitor-img"><img src="Watani.png" alt="Watani Stiner" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
       <div class="visitor-name">Watani Stiner</div>
       <div class="visitor-role">US Organization · Black Nationalist Movement · Co-Founder of Kwanzaa</div>
       <p class="visitor-summary">Original member of US, the Black Nationalist organization that gave the world Kwanzaa.</p>
       <button class="visitor-toggle" onclick="toggleVisitor(this)">Read more <span>↓</span></button>
       <div class="visitor-full">
         <p style="font-family:var(--font-body);font-weight:300;font-size:0.82rem;line-height:1.75;color:rgba(240,237,230,0.6);margin-bottom:0.75rem;">An original member of US — the Black Nationalist organization founded by Maulana Karenga — Stiner was part of the movement that gave the world Kwanzaa, the pan-African holiday now celebrated by millions. The FBI's COINTELPRO program deliberately targeted and dismantled US through covert harassment and manufactured conflict, a documented chapter of government-sanctioned suppression of Black political organizing in America.</p>
-        <div class="visitor-quote">Spoke in Mr. Green's AP African American History class.</div>
+        <a href="https://www.instagram.com/watani.stiner/" target="_blank" style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;">Follow on Instagram →</a>
       </div>
     </div>
 
     <div class="visitor-card">
-      <div class="visitor-img"><div class="visitor-img-label">Photo Placeholder</div></div>
+      <div class="visitor-img"><img src="Al.jpg" alt="Al Lorena" style="width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(20%);"/></div>
       <div class="visitor-name">Al Lorena</div>
       <div class="visitor-role">Oakland Brown Berets · Personal Security for Famous Black Panther Bobby Seale</div>
       <p class="visitor-summary">Founding member of Oakland's Brown Berets, initiating the Black and Brown solidarity movement.</p>
@@ -496,7 +550,7 @@
     </div>
 
     <div class="visitor-card">
-      <div class="visitor-img"><div class="visitor-img-label">Photo Placeholder</div></div>
+      <div class="visitor-img"><img src="Gloria.jpg" alt="Gloria Arellanes" style="width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(20%);"/></div>
       <div class="visitor-name">Gloria Arellanes</div>
       <div class="visitor-role">Brown Beret · First Female Minister · Founder of La Causa</div>
       <p class="visitor-summary">The first woman to serve as minister in the Brown Berets. She didn't just hold a title — she built free clinics, a feminist movement, and a newspaper.</p>
@@ -508,7 +562,7 @@
     </div>
 
     <div class="visitor-card">
-      <div class="visitor-img"><div class="visitor-img-label">Photo Placeholder</div></div>
+      <div class="visitor-img"><img src="Yuri.jpg" alt="Yuri Kochiyama" style="width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(20%);"/></div>
       <div class="visitor-name">Yuri Kochiyama</div>
       <div class="visitor-role">Japanese American Activist</div>
       <p class="visitor-summary">A Japanese American interned during WWII who became one of Malcolm X's closest confidantes. When he was assassinated in 1965, she held his head in her lap. She told that story in Room 213 in 2009.</p>
@@ -526,7 +580,7 @@
 <section id="media" style="padding:6rem 4rem;border-bottom:1px solid var(--faint);">
   <div style="font-family:var(--font-head);font-weight:300;font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;">Media Coverage</div>
   <h2 style="font-family:var(--font-head);font-weight:700;font-size:2rem;color:var(--text);line-height:1.2;margin-bottom:3rem;">In the Media</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:5rem;">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:5rem;">
     <a href="https://www.pbs.org/newshour/show/inside-the-african-american-studies-class-praised-by-some-and-fiercely-opposed-by-others" target="_blank" style="background:var(--card);padding:0;display:block;text-decoration:none;border-top:3px solid var(--teal-lt);overflow:hidden;transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
       <img src="img_pbs_tv.jpg" alt="PBS NewsHour coverage" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;"/>
       <div style="padding:2rem;">
@@ -647,6 +701,27 @@
       </div>
     </div>
 
+    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
+      <img src="Superman.png" alt="DC Comics Superman" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
+        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">DC Comics</div>
+        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">Superman Smashes the Klan — Mr. Green served as historian reviewer</div>
+      </div>
+    </div>
+    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
+      <img src="teach.jpeg" alt="In the Classroom" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
+        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">In the Classroom</div>
+        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">Mr. Green in Room 213 — where the whole story gets told</div>
+      </div>
+    </div>
+    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
+      <img src="Live.jpeg" alt="Roots of Empowerment" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
+        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">Roots of Empowerment</div>
+        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">Tony Green and the Journey of African American Studies</div>
+      </div>
+    </div>
       </div><!-- /photoTrack -->
       <!-- Duplicate for seamless loop -->
       <div style="display:flex;gap:3px;animation:photoScroll 36s linear infinite;flex-shrink:0;" onmouseover="this.style.animationPlayState='paused'" onmouseout="this.style.animationPlayState='running'">
@@ -1033,7 +1108,11 @@
 <script>
 function toggleVisitor(btn) {
   const full = btn.nextElementSibling;
+  const summary = btn.previousElementSibling;
   const open = full.classList.toggle('open');
+  if (summary && summary.classList.contains('visitor-summary')) {
+    summary.style.display = open ? 'none' : '';
+  }
   btn.querySelector('span').textContent = open ? '↑' : '↓';
   btn.firstChild.textContent = open ? 'Read less ' : 'Read more ';
 }
