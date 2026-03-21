@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mr. Green — Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#080808;--surface:#0f0f0f;--card:#161616;--border:#242424;
+  --gold:#C8922A;--gold-lt:#E5B55A;--green:#078930;--green-lt:#0FAD3C;
+  --crimson:#8B1F2F;--text:#F0EDE6;--muted:#7A7A7A;--faint:#2A2A2A;
+  --font-disp:'Bebas Neue',sans-serif;
+  --font-head:'Oswald',sans-serif;
+  --font-body:'Raleway',sans-serif;
+  --sidebar:260px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);display:flex;min-height:100vh;overflow-x:hidden;}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  width:var(--sidebar);flex-shrink:0;
+  background:var(--surface);border-right:1px solid var(--faint);
+  display:flex;flex-direction:column;
+  position:fixed;top:0;left:0;bottom:0;z-index:50;
+}
+.sidebar-brand{
+  padding:1.75rem 1.5rem;border-bottom:1px solid var(--faint);
+}
+.sidebar-brand-name{font-family:var(--font-disp);font-size:1.3rem;color:var(--gold);letter-spacing:0.08em;line-height:1;}
+.sidebar-brand-sub{font-family:var(--font-head);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-top:0.3rem;}
+.sidebar-nav{flex:1;padding:1rem 0;overflow-y:auto;}
+.nav-svg{width:14px;height:14px;display:inline-block;vertical-align:middle;margin-right:0.4rem;color:var(--muted);flex-shrink:0;}
+  .nav-item:hover .nav-svg,.nav-item.active .nav-svg{color:var(--text);}
+  .nav-section-label{font-family:var(--font-head);font-size:0.58rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--faint);padding:0.75rem 1.5rem 0.4rem;}
+.nav-item{
+  display:flex;align-items:center;gap:0.75rem;
+  padding:0.7rem 1.5rem;cursor:pointer;
+  font-family:var(--font-head);font-size:0.78rem;font-weight:300;
+  letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);
+  border-left:2px solid transparent;transition:all 0.2s;
+}
+.nav-item:hover{color:var(--text);background:rgba(255,255,255,0.02);}
+.nav-item.active{color:var(--gold);border-left-color:var(--gold);background:rgba(200,146,42,0.05);}
+.nav-item .badge{
+  margin-left:auto;background:var(--crimson);color:#fff;
+  font-family:var(--font-head);font-size:0.58rem;font-weight:600;
+  padding:0.15rem 0.45rem;border-radius:10px;
+}
+.nav-icon{font-size:0.9rem;flex-shrink:0;}
+.sidebar-footer{padding:1.25rem 1.5rem;border-top:1px solid var(--faint);}
+.sidebar-footer-text{font-family:var(--font-body);font-size:0.72rem;color:var(--faint);line-height:1.5;}
+.sidebar-footer-text a{color:var(--gold);text-decoration:none;}
+
+/* ── MAIN ── */
+.main{margin-left:var(--sidebar);flex:1;min-height:100vh;}
+.topbar{
+  padding:1.25rem 2.5rem;border-bottom:1px solid var(--faint);
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(8,8,8,0.9);backdrop-filter:blur(12px);
+  position:sticky;top:0;z-index:40;
+}
+.topbar-title{font-family:var(--font-head);font-weight:700;font-size:1.1rem;color:var(--text);}
+.topbar-sub{font-family:var(--font-body);font-size:0.78rem;color:var(--muted);margin-top:0.1rem;}
+.save-btn{
+  font-family:var(--font-head);font-size:0.72rem;font-weight:500;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--bg);background:var(--gold);border:none;
+  padding:0.6rem 1.5rem;cursor:pointer;transition:background 0.2s;
+}
+.save-btn:hover{background:var(--gold-lt);}
+.save-btn.green{background:var(--green);}
+.save-btn.green:hover{background:var(--green-lt);}
+
+/* ── PANELS ── */
+.panel{display:none;padding:2rem 2.5rem;}
+.panel.active{display:block;}
+
+/* ── CARDS ── */
+.dash-card{background:var(--card);border:1px solid var(--border);padding:1.5rem;margin-bottom:1rem;}
+.dash-card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
+.dash-card-title{font-family:var(--font-head);font-weight:600;font-size:0.88rem;color:var(--text);letter-spacing:0.05em;}
+.dash-card-meta{font-family:var(--font-body);font-size:0.72rem;color:var(--muted);}
+.tag{
+  display:inline-block;font-family:var(--font-head);font-size:0.58rem;
+  letter-spacing:0.18em;text-transform:uppercase;
+  padding:0.2rem 0.6rem;border-radius:2px;margin-right:0.4rem;
+}
+.tag-new{background:rgba(139,31,47,0.25);color:var(--crimson);border:1px solid rgba(139,31,47,0.4);}
+.tag-answered{background:rgba(7,137,48,0.15);color:var(--green-lt);border:1px solid rgba(7,137,48,0.3);}
+.tag-pending{background:rgba(200,146,42,0.15);color:var(--gold);border:1px solid rgba(200,146,42,0.3);}
+
+/* ── FORM ELEMENTS ── */
+.field-label{font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:0.5rem;margin-top:1rem;}
+.field-input{
+  width:100%;padding:0.75rem 1rem;
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--text);font-family:var(--font-body);font-size:0.88rem;font-weight:300;
+  outline:none;transition:border-color 0.2s;
+}
+.field-input:focus{border-color:var(--gold);}
+.field-input::placeholder{color:var(--faint);}
+textarea.field-input{resize:vertical;min-height:100px;line-height:1.65;}
+select.field-input{cursor:pointer;}
+
+/* ── SECTION HEADERS ── */
+.section-eyebrow{font-family:var(--font-head);font-weight:300;font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;}
+.section-title{font-family:var(--font-head);font-weight:700;font-size:1.4rem;color:var(--text);margin-bottom:1.5rem;line-height:1.2;}
+
+/* ── QUESTION ITEM ── */
+.q-item{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--faint);padding:1.25rem 1.5rem;margin-bottom:0.75rem;cursor:pointer;transition:border-color 0.2s;}
+.q-item.unanswered{border-left-color:var(--crimson);}
+.q-item.answered{border-left-color:var(--green);}
+.q-item:hover{background:#1a1a1a;}
+.q-text{font-family:var(--font-body);font-weight:400;font-size:0.92rem;color:var(--text);margin-bottom:0.4rem;}
+.q-meta{font-family:var(--font-body);font-size:0.72rem;color:var(--muted);}
+
+/* ── ANSWER EDITOR ── */
+.answer-editor{background:var(--surface);border:1px solid var(--border);padding:1.5rem;margin-top:1rem;display:none;}
+.answer-editor.open{display:block;}
+
+/* ── MESSAGE ITEM ── */
+.msg-item{background:var(--card);border:1px solid var(--border);padding:1.25rem 1.5rem;margin-bottom:0.75rem;}
+.msg-sender{font-family:var(--font-head);font-weight:600;font-size:0.88rem;color:var(--text);margin-bottom:0.25rem;}
+.msg-body{font-family:var(--font-body);font-weight:300;font-size:0.88rem;color:rgba(240,237,230,0.7);line-height:1.65;}
+.msg-date{font-family:var(--font-body);font-size:0.72rem;color:var(--faint);margin-top:0.5rem;}
+.msg-unread{border-left:3px solid var(--gold);}
+
+/* ── BOOK LIBRARY ── */
+.book-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin-bottom:1.5rem;}
+.book-entry{
+  background:var(--card);border:1px solid var(--border);
+  padding:1rem;cursor:pointer;transition:border-color 0.2s;
+  border-top:2px solid var(--faint);
+}
+.book-entry:hover{border-color:var(--gold);}
+.book-entry.selected{border-top-color:var(--gold);background:rgba(200,146,42,0.05);}
+.book-entry-title{font-family:var(--font-head);font-size:0.82rem;font-weight:600;color:var(--text);margin-bottom:0.2rem;}
+.book-entry-author{font-family:var(--font-body);font-size:0.72rem;color:var(--muted);}
+
+/* ── MEDIA / GALLERY UPLOAD ── */
+.upload-zone{
+  border:1px dashed var(--border);padding:2rem;text-align:center;
+  cursor:pointer;transition:border-color 0.2s;
+}
+.upload-zone:hover{border-color:var(--gold);}
+.upload-zone-label{font-family:var(--font-head);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);}
+.upload-icon{font-size:1.5rem;display:block;margin-bottom:0.5rem;color:var(--faint);}
+.hidden-file{display:none;}
+
+/* ── TIMELINE ENTRY ── */
+.tl-entry-preview{
+  display:flex;gap:1rem;align-items:start;
+  background:var(--card);border:1px solid var(--border);
+  border-left:3px solid var(--gold);padding:1rem 1.25rem;margin-bottom:0.75rem;
+}
+.tl-preview-year{font-family:var(--font-disp);font-size:1.8rem;color:var(--gold);flex-shrink:0;width:70px;}
+.tl-preview-text{font-family:var(--font-body);font-size:0.82rem;color:rgba(240,237,230,0.7);line-height:1.65;}
+
+/* ── TOAST ── */
+.toast{
+  position:fixed;bottom:2rem;right:2rem;
+  background:var(--green);color:#fff;
+  font-family:var(--font-head);font-size:0.72rem;font-weight:500;
+  letter-spacing:0.15em;text-transform:uppercase;
+  padding:0.75rem 1.5rem;z-index:1000;
+  opacity:0;transition:opacity 0.3s;pointer-events:none;
+}
+.toast.visible{opacity:1;}
+
+/* ── STATS ROW ── */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem;}
+.stat-card{background:var(--card);border:1px solid var(--border);padding:1.25rem 1.5rem;}
+.stat-num{font-family:var(--font-disp);font-size:2.5rem;color:var(--gold);line-height:1;}
+.stat-label{font-family:var(--font-head);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-top:0.3rem;}
+
+/* ── DIVIDER ── */
+.divider{height:1px;background:var(--faint);margin:1.5rem 0;}
+
+/* ── TWO COL ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start;}
+
+  /* PROFILE + STORY PANELS */
+  .submission-card{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--faint);padding:1.25rem 1.5rem;margin-bottom:0.75rem;transition:border-color 0.2s;}
+  .submission-card.pending{border-left-color:var(--gold);}
+  .submission-card.approved{border-left-color:var(--green);}
+  .submission-card.declined{border-left-color:var(--crimson);opacity:0.5;}
+  .sub-name{font-family:var(--font-head);font-weight:600;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;}
+  .sub-meta{font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.75rem;}
+  .sub-body{font-family:var(--font-body);font-size:0.82rem;color:rgba(240,237,230,0.65);line-height:1.7;margin-bottom:1rem;}
+  .sub-actions{display:flex;gap:0.5rem;}
+  .sub-btn{font-family:var(--font-head);font-size:0.62rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;padding:0.45rem 1rem;border:1px solid;cursor:pointer;background:none;transition:all 0.2s;}
+  .sub-btn-approve{color:var(--green-lt);border-color:rgba(15,173,60,0.4);}
+  .sub-btn-approve:hover{background:rgba(15,173,60,0.1);}
+  .sub-btn-decline{color:var(--crimson);border-color:rgba(139,31,47,0.4);}
+  .sub-btn-decline:hover{background:rgba(139,31,47,0.1);}
+  .sub-btn-feature{color:var(--gold);border-color:rgba(200,146,42,0.4);}
+  .sub-btn-feature:hover{background:rgba(200,146,42,0.08);}
+  .lightbulb-preview{background:var(--surface);border:1px solid var(--border);padding:1.25rem;margin-top:1.5rem;}
+  .lightbulb-preview-label{font-family:var(--font-head);font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+  .lb-story{border-left:2px solid var(--gold);padding:0.75rem 1rem;margin-bottom:0.75rem;background:rgba(200,146,42,0.03);}
+  .lb-story-text{font-family:var(--font-body);font-style:italic;font-size:0.88rem;color:rgba(240,237,230,0.7);line-height:1.7;margin-bottom:0.4rem;}
+  .lb-story-attr{font-family:var(--font-head);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);}
+  .private-msg-card{background:var(--card);border:1px solid var(--border);padding:1.25rem 1.5rem;margin-bottom:0.75rem;}
+  .private-msg-card.unread{border-left:3px solid var(--gold);}
+  .private-msg-card.read{border-left:3px solid var(--faint);opacity:0.7;}
+  .msg-from{font-family:var(--font-head);font-weight:600;font-size:0.88rem;color:var(--text);margin-bottom:0.2rem;}
+  .msg-context{font-family:var(--font-head);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;}
+  .msg-content{font-family:var(--font-body);font-size:0.82rem;color:rgba(240,237,230,0.65);line-height:1.7;margin-bottom:0.75rem;}
+  .msg-ts{font-family:var(--font-body);font-size:0.7rem;color:var(--faint);}
+
+  /* DONATIONS */
+  .dono-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem;}
+  .dono-stat{background:var(--card);border:1px solid var(--border);border-top:2px solid var(--gold);padding:1.25rem;}
+  .dono-stat-num{font-family:var(--font-disp);font-size:2rem;color:var(--gold);line-height:1;}
+  .dono-stat-label{font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-top:0.4rem;}
+  .dono-row{display:grid;grid-template-columns:auto 1fr auto auto;gap:1rem;align-items:center;padding:0.85rem 1rem;background:var(--card);border:1px solid var(--border);margin-bottom:0.4rem;}
+  .dono-row-amt{font-family:var(--font-head);font-weight:600;font-size:1rem;color:var(--gold);}
+  .dono-row-name{font-family:var(--font-head);font-size:0.8rem;color:var(--text);}
+  .dono-row-freq{font-family:var(--font-head);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.2rem 0.5rem;border:1px solid;}
+  .dono-row-freq.monthly{color:var(--green-lt);border-color:rgba(15,173,60,0.35);}
+  .dono-row-freq.once{color:var(--muted);border-color:var(--faint);}
+  .dono-row-date{font-family:var(--font-body);font-size:0.72rem;color:var(--faint);}
+  .dono-allocation{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.75rem;margin-top:1.5rem;}
+  .dono-alloc-card{background:var(--card);border:1px solid var(--border);padding:1rem;text-align:center;}
+  .dono-alloc-pct{font-family:var(--font-disp);font-size:1.8rem;color:var(--gold);}
+  .dono-alloc-label{font-family:var(--font-head);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:0.25rem;}
+
+  /* PASSWORD GATE */
+  .pw-gate{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;}
+  .pw-gate.hidden{display:none;}
+  .pw-box{width:100%;max-width:400px;padding:3rem;text-align:center;}
+  .pw-brand{font-family:var(--font-disp);font-size:2.5rem;color:var(--gold);margin-bottom:0.25rem;}
+  .pw-sub{font-family:var(--font-head);font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);margin-bottom:3rem;}
+  .pw-label{font-family:var(--font-head);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);text-align:left;margin-bottom:0.5rem;}
+  .pw-input{width:100%;background:var(--surface);border:1px solid var(--border);border-bottom:2px solid var(--gold);color:var(--text);font-family:var(--font-head);font-size:1rem;padding:0.85rem 1rem;outline:none;margin-bottom:1rem;letter-spacing:0.1em;}
+  .pw-input:focus{border-color:var(--gold);}
+  .pw-btn{width:100%;background:var(--gold);color:var(--bg);font-family:var(--font-head);font-size:0.78rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;border:none;padding:0.9rem;cursor:pointer;transition:background 0.2s;}
+  .pw-btn:hover{background:var(--gold-lt);}
+  .pw-error{font-family:var(--font-body);font-size:0.8rem;color:var(--crimson);margin-top:0.75rem;min-height:1.2rem;}
+  .pw-hint{font-family:var(--font-body);font-size:0.75rem;color:var(--faint);margin-top:2rem;line-height:1.6;}
+  .pw-setup-note{font-family:var(--font-body);font-size:0.82rem;color:var(--gold);margin-bottom:1.5rem;line-height:1.65;border-left:2px solid var(--gold);padding-left:0.75rem;text-align:left;}
+  .pw-divider{height:1px;background:var(--faint);margin:2rem 0;}
+  /* Change password inside dashboard */
+  .change-pw-section{background:var(--card);border:1px solid var(--border);padding:1.5rem;margin-top:2rem;max-width:420px;}
+</style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div class="pw-gate" id="pwGate">
+  <div class="pw-box">
+    <div class="pw-brand">The Whole Story</div>
+    <div class="pw-sub">Mr. Green · Admin Dashboard</div>
+
+    <!-- FIRST TIME SETUP -->
+    <div id="pwSetup" style="display:none;">
+      <div class="pw-setup-note">Welcome, Mr. Green. This is your first time accessing the dashboard. Please create a password to protect your admin access.</div>
+      <div class="pw-label">Create Password</div>
+      <input class="pw-input" id="pwNew" type="password" placeholder="Choose a password" onkeydown="if(event.key==='Enter')document.getElementById('pwConfirm').focus()"/>
+      <div class="pw-label">Confirm Password</div>
+      <input class="pw-input" id="pwConfirm" type="password" placeholder="Confirm your password" onkeydown="if(event.key==='Enter')setPassword()"/>
+      <button class="pw-btn" onclick="setPassword()">Create Password &amp; Enter →</button>
+      <div class="pw-error" id="pwSetupError"></div>
+      <div class="pw-hint">Your password is stored locally on this device. If you need to reset it, contact <a href="mailto:info@getclarity.consulting" style="color:var(--gold);">Alanne International</a>.</div>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="pwLogin" style="display:none;">
+      <div class="pw-label">Password</div>
+      <input class="pw-input" id="pwEntry" type="password" placeholder="Enter your password" onkeydown="if(event.key==='Enter')checkPassword()"/>
+      <button class="pw-btn" onclick="checkPassword()">Enter Dashboard →</button>
+      <div class="pw-error" id="pwLoginError"></div>
+      <div class="pw-hint">Forgot your password? Contact <a href="mailto:info@getclarity.consulting" style="color:var(--gold);">Alanne International</a> to reset it.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <div class="sidebar-brand-name">The Whole Story</div>
+    <div class="sidebar-brand-sub">Mr. Green · Admin Dashboard</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Content</div>
+    <div class="nav-item active" onclick="showPanel('questions')">
+      <svg class="nav-svg" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M8 11v-1M8 5a2 2 0 0 1 0 4" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>
+      Questions
+      <span class="badge" id="qBadge">0</span>
+    </div>
+    <div class="nav-item" onclick="showPanel('messages')">
+      <svg class="nav-svg" viewBox="0 0 16 16"><rect x="1" y="3" width="14" height="10" rx="1" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M1 5l7 5 7-5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+      Private Messages
+      <span class="badge" id="msgBadge">0</span>
+    </div>
+    <div class="nav-item" onclick="showPanel('profiles')">
+      <svg class="nav-svg" viewBox="0 0 16 16"><circle cx="8" cy="5" r="3" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M2 14c0-3 2.7-5 6-5s6 2 6 5" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>
+      Profile Approvals
+      <span class="badge" id="profileBadge">0</span>
+    </div>
+    <div class="nav-item" onclick="showPanel('stories')">
+      <svg class="nav-svg" viewBox="0 0 16 16"><path d="M3 2h10v12l-5-3-5 3V2z" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linejoin="round"/></svg>
+      Light Bulb Stories
+      <span class="badge" id="storyBadge">0</span>
+    </div>
+    <div class="nav-item" onclick="showPanel('books')">
+      <svg class="nav-svg" viewBox="0 0 16 16"><rect x="2" y="1" width="9" height="14" rx="1" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M5 4h5M5 7h5M5 10h3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M11 1l3 2v11" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>
+      Book Library
+    </div>
+    <div class="nav-section-label">About Page</div>
+    <div class="nav-item" onclick="showPanel('photos')">
+      <svg class="nav-svg" viewBox="0 0 16 16"><rect x="1" y="3" width="14" height="10" rx="1" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="5.5" cy="7.5" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M1 11l4-4 3 3 2-2 5 5" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Photo Gallery
+    </div>
+    <div class="nav-item" onclick="showPanel('media')">
+      <svg class="nav-svg" viewBox="0 0 16 16"><path d="M2 2h12v12H2z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M2 5h12M5 2v3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+      Media Coverage
+    </div>
+    <div class="nav-item" onclick="showPanel('timeline')">
+      <svg class="nav-svg" viewBox="0 0 16 16"><line x1="8" y1="1" x2="8" y2="15" stroke="currentColor" stroke-width="1.2"/><circle cx="8" cy="4" r="2" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="8" cy="9" r="2" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="8" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+      Timeline
+    </div>
+    <div class="nav-section-label">Revenue</div>
+    <div class="nav-item" onclick="showPanel('donations')">
+      <svg class="nav-svg" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M8 4v1.5M8 10.5V12M6 6.5C6 5.7 6.9 5 8 5s2 .7 2 1.5S9.1 8 8 8s-2 .8-2 1.5S6.9 11 8 11s2-.7 2-1.5" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>
+      Donations
+      <span class="badge" id="donoBadge" style="background:var(--green);">New</span>
+    </div>
+    <div class="nav-section-label">Site</div>
+    <div class="nav-item" onclick="window.open('about2.html','_blank')">
+      <svg class="nav-svg" viewBox="0 0 16 16"><path d="M7 3H3v10h10V9M9 1h6v6M15 1L8 8" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      View About Page
+    </div>
+    <div class="nav-item" onclick="window.open('index.html','_blank')">
+      <svg class="nav-svg" viewBox="0 0 16 16"><path d="M7 3H3v10h10V9M9 1h6v6M15 1L8 8" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      View Site
+    </div>
+    <div class="nav-item" onclick="showPanel('settings')">
+      <svg class="nav-svg" viewBox="0 0 16 16"><circle cx="8" cy="8" r="2.5" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.2 3.2l1.4 1.4M11.4 11.4l1.4 1.4M3.2 12.8l1.4-1.4M11.4 4.6l1.4-1.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+      Settings
+    </div>
+    <div class="nav-item" onclick="logout()" style="margin-top:auto;">
+      <svg class="nav-svg" viewBox="0 0 16 16"><path d="M6 3H3v10h3M10 5l3 3-3 3M13 8H7" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Log Out
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="sidebar-footer-text">
+      Prototype dashboard — data stored in this browser.<br/>
+      <a href="https://www.getclarity.consulting" target="_blank">Created by Alanne International</a>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div>
+      <div class="topbar-title" id="topbarTitle">Questions</div>
+      <div class="topbar-sub" id="topbarSub">Review, answer, and assign books to submitted questions</div>
+    </div>
+    <button class="save-btn green" onclick="saveAll()">Save Changes</button>
+  </div>
+
+  <!-- ── PANEL: QUESTIONS ── -->
+  <div class="panel active" id="panel-questions">
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-num" id="statTotal">0</div><div class="stat-label">Total Questions</div></div>
+      <div class="stat-card"><div class="stat-num" id="statUnanswered">0</div><div class="stat-label">Unanswered</div></div>
+      <div class="stat-card"><div class="stat-num" id="statAnswered">0</div><div class="stat-label">Answered</div></div>
+      <div class="stat-card"><div class="stat-num" id="statBooks">0</div><div class="stat-label">Books in Library</div></div>
+    </div>
+
+    <div class="section-eyebrow">Submitted Questions</div>
+    <div class="section-title">Answer & Assign Books</div>
+
+    <!-- Add demo question for testing -->
+    <div style="margin-bottom:1.5rem;">
+      <button class="save-btn" onclick="addDemoQuestion()" style="background:var(--faint);color:var(--text);font-size:0.65rem;">+ Add Demo Question</button>
+    </div>
+
+    <div id="questionsList"></div>
+  </div>
+
+
+
+  <!-- ── PANEL: BOOK LIBRARY ── -->
+  <div class="panel" id="panel-books">
+    <div class="section-eyebrow">Your Library</div>
+    <div class="section-title">Manage Books & Add New Titles</div>
+
+    <div class="two-col" style="margin-bottom:2rem;">
+      <div>
+        <label class="field-label">Book Title</label>
+        <input class="field-input" id="newBookTitle" type="text" placeholder="e.g. The Miseducation of the Negro"/>
+        <label class="field-label">Author</label>
+        <input class="field-input" id="newBookAuthor" type="text" placeholder="e.g. Carter G. Woodson"/>
+        <label class="field-label">Genre / Category</label>
+        <select class="field-input" id="newBookGenre">
+          <option value="history">Black History</option>
+          <option value="biography">Biography</option>
+          <option value="fiction">Fiction</option>
+          <option value="politics">Politics & Power</option>
+          <option value="identity">Identity & Race</option>
+          <option value="media">Visual Media</option>
+          <option value="other">Other</option>
+        </select>
+        <label class="field-label">Your 2-sentence take (optional)</label>
+        <textarea class="field-input" id="newBookNote" placeholder="Why this book? Why now?"></textarea>
+        <button class="save-btn" style="margin-top:1rem;width:100%;" onclick="addBook()">Add to Library →</button>
+      </div>
+      <div>
+        <div class="field-label" style="margin-top:0;">Library</div>
+        <div id="bookLibrary" style="max-height:500px;overflow-y:auto;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PANEL: PHOTO GALLERY ── -->
+  <div class="panel" id="panel-photos">
+    <div class="section-eyebrow">About Page</div>
+    <div class="section-title">Add Photos to the Gallery</div>
+    <p style="font-family:var(--font-body);font-size:0.88rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.65;">Upload a photo and add a caption. It will be added to the gallery on the About Mr. Green page.</p>
+
+    <div class="two-col">
+      <div>
+        <div class="upload-zone" onclick="document.getElementById('photoUpload').click()">
+          <span class="upload-icon">📷</span>
+          <div class="upload-zone-label">Click to upload photo</div>
+          <div style="font-family:var(--font-body);font-size:0.75rem;color:var(--faint);margin-top:0.5rem;">JPG, PNG, WebP</div>
+        </div>
+        <input type="file" id="photoUpload" class="hidden-file" accept="image/*" onchange="previewPhoto(this)"/>
+        <div id="photoPreview" style="margin-top:0.75rem;display:none;">
+          <img id="photoPreviewImg" style="width:100%;aspect-ratio:1/1;object-fit:cover;"/>
+        </div>
+        <label class="field-label">Caption — Location / Event</label>
+        <input class="field-input" id="photoLabel" type="text" placeholder="e.g. Vanguard Award 2026 · Harlem"/>
+        <label class="field-label">Description</label>
+        <input class="field-input" id="photoCaption" type="text" placeholder="e.g. Mr. & Mrs. Green at the Malcolm X Commemoration"/>
+        <button class="save-btn" style="margin-top:1rem;width:100%;" onclick="addPhoto()">Add to Gallery →</button>
+      </div>
+      <div>
+        <div class="field-label" style="margin-top:0;">Pending Additions</div>
+        <div id="photoPending" style="font-family:var(--font-body);font-size:0.82rem;color:var(--muted);font-style:italic;">No photos added yet this session.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PANEL: MEDIA COVERAGE ── -->
+  <div class="panel" id="panel-media">
+    <div class="section-eyebrow">About Page</div>
+    <div class="section-title">Add Media Coverage</div>
+    <p style="font-family:var(--font-body);font-size:0.88rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.65;">Paste a link to a news article, video, or press mention. Add a thumbnail image (optional) and headline. It will appear in the In the Media section.</p>
+
+    <div class="two-col">
+      <div>
+        <label class="field-label">Publication / Outlet</label>
+        <input class="field-input" id="mediaOutlet" type="text" placeholder="e.g. Oakland Tribune · March 2026"/>
+        <label class="field-label">Headline</label>
+        <input class="field-input" id="mediaHeadline" type="text" placeholder="Paste or type the article headline"/>
+        <label class="field-label">URL</label>
+        <input class="field-input" id="mediaUrl" type="url" placeholder="https://..."/>
+        <label class="field-label">Thumbnail Image URL (optional)</label>
+        <input class="field-input" id="mediaThumbnail" type="url" placeholder="https://... or leave blank"/>
+        <label class="field-label">Color accent</label>
+        <select class="field-input" id="mediaColor">
+          <option value="gold">Gold — Broadcast / TV</option>
+          <option value="green">Green — Editorial / Press</option>
+          <option value="crimson">Crimson — Community</option>
+        </select>
+        <button class="save-btn" style="margin-top:1rem;width:100%;" onclick="addMedia()">Add to Media Section →</button>
+      </div>
+      <div>
+        <div class="field-label" style="margin-top:0;">Pending Additions</div>
+        <div id="mediaPending" style="font-family:var(--font-body);font-size:0.82rem;color:var(--muted);font-style:italic;">No media entries added yet this session.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PANEL: TIMELINE ── -->
+  <div class="panel" id="panel-timeline">
+    <div class="section-eyebrow">About Page</div>
+    <div class="section-title">Add a Timeline Entry</div>
+    <p style="font-family:var(--font-body);font-size:0.88rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.65;">Add a year, a headline, a description, and optionally an image. It will appear on the timeline on the About Mr. Green page.</p>
+
+    <div class="two-col">
+      <div>
+        <label class="field-label">Year</label>
+        <input class="field-input" id="tlYear" type="text" placeholder="e.g. 2026"/>
+        <label class="field-label">Category Tag</label>
+        <input class="field-input" id="tlTag" type="text" placeholder="e.g. Award · National Recognition"/>
+        <label class="field-label">Headline</label>
+        <input class="field-input" id="tlTitle" type="text" placeholder="e.g. Vanguard Award — Malcolm X Institute, Harlem"/>
+        <label class="field-label">Description</label>
+        <textarea class="field-input" id="tlDesc" placeholder="Tell the full story of this milestone..."></textarea>
+        <label class="field-label">Image Filename (optional)</label>
+        <input class="field-input" id="tlImg" type="text" placeholder="e.g. img_vanguard_2026.jpg"/>
+        <label class="field-label">Image Caption (optional)</label>
+        <input class="field-input" id="tlImgCaption" type="text" placeholder="Caption for the image"/>
+        <button class="save-btn" style="margin-top:1rem;width:100%;" onclick="addTimelineEntry()">Add to Timeline →</button>
+      </div>
+      <div>
+        <div class="field-label" style="margin-top:0;">Preview</div>
+        <div id="tlPreview" style="font-family:var(--font-body);font-size:0.82rem;color:var(--muted);font-style:italic;">Fill in the form to see a preview.</div>
+        <div class="divider"></div>
+        <div class="field-label">Recent Additions This Session</div>
+        <div id="tlAdded"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ── PANEL: PRIVATE MESSAGES ── -->
+  <div class="panel" id="panel-messages">
+    <div class="section-eyebrow">Inbox</div>
+    <div class="section-title">Private Messages</div>
+    <p style="font-family:var(--font-body);font-size:0.88rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.65;">Messages sent privately through the profile submission form. Only you can see these.</p>
+    <div id="privateMessages"></div>
+  </div>
+
+  <!-- ── PANEL: PROFILE APPROVALS ── -->
+  <div class="panel" id="panel-profiles">
+    <div class="section-eyebrow">Community</div>
+    <div class="section-title">Profile Approvals</div>
+    <p style="font-family:var(--font-body);font-size:0.88rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.65;">Review submitted profiles before they appear on the Black People You Don't See on TV page. Approve to publish, decline to remove.</p>
+    <div id="profileSubmissions"></div>
+  </div>
+
+  <!-- ── PANEL: LIGHT BULB STORIES ── -->
+  <div class="panel" id="panel-stories">
+    <div class="section-eyebrow">Share What You Learned</div>
+    <div class="section-title">Light Bulb Story Submissions</div>
+    <p style="font-family:var(--font-body);font-size:0.88rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.65;">Stories submitted through the "Share What You Learned" form. Approve to feature in the rotating Light Bulb Moments section on the homepage.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;">
+      <div>
+        <div class="field-label">Pending Stories</div>
+        <div id="storySubmissions"></div>
+      </div>
+      <div>
+        <div class="lightbulb-preview">
+          <div class="lightbulb-preview-label">Live on Homepage — Rotating Now</div>
+          <div id="featuredStories"></div>
+          <div style="font-family:var(--font-body);font-size:0.72rem;color:var(--faint);margin-top:1rem;">Stories rotate automatically every 6 seconds on the homepage.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ── PANEL: DONATIONS ── -->
+  <div class="panel" id="panel-donations">
+    <div class="section-eyebrow">Revenue</div>
+    <div class="section-title">Donation Overview</div>
+    <p style="font-family:var(--font-body);font-size:0.88rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.65;">Prototype view — connect Stripe to see live data. All figures below are demo data.</p>
+
+    <div class="dono-summary">
+      <div class="dono-stat"><div class="dono-stat-num">$1,240</div><div class="dono-stat-label">Total Raised</div></div>
+      <div class="dono-stat" style="border-top-color:var(--green);"><div class="dono-stat-num" style="color:var(--green-lt);">$185</div><div class="dono-stat-label">Monthly Recurring</div></div>
+      <div class="dono-stat"><div class="dono-stat-num">34</div><div class="dono-stat-label">Total Donors</div></div>
+      <div class="dono-stat" style="border-top-color:var(--sapphire-lt);"><div class="dono-stat-num" style="color:var(--sapphire-lt);">7</div><div class="dono-stat-label">Monthly Supporters</div></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;">
+      <div>
+        <div class="field-label">Recent Contributions</div>
+        <div id="donoList"></div>
+      </div>
+      <div>
+        <div class="field-label">Allocation</div>
+        <p style="font-family:var(--font-body);font-size:0.78rem;color:var(--muted);margin-bottom:1rem;line-height:1.6;">Set how donations are split across your three priorities. Adjust the percentages below.</p>
+        <div class="dono-allocation">
+          <div class="dono-alloc-card">
+            <div class="dono-alloc-pct">40%</div>
+            <div class="dono-alloc-label">Site Independence</div>
+          </div>
+          <div class="dono-alloc-card">
+            <div class="dono-alloc-pct">40%</div>
+            <div class="dono-alloc-label">BSU & Classroom</div>
+          </div>
+          <div class="dono-alloc-card">
+            <div class="dono-alloc-pct">20%</div>
+            <div class="dono-alloc-label">Platform Growth</div>
+          </div>
+        </div>
+        <p style="font-family:var(--font-body);font-size:0.72rem;color:var(--faint);margin-top:1rem;line-height:1.6;">Allocation editing and Stripe dashboard integration available when backend is connected.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ── PANEL: SETTINGS ── -->
+  <div class="panel" id="panel-settings">
+    <div class="section-eyebrow">Security</div>
+    <div class="section-title">Dashboard Settings</div>
+
+    <div class="change-pw-section">
+      <div class="field-label">Change Password</div>
+      <label class="field-label">Current Password</label>
+      <input class="field-input" id="pwCurrent" type="password" placeholder="Enter current password"/>
+      <label class="field-label">New Password</label>
+      <input class="field-input" id="pwNewChange" type="password" placeholder="Choose new password"/>
+      <label class="field-label">Confirm New Password</label>
+      <input class="field-input" id="pwConfirmChange" type="password" placeholder="Confirm new password"/>
+      <button class="save-btn green" style="margin-top:1rem;width:100%;" onclick="changePassword()">Update Password →</button>
+      <div class="pw-error" id="pwChangeError" style="margin-top:0.5rem;"></div>
+    </div>
+  </div>
+
+</main>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+
+// ── PASSWORD GATE ─────────────────────────────────────────────────────────────
+const PW_KEY = 'wts_admin_pw';
+const SESSION_KEY = 'wts_admin_session';
+
+function initGate() {
+  const stored = localStorage.getItem(PW_KEY);
+  const session = sessionStorage.getItem(SESSION_KEY);
+  if (session === '1') { unlock(); return; }
+  document.getElementById('pwGate').classList.remove('hidden');
+  if (!stored) {
+    document.getElementById('pwSetup').style.display = 'block';
+  } else {
+    document.getElementById('pwLogin').style.display = 'block';
+    setTimeout(() => document.getElementById('pwEntry').focus(), 100);
+  }
+}
+
+function setPassword() {
+  const pw = document.getElementById('pwNew').value;
+  const confirm = document.getElementById('pwConfirm').value;
+  const err = document.getElementById('pwSetupError');
+  if (!pw || pw.length < 6) { err.textContent = 'Password must be at least 6 characters.'; return; }
+  if (pw !== confirm) { err.textContent = 'Passwords do not match.'; return; }
+  localStorage.setItem(PW_KEY, btoa(pw));
+  sessionStorage.setItem(SESSION_KEY, '1');
+  unlock();
+}
+
+function checkPassword() {
+  const entered = document.getElementById('pwEntry').value;
+  const stored = localStorage.getItem(PW_KEY);
+  const err = document.getElementById('pwLoginError');
+  if (!entered) { err.textContent = 'Please enter your password.'; return; }
+  if (btoa(entered) !== stored) {
+    err.textContent = 'Incorrect password. Try again.';
+    document.getElementById('pwEntry').value = '';
+    document.getElementById('pwEntry').focus();
+    return;
+  }
+  sessionStorage.setItem(SESSION_KEY, '1');
+  unlock();
+}
+
+function unlock() {
+  document.getElementById('pwGate').classList.add('hidden');
+}
+
+function logout() {
+  sessionStorage.removeItem(SESSION_KEY);
+  location.reload();
+}
+
+function changePassword() {
+  const current = document.getElementById('pwCurrent').value;
+  const newPw = document.getElementById('pwNewChange').value;
+  const confirm = document.getElementById('pwConfirmChange').value;
+  const err = document.getElementById('pwChangeError');
+  const stored = localStorage.getItem(PW_KEY);
+  if (btoa(current) !== stored) { err.textContent = 'Current password is incorrect.'; return; }
+  if (!newPw || newPw.length < 6) { err.textContent = 'New password must be at least 6 characters.'; return; }
+  if (newPw !== confirm) { err.textContent = 'New passwords do not match.'; return; }
+  localStorage.setItem(PW_KEY, btoa(newPw));
+  err.style.color = 'var(--green-lt)';
+  err.textContent = 'Password updated successfully ✓';
+  ['pwCurrent','pwNewChange','pwConfirmChange'].forEach(id => document.getElementById(id).value = '');
+  setTimeout(() => { err.textContent = ''; err.style.color = 'var(--crimson)'; }, 3000);
+}
+
+initGate();
+
+// ── BOOKS DATA (pre-seeded from Mr. Green's list) ────────────────────────────
+const DEFAULT_BOOKS = [
+  {title:"The Spook Who Sat by the Door",author:"Sam Greenlee",genre:"fiction",note:""},
+  {title:"The Autobiography of Malcolm X",author:"Alex Haley",genre:"biography",note:""},
+  {title:"Miseducation of the Negro",author:"Carter G. Woodson",genre:"history",note:""},
+  {title:"Invisible Man",author:"Ralph Ellison",genre:"fiction",note:""},
+  {title:"Race Matters",author:"Cornel West",genre:"politics",note:""},
+  {title:"Up From Slavery",author:"Booker T. Washington",genre:"biography",note:""},
+  {title:"Malcolm X: A Life of Reinvention",author:"Manning Marable",genre:"biography",note:""},
+  {title:"The Poisonwood Bible",author:"Barbara Kingsolver",genre:"fiction",note:""},
+  {title:"Wealth of Nations",author:"Adam Smith",genre:"politics",note:""},
+  {title:"The Color of Law",author:"Richard Rothstein",genre:"history",note:""},
+  {title:"The New Jim Crow",author:"Michelle Alexander",genre:"history",note:""},
+  {title:"Caste",author:"Isabel Wilkerson",genre:"history",note:""},
+];
+
+// ── STATE ────────────────────────────────────────────────────────────────────
+let state = {
+  questions: JSON.parse(localStorage.getItem('dash_questions') || '[]'),
+  books: JSON.parse(localStorage.getItem('dash_books') || JSON.stringify(DEFAULT_BOOKS)),
+  photos: JSON.parse(localStorage.getItem('dash_photos') || '[]'),
+  media: JSON.parse(localStorage.getItem('dash_media') || '[]'),
+  timeline: JSON.parse(localStorage.getItem('dash_timeline') || '[]'),
+};
+
+function saveState() {
+  Object.keys(state).forEach(k => localStorage.setItem('dash_'+k, JSON.stringify(state[k])));
+}
+
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('visible');
+  setTimeout(() => el.classList.remove('visible'), 2500);
+}
+
+function saveAll() { saveState(); toast('Changes saved ✓'); }
+
+// ── PANEL NAVIGATION ──────────────────────────────────────────────────────────
+const panelMeta = {
+  questions: ['Questions','Review, answer, and assign books to submitted questions'],
+  messages:  ['Private Messages','Messages sent directly to you through the profile form'],
+  profiles:  ['Profile Approvals','Approve or decline submitted profiles for the Black People page'],
+  stories:   ['Light Bulb Stories','Approve submissions and feature them in the rotating homepage section'],
+  books:     ['Book Library','Manage your reading list and add new titles'],
+  photos:    ['Photo Gallery','Upload photos to the About Mr. Green page'],
+  media:     ['Media Coverage','Add press links to the About Mr. Green page'],
+  timeline:   ['Timeline','Add entries to the life timeline on About Mr. Green'],
+  donations:  ['Donations','Track contributions, view totals, and manage giving history'],
+  settings:   ['Settings','Change your dashboard password and manage access'],
+};
+function showPanel(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  document.getElementById('topbarTitle').textContent = panelMeta[id][0];
+  document.getElementById('topbarSub').textContent = panelMeta[id][1];
+  if (id === 'questions') renderQuestions();
+  if (id === 'messages')  renderPrivateMessages();
+  if (id === 'profiles')  renderProfiles();
+  if (id === 'stories')   renderStories();
+  if (id === 'books') renderBooks();
+  if (id === 'photos') renderPhotoPending();
+  if (id === 'media') renderMediaPending();
+  if (id === 'donations') renderDonations();
+  if (id === 'settings') {}  // static panel
+}
+
+// ── QUESTIONS ────────────────────────────────────────────────────────────────
+function renderQuestions() {
+  const qs = state.questions;
+  document.getElementById('statTotal').textContent = qs.length;
+  document.getElementById('statUnanswered').textContent = qs.filter(q=>!q.answer).length;
+  document.getElementById('statAnswered').textContent = qs.filter(q=>q.answer).length;
+  document.getElementById('statBooks').textContent = state.books.length;
+  document.getElementById('qBadge').textContent = qs.filter(q=>!q.answer).length;
+  document.getElementById('msgBadge').textContent = 2; // demo
+
+  const list = document.getElementById('questionsList');
+  if (!qs.length) {
+    list.innerHTML = `<div style="font-family:var(--font-body);font-size:0.88rem;color:var(--muted);font-style:italic;padding:2rem 0;">No questions submitted yet. Click "Add Demo Question" to test the flow.</div>`;
+    return;
+  }
+  list.innerHTML = qs.map((q,i) => `
+    <div class="q-item ${q.answer ? 'answered' : 'unanswered'}" onclick="toggleEditor(${i})">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.5rem;">
+        <span class="tag ${q.answer ? 'tag-answered' : 'tag-new'}">${q.answer ? 'Answered' : 'Unanswered'}</span>
+        <span style="font-family:var(--font-head);font-size:0.6rem;letter-spacing:0.1em;color:var(--faint);">${q.date}</span>
+      </div>
+      <div class="q-text">${q.question}</div>
+      ${q.answer ? `<div style="font-family:var(--font-body);font-size:0.75rem;color:var(--green-lt);margin-top:0.4rem;">✓ Answered · ${q.book ? 'Book: '+q.book : 'No book assigned'}</div>` : ''}
+    </div>
+    <div class="answer-editor ${q._open ? 'open' : ''}" id="editor-${i}">
+      <label class="field-label">Your Answer</label>
+      <textarea class="field-input" id="ans-${i}" style="min-height:140px;" placeholder="Type your answer here — you can use plain language, Mr. Green. This will be formatted and published.">${q.answer||''}</textarea>
+      
+      <label class="field-label">Assign a Book from Your Library</label>
+      <select class="field-input" id="book-${i}">
+        <option value="">— No book for this question —</option>
+        ${state.books.map(b=>`<option value="${b.title}" ${q.book===b.title?'selected':''}>${b.title} · ${b.author}</option>`).join('')}
+      </select>
+
+      <label class="field-label">Or type in a new book title</label>
+      <div style="display:flex;gap:0.5rem;">
+        <input class="field-input" id="newbook-${i}" type="text" placeholder="New book title..." style="flex:1;"/>
+        <button class="save-btn" onclick="addBookFromQuestion(${i})" style="white-space:nowrap;padding:0.75rem 1rem;">Add Book</button>
+      </div>
+
+      <div style="display:flex;gap:0.75rem;margin-top:1.25rem;">
+        <button class="save-btn green" onclick="saveAnswer(${i})">Publish Answer →</button>
+        <button class="save-btn" style="background:var(--faint);" onclick="toggleEditor(${i})">Cancel</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleEditor(i) {
+  state.questions[i]._open = !state.questions[i]._open;
+  renderQuestions();
+}
+
+function saveAnswer(i) {
+  const ans = document.getElementById('ans-'+i).value.trim();
+  const book = document.getElementById('book-'+i).value;
+  if (!ans) { toast('Please write an answer first.'); return; }
+  state.questions[i].answer = ans;
+  state.questions[i].book = book || null;
+  state.questions[i]._open = false;
+  saveState();
+  renderQuestions();
+  toast('Answer published ✓');
+}
+
+function addBookFromQuestion(i) {
+  const title = document.getElementById('newbook-'+i).value.trim();
+  if (!title) return;
+  state.books.push({title, author:'', genre:'other', note:''});
+  saveState();
+  renderQuestions();
+  toast('Book added to library ✓');
+}
+
+function addDemoQuestion() {
+  const demos = [
+    "Why do Black communities have less generational wealth?",
+    "Were the Black Panthers actually violent?",
+    "What is systemic racism — is it real?",
+    "Why is slavery still relevant today?",
+    "Did the Civil Rights Act fix inequality?",
+  ];
+  const q = demos[state.questions.length % demos.length];
+  state.questions.push({question:q, answer:null, book:null, date:new Date().toLocaleDateString(), _open:false});
+  saveState();
+  renderQuestions();
+  toast('Demo question added ✓');
+}
+
+// ── BOOKS ────────────────────────────────────────────────────────────────────
+function renderBooks() {
+  const lib = document.getElementById('bookLibrary');
+  lib.innerHTML = state.books.map((b,i) => `
+    <div class="dash-card" style="padding:0.85rem 1rem;margin-bottom:0.5rem;display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <div style="font-family:var(--font-head);font-size:0.82rem;color:var(--text);margin-bottom:0.2rem;">${b.title}</div>
+        <div style="font-family:var(--font-body);font-size:0.72rem;color:var(--muted);">${b.author} · <span style="color:var(--gold);">${b.genre}</span></div>
+      </div>
+      <button onclick="removeBook(${i})" style="background:none;border:none;cursor:pointer;color:var(--faint);font-size:1rem;padding:0.25rem 0.5rem;" title="Remove">×</button>
+    </div>
+  `).join('');
+  document.getElementById('statBooks').textContent = state.books.length;
+}
+
+function addBook() {
+  const title = document.getElementById('newBookTitle').value.trim();
+  const author = document.getElementById('newBookAuthor').value.trim();
+  const genre = document.getElementById('newBookGenre').value;
+  const note = document.getElementById('newBookNote').value.trim();
+  if (!title) { toast('Please enter a book title.'); return; }
+  state.books.push({title,author,genre,note});
+  saveState();
+  renderBooks();
+  document.getElementById('newBookTitle').value='';
+  document.getElementById('newBookAuthor').value='';
+  document.getElementById('newBookNote').value='';
+  toast('Book added to library ✓');
+}
+
+function removeBook(i) {
+  if (!confirm('Remove "'+state.books[i].title+'" from library?')) return;
+  state.books.splice(i,1);
+  saveState();
+  renderBooks();
+  toast('Book removed ✓');
+}
+
+// ── PHOTOS ───────────────────────────────────────────────────────────────────
+function previewPhoto(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    document.getElementById('photoPreviewImg').src = e.target.result;
+    document.getElementById('photoPreview').style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+}
+
+function addPhoto() {
+  const label = document.getElementById('photoLabel').value.trim();
+  const caption = document.getElementById('photoCaption').value.trim();
+  const file = document.getElementById('photoUpload').files[0];
+  if (!label || !caption) { toast('Please add a caption and description.'); return; }
+  const entry = {label, caption, filename: file ? file.name : 'pending-upload', date: new Date().toLocaleDateString()};
+  state.photos.push(entry);
+  saveState();
+  renderPhotoPending();
+  document.getElementById('photoLabel').value='';
+  document.getElementById('photoCaption').value='';
+  document.getElementById('photoPreview').style.display='none';
+  toast('Photo added — upload file to GitHub to publish ✓');
+}
+
+function renderPhotoPending() {
+  const el = document.getElementById('photoPending');
+  if (!state.photos.length) {
+    el.innerHTML = '<div style="font-family:var(--font-body);font-size:0.82rem;color:var(--muted);font-style:italic;">No photos added yet.</div>';
+    return;
+  }
+  el.innerHTML = state.photos.map((p,i) => `
+    <div class="dash-card" style="padding:0.85rem 1rem;margin-bottom:0.5rem;">
+      <div style="font-family:var(--font-head);font-size:0.78rem;color:var(--gold);margin-bottom:0.2rem;">${p.label}</div>
+      <div style="font-family:var(--font-body);font-size:0.75rem;color:var(--text);margin-bottom:0.25rem;">${p.caption}</div>
+      <div style="font-family:var(--font-body);font-size:0.65rem;color:var(--faint);">File: ${p.filename} · Added ${p.date}</div>
+    </div>
+  `).join('');
+}
+
+// ── MEDIA ────────────────────────────────────────────────────────────────────
+function addMedia() {
+  const outlet = document.getElementById('mediaOutlet').value.trim();
+  const headline = document.getElementById('mediaHeadline').value.trim();
+  const url = document.getElementById('mediaUrl').value.trim();
+  const thumbnail = document.getElementById('mediaThumbnail').value.trim();
+  const color = document.getElementById('mediaColor').value;
+  if (!outlet || !headline || !url) { toast('Please fill in outlet, headline, and URL.'); return; }
+  state.media.push({outlet,headline,url,thumbnail,color,date:new Date().toLocaleDateString()});
+  saveState();
+  renderMediaPending();
+  ['mediaOutlet','mediaHeadline','mediaUrl','mediaThumbnail'].forEach(id=>document.getElementById(id).value='');
+  toast('Media entry added ✓');
+}
+
+function renderMediaPending() {
+  const el = document.getElementById('mediaPending');
+  if (!state.media.length) {
+    el.innerHTML = '<div style="font-family:var(--font-body);font-size:0.82rem;color:var(--muted);font-style:italic;">No media entries added yet.</div>';
+    return;
+  }
+  el.innerHTML = state.media.map(m => `
+    <div class="dash-card" style="padding:0.85rem 1rem;margin-bottom:0.5rem;border-left:3px solid var(--${m.color});">
+      <div style="font-family:var(--font-head);font-size:0.72rem;color:var(--${m.color});margin-bottom:0.25rem;">${m.outlet}</div>
+      <div style="font-family:var(--font-head);font-size:0.82rem;color:var(--text);margin-bottom:0.25rem;">${m.headline}</div>
+      <a href="${m.url}" target="_blank" style="font-family:var(--font-body);font-size:0.7rem;color:var(--muted);word-break:break-all;">${m.url}</a>
+    </div>
+  `).join('');
+}
+
+// ── TIMELINE ─────────────────────────────────────────────────────────────────
+function addTimelineEntry() {
+  const year = document.getElementById('tlYear').value.trim();
+  const tag = document.getElementById('tlTag').value.trim();
+  const title = document.getElementById('tlTitle').value.trim();
+  const desc = document.getElementById('tlDesc').value.trim();
+  const img = document.getElementById('tlImg').value.trim();
+  const imgCaption = document.getElementById('tlImgCaption').value.trim();
+  if (!year || !title) { toast('Please add a year and headline.'); return; }
+  state.timeline.push({year,tag,title,desc,img,imgCaption,date:new Date().toLocaleDateString()});
+  saveState();
+  renderTimelinePreview();
+  ['tlYear','tlTag','tlTitle','tlDesc','tlImg','tlImgCaption'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('tlPreview').innerHTML = '<div style="font-family:var(--font-body);font-size:0.82rem;color:var(--muted);font-style:italic;">Fill in the form to see a preview.</div>';
+  toast('Timeline entry added ✓');
+}
+
+// Live preview
+['tlYear','tlTitle','tlDesc'].forEach(id => {
+  document.getElementById(id)?.addEventListener('input', () => {
+    const year = document.getElementById('tlYear').value || '—';
+    const title = document.getElementById('tlTitle').value || 'Headline';
+    const desc = document.getElementById('tlDesc').value || '';
+    document.getElementById('tlPreview').innerHTML = `
+      <div class="tl-entry-preview">
+        <div class="tl-preview-year">${year}</div>
+        <div>
+          <div style="font-family:var(--font-head);font-size:0.88rem;color:var(--text);margin-bottom:0.3rem;">${title}</div>
+          <div class="tl-preview-text">${desc}</div>
+        </div>
+      </div>`;
+  });
+});
+
+function renderTimelinePreview() {
+  const el = document.getElementById('tlAdded');
+  el.innerHTML = state.timeline.slice(-5).reverse().map(t => `
+    <div class="tl-entry-preview">
+      <div class="tl-preview-year">${t.year}</div>
+      <div>
+        <div style="font-family:var(--font-head);font-size:0.82rem;color:var(--text);margin-bottom:0.2rem;">${t.title}</div>
+        <div class="tl-preview-text">${t.desc}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+
+// ── DONATIONS ─────────────────────────────────────────────────────────────────
+const DEMO_DONATIONS = [
+  {name:"Anonymous",amt:25,freq:"once",date:"Mar 20, 2026"},
+  {name:"M. Torres",amt:10,freq:"monthly",date:"Mar 19, 2026"},
+  {name:"Anonymous",amt:100,freq:"once",date:"Mar 18, 2026"},
+  {name:"David K.",amt:25,freq:"monthly",date:"Mar 15, 2026"},
+  {name:"Anonymous",amt:50,freq:"once",date:"Mar 12, 2026"},
+  {name:"S. Okafor",amt:25,freq:"monthly",date:"Mar 10, 2026"},
+  {name:"Anonymous",amt:5,freq:"once",date:"Mar 8, 2026"},
+];
+function renderDonations() {
+  document.getElementById('donoList').innerHTML = DEMO_DONATIONS.map(d => `
+    <div class="dono-row">
+      <div class="dono-row-amt">$${d.amt}</div>
+      <div class="dono-row-name">${d.name}</div>
+      <span class="dono-row-freq ${d.freq}">${d.freq === 'monthly' ? 'Monthly' : 'One-time'}</span>
+      <div class="dono-row-date">${d.date}</div>
+    </div>
+  `).join('');
+  document.getElementById('donoBadge').style.display = 'none';
+}
+
+// ── INIT ─────────────────────────────────────────────────────────────────────
+
+// ── STATE: new keys ───────────────────────────────────────────────────────────
+state.profiles = JSON.parse(localStorage.getItem('dash_profiles') || JSON.stringify(DEMO_PROFILES()));
+state.stories  = JSON.parse(localStorage.getItem('dash_stories')  || JSON.stringify(DEMO_STORIES()));
+state.privmsgs = JSON.parse(localStorage.getItem('dash_privmsgs') || JSON.stringify(DEMO_PRIVMSGS()));
+
+function DEMO_PROFILES() { return [
+  {id:1, name:"Cara Brown", title:"Design Strategist", company:"Alanne International", grad:"2001", category:"Business & Finance", bio:"Founded Clarity consulting practice. Serves Fortune 500 supply chain leaders.", mrgreen:true, status:"pending", date:"March 20, 2026"},
+  {id:2, name:"Ryan Coogler", title:"Filmmaker", company:"Independent", grad:"2002", category:"Arts & Culture", bio:"Director of Black Panther, Creed, and Fruitvale Station. O'Dowd alum.", mrgreen:true, status:"pending", date:"March 20, 2026"},
+  {id:3, name:"Kirk Morrison", title:"NFL Analyst", company:"ESPN", grad:"1999", category:"Sports & Leadership", bio:"Former NFL linebacker turned ESPN analyst. Credits Mr. Green's class weekly.", mrgreen:true, status:"approved", date:"March 18, 2026"},
+]; }
+
+function DEMO_STORIES() { return [
+  {id:1, name:"Anonymous", location:"South Carolina", story:"I grew up genuinely believing the Civil War was about states' rights. I'm 54. I found this site through a Facebook argument and stayed for three hours. Something shifted. I don't know what to do with it yet but I couldn't leave without saying something.", featured:false, status:"pending", date:"March 19, 2026"},
+  {id:2, name:"M. Torres", location:"Phoenix, AZ", story:"My daughter came home from school repeating something about Black people that wasn't right. I didn't know how to correct her because honestly I wasn't sure myself. This site gave me the language and the facts. We talked for two hours that night. She's 12.", featured:true, status:"approved", date:"March 15, 2026"},
+  {id:3, name:"David K.", location:"Chicago, IL", story:"I've been in HR for 20 years. I thought I understood systemic racism. I didn't. The redlining page broke something open in me — I immediately looked up our city's HOLC maps. Our office is in a formerly redlined neighborhood. I'm rethinking everything.", featured:true, status:"approved", date:"March 10, 2026"},
+]; }
+
+function DEMO_PRIVMSGS() { return [
+  {id:1, from:"Ryan Coogler", context:"Profile Submission · O'Dowd Alum · Class of 2002", message:"Hi Mr. Green — submitted my profile. You changed my life. I think about your class every time I'm telling a story that matters. Thank you for everything.", read:false, date:"March 20, 2026 · 9:42 AM"},
+  {id:2, from:"Kirk Morrison", context:"Profile Update · NFL/ESPN", message:"Mr. Green — you should know I quote you at least twice a week on ESPN. People always ask where it comes from. It comes from Room 213.", read:true, date:"March 18, 2026 · 2:30 PM"},
+  {id:3, from:"Anonymous Visitor", context:"General Message · Share What You Learned", message:"I'm a teacher in Mississippi. I found this site and cried for twenty minutes. I'm adding it to my curriculum. Thank you for building this.", read:false, date:"March 17, 2026 · 8:15 PM"},
+]; }
+
+// ── RENDER: PRIVATE MESSAGES ─────────────────────────────────────────────────
+function renderPrivateMessages() {
+  const msgs = state.privmsgs;
+  const el = document.getElementById('privateMessages');
+  document.getElementById('msgBadge').textContent = msgs.filter(m=>!m.read).length;
+  el.innerHTML = msgs.map((m,i) => `
+    <div class="private-msg-card ${m.read ? 'read' : 'unread'}">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.3rem;">
+        <div class="msg-from">${m.from}</div>
+        ${!m.read ? '<span class="tag tag-new">Unread</span>' : ''}
+      </div>
+      <div class="msg-context">${m.context}</div>
+      <div class="msg-content">${m.message}</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div class="msg-ts">${m.date}</div>
+        ${!m.read ? `<button class="sub-btn sub-btn-approve" onclick="markMsgRead(${i})">Mark Read</button>` : ''}
+      </div>
+    </div>
+  `).join('');
+}
+function markMsgRead(i) {
+  state.privmsgs[i].read = true;
+  saveState();
+  renderPrivateMessages();
+  toast('Marked as read ✓');
+}
+
+// ── RENDER: PROFILE APPROVALS ─────────────────────────────────────────────────
+function renderProfiles() {
+  const el = document.getElementById('profileSubmissions');
+  const pending = state.profiles.filter(p=>p.status==='pending').length;
+  document.getElementById('profileBadge').textContent = pending;
+  el.innerHTML = state.profiles.map((p,i) => `
+    <div class="submission-card ${p.status}">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.3rem;">
+        <div class="sub-name">${p.name}</div>
+        <span class="tag ${p.status==='approved'?'tag-answered':p.status==='declined'?'tag-new':'tag-pending'}">${p.status.charAt(0).toUpperCase()+p.status.slice(1)}</span>
+      </div>
+      <div class="sub-meta">${p.title} · ${p.company} · O'Dowd ${p.grad} · ${p.category}${p.mrgreen?' · ★ Your Student':''}</div>
+      <div class="sub-body">${p.bio}</div>
+      <div class="sub-actions">
+        ${p.status!=='approved' ? `<button class="sub-btn sub-btn-approve" onclick="approveProfile(${i})">Approve & Publish</button>` : ''}
+        ${p.status!=='declined' ? `<button class="sub-btn sub-btn-decline" onclick="declineProfile(${i})">Decline</button>` : ''}
+        <span style="font-family:var(--font-body);font-size:0.7rem;color:var(--faint);align-self:center;margin-left:auto;">Submitted ${p.date}</span>
+      </div>
+    </div>
+  `).join('');
+}
+function approveProfile(i) {
+  state.profiles[i].status = 'approved';
+  saveState(); renderProfiles();
+  toast('Profile approved and published ✓');
+}
+function declineProfile(i) {
+  state.profiles[i].status = 'declined';
+  saveState(); renderProfiles();
+  toast('Profile declined ✓');
+}
+
+// ── RENDER: LIGHT BULB STORIES ────────────────────────────────────────────────
+function renderStories() {
+  const pending = state.stories.filter(s=>s.status==='pending');
+  const featured = state.stories.filter(s=>s.featured && s.status==='approved');
+  document.getElementById('storyBadge').textContent = pending.length;
+
+  document.getElementById('storySubmissions').innerHTML = state.stories.map((s,i) => `
+    <div class="submission-card ${s.status}">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.3rem;">
+        <div class="sub-name">${s.name} · ${s.location}</div>
+        <span class="tag ${s.status==='approved'?'tag-answered':'tag-pending'}">${s.featured?'Featured':s.status}</span>
+      </div>
+      <div class="sub-body">${s.story}</div>
+      <div class="sub-actions">
+        ${s.status==='pending'?`<button class="sub-btn sub-btn-approve" onclick="approveStory(${i})">Approve</button>`:''}
+        ${s.status==='approved'&&!s.featured?`<button class="sub-btn sub-btn-feature" onclick="featureStory(${i})">Feature on Homepage</button>`:''}
+        ${s.featured?`<button class="sub-btn sub-btn-decline" onclick="unfeatureStory(${i})">Remove from Homepage</button>`:''}
+        ${s.status==='pending'?`<button class="sub-btn sub-btn-decline" onclick="declineStory(${i})">Decline</button>`:''}
+      </div>
+    </div>
+  `).join('');
+
+  document.getElementById('featuredStories').innerHTML = featured.length
+    ? featured.map(s=>`
+        <div class="lb-story">
+          <div class="lb-story-text">"${s.story.substring(0,180)}${s.story.length>180?'…':''}"</div>
+          <div class="lb-story-attr">— ${s.name}, ${s.location}</div>
+        </div>`).join('')
+    : '<div style="font-family:var(--font-body);font-size:0.82rem;color:var(--faint);font-style:italic;">No featured stories yet.</div>';
+}
+function approveStory(i) { state.stories[i].status='approved'; saveState(); renderStories(); toast('Story approved ✓'); }
+function featureStory(i) { state.stories[i].featured=true; saveState(); renderStories(); toast('Story featured on homepage ✓'); }
+function unfeatureStory(i) { state.stories[i].featured=false; saveState(); renderStories(); toast('Removed from homepage ✓'); }
+function declineStory(i) { state.stories[i].status='declined'; saveState(); renderStories(); toast('Story declined ✓'); }
+
+renderQuestions();
+renderBooks();
+renderTimelinePreview();
+renderPrivateMessages();
+renderProfiles();
+renderStories();
+document.getElementById('qBadge').textContent = state.questions.filter(q=>!q.answer).length;
+</script>
+</body>
+</html>
