@@ -1046,36 +1046,50 @@
   .donate-use::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;}
 
   /* ── FOOTER ── */
-  footer {
-    padding: 5rem 4rem 3rem;
-    border-top: 1px solid var(--faint);
-  }
-  .footer-top {
+  footer { padding: 5rem 4rem 2rem; border-top: 1px solid var(--faint); }
+  .footer-row-top {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-columns: 1.4fr 1fr;
     gap: 4rem;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--faint);
+  }
+  .footer-row-nav {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
   }
   .footer-brand-name {
-    font-family: var(--font-head);
-    font-weight: 700;
-    font-size: 1.2rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-family: var(--font-disp);
+    font-size: 3rem;
     color: var(--text);
-    margin-bottom: 0.5rem;
+    line-height: 0.95;
+    margin-bottom: 1.25rem;
   }
   .footer-brand-sub {
     font-family: var(--font-body);
     font-weight: 300;
     font-size: 0.85rem;
     color: var(--muted);
-    line-height: 1.6;
-    margin-bottom: 2rem;
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+  .footer-tagline {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text);
+    line-height: 1.7;
+    border-left: 2px solid var(--gold);
+    padding-left: 1.25rem;
+    align-self: center;
   }
   .footer-col-title {
     font-family: var(--font-head);
-    font-size: 0.68rem;
+    font-size: 0.65rem;
     font-weight: 600;
     letter-spacing: 0.25em;
     text-transform: uppercase;
@@ -1085,27 +1099,32 @@
   .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
   .footer-links a {
     font-family: var(--font-body);
-    font-size: 0.88rem;
+    font-size: 0.82rem;
     color: var(--muted);
     text-decoration: none;
     transition: color 0.2s;
   }
   .footer-links a:hover { color: var(--text); }
+  .footer-divider { height: 1px; background: var(--faint); margin-bottom: 2rem; }
   .footer-bottom {
-    border-top: 1px solid var(--faint);
-    padding-top: 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
   .footer-copy {
     font-family: var(--font-body);
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     color: var(--muted);
   }
-  .footer-copy strong { color: var(--gold); font-style: normal; }
-
-  /* ── ANIMATIONS ── */
+  .footer-copy strong { color: var(--gold); }
+  .footer-brand-col { }
+  @media(max-width:900px){
+    .footer-row-top { grid-template-columns: 1fr; }
+    .footer-row-nav { grid-template-columns: 1fr 1fr; }
+  }
+    /* ── ANIMATIONS ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(30px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -1658,7 +1677,7 @@ setInterval(() => {
   <div class="donate-eyebrow">Keep This Independent</div>
   <h2 class="donate-headline">Support <span>Mr. Green's Work.</span></h2>
 
-  <p class="donate-sub">You just spent time here because something brought you — a question, a conversation, a fact that didn't sit right. That's exactly why this exists. This site has no ads, no sponsors, and no institutional filter. <strong>Your support goes directly to Mr. Green</strong> — not through a school, not through a committee. Directly to the man who built this.</p>
+  <p class="donate-sub">This site has no ads, no sponsors, and no institutional filter. <strong>Your support goes directly to Mr. Green</strong> — not through a school, not through a committee. Directly to the man who built this.</p>
 
   <div class="donate-impact">
     <div class="donate-impact-tier">
@@ -1798,11 +1817,11 @@ document.addEventListener('DOMContentLoaded', function() {
       <div id="otherConfirm" style="display:none;font-family:var(--font-body);font-size:0.82rem;color:var(--green-lt);margin-top:1rem;text-align:center;">Message sent. Mr. Green will be in touch directly.</div>
     </div>
 
-    <p style="font-family:var(--font-body);font-size:0.75rem;color:var(--faint);margin-top:1.5rem;">Or email directly: <a href="mailto:tgreen@bishopodowd.org" style="color:var(--gold);text-decoration:none;">tgreen@bishopodowd.org</a></p>
+    <p style="font-family:var(--font-body);font-size:0.75rem;color:var(--faint);margin-top:1.5rem;">Or email directly: <a href="/cdn-cgi/l/email-protection#4135263324242f01232832292e312e252e36256f2e3326" style="color:var(--gold);text-decoration:none;"><span class="__cf_email__" data-cfemail="5723302532323917353e243f3827383338203379382530">[email&#160;protected]</span></a></p>
   </div>
 </section>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function submitOtherSupport() {
   const name = document.getElementById('otherName').value.trim();
   const email = document.getElementById('otherEmail').value.trim();
@@ -1820,8 +1839,8 @@ function submitOtherSupport() {
 </script>
 
 <footer>
-  <div class="footer-top">
-
+  <!-- TOP ROW: Brand + Quote -->
+  <div class="footer-row-top">
     <div class="footer-brand-col">
       <div class="footer-brand-name">The Whole<br/>Story.</div>
       <p class="footer-brand-sub">
@@ -1829,9 +1848,12 @@ function submitOtherSupport() {
         Guided by Mr. Anthony Green — Bishop O'Dowd High School, Oakland CA.<br/>
         46 years in the classroom. Every fact sourced. Every entry documented.
       </p>
-      <div class="footer-tagline">"Education is the passport to the future, for tomorrow belongs to those that prepare for it today." — Malcolm X</div>
     </div>
+    <div class="footer-tagline">"Education is the passport to the future, for tomorrow belongs to those that prepare for it today." — Malcolm X</div>
+  </div>
 
+  <!-- NAV ROW: 4 columns -->
+  <div class="footer-row-nav">
     <div>
       <div class="footer-col-title">Explore</div>
       <ul class="footer-links">
@@ -1841,38 +1863,36 @@ function submitOtherSupport() {
         <li><a href="quiz.html">Find Your Starting Point</a></li>
       </ul>
     </div>
-
     <div>
       <div class="footer-col-title">Mr. Green</div>
       <ul class="footer-links">
         <li><a href="about.html">Biography</a></li>
         <li><a href="about.html#timeline">Timeline</a></li>
-        <li><a href="about.html#recognition">Awards & Recognition</a></li>
+        <li><a href="about.html#recognition">Awards &amp; Recognition</a></li>
         <li><a href="about.html#media">In the Media</a></li>
         <li><a href="about.html#reading">Reading List</a></li>
-        <li><a href="model.html">Adopt the Model</a></li>
+        <li><a href="model.html">For Educators</a></li>
       </ul>
     </div>
-
     <div>
       <div class="footer-col-title">Community</div>
       <ul class="footer-links">
-        <li><a href="blackpeople.html">Real Black People You Don't See on TV on TV</a></li>
+        <li><a href="blackpeople.html">Black People You Don't See on TV</a></li>
         <li><a href="profile.html">Add Your Profile</a></li>
         <li><a href="contact.html#story">Share What You Learned</a></li>
         <li><a href="contact.html">Contact Mr. Green</a></li>
       </ul>
     </div>
-
     <div>
-      <div class="footer-col-title">Connect</div>
+      <div class="footer-col-title">Connect &amp; Support</div>
       <ul class="footer-links">
+        <li><a href="index.html#donate">Support Mr. Green's Work</a></li>
+        <li><a href="index.html#donate">Give Monthly</a></li>
         <li><a href="https://www.linkedin.com/in/tony-green-5127aa23/" target="_blank">LinkedIn</a></li>
-        <li><a href="/cdn-cgi/l/email-protection#3743504552525977555e445f5847585358405319584550">Email Mr. Green</a></li>
+        <li><a href="mailto:tgreen@bishopodowd.org">Email Mr. Green</a></li>
         <li><a href="https://www.bishopodowd.org/faculty-staff/anthony-green" target="_blank">O'Dowd Faculty Page</a></li>
       </ul>
     </div>
-
   </div>
 
   <div class="footer-divider"></div>
@@ -2024,12 +2044,4 @@ function ringTheBell() {
 
   // Particles from button position
   const rect = btn.getBoundingClientRect();
-  spawnParticles(rect.left + rect.width / 2, rect.top);
-
-  // Update button
-  setTimeout(() => {
-    btn.disabled = true;
-    btn.innerHTML = '<span class="bell-icon">&#10003;</span> You\'re in the count — thank you for ringing the bell';
-  }, 600);
-
-  showAffirm("You're part of the co
+  spawnParticles(rect.left + rect.width
