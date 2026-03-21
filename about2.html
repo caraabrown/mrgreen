@@ -310,11 +310,17 @@
         <a href="about2.html">About — Version 2 ★</a>
       </div>
     </li>
-    <li><a href="search.html">Explore History</a></li>
+    <li class="nav-dropdown">
+      <a href="search.html">Explore History</a>
+      <div class="nav-dropdown-menu">
+        <a href="search.html">Search History</a>
+        <a href="bookshelf.html">Mr. Green's Bookshelf</a>
+      </div>
+    </li>
     <li><a href="myths.html">Myth vs. Reality</a></li>
-    <li><a href="blackpeople.html">Black People You Don't See</a></li>
-    <li><a href="model.html">Learn the Model</a></li>
-    <li><a href="contact.html">Contact</a></li>
+    <li><a href="blackpeople.html">Black People You Don't See on TV</a></li>
+    <li><a href="model.html">For Educators</a></li>
+    <li><a href="contact.html">Share What You Learned</a></li>
   </ul>
   <a href="quiz.html" class="nav-cta">Start Here</a>
 </nav>
@@ -486,11 +492,10 @@
   <div class="band-body">
     <div class="band-body-inner" >
 <div class="bsu-highlight">
-  <div class="bsu-eyebrow">A Living Legacy — Founded 33 Years Ago</div>
-  <h3 class="bsu-headline">The Oldest Running Black<br/>Student Union in America</h3>
+  <div class="bsu-eyebrow">A Living Legacy — Founded 1988</div>
+  <h3 class="bsu-headline">Oldest Continuously Running<br/>High School BSU in the Bay Area &amp; the United States.</h3>
   <p class="bsu-body">
-    Mr. Green founded the Bishop O'Dowd Black Student Union 33 years ago — through the mentorship 
-    of Dr. Oba T'Shaka, Dr. Richard Navies, and Dr. David Skinner. It never stopped running. 
+    Mr. Green founded the Bishop O'Dowd Black Student Union in 1988 — a student-led effort shepherded by Mr. Green with mentorship from Dr. Oba T'Shaka (SF State Black Studies Chair, 1984–1996), Dr. Richard Navies (who founded the first high school BSU at Berkeley High), and Dr. David Skinner. It never stopped running. 
     Decades later, it remains an active, student-led institution that has brought civil rights icons, 
     scholars, activists, and community leaders into a high school auditorium in Oakland, CA. 
     What began as an act of advocacy became a permanent feature of one of California's most 
@@ -956,7 +961,7 @@ document.addEventListener('DOMContentLoaded', renderGal);
         <div class="tl-desc">Honored in Harlem for visionary educational leadership and sustained community advocacy — recognized as a cultural leader dedicated to intergenerational dialogue and the empowerment of the next generation of decision makers.</div>
       </div>
       <div class="tl-center"><div class="tl-year">2025</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Vanguard Award · Photo Placeholder</div></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="img_vanguard_stage.jpg" alt="Vanguard Award Ceremony" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
     </div>
 
     <div class="timeline-item">
@@ -966,7 +971,7 @@ document.addEventListener('DOMContentLoaded', renderGal);
         <div class="tl-desc">Named among the Bay Area's most distinguished educators — joining a list of honorees representing the region's best classroom talent since 2007.</div>
       </div>
       <div class="tl-center"><div class="tl-year">2025</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Award Photo Placeholder</div></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="Provident.png" alt="Provident Credit Union All-Star Teacher Award" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
     </div>
 
     <div class="timeline-item">
@@ -976,7 +981,7 @@ document.addEventListener('DOMContentLoaded', renderGal);
         <div class="tl-desc">65 students toured historic North and West Oakland — visiting Lois The Pie Queen, the Black Panther Party museum, and Marcus Bookstore. Projects critiqued by UC Berkeley Urban Geographer Dr. Brandi Thompson Summers.</div>
       </div>
       <div class="tl-center"><div class="tl-year">2024</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Field Trip · Photo Placeholder</div></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="teach.jpeg" alt="Redlining Field Trip — Mr. Green in the Classroom" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
     </div>
 
     <div class="timeline-item">
@@ -986,7 +991,7 @@ document.addEventListener('DOMContentLoaded', renderGal);
         <div class="tl-desc">The College Board launches AP African American Studies nationally. Mr. Green is among the founding teachers — having been teaching this material for decades before the College Board formalized it.</div>
       </div>
       <div class="tl-center"><div class="tl-year">2022</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">College Board · Photo Placeholder</div></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="img_capitol.jpg" alt="California State Capitol — AP African American Studies" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
     </div>
 
     <div class="timeline-item">
@@ -1006,7 +1011,7 @@ document.addEventListener('DOMContentLoaded', renderGal);
         <div class="tl-desc">The City of Oakland officially designates "Tony Green Day" — honoring his decades of coaching, teaching, and community activism that have shaped Oakland youth for generations.</div>
       </div>
       <div class="tl-center"><div class="tl-year">2010s</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Oakland · Photo Placeholder</div></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="img_ny_gov.jpg" alt="Recognition Certificate" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
     </div>
 
     <div class="timeline-item">
@@ -1026,14 +1031,95 @@ document.addEventListener('DOMContentLoaded', renderGal);
         <div class="tl-desc">Two decades at the same institution. By this point, Mr. Green has coached athletes to national championships, built the BSU into a nationally recognized program, and taught thousands of students the history their textbooks left out.</div>
       </div>
       <div class="tl-center"><div class="tl-year">2006</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">O'Dowd Campus · Placeholder</div></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="img_naacp.jpg" alt="Mr. & Mrs. Green — NAACP" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
+    </div>
+
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Oakland Roots · Soccer</div>
+        <div class="tl-title">Oakland Roots Professional Soccer — Honor Coach</div>
+        <div class="tl-desc">Recognized by Oakland's professional soccer club for his lifelong contribution to coaching and youth development in the Bay Area.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2019</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Oakland Roots · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">National Geographic</div>
+        <div class="tl-title">National Geographic Teacher of the Week</div>
+        <div class="tl-desc">Selected nationally by National Geographic as Teacher of the Week — recognizing his innovative, field-based approach to teaching history and geography.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2017</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">National Geographic · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Coaching · California</div>
+        <div class="tl-title">California State Coach of the Year</div>
+        <div class="tl-desc">Named California's top track and field coach — one of multiple state-level coaching honors earned across his tenure at O'Dowd.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2013</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">State Coach Award · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">DC Comics · History Advisor</div>
+        <div class="tl-title">History Advisor — Superman Smashes the Klan</div>
+        <div class="tl-desc">DC Comics taps Mr. Green as historical advisor for <em>Superman Smashes the Klan</em>, the graphic novel by Gene Luen Yang. His stepfather's photo appears inside the book. History in the classroom, history in the culture.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2019</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="Superman.png" alt="Superman Smashes the Klan — DC Comics" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">City of Oakland · Recognition</div>
+        <div class="tl-title">Tony Green Day — City of Oakland</div>
+        <div class="tl-desc">The City of Oakland officially declares Tony Green Day — honoring four decades of teaching, coaching, and community building that have shaped tens of thousands of young lives in Oakland.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2007</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="img_ny_gov.jpg" alt="Recognition Certificate" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Education · National Recognition</div>
+        <div class="tl-title">Alfred Nobel Teacher of the Year</div>
+        <div class="tl-desc">Named Alfred Nobel Teacher of the Year — one of the most prestigious educator honors in the country, recognizing sustained excellence and impact in the classroom.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2005</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Nobel Award · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Coaching · National Recognition</div>
+        <div class="tl-title">National Federation Coach of the Year</div>
+        <div class="tl-desc">The National Federation of State High School Associations names Mr. Green Coach of the Year — recognizing a decade of championship-level coaching and the 215-0 women's undefeated record he built at O'Dowd.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">1996</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">National Federation Award · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Coaching · Triple Crown Year</div>
+        <div class="tl-title">ACCAL, North Coast Section &amp; NorCal Coach of the Year</div>
+        <div class="tl-desc">In a single year, Mr. Green sweeps all three major regional coaching awards — ACCAL, North Coast Section, and Northern California Boys &amp; Girls Coach of the Year. The O'Dowd women's track record stands at 215-0.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">1995</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">1995 Triple Crown · Placeholder</div></div></div>
     </div>
 
     <div class="timeline-item">
       <div class="tl-content">
         <div class="tl-tag">Athletics · National Championship</div>
         <div class="tl-title">Girls Track — National Dual Meet Champions</div>
-        <div class="tl-desc">The 1994 Bishop O'Dowd Girls Track Team, coached by Mr. Green, is named the best small school track team in American history. National Dual Meet Champions. A record that still stands.</div>
+        <div class="tl-desc">National Dual Meet Champions, 1993–1994. The O'Dowd women's track team finishes undefeated from 1986–2008 — a 215–0 record. State Meet finishes include 5th (1991), 3rd (1992), 3rd (1993). Under Mr. Green, O'Dowd wins 15 women's league titles and 8 men's league titles — 23 total. The magazine <em>School Marks</em> declares them the best small school track program in American history.</div>
       </div>
       <div class="tl-center"><div class="tl-year">1994</div><div class="tl-dot"></div></div>
       <div class="tl-media"><div class="tl-img"><div class="tl-img-label">1994 Championship Team · Placeholder</div></div></div>
@@ -1043,10 +1129,10 @@ document.addEventListener('DOMContentLoaded', renderGal);
       <div class="tl-content">
         <div class="tl-tag">BSU Founded · Oakland</div>
         <div class="tl-title">Black Student Union — Bishop O'Dowd High School</div>
-        <div class="tl-desc">Mr. Green founds the BSU through the mentorship of Dr. Oba T'Shaka, Dr. Richard Navies, and Dr. David Skinner. It will become the oldest continuously running Black Student Union in the United States.</div>
+        <div class="tl-desc">Founded 1988–89 school year. Mr. Green shepherded a student-led effort with mentorship from Dr. Oba T'Shaka (SF State Black Studies Chair), Dr. Richard Navies (who founded the first high school BSU at Berkeley High), and Dr. David Skinner. O'Dowd's BSU has never stopped running — making it the oldest continuously running high school BSU in the Bay Area and the United States.</div>
       </div>
-      <div class="tl-center"><div class="tl-year">1993</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">BSU Founding · Photo Placeholder</div></div></div>
+      <div class="tl-center"><div class="tl-year">1988</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="BSU_yearbook_2.jpg" alt="BSU founding era" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
     </div>
 
     <div class="timeline-item">
@@ -1076,7 +1162,7 @@ document.addEventListener('DOMContentLoaded', renderGal);
         <div class="tl-desc">Mr. Green begins his teaching career at Homestead High School — alma mater of Apple co-founder Steve Wozniak. From Silicon Valley's backyard, he develops the standard of rigor and truth-telling that will define 46 years of teaching.</div>
       </div>
       <div class="tl-center"><div class="tl-year">1980</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Homestead HS · Cupertino · Placeholder</div></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="Homestead_Quad_Cupertino.jpeg" alt="Homestead High School, Cupertino" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
     </div>
 
     <div class="timeline-item">
@@ -1086,7 +1172,7 @@ document.addEventListener('DOMContentLoaded', renderGal);
         <div class="tl-desc">In the Floyd Terrace Housing Project in Vallejo, young Anthony Green is introduced to athletics and Black History at the same time. His breakfast program is connected to the Black Panthers. His neighborhood athletics are organized by Alpha Phi Alpha mentors through the Omega Boys Club. Both will shape everything that follows.</div>
       </div>
       <div class="tl-center"><div class="tl-year">1960s</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Vallejo · Floyd Terrace · Placeholder</div></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="Vallejo.png" alt="Floyd Terrace, Vallejo" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
     </div>
 
     <div class="timeline-endcap">
@@ -1097,6 +1183,64 @@ document.addEventListener('DOMContentLoaded', renderGal);
 </section>
 
 <footer>
+  <!-- TOP ROW: Brand + Quote -->
+  <div class="footer-row-top">
+    <div class="footer-brand-col">
+      <div class="footer-brand-name">The Whole<br/>Story.</div>
+      <p class="footer-brand-sub">
+        Real American history includes Black American history.<br/>
+        Guided by Mr. Anthony Green — Bishop O'Dowd High School, Oakland CA.<br/>
+        46 years in the classroom. Every fact sourced. Every entry documented.
+      </p>
+    </div>
+    <div class="footer-tagline">"Education is the passport to the future, for tomorrow belongs to those that prepare for it today." — Malcolm X</div>
+  </div>
+
+  <!-- NAV ROW: 4 columns -->
+  <div class="footer-row-nav">
+    <div>
+      <div class="footer-col-title">Explore</div>
+      <ul class="footer-links">
+        <li><a href="search.html">Explore History</a></li>
+        <li><a href="myths.html">Myth vs. Reality</a></li>
+        <li><a href="bookshelf.html">Mr. Green's Bookshelf</a></li>
+        <li><a href="quiz.html">Find Your Starting Point</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Mr. Green</div>
+      <ul class="footer-links">
+        <li><a href="about.html">Biography</a></li>
+        <li><a href="about.html#timeline">Timeline</a></li>
+        <li><a href="about.html#recognition">Awards &amp; Recognition</a></li>
+        <li><a href="about.html#media">In the Media</a></li>
+        <li><a href="about.html#reading">Reading List</a></li>
+        <li><a href="model.html">For Educators</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Community</div>
+      <ul class="footer-links">
+        <li><a href="blackpeople.html">Black People You Don't See on TV</a></li>
+        <li><a href="profile.html">Add Your Profile</a></li>
+        <li><a href="contact.html#story">Share What You Learned</a></li>
+        <li><a href="contact.html">Contact Mr. Green</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Connect &amp; Support</div>
+      <ul class="footer-links">
+        <li><a href="index.html#donate">Support Mr. Green's Work</a></li>
+        <li><a href="index.html#donate">Give Monthly</a></li>
+        <li><a href="https://www.linkedin.com/in/tony-green-5127aa23/" target="_blank">LinkedIn</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#6c180b1e0909022c0e051f04031c0308031b0842031e0b">Email Mr. Green</a></li>
+        <li><a href="https://www.bishopodowd.org/faculty-staff/anthony-green" target="_blank">O'Dowd Faculty Page</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-divider"></div>
+
   <div class="footer-bottom">
     <div class="footer-copy">© 2026 The Whole Story. Prototype — <strong>for Mr. Anthony Green</strong>.</div>
     <div class="footer-copy">All facts cited. All history documented.</div>
@@ -1104,7 +1248,7 @@ document.addEventListener('DOMContentLoaded', renderGal);
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function toggleVisitor(btn) {
   const full = btn.nextElementSibling;
   const summary = btn.previousElementSibling;
@@ -1265,7 +1409,7 @@ window.addEventListener('scroll', () => {
         <div class="tl-desc">Honored in Harlem for visionary educational leadership and sustained community advocacy — recognized as a cultural leader dedicated to intergenerational dialogue and the empowerment of the next generation of decision makers.</div>
       </div>
       <div class="tl-center"><div class="tl-year">2025</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Vanguard Award · Photo Placeholder</div></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="img_vanguard_stage.jpg" alt="Vanguard Award Ceremony" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
     </div>
 
     <div class="timeline-item">
@@ -1275,7 +1419,7 @@ window.addEventListener('scroll', () => {
         <div class="tl-desc">Named among the Bay Area's most distinguished educators — joining a list of honorees representing the region's best classroom talent since 2007.</div>
       </div>
       <div class="tl-center"><div class="tl-year">2025</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Award Photo Placeholder</div></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="Provident.png" alt="Provident Credit Union All-Star Teacher Award" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
     </div>
 
     <div class="timeline-item">
@@ -1285,7 +1429,7 @@ window.addEventListener('scroll', () => {
         <div class="tl-desc">65 students toured historic North and West Oakland — visiting Lois The Pie Queen, the Black Panther Party museum, and Marcus Bookstore. Projects critiqued by UC Berkeley Urban Geographer Dr. Brandi Thompson Summers.</div>
       </div>
       <div class="tl-center"><div class="tl-year">2024</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Field Trip · Photo Placeholder</div></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="teach.jpeg" alt="Redlining Field Trip — Mr. Green in the Classroom" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
     </div>
 
     <div class="timeline-item">
@@ -1295,7 +1439,7 @@ window.addEventListener('scroll', () => {
         <div class="tl-desc">The College Board launches AP African American Studies nationally. Mr. Green is among the founding teachers — having been teaching this material for decades before the College Board formalized it.</div>
       </div>
       <div class="tl-center"><div class="tl-year">2022</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">College Board · Photo Placeholder</div></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="img_capitol.jpg" alt="California State Capitol — AP African American Studies" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
     </div>
 
     <div class="timeline-item">
@@ -1315,7 +1459,7 @@ window.addEventListener('scroll', () => {
         <div class="tl-desc">The City of Oakland officially designates "Tony Green Day" — honoring his decades of coaching, teaching, and community activism that have shaped Oakland youth for generations.</div>
       </div>
       <div class="tl-center"><div class="tl-year">2010s</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Oakland · Photo Placeholder</div></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="img_ny_gov.jpg" alt="Recognition Certificate" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
     </div>
 
     <div class="timeline-item">
@@ -1338,11 +1482,92 @@ window.addEventListener('scroll', () => {
       <div class="tl-media"><div class="tl-img"><div class="tl-img-label">O'Dowd Campus · Placeholder</div></div></div>
     </div>
 
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Oakland Roots · Soccer</div>
+        <div class="tl-title">Oakland Roots Professional Soccer — Honor Coach</div>
+        <div class="tl-desc">Recognized by Oakland's professional soccer club for his lifelong contribution to coaching and youth development in the Bay Area.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2019</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Oakland Roots · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">National Geographic</div>
+        <div class="tl-title">National Geographic Teacher of the Week</div>
+        <div class="tl-desc">Selected nationally by National Geographic as Teacher of the Week — recognizing his innovative, field-based approach to teaching history and geography.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2017</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">National Geographic · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Coaching · California</div>
+        <div class="tl-title">California State Coach of the Year</div>
+        <div class="tl-desc">Named California's top track and field coach — one of multiple state-level coaching honors earned across his tenure at O'Dowd.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2013</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">State Coach Award · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">DC Comics · History Advisor</div>
+        <div class="tl-title">History Advisor — Superman Smashes the Klan</div>
+        <div class="tl-desc">DC Comics taps Mr. Green as historical advisor for <em>Superman Smashes the Klan</em>, the graphic novel by Gene Luen Yang. His stepfather's photo appears inside the book. History in the classroom, history in the culture.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2019</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="Superman.png" alt="Superman Smashes the Klan — DC Comics" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">City of Oakland · Recognition</div>
+        <div class="tl-title">Tony Green Day — City of Oakland</div>
+        <div class="tl-desc">The City of Oakland officially declares Tony Green Day — honoring four decades of teaching, coaching, and community building that have shaped tens of thousands of young lives in Oakland.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2007</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="img_ny_gov.jpg" alt="Recognition Certificate" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Education · National Recognition</div>
+        <div class="tl-title">Alfred Nobel Teacher of the Year</div>
+        <div class="tl-desc">Named Alfred Nobel Teacher of the Year — one of the most prestigious educator honors in the country, recognizing sustained excellence and impact in the classroom.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">2005</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Nobel Award · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Coaching · National Recognition</div>
+        <div class="tl-title">National Federation Coach of the Year</div>
+        <div class="tl-desc">The National Federation of State High School Associations names Mr. Green Coach of the Year — recognizing a decade of championship-level coaching and the 215-0 women's undefeated record he built at O'Dowd.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">1996</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">National Federation Award · Placeholder</div></div></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="tl-content">
+        <div class="tl-tag">Coaching · Triple Crown Year</div>
+        <div class="tl-title">ACCAL, North Coast Section &amp; NorCal Coach of the Year</div>
+        <div class="tl-desc">In a single year, Mr. Green sweeps all three major regional coaching awards — ACCAL, North Coast Section, and Northern California Boys &amp; Girls Coach of the Year. The O'Dowd women's track record stands at 215-0.</div>
+      </div>
+      <div class="tl-center"><div class="tl-year">1995</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">1995 Triple Crown · Placeholder</div></div></div>
+    </div>
+
     <div class="timeline-item">
       <div class="tl-content">
         <div class="tl-tag">Athletics · National Championship</div>
         <div class="tl-title">Girls Track — National Dual Meet Champions</div>
-        <div class="tl-desc">The 1994 Bishop O'Dowd Girls Track Team, coached by Mr. Green, is named the best small school track team in American history. National Dual Meet Champions. A record that still stands.</div>
+        <div class="tl-desc">National Dual Meet Champions, 1993–1994. The O'Dowd women's track team finishes undefeated from 1986–2008 — a 215–0 record. State Meet finishes include 5th (1991), 3rd (1992), 3rd (1993). Under Mr. Green, O'Dowd wins 15 women's league titles and 8 men's league titles — 23 total. The magazine <em>School Marks</em> declares them the best small school track program in American history.</div>
       </div>
       <div class="tl-center"><div class="tl-year">1994</div><div class="tl-dot"></div></div>
       <div class="tl-media"><div class="tl-img"><div class="tl-img-label">1994 Championship Team · Placeholder</div></div></div>
@@ -1352,10 +1577,10 @@ window.addEventListener('scroll', () => {
       <div class="tl-content">
         <div class="tl-tag">BSU Founded · Oakland</div>
         <div class="tl-title">Black Student Union — Bishop O'Dowd High School</div>
-        <div class="tl-desc">Mr. Green founds the BSU through the mentorship of Dr. Oba T'Shaka, Dr. Richard Navies, and Dr. David Skinner. It will become the oldest continuously running Black Student Union in the United States.</div>
+        <div class="tl-desc">Founded 1988–89 school year. Mr. Green shepherded a student-led effort with mentorship from Dr. Oba T'Shaka (SF State Black Studies Chair), Dr. Richard Navies (who founded the first high school BSU at Berkeley High), and Dr. David Skinner. O'Dowd's BSU has never stopped running — making it the oldest continuously running high school BSU in the Bay Area and the United States.</div>
       </div>
-      <div class="tl-center"><div class="tl-year">1993</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">BSU Founding · Photo Placeholder</div></div></div>
+      <div class="tl-center"><div class="tl-year">1988</div><div class="tl-dot"></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="BSU_yearbook_2.jpg" alt="BSU founding era" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
     </div>
 
     <div class="timeline-item">
@@ -1385,7 +1610,7 @@ window.addEventListener('scroll', () => {
         <div class="tl-desc">Mr. Green begins his teaching career at Homestead High School — alma mater of Apple co-founder Steve Wozniak. From Silicon Valley's backyard, he develops the standard of rigor and truth-telling that will define 46 years of teaching.</div>
       </div>
       <div class="tl-center"><div class="tl-year">1980</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Homestead HS · Cupertino · Placeholder</div></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="Homestead_Quad_Cupertino.jpeg" alt="Homestead High School, Cupertino" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
     </div>
 
     <div class="timeline-item">
@@ -1395,7 +1620,7 @@ window.addEventListener('scroll', () => {
         <div class="tl-desc">In the Floyd Terrace Housing Project in Vallejo, young Anthony Green is introduced to athletics and Black History at the same time. His breakfast program is connected to the Black Panthers. His neighborhood athletics are organized by Alpha Phi Alpha mentors through the Omega Boys Club. Both will shape everything that follows.</div>
       </div>
       <div class="tl-center"><div class="tl-year">1960s</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Vallejo · Floyd Terrace · Placeholder</div></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="Vallejo.png" alt="Floyd Terrace, Vallejo" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
     </div>
 
     <div class="timeline-endcap">
@@ -1468,9 +1693,4 @@ function toggleBand(header) {
   btn.childNodes[0].textContent = isOpen ? 'Collapse ' : 'Expand ';
 }
 const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, {threshold:0.1});
-document.querySelectorAll('.band-header').forEach(h => obs.observe(h));
-</script>
-</body>
-</html>
+  entries.forEach(e => { if (e.isIntersecting) e.ta
