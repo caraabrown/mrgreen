@@ -145,7 +145,7 @@
   .timeline-item:hover .tl-dot{background:var(--gold);}
 
   .tl-year{
-    font-family:var(--font-disp);font-size:1.6rem;
+    font-family:var(--font-head);font-size:1.8rem;font-weight:600;
     color:var(--gold);line-height:1;
     margin-bottom:0.5rem;
     text-align:center;
@@ -260,8 +260,7 @@
 
   /* ── ACCORDION BANDS ── */
   .band{border-bottom:1px solid var(--faint);position:relative;overflow:hidden;background-size:cover;background-position:center;}
-  .band-header{padding:3.5rem 4rem 2rem;display:flex;flex-direction:column;align-items:flex-start;cursor:pointer;position:relative;z-index:2;min-height:180px;justify-content:flex-end;opacity:0;transform:translateY(20px);transition:opacity 0.55s ease,transform 0.55s ease,background 0.2s;}
-  .band-header.visible{opacity:1;transform:translateY(0);}
+  .band-header{padding:3.5rem 4rem 2rem;display:flex;flex-direction:column;align-items:flex-start;cursor:pointer;position:relative;z-index:2;min-height:180px;justify-content:flex-end;opacity:1;transition:background 0.2s;}
   .band-header::before{content:'';position:absolute;inset:0;background:rgba(8,8,8,0.65);z-index:-1;transition:background 0.2s;}
   .band-header:hover::before{background:rgba(8,8,8,0.55);}
   .band-label{font-family:var(--font-head);font-weight:300;font-size:0.68rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;}
@@ -958,10 +957,10 @@ document.addEventListener('DOMContentLoaded', renderGal);
       <div class="tl-content">
         <div class="tl-tag">Recognition · Harlem, New York</div>
         <div class="tl-title"><a href="https://www.linkedin.com/posts/tony-green-5127aa23_feeling-blessed-and-honored-to-be-selected-activity-7419602000037863424-y3Hq/" target="_blank" style="color:var(--text);text-decoration:none;">Vanguard Award — Dr. Betty Shabazz &amp; Malcolm X International Education Institute</a></div>
-        <div class="tl-desc">Honored in Harlem for visionary educational leadership and sustained community advocacy — recognized as a cultural leader dedicated to intergenerational dialogue and the empowerment of the next generation of decision makers.</div>
+        <div class="tl-desc">Honored in Harlem for visionary educational leadership and sustained community advocacy — recognized by the Malcolm X Institute and Governor Kathy Hochul of New York with a Certificate of Recognition, February 21, 2026.</div>
       </div>
       <div class="tl-center"><div class="tl-year">2025</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><img src="img_vanguard_stage.jpg" alt="Vanguard Award Ceremony" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="img_ny_gov.jpg" alt="Vanguard Award Ceremony" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
     </div>
 
     <div class="timeline-item">
@@ -1011,7 +1010,7 @@ document.addEventListener('DOMContentLoaded', renderGal);
         <div class="tl-desc">The City of Oakland officially designates "Tony Green Day" — honoring his decades of coaching, teaching, and community activism that have shaped Oakland youth for generations.</div>
       </div>
       <div class="tl-center"><div class="tl-year">2010s</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><img src="img_ny_gov.jpg" alt="Recognition Certificate" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Tony Green Day · Photo Needed</div></div></div>
     </div>
 
     <div class="timeline-item">
@@ -1082,7 +1081,7 @@ document.addEventListener('DOMContentLoaded', renderGal);
         <div class="tl-desc">The City of Oakland officially declares Tony Green Day — honoring four decades of teaching, coaching, and community building that have shaped tens of thousands of young lives in Oakland.</div>
       </div>
       <div class="tl-center"><div class="tl-year">2007</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><img src="img_ny_gov.jpg" alt="Recognition Certificate" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Tony Green Day · Photo Needed</div></div></div>
     </div>
 
     <div class="timeline-item">
@@ -1406,10 +1405,10 @@ window.addEventListener('scroll', () => {
       <div class="tl-content">
         <div class="tl-tag">Recognition · Harlem, New York</div>
         <div class="tl-title"><a href="https://www.linkedin.com/posts/tony-green-5127aa23_feeling-blessed-and-honored-to-be-selected-activity-7419602000037863424-y3Hq/" target="_blank" style="color:var(--text);text-decoration:none;">Vanguard Award — Dr. Betty Shabazz &amp; Malcolm X International Education Institute</a></div>
-        <div class="tl-desc">Honored in Harlem for visionary educational leadership and sustained community advocacy — recognized as a cultural leader dedicated to intergenerational dialogue and the empowerment of the next generation of decision makers.</div>
+        <div class="tl-desc">Honored in Harlem for visionary educational leadership and sustained community advocacy — recognized by the Malcolm X Institute and Governor Kathy Hochul of New York with a Certificate of Recognition, February 21, 2026.</div>
       </div>
       <div class="tl-center"><div class="tl-year">2025</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><img src="img_vanguard_stage.jpg" alt="Vanguard Award Ceremony" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="img_ny_gov.jpg" alt="Vanguard Award Ceremony" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
     </div>
 
     <div class="timeline-item">
@@ -1459,7 +1458,7 @@ window.addEventListener('scroll', () => {
         <div class="tl-desc">The City of Oakland officially designates "Tony Green Day" — honoring his decades of coaching, teaching, and community activism that have shaped Oakland youth for generations.</div>
       </div>
       <div class="tl-center"><div class="tl-year">2010s</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><img src="img_ny_gov.jpg" alt="Recognition Certificate" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Tony Green Day · Photo Needed</div></div></div>
     </div>
 
     <div class="timeline-item">
@@ -1530,7 +1529,7 @@ window.addEventListener('scroll', () => {
         <div class="tl-desc">The City of Oakland officially declares Tony Green Day — honoring four decades of teaching, coaching, and community building that have shaped tens of thousands of young lives in Oakland.</div>
       </div>
       <div class="tl-center"><div class="tl-year">2007</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><img src="img_ny_gov.jpg" alt="Recognition Certificate" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
+      <div class="tl-media"><div class="tl-img"><div class="tl-img-label">Tony Green Day · Photo Needed</div></div></div>
     </div>
 
     <div class="timeline-item">
@@ -1693,4 +1692,9 @@ function toggleBand(header) {
   btn.childNodes[0].textContent = isOpen ? 'Collapse ' : 'Expand ';
 }
 const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.ta
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('seen'); });
+});
+document.querySelectorAll('.band-header,.tl-content,.tl-media,.tl-center').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
