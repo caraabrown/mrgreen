@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Real Black People You Don't See — The Whole Story</title>
+<title>Black People You Don't See on TV — The Whole Story</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
@@ -229,6 +229,55 @@
     .tiles-grid{grid-template-columns:repeat(2,1fr);}
     footer{padding:2rem 1.5rem;}
   }
+
+  .nav-dropdown{position:relative;}
+  .nav-dropdown-menu{
+    display:none;position:absolute;top:100%;left:0;
+    background:rgba(8,8,8,0.97);border:1px solid var(--faint);
+    border-top:2px solid var(--gold);min-width:200px;z-index:200;
+  }
+  .nav-dropdown:hover .nav-dropdown-menu{display:block;}
+  .nav-dropdown-menu a{
+    display:block;padding:0.75rem 1.25rem;
+    font-family:var(--font-head);font-size:0.72rem;font-weight:300;
+    letter-spacing:0.15em;text-transform:uppercase;
+    color:var(--muted);text-decoration:none;
+    border-bottom:1px solid var(--faint);transition:color 0.2s;
+  }
+  .nav-dropdown-menu a:last-child{border-bottom:none;}
+  .nav-dropdown-menu a:hover{color:var(--gold);}
+  .nav-dropdown > a::after{content:' ▾';font-size:0.6rem;}
+
+  .donate-impact{display:grid;grid-template-columns:repeat(4,1fr);gap:0.75rem;margin-bottom:2.5rem;text-align:left;}
+  .donate-impact-tier{background:var(--card);border:1px solid var(--faint);border-top:2px solid var(--gold);padding:1rem;}
+  .donate-impact-amt{font-family:var(--font-disp);font-size:1.8rem;color:var(--gold);line-height:1;margin-bottom:0.4rem;}
+  .donate-impact-label{font-family:var(--font-body);font-size:0.78rem;color:rgba(240,237,230,0.55);line-height:1.55;}
+  @media(max-width:768px){.donate-impact{grid-template-columns:1fr 1fr;}}
+
+  .donate-section{padding:5rem 4rem;background:linear-gradient(135deg,rgba(200,146,42,0.06) 0%,rgba(8,8,8,0) 60%);border-top:1px solid var(--faint);border-bottom:1px solid var(--faint);text-align:center;}
+  .donate-eyebrow{font-family:var(--font-head);font-weight:300;font-size:0.72rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;}
+  .donate-headline{font-family:var(--font-disp);font-size:clamp(2.5rem,5vw,4rem);color:var(--text);line-height:1;margin-bottom:1rem;}
+  .donate-headline span{color:var(--gold);}
+  .donate-sub{font-family:var(--font-body);font-weight:300;font-size:0.95rem;color:rgba(240,237,230,0.55);max-width:620px;margin:0 auto 2.5rem;line-height:1.8;}
+  .donate-sub strong{color:var(--text);}
+  .donate-impact{display:grid;grid-template-columns:repeat(4,1fr);gap:0.75rem;margin-bottom:2.5rem;text-align:left;}
+  .donate-impact-tier{background:var(--card);border:1px solid var(--faint);border-top:2px solid var(--gold);padding:1rem;}
+  .donate-impact-amt{font-family:var(--font-disp);font-size:1.8rem;color:var(--gold);line-height:1;margin-bottom:0.4rem;}
+  .donate-impact-label{font-family:var(--font-body);font-size:0.78rem;color:rgba(240,237,230,0.55);line-height:1.55;}
+  .donate-tiers{display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem;}
+  .donate-tier{font-family:var(--font-head);font-size:0.88rem;font-weight:500;letter-spacing:0.1em;padding:0.7rem 1.5rem;border:1px solid var(--faint);cursor:pointer;background:none;color:var(--muted);transition:all 0.2s;}
+  .donate-tier:hover,.donate-tier.active{border-color:var(--gold);color:var(--gold);background:rgba(200,146,42,0.07);}
+  .donate-custom{display:flex;align-items:center;gap:0.5rem;justify-content:center;margin-bottom:1.5rem;}
+  .donate-custom-prefix{font-family:var(--font-head);font-size:1.1rem;color:var(--gold);}
+  .donate-custom-input{font-family:var(--font-head);font-size:1.1rem;background:none;border:none;border-bottom:1px solid var(--faint);color:var(--text);width:80px;text-align:center;padding:0.25rem;outline:none;}
+  .donate-custom-input:focus{border-bottom-color:var(--gold);}
+  .donate-freq{display:flex;gap:0;justify-content:center;margin-bottom:2rem;}
+  .donate-freq-btn{font-family:var(--font-head);font-size:0.7rem;font-weight:400;letter-spacing:0.15em;text-transform:uppercase;padding:0.5rem 1.25rem;border:1px solid var(--faint);cursor:pointer;background:none;color:var(--muted);transition:all 0.2s;}
+  .donate-freq-btn.active{background:var(--gold);color:var(--bg);border-color:var(--gold);}
+  .donate-btn{font-family:var(--font-head);font-size:0.82rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;padding:1rem 3rem;background:var(--gold);color:var(--bg);border:none;cursor:pointer;transition:all 0.2s;display:inline-block;margin-bottom:1.5rem;}
+  .donate-btn:hover{background:var(--gold-lt);}
+  .donate-note{font-family:var(--font-body);font-size:0.75rem;color:var(--faint);line-height:1.7;}
+  @media(max-width:768px){.donate-impact{grid-template-columns:1fr 1fr;}.donate-section{padding:3rem 1.5rem;}}
 </style>
 </head>
 <body>
@@ -236,12 +285,24 @@
 <nav>
   <a href="index.html" class="nav-logo">The Whole <span>Story</span></a>
     <ul class="nav-links">
-    <li><a href="about.html">About Mr. Green</a></li>
-    <li><a href="search.html">Explore History</a></li>
+    <li class="nav-dropdown">
+      <a href="about.html">About Mr. Green</a>
+      <div class="nav-dropdown-menu">
+        <a href="about.html">About — Version 1</a>
+        <a href="about2.html">About — Version 2 ★</a>
+      </div>
+    </li>
+    <li class="nav-dropdown">
+      <a href="search.html">Explore History</a>
+      <div class="nav-dropdown-menu">
+        <a href="search.html">Search History</a>
+        <a href="bookshelf.html">Mr. Green's Bookshelf</a>
+      </div>
+    </li>
     <li><a href="myths.html">Myth vs. Reality</a></li>
-    <li><a href="blackpeople.html" class="active"><span style="color:var(--teal-lt);">Real</span> Black People You Don't See</a></li>
-    <li><a href="model.html">Learn the Model</a></li>
-    <li><a href="contact.html">Contact</a></li>
+    <li><a href="blackpeople.html" class="active"><span style="color:var(--teal-lt);">Real</span> Black People You Don't See on TV</a></li>
+    <li><a href="model.html">For Educators</a></li>
+    <li><a href="contact.html">Share What You Learned</a></li>
   </ul>
   <a href="quiz.html" class="nav-cta">Start Here</a>
 </nav>
@@ -672,7 +733,230 @@
   </div>
 </section>
 
+<!-- SUPPORT MR GREEN -->
+<section class="donate-section" id="donate">
+  <div class="donate-eyebrow">Keep This Independent</div>
+  <h2 class="donate-headline">Support <span>Mr. Green's Work.</span></h2>
+
+  <p class="donate-sub">This site has no ads, no sponsors, and no institutional filter. <strong>Your support goes directly to Mr. Green</strong> — not through a school, not through a committee. Directly to the man who built this.</p>
+
+  <div class="donate-impact">
+    <div class="donate-impact-tier">
+      <div class="donate-impact-amt">$10</div>
+      <div class="donate-impact-label">Keeps the site running for a week — ad-free, agenda-free</div>
+    </div>
+    <div class="donate-impact-tier">
+      <div class="donate-impact-amt">$25</div>
+      <div class="donate-impact-label">Funds BSU classroom materials for one student</div>
+    </div>
+    <div class="donate-impact-tier">
+      <div class="donate-impact-amt">$50</div>
+      <div class="donate-impact-label">Supports one speaking engagement — a school, a conference, a community</div>
+    </div>
+    <div class="donate-impact-tier">
+      <div class="donate-impact-amt">$100</div>
+      <div class="donate-impact-label">Helps fund Mr. Green's international travel to bring this history global</div>
+    </div>
+  </div>
+
+  <div class="donate-tiers">
+    <button class="donate-tier" onclick="setTier(10,this)">$10</button>
+    <button class="donate-tier active" onclick="setTier(25,this)">$25</button>
+    <button class="donate-tier" onclick="setTier(50,this)">$50</button>
+    <button class="donate-tier" onclick="setTier(100,this)">$100</button>
+  </div>
+
+  <div class="donate-custom">
+    <span class="donate-custom-prefix">$</span>
+    <input class="donate-custom-input" id="donateAmount" type="number" min="1" value="25" oninput="clearTiers()"/>
+    <span style="font-family:var(--font-body);font-size:0.8rem;color:var(--muted);">USD</span>
+  </div>
+
+  <div class="donate-freq">
+    <button class="donate-freq-btn active" id="freqOnce" onclick="setFreq('once')">One Time</button>
+    <button class="donate-freq-btn" id="freqMonthly" onclick="setFreq('monthly')">Give Monthly</button>
+  </div>
+
+  <button class="donate-btn" onclick="handleDonate()">
+    <span id="donateBtnLabel">Support Mr. Green — $25 →</span>
+  </button>
+
+  <div class="donate-note">
+    Your support goes directly to Mr. Green.<br/>
+    A downloadable contribution acknowledgment will be provided after payment.<br/>
+    Note: contributions to this site are not tax-deductible.<br/>
+    <em>Secure payment via Stripe — coming soon. Prototype only.</em>
+  </div>
+</section>
+
+<script>
+// ── SUPPORT / DONATION WIDGET ─────────────────────────────────────────────────
+let donateFreq = 'once';
+function setFreq(f) {
+  donateFreq = f;
+  document.getElementById('freqOnce').classList.toggle('active', f==='once');
+  document.getElementById('freqMonthly').classList.toggle('active', f==='monthly');
+  updateDonateBtn();
+}
+function setTier(amt, btn) {
+  document.getElementById('donateAmount').value = amt;
+  document.querySelectorAll('.donate-tier').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  updateDonateBtn();
+}
+function clearTiers() {
+  document.querySelectorAll('.donate-tier').forEach(b=>b.classList.remove('active'));
+  updateDonateBtn();
+}
+function updateDonateBtn() {
+  const amt = document.getElementById('donateAmount').value || '0';
+  const freq = donateFreq === 'monthly' ? '/mo' : '';
+  document.getElementById('donateBtnLabel').textContent = `Support Mr. Green — $${amt}${freq} →`;
+}
+function handleDonate() {
+  const amt = document.getElementById('donateAmount').value;
+  if (!amt || amt < 1) { alert('Please enter an amount.'); return; }
+  // Generate acknowledgment PDF stub
+  const freq = donateFreq === 'monthly' ? 'Monthly' : 'One-time';
+  const today = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  const ackWindow = window.open('','_blank');
+  ackWindow.document.write(`<!DOCTYPE html><html><head><title>Contribution Acknowledgment</title>
+  <style>body{font-family:Georgia,serif;max-width:600px;margin:4rem auto;padding:2rem;color:#111;}
+  h1{font-size:1.5rem;border-bottom:2px solid #C8922A;padding-bottom:0.5rem;color:#C8922A;}
+  .detail{margin:1.5rem 0;line-height:1.8;} .note{font-size:0.82rem;color:#555;margin-top:2rem;border-top:1px solid #ddd;padding-top:1rem;}</style>
+  </head><body>
+  <h1>Contribution Acknowledgment</h1>
+  <div class="detail">
+    <strong>Recipient:</strong> Mr. Anthony Green / The Whole Story<br/>
+    <strong>Amount:</strong> $${amt} USD (${freq})<br/>
+    <strong>Date:</strong> ${today}<br/>
+    <strong>Purpose:</strong> Supporting independent history education, the Bishop O'Dowd BSU, and Mr. Green's speaking and travel
+  </div>
+  <div class="note">
+    This document serves as an acknowledgment of your contribution. Contributions to The Whole Story are not tax-deductible as Mr. Green is an individual educator, not a 501(c)(3) nonprofit organization. Please retain this record for your own files. Thank you for supporting this work.
+  </div>
+  <div style="margin-top:2rem;text-align:center;">
+    <button onclick="window.print()" style="padding:0.6rem 1.5rem;background:#C8922A;color:#fff;border:none;cursor:pointer;font-size:0.9rem;">Download / Print PDF</button>
+  </div>
+  </body></html>`);
+  ackWindow.document.close();
+}
+document.addEventListener('DOMContentLoaded', function() {
+  if (document.getElementById('donateAmount')) updateDonateBtn();
+});
+</script>
+
+<!-- OTHER WAYS TO SUPPORT -->
+<section style="padding:3rem 4rem 5rem;border-bottom:1px solid var(--faint);text-align:center;background:var(--bg);">
+  <div style="max-width:760px;margin:0 auto;">
+    <div style="font-family:var(--font-head);font-size:0.65rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;">Beyond the Dollar</div>
+    <h3 style="font-family:var(--font-disp);font-size:clamp(1.8rem,3vw,2.8rem);color:var(--text);line-height:1.1;margin-bottom:1rem;">There Are Other Ways<br/><span style="color:var(--gold);">You Can Make a Difference.</span></h3>
+    <p style="font-family:var(--font-body);font-weight:300;font-size:0.95rem;color:rgba(240,237,230,0.55);line-height:1.8;margin-bottom:2.5rem;">Not every contribution has a price tag. Track spikes for a student who can't afford them. Office supplies for the BSU. A corporate field trip to your company in New York. A keynote budget. Whatever you have — if it could help a student or support this work, Mr. Green wants to hear about it.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin-bottom:2.5rem;text-align:left;">
+      <div style="background:var(--card);border:1px solid var(--faint);border-top:2px solid var(--gold);padding:1.25rem;">
+        <div style="font-family:var(--font-head);font-weight:600;font-size:0.82rem;color:var(--text);margin-bottom:0.4rem;">Equipment &amp; Supplies</div>
+        <div style="font-family:var(--font-body);font-size:0.78rem;color:rgba(240,237,230,0.5);line-height:1.6;">Track spikes. Textbooks. Art supplies. Paper. Anything a student or the BSU could use — you name it, it matters.</div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--faint);border-top:2px solid var(--gold);padding:1.25rem;">
+        <div style="font-family:var(--font-head);font-weight:600;font-size:0.82rem;color:var(--text);margin-bottom:0.4rem;">Corporate Giving &amp; Partnerships</div>
+        <div style="font-family:var(--font-body);font-size:0.78rem;color:rgba(240,237,230,0.5);line-height:1.6;">Your company has a giving budget. Mr. Green has students who need to see the world beyond Oakland. Let's talk about what that looks like.</div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--faint);border-top:2px solid var(--gold);padding:1.25rem;">
+        <div style="font-family:var(--font-head);font-weight:600;font-size:0.82rem;color:var(--text);margin-bottom:0.4rem;">Experiences &amp; Opportunities</div>
+        <div style="font-family:var(--font-body);font-size:0.78rem;color:rgba(240,237,230,0.5);line-height:1.6;">A company visit. A mentorship. A conference seat. A speaking honorarium. If it opens a door for a student, it counts.</div>
+      </div>
+    </div>
+
+    <div style="background:var(--card);border:1px solid var(--faint);padding:2rem;text-align:left;max-width:560px;margin:0 auto;">
+      <div style="font-family:var(--font-head);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;">Start the Conversation</div>
+      <input id="otherName" type="text" placeholder="Your name" style="width:100%;background:var(--surface);border:none;border-bottom:1px solid var(--faint);color:var(--text);font-family:var(--font-body);font-size:0.88rem;padding:0.6rem 0;margin-bottom:1rem;outline:none;" onfocus="this.style.borderBottomColor='var(--gold)'" onblur="this.style.borderBottomColor='var(--faint)'"/>
+      <input id="otherEmail" type="email" placeholder="Your email" style="width:100%;background:var(--surface);border:none;border-bottom:1px solid var(--faint);color:var(--text);font-family:var(--font-body);font-size:0.88rem;padding:0.6rem 0;margin-bottom:1rem;outline:none;" onfocus="this.style.borderBottomColor='var(--gold)'" onblur="this.style.borderBottomColor='var(--faint)'"/>
+      <textarea id="otherMessage" placeholder="Tell Mr. Green what you have in mind — the more specific the better." style="width:100%;background:var(--surface);border:none;border-bottom:1px solid var(--faint);color:var(--text);font-family:var(--font-body);font-size:0.88rem;padding:0.6rem 0;margin-bottom:1.5rem;outline:none;resize:none;min-height:80px;line-height:1.6;" onfocus="this.style.borderBottomColor='var(--gold)'" onblur="this.style.borderBottomColor='var(--faint)'"></textarea>
+      <button onclick="submitOtherSupport()" style="width:100%;background:none;border:1px solid var(--gold);color:var(--gold);font-family:var(--font-head);font-size:0.72rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;padding:0.85rem;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(200,146,42,0.1)'" onmouseout="this.style.background='none'">Send to Mr. Green →</button>
+      <div id="otherConfirm" style="display:none;font-family:var(--font-body);font-size:0.82rem;color:var(--green-lt);margin-top:1rem;text-align:center;">Message sent. Mr. Green will be in touch directly.</div>
+    </div>
+
+    <p style="font-family:var(--font-body);font-size:0.75rem;color:var(--faint);margin-top:1.5rem;">Or email directly: <a href="/cdn-cgi/l/email-protection#becad9ccdbdbd0fedcd7cdd6d1ced1dad1c9da90d1ccd9" style="color:var(--gold);text-decoration:none;"><span class="__cf_email__" data-cfemail="4e3a293c2b2b200e2c273d26213e212a21392a60213c29">[email&#160;protected]</span></a></p>
+  </div>
+</section>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function submitOtherSupport() {
+  const name = document.getElementById('otherName').value.trim();
+  const email = document.getElementById('otherEmail').value.trim();
+  const msg = document.getElementById('otherMessage').value.trim();
+  if (!name || !email || !msg) { alert('Please fill in all fields.'); return; }
+  // Prototype: open pre-filled email to Mr. Green
+  const subject = encodeURIComponent('Support Offer — ' + name);
+  const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + msg);
+  window.location.href = 'mailto:tgreen@bishopodowd.org?subject=' + subject + '&body=' + body;
+  document.getElementById('otherConfirm').style.display = 'block';
+  document.getElementById('otherName').value = '';
+  document.getElementById('otherEmail').value = '';
+  document.getElementById('otherMessage').value = '';
+}
+</script>
+
 <footer>
+  <!-- TOP ROW: Brand + Quote -->
+  <div class="footer-row-top">
+    <div class="footer-brand-col">
+      <div class="footer-brand-name">The Whole<br/>Story.</div>
+      <p class="footer-brand-sub">
+        Real American history includes Black American history.<br/>
+        Guided by Mr. Anthony Green — Bishop O'Dowd High School, Oakland CA.<br/>
+        46 years in the classroom. Every fact sourced. Every entry documented.
+      </p>
+    </div>
+    <div class="footer-tagline">"Education is the passport to the future, for tomorrow belongs to those that prepare for it today." — Malcolm X</div>
+  </div>
+
+  <!-- NAV ROW: 4 columns -->
+  <div class="footer-row-nav">
+    <div>
+      <div class="footer-col-title">Explore</div>
+      <ul class="footer-links">
+        <li><a href="search.html">Explore History</a></li>
+        <li><a href="myths.html">Myth vs. Reality</a></li>
+        <li><a href="bookshelf.html">Mr. Green's Bookshelf</a></li>
+        <li><a href="quiz.html">Find Your Starting Point</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Mr. Green</div>
+      <ul class="footer-links">
+        <li><a href="about.html">Biography</a></li>
+        <li><a href="about.html#timeline">Timeline</a></li>
+        <li><a href="about.html#recognition">Awards &amp; Recognition</a></li>
+        <li><a href="about.html#media">In the Media</a></li>
+        <li><a href="about.html#reading">Reading List</a></li>
+        <li><a href="model.html">For Educators</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Community</div>
+      <ul class="footer-links">
+        <li><a href="blackpeople.html">Black People You Don't See on TV</a></li>
+        <li><a href="profile.html">Add Your Profile</a></li>
+        <li><a href="contact.html#story">Share What You Learned</a></li>
+        <li><a href="contact.html">Contact Mr. Green</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Connect &amp; Support</div>
+      <ul class="footer-links">
+        <li><a href="index.html#donate">Support Mr. Green's Work</a></li>
+        <li><a href="index.html#donate">Give Monthly</a></li>
+        <li><a href="https://www.linkedin.com/in/tony-green-5127aa23/" target="_blank">LinkedIn</a></li>
+        <li><a href="mailto:tgreen@bishopodowd.org">Email Mr. Green</a></li>
+        <li><a href="https://www.bishopodowd.org/faculty-staff/anthony-green" target="_blank">O'Dowd Faculty Page</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-divider"></div>
+
   <div class="footer-bottom">
     <div class="footer-copy">© 2026 The Whole Story. Prototype — <strong>for Mr. Anthony Green</strong>.</div>
     <div class="footer-copy">All facts cited. All history documented.</div>
@@ -767,12 +1051,3 @@ function resetInvite() {
   document.getElementById('invEmail').value     = '';
   document.getElementById('invPhone').value     = '';
   updatePreview();
-  document.getElementById('inviteCard').style.display = 'block';
-  document.getElementById('inviteSent').classList.remove('visible');
-}
-
-// Init preview on load
-document.addEventListener('DOMContentLoaded', updatePreview);
-</script>
-</body>
-</html>
