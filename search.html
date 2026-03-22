@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Ask The Whole Story — Search Black American History</title>
+<title>Ask Anything. Learn Everything. — The Whole Story</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
   :root{
     --bg:#080808;--surface:#101010;--card:#161616;--border:#242424;
-    --gold:#C8922A;--gold-lt:#E5B55A;--teal:#0D7C7C;--teal-lt:#1AACAC;
+    --gold:#C8922A;--gold-lt:#E5B55A;--teal:#078930;--teal-lt:#0FAD3C;
     --crimson:#8B1F2F;--sapphire:#1B4F8A;--sapphire-lt:#2E72C0;
     --text:#F0EDE6;--muted:#7A7A7A;--faint:#2A2A2A;
     --font-disp:'Bebas Neue',sans-serif;
@@ -39,7 +39,7 @@
   }
   .search-hero-bg{
     position:absolute;inset:0;
-    background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(13,124,124,0.07) 0%,transparent 70%),
+    background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(7,137,48,0.07) 0%,transparent 70%),
                linear-gradient(180deg,#080808 0%,#090a08 100%);
   }
   .search-eyebrow{font-family:var(--font-head);font-weight:300;font-size:0.75rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:1.5rem;position:relative;z-index:1;}
@@ -149,7 +149,7 @@
   }
   .source-card:hover{border-top-color:var(--accent,var(--gold));}
   .source-card.loc{--accent:#C8922A;}
-  .source-card.claude-src{--accent:#1AACAC;}
+  .source-card.claude-src{--accent:#0FAD3C;}
   .source-card.gemini{--accent:#2E72C0;}
   .source-card.gpt{--accent:#74aa9c;}
 
@@ -213,17 +213,28 @@
 
   /* PROTOTYPE NOTE */
   .proto-note{
-    background:rgba(13,124,124,0.08);border:1px solid rgba(26,172,172,0.2);
+    background:rgba(7,137,48,0.08);border:1px solid rgba(15,173,60,0.2);
     padding:1rem 1.5rem;margin:0 4rem 2rem;
     font-family:var(--font-body);font-size:0.82rem;
     color:var(--teal-lt);line-height:1.6;
   }
   .proto-note strong{font-weight:600;}
 
-  footer{padding:3rem 4rem;border-top:1px solid var(--faint);}
-  .footer-bottom{display:flex;justify-content:space-between;align-items:center;}
-  .footer-copy{font-family:var(--font-body);font-size:0.78rem;color:var(--muted);}
+  footer{padding:5rem 4rem 2rem;border-top:1px solid var(--faint);}
+  .footer-row-top{display:grid;grid-template-columns:1.4fr 1fr;gap:4rem;margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid var(--faint);}
+  .footer-row-nav{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-bottom:3rem;}
+  .footer-brand-name{font-family:var(--font-disp);font-size:3rem;color:var(--text);line-height:0.95;margin-bottom:1.25rem;}
+  .footer-brand-sub{font-family:var(--font-body);font-weight:300;font-size:0.85rem;color:var(--muted);line-height:1.7;}
+  .footer-tagline{font-family:var(--font-body);font-style:italic;font-weight:700;font-size:1.1rem;color:var(--text);line-height:1.7;border-left:2px solid var(--gold);padding-left:1.25rem;align-self:center;}
+  .footer-col-title{font-family:var(--font-head);font-size:0.65rem;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.25rem;}
+  .footer-links{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}
+  .footer-links a{font-family:var(--font-body);font-size:0.82rem;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+  .footer-links a:hover{color:var(--text);}
+  .footer-divider{height:1px;background:var(--faint);margin-bottom:2rem;}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;}
+  .footer-copy{font-family:var(--font-body);font-size:0.75rem;color:var(--muted);}
   .footer-copy strong{color:var(--gold);}
+  @media(max-width:900px){.footer-row-top{grid-template-columns:1fr;}.footer-row-nav{grid-template-columns:1fr 1fr;}}
 
   @media(max-width:900px){
     nav{padding:1rem 1.5rem;}
@@ -233,18 +244,66 @@
     .sources-grid{grid-template-columns:1fr;}
     .suggested-grid{grid-template-columns:1fr;}
   }
+
+  .nav-dropdown{position:relative;}
+  .nav-dropdown-menu{
+    display:none;position:absolute;top:100%;left:0;
+    background:rgba(8,8,8,0.97);border:1px solid var(--faint);
+    border-top:2px solid var(--gold);min-width:200px;z-index:200;
+  }
+  .nav-dropdown:hover .nav-dropdown-menu{display:block;}
+  .nav-dropdown-menu a{
+    display:block;padding:0.75rem 1.25rem;
+    font-family:var(--font-head);font-size:0.72rem;font-weight:300;
+    letter-spacing:0.15em;text-transform:uppercase;
+    color:var(--muted);text-decoration:none;
+    border-bottom:1px solid var(--faint);transition:color 0.2s;
+  }
+  .nav-dropdown-menu a:last-child{border-bottom:none;}
+  .nav-dropdown-menu a:hover{color:var(--gold);}
+  .nav-dropdown > a::after{content:' ▾';font-size:0.6rem;}
+
+  /* MR GREEN READS */
+  .mr-green-reads{
+    margin-top:2rem;padding:1.5rem 2rem;
+    background:linear-gradient(135deg,rgba(200,146,42,0.06) 0%,rgba(8,8,8,0) 100%);
+    border-left:3px solid var(--gold);
+    display:none;
+  }
+  .mr-green-reads.visible{display:block;}
+  .reads-eyebrow{font-family:var(--font-head);font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;}
+  .reads-book{display:flex;align-items:center;gap:1.25rem;}
+  .reads-book-cover{width:44px;height:62px;background:var(--card);border:1px solid var(--faint);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+  .reads-book-cover-label{font-family:var(--font-head);font-size:0.45rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--faint);text-align:center;padding:2px;}
+  .reads-book-title{font-family:var(--font-head);font-weight:600;font-size:0.88rem;color:var(--text);line-height:1.3;margin-bottom:0.2rem;}
+  .reads-book-author{font-family:var(--font-body);font-size:0.78rem;color:var(--muted);}
+  .reads-note{font-family:var(--font-body);font-style:italic;font-weight:300;font-size:0.82rem;color:rgba(240,237,230,0.55);margin-top:0.5rem;line-height:1.65;}
+  .reads-link{font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;margin-top:0.75rem;}
 </style>
 </head>
 <body>
 
 <nav>
   <a href="index.html" class="nav-logo">The Whole <span>Story</span></a>
-      <ul class="nav-links">
-    <li><a href="about.html">About Mr. Green</a></li>
-    <li><a href="search.html" class="active">Explore History</a></li>
+        <ul class="nav-links">
+    <li class="nav-dropdown">
+      <a href="about.html">About Mr. Green</a>
+      <div class="nav-dropdown-menu">
+        <a href="about.html">About — Version 1</a>
+        <a href="about2.html">About — Version 2 ★</a>
+      </div>
+    </li>
+    <li class="nav-dropdown">
+      <a href="search.html" class="active">Explore History</a>
+      <div class="nav-dropdown-menu">
+        <a href="search.html">Explore History</a>
+        <a href="bookshelf.html">Mr. Green's Bookshelf</a>
+      </div>
+    </li>
     <li><a href="myths.html">Myth vs. Reality</a></li>
-    <li><a href="about.html#reading">Reading List</a></li>
-    <li><a href="index.html#stories">Light Bulb Stories</a></li>
+    <li><a href="blackpeople.html">Black People You Don't See on TV</a></li>
+    <li><a href="model.html">For Educators</a></li>
+    <li><a href="contact.html">Share What You Learned</a></li>
   </ul>
   <a href="quiz.html" class="nav-cta">Start Here</a>
 </nav>
@@ -252,8 +311,8 @@
 <!-- SEARCH HERO -->
 <section class="search-hero">
   <div class="search-hero-bg"></div>
-  <div class="search-eyebrow">Black American History · Verified · Sourced</div>
-  <h1 class="search-title">Ask<br/><span>Anything.</span></h1>
+  <div class="search-eyebrow">American History · Unfiltered · Verified · Sourced</div>
+  <h1 class="search-title">Ask Anything,<br/><span>Learn Everything.</span></h1>
   <p class="search-sub">Every answer verified across multiple trusted sources.<br/>Mr. Green's perspective anchors each one.</p>
 
   <div class="search-bar-wrap">
@@ -266,11 +325,14 @@
   </div>
 
   <div class="search-suggestions">
-    <button class="suggestion-chip" onclick="loadDemo('Why do Black neighborhoods have less generational wealth?')">Generational wealth gap</button>
+    <button class="suggestion-chip" onclick="loadDemo('Why do Black people commit more crime?')">Crime statistics myth</button>
+    <button class="suggestion-chip" onclick="loadDemo('What is systemic racism — is it even real?')">Systemic racism</button>
+    <button class="suggestion-chip" onclick="loadDemo('Why do Black neighborhoods have less generational wealth?')">Wealth gap</button>
     <button class="suggestion-chip" onclick="loadDemo('What was Black Wall Street?')">Black Wall Street</button>
-    <button class="suggestion-chip" onclick="loadDemo('What is redlining?')">What is redlining?</button>
-    <button class="suggestion-chip" onclick="loadDemo('Who were the Black Panthers really?')">The Black Panthers</button>
-    <button class="suggestion-chip" onclick="loadDemo('What is Juneteenth?')">Juneteenth</button>
+    <button class="suggestion-chip" onclick="loadDemo('What is redlining?')">Redlining</button>
+    <button class="suggestion-chip" onclick="loadDemo('Why is slavery relevant today?')">Why slavery still matters</button>
+    <button class="suggestion-chip" onclick="loadDemo('What is the CROWN Act?')">The CROWN Act</button>
+    <button class="suggestion-chip" onclick="loadDemo('What was Operation Hope?')">Operation Hope</button>
   </div>
 </section>
 
@@ -289,13 +351,27 @@
   <div class="mr-green-answer">
     <div class="answer-badge">
       <div class="answer-badge-dot"></div>
-      Mr. Green's Answer — 37 Years in the Classroom
+      Mr. Green's Answer — 46 Years in the Classroom
     </div>
     <p class="answer-text" id="greenAnswer"></p>
     <p class="answer-text" id="greenAnswer2"></p>
     <div class="answer-source">
       <div class="source-dot"></div>
       <span id="greenSource"></span>
+    </div>
+  </div>
+
+  <!-- MR GREEN RECOMMENDS -->
+  <div class="mr-green-reads" id="greenReads">
+    <div class="reads-eyebrow">Mr. Green recommends reading this</div>
+    <div class="reads-book">
+      <div class="reads-book-cover"><div class="reads-book-cover-label" id="bookCoverLabel">Book Cover</div></div>
+      <div>
+        <div class="reads-book-title" id="bookTitle"></div>
+        <div class="reads-book-author" id="bookAuthor"></div>
+        <div class="reads-note" id="bookNote"></div>
+        <a href="bookshelf.html" class="reads-link">See full bookshelf →</a>
+      </div>
     </div>
   </div>
 
@@ -340,6 +416,38 @@
 <div class="suggested" id="suggestedSection">
   <div class="suggested-label">Questions People Are Asking</div>
   <div class="suggested-grid">
+    <div class="suggested-card" onclick="loadDemo('Why do Black people commit more crime?')">
+      <div class="suggested-q">Why do Black people commit more crime?</div>
+      <div class="suggested-arrow">Ask this →</div>
+    </div>
+    <div class="suggested-card" onclick="loadDemo('Why don\'t Black people just work harder?')">
+      <div class="suggested-q">Why don't Black people just work harder?</div>
+      <div class="suggested-arrow">Ask this →</div>
+    </div>
+    <div class="suggested-card" onclick="loadDemo('Aren\'t things better now since the Civil Rights Act?')">
+      <div class="suggested-q">Aren't things better now since the Civil Rights Act?</div>
+      <div class="suggested-arrow">Ask this →</div>
+    </div>
+    <div class="suggested-card" onclick="loadDemo('What is systemic racism — is it even real?')">
+      <div class="suggested-q">What is systemic racism — is it even real?</div>
+      <div class="suggested-arrow">Ask this →</div>
+    </div>
+    <div class="suggested-card" onclick="loadDemo('Why is slavery relevant today?')">
+      <div class="suggested-q">Slavery ended 160 years ago — why is it still relevant today?</div>
+      <div class="suggested-arrow">Ask this →</div>
+    </div>
+    <div class="suggested-card" onclick="loadDemo('What is the CROWN Act?')">
+      <div class="suggested-q">What is the CROWN Act — and why did we need a law about hair?</div>
+      <div class="suggested-arrow">Ask this →</div>
+    </div>
+    <div class="suggested-card" onclick="loadDemo('What was Operation Hope?')">
+      <div class="suggested-q">What was Operation Hope, and what came out of the 1992 LA uprising?</div>
+      <div class="suggested-arrow">Ask this →</div>
+    </div>
+    <div class="suggested-card" onclick="loadDemo('What is the difference between prejudice and racism?')">
+      <div class="suggested-q">What's the difference between prejudice and racism?</div>
+      <div class="suggested-arrow">Ask this →</div>
+    </div>
     <div class="suggested-card" onclick="loadDemo('Why do Black neighborhoods have less generational wealth?')">
       <div class="suggested-q">Why do Black neighborhoods have less generational wealth than white neighborhoods?</div>
       <div class="suggested-arrow">Ask this →</div>
@@ -368,13 +476,72 @@
 </div>
 
 <footer>
+  <!-- TOP ROW: Brand + Quote -->
+  <div class="footer-row-top">
+    <div class="footer-brand-col">
+      <div class="footer-brand-name">The Whole<br/>Story.</div>
+      <p class="footer-brand-sub">
+        Real American history includes Black American history.<br/>
+        Guided by Mr. Anthony Green — Bishop O'Dowd High School, Oakland CA.<br/>
+        46 years in the classroom. Every fact sourced. Every entry documented.
+      </p>
+    </div>
+    <div class="footer-tagline">"Education is the passport to the future, for tomorrow belongs to those that prepare for it today." — Malcolm X</div>
+  </div>
+
+  <!-- NAV ROW: 4 columns -->
+  <div class="footer-row-nav">
+    <div>
+      <div class="footer-col-title">Explore</div>
+      <ul class="footer-links">
+        <li><a href="search.html">Explore History</a></li>
+        <li><a href="myths.html">Myth vs. Reality</a></li>
+        <li><a href="bookshelf.html">Mr. Green's Bookshelf</a></li>
+        <li><a href="quiz.html">Find Your Starting Point</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Mr. Green</div>
+      <ul class="footer-links">
+        <li><a href="about.html">Biography</a></li>
+        <li><a href="about.html#timeline">Timeline</a></li>
+        <li><a href="about.html#recognition">Awards &amp; Recognition</a></li>
+        <li><a href="about.html#media">In the Media</a></li>
+        <li><a href="about.html#reading">Reading List</a></li>
+        <li><a href="model.html">For Educators</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Community</div>
+      <ul class="footer-links">
+        <li><a href="blackpeople.html">Black People You Don't See on TV</a></li>
+        <li><a href="profile.html">Add Your Profile</a></li>
+        <li><a href="contact.html#story">Share What You Learned</a></li>
+        <li><a href="contact.html">Contact Mr. Green</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Connect &amp; Support</div>
+      <ul class="footer-links">
+        <li><a href="index.html#donate">Support Mr. Green's Work</a></li>
+        <li><a href="index.html#donate">Give Monthly</a></li>
+        <li><a href="https://www.linkedin.com/in/tony-green-5127aa23/" target="_blank">LinkedIn</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#4236253027272c02202b312a2d322d262d35266c2d3025">Email Mr. Green</a></li>
+        <li><a href="https://www.bishopodowd.org/faculty-staff/anthony-green" target="_blank">O'Dowd Faculty Page</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-divider"></div>
+
   <div class="footer-bottom">
     <div class="footer-copy">© 2026 The Whole Story. Prototype — <strong>for Mr. Anthony Green</strong>.</div>
     <div class="footer-copy">All facts cited. All history documented.</div>
+    <div class="footer-copy">Created by <a href="https://www.getclarity.consulting" target="_blank" style="color:var(--gold);text-decoration:none;">Alanne International</a></div>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const DEMO_DATA = {
   'Why do Black neighborhoods have less generational wealth?': {
     headline: 'Why do Black neighborhoods have less generational wealth?',
@@ -431,6 +598,106 @@ const DEMO_DATA = {
     gptExcerpt: 'Juneteenth was recognized as a federal holiday on June 17, 2021 — signed into law by President Biden. Its belated federal recognition is itself a commentary on whose history American institutions have historically chosen to commemorate.',
     related: ['Emancipation Proclamation', 'The 13th Amendment', 'Reconstruction', 'Black Codes After Emancipation', 'Freedmen\'s Bureau', 'Why History Gets Left Out']
   },
+
+  'Why do Black people commit more crime?': {
+    headline: 'Do Black people commit more crime — or is this a myth driven by data that needs context?',
+    greenAnswer: `This is one of the most weaponized statistics in American public discourse — and one of the most misunderstood. Crime statistics measure <strong>arrests and convictions</strong>, not the actual commission of crime. Policing is not neutral. Decades of research confirm that Black neighborhoods are disproportionately policed — more officers, more stops, more arrests — meaning more documented crime, regardless of actual behavior. A simple test: white communities with equivalent poverty rates are policed at a fraction of the intensity.`,
+    greenAnswer2: `The deeper question is: what predicts crime? Poverty. Unemployment. Under-resourced schools. Lack of economic opportunity. Housing instability. These are the variables that correlate with crime in every racial group, in every country, across every study. Black Americans experience these conditions at higher rates — not by accident, but because of documented federal and state policy over generations. When you remove the socioeconomic variables, the racial disparity in crime disappears. You are not looking at a race problem. You are looking at a poverty and policy problem wearing a racial mask.`,
+    greenSource: 'Sources: Alexander, M. The New Jim Crow (2010); Bureau of Justice Statistics, Arrest Data Analysis Tool; Goff, P.A. et al. "The Science of Justice: Race, Arrests, and Police Use of Force" (2016)',
+    locExcerpt: 'Bureau of Justice Statistics data, held at the National Archives, documents consistent racial disparities in arrest rates that do not correlate with self-reported crime survey data — suggesting differential policing rather than differential offending as the primary driver.',
+    claudeExcerpt: 'Criminological research consistently shows that when controlling for poverty, unemployment, and neighborhood disinvestment, racial differences in crime rates are not statistically significant. The racial disparity in arrests and incarceration is best explained by differential policing and prosecution, not differential behavior.',
+    geminiExcerpt: 'The National Crime Victimization Survey (NCVS), which asks victims about offenders rather than relying on arrest data, shows significantly smaller racial disparities than arrest statistics — supporting the conclusion that differential policing, not differential offending, drives the gap.',
+    gptExcerpt: 'Peer-reviewed criminology literature identifies poverty concentration, neighborhood disinvestment, and discriminatory policing practices as the primary drivers of racial disparities in the criminal justice system. The data does not support a biological or cultural explanation.',
+    related: ['Mass Incarceration', 'The New Jim Crow', 'Poverty & Crime Research', 'Stop and Frisk', 'COINTELPRO', 'Wealth Gap & Opportunity'],
+    book: { title: "The New Jim Crow", author: "Michelle Alexander", note: "The definitive account of how mass incarceration functions as a system of racial control — continuing the work of Jim Crow under a different name." }
+  },
+  "Why don't Black people just work harder?": {
+    headline: 'Is the racial wealth gap about work ethic — or is something else going on?',
+    greenAnswer: `The premise of this question contains a false assumption: that Black Americans have not worked hard. Enslaved Black people built the American economy for 246 years <strong>without compensation</strong> — the most extreme form of labor extraction in American history. After emancipation, Black Americans worked, saved, and built. They built banks, towns, universities, and businesses. Black Wall Street — Tulsa's Greenwood district — was proof of what happens when Black communities are given even a fraction of a fair start. It was bombed by American citizens in 1921.`,
+    greenAnswer2: `Every time Black Americans built wealth, the mechanisms to take it were deployed: redlining, racially restrictive covenants, urban renewal that bulldozed Black business districts, convict leasing that re-enslaved free men for vagrancy. This is documented federal and state policy, not grievance. The question is not whether Black Americans work hard. The question is what happens to the wealth they build. That is a policy question, not a character question.`,
+    greenSource: 'Sources: Rothstein, R. The Color of Law (2017); Coates, T. "The Case for Reparations," The Atlantic (2014); Wilkerson, I. Caste (2020)',
+    locExcerpt: 'National Archives hold documentation of federally sanctioned housing discrimination, including FHA underwriting manuals explicitly instructing appraisers to downgrade neighborhoods with Black residents — preventing wealth accumulation through the primary tool available to American families.',
+    claudeExcerpt: 'Economic research consistently shows that Black Americans at every income level have lower wealth than white Americans at the same income level — indicating structural barriers, not behavioral differences, as the cause of the wealth gap.',
+    geminiExcerpt: 'A 2019 study by Brookings Institution found that Black families with a college degree have less wealth than white families without one. If work ethic and education were the determining factors, this gap would not exist.',
+    gptExcerpt: 'Sociological research documents that Black Americans show equivalent or higher rates of entrepreneurship, educational attainment increases, and labor force participation as white Americans when controlling for socioeconomic starting conditions — contradicting the work ethic framing.',
+    related: ['Black Wall Street', 'Redlining', 'GI Bill & Racial Exclusion', 'Convict Leasing', 'Reparations', 'Caste by Isabel Wilkerson'],
+    book: { title: "The Color of Law", author: "Richard Rothstein", note: "A legally rigorous, devastating account of how the U.S. government — at every level — deliberately segregated American cities. Not opinion. Documented policy." }
+  },
+  "Aren't things better now since the Civil Rights Act?": {
+    headline: 'The Civil Rights Act passed in 1964 — so aren't things better now?',
+    greenAnswer: `Yes, things are better in some ways. Legally mandated segregation ended. Voting rights were restored — briefly, and incompletely. Overt, legal discrimination in public accommodations was prohibited. These are real achievements, won at enormous human cost. But here is what the Civil Rights Act did not do: it did not transfer wealth. It did not undo 30 years of federally sanctioned redlining. It did not rebuild the Black Wall Streets that had been destroyed. It did not return the land seized through racially motivated eminent domain. It did not compensate the families of those murdered by the state.`,
+    greenAnswer2: `The gap between legal equality and material equality is the story of America since 1964. The median Black family today holds approximately <strong>1/8th the wealth</strong> of the median white family. That gap has not meaningfully closed in 60 years. Legal rights do not automatically produce economic equality — especially when the starting conditions were engineered by law to be unequal. Asking "aren't things better now?" is a bit like asking someone whose house was burned down whether they feel better because arson is now illegal. The law changed. The house is still ash.`,
+    greenSource: 'Sources: Federal Reserve, Survey of Consumer Finances (2022); Civil Rights Act of 1964, Public Law 88-352; Rothstein, R. The Color of Law (2017)',
+    locExcerpt: 'The Library of Congress holds the legislative history of the Civil Rights Act of 1964, including congressional debate records that explicitly document what the Act did and did not address — most notably, the deliberate exclusion of economic reparations from the legislation.',
+    claudeExcerpt: 'Federal Reserve data from the 2022 Survey of Consumer Finances documents that the Black-white wealth gap has remained essentially unchanged since the 1960s in proportional terms. Legal desegregation did not produce economic desegregation.',
+    geminiExcerpt: 'Research from the Brookings Institution and National Bureau of Economic Research consistently shows that racial disparities in wealth, income, homeownership, and health outcomes have not closed in proportion to legal advances since the Civil Rights era.',
+    gptExcerpt: 'Academic consensus holds that while the Civil Rights Act addressed de jure segregation, it did not address the accumulated wealth differential created by decades of discriminatory federal policy. The legislation was a necessary but insufficient condition for racial economic equality.',
+    related: ['The Wealth Gap Today', 'Redlining After 1964', 'Fair Housing Act 1968', 'Voting Rights Act Erosion', 'Reparations Debate', 'What Reconstruction Taught Us'],
+    book: { title: "Race Matters", author: "Cornel West", note: "West cuts through political noise to examine what the Civil Rights era accomplished — and what it left untouched. Required context for anyone asking this question." }
+  },
+  "What is systemic racism — is it even real?": {
+    headline: 'What is systemic racism and is there evidence it actually exists?',
+    greenAnswer: `Systemic racism is not a feeling, a theory, or an ideology. It is a documented set of policies, laws, and institutional practices that produce racially unequal outcomes — regardless of the intentions of any individual within the system. The word "systemic" means the discrimination is built into the system itself. You don't need a racist person in the room for systemic racism to operate. You need a system built on racist rules that is still running.`,
+    greenAnswer2: `The evidence is not anecdotal. It is auditable. <strong>In hiring:</strong> identical resumes with Black-sounding names receive fewer callbacks than identical resumes with white-sounding names — documented in peer-reviewed studies going back to 2003. <strong>In lending:</strong> Black applicants are denied mortgages at higher rates than white applicants with the same credit scores. <strong>In sentencing:</strong> Black defendants receive sentences approximately 20% longer than white defendants for the same crime. <strong>In healthcare:</strong> Black patients receive less pain medication than white patients for the same conditions. The system does not need to announce its racism. It just needs to run.`,
+    greenSource: 'Sources: Bertrand, M. & Mullainathan, S. "Are Emily and Greg More Employable than Lakisha and Jamal?" (2003); U.S. Sentencing Commission, Demographic Differences in Sentencing (2017); NCRC, Redlining and Neighborhood Health (2020)',
+    locExcerpt: 'Congressional Research Service reports held at the Library of Congress document persistent racial disparities across education, housing, criminal justice, and healthcare systems — outcomes that studies consistently attribute to structural rather than individual causes.',
+    claudeExcerpt: 'The audit study methodology — sending identical applications with racially identifiable names — has been replicated across dozens of studies in multiple countries and consistently finds significant racial discrimination in hiring, lending, and housing, independent of individual decision-makers.',
+    geminiExcerpt: 'U.S. Sentencing Commission data from 2017 found that Black male offenders received sentences 19.1% longer than similarly situated white male offenders after controlling for criminal history and offense characteristics. This is a system-level outcome, not an individual bias finding.',
+    gptExcerpt: 'The academic literature on systemic racism spans economics, sociology, public health, and criminal justice. Meta-analyses of audit studies consistently find racial discrimination at rates that cannot be explained by individual variation — supporting a structural interpretation.',
+    related: ['Redlining', 'Mass Incarceration', 'The School-to-Prison Pipeline', 'Pay Gap Data', 'Healthcare Disparities', 'What Is Implicit Bias?'],
+    book: { title: "The Autobiography of Malcolm X", author: "Alex Haley", note: "Malcolm X experienced systemic racism as a lived reality decades before it had a name. Reading his life is reading the system in operation." }
+  },
+  "Why is slavery relevant today?": {
+    headline: 'Slavery ended 160 years ago — why is it still relevant today?',
+    greenAnswer: `Slavery lasted <strong>246 years</strong> in America — from 1619 to 1865. It was not a brief episode. It was the economic foundation of the country. By 1860, the value of enslaved people as property exceeded the value of all American banks, factories, and railroads combined. The American economy was built on this foundation. The wealth generated by enslaved labor did not disappear when slavery ended. It transferred — into land, capital, business ownership, and inherited wealth held by white families. Those families still hold it. The people whose labor built it still don't.`,
+    greenAnswer2: `But slavery's legacy is not only about wealth. It is about the systems built to maintain racial hierarchy after slavery ended: Black Codes, convict leasing, Jim Crow, redlining, mass incarceration. Each of these was a legal mechanism designed to extract the same labor and suppress the same population by different means. The chain did not break in 1865. It changed shape. If you want to understand why any racial disparity exists in America today — in wealth, in health, in education, in incarceration — you have to start in 1619. That is not an opinion. That is chronology.`,
+    greenSource: 'Sources: Baptist, E. The Half Has Never Been Told (2014); 1619 Project, New York Times (2019); Du Bois, W.E.B. Black Reconstruction in America (1935)',
+    locExcerpt: 'The Library of Congress holds the Slave Narratives from the Federal Writers Project (1936–1938) — first-person testimonies from formerly enslaved people documenting the lived conditions and economic mechanisms of American slavery as primary sources.',
+    claudeExcerpt: 'Economic historians have documented that enslaved labor contributed directly to the industrialization of the American North as well as the South — through the cotton economy that fed textile mills, financed banks, and capitalized insurance companies that still exist today.',
+    geminiExcerpt: 'The 1619 Project's economic analysis, corroborated by independent historians, documents that slavery was not peripheral to American capitalism but central to it — and that its effects on the distribution of wealth are traceable into the present day.',
+    gptExcerpt: 'Historical and economic scholarship since the 1970s has increasingly treated American slavery not as a moral aberration but as a core economic institution whose effects compounded across generations. The question is not whether slavery is relevant today — it is whether we choose to account for it.',
+    related: ['The 13th Amendment', 'Convict Leasing', 'Reparations', 'The 1619 Project', 'Reconstruction', 'Black Codes'],
+    book: { title: "The Autobiography of Malcolm X", author: "Alex Haley", note: "No one has explained the through-line from slavery to the present more clearly than Malcolm X. Start here." }
+  },
+  "What is the difference between prejudice and racism?": {
+    headline: 'What's the difference between prejudice and racism — aren't they the same thing?',
+    greenAnswer: `<strong>Prejudice</strong> is a preconceived opinion not based on reason or actual experience. Any person of any background can hold prejudice toward any other group. It is a human tendency that crosses all racial lines. <strong>Racism</strong> is different: it is prejudice combined with the institutional power to enforce it systemically. Racism requires a power structure. It is not just a feeling or an attitude — it is a relationship between an attitude and the systems that give it force.`,
+    greenAnswer2: `This distinction matters because it changes what we're solving for. If racism is just prejudice, the solution is education and attitude change. If racism is a system, the solution requires changing laws, policies, and institutions. The evidence — in lending, hiring, sentencing, healthcare — points to a system, not just attitudes. An individual Black person can hold prejudice against white people. They do not have the institutional infrastructure to redline white neighborhoods, sentence white defendants to longer prison terms, or systematically underfund white schools. Prejudice is personal. Racism is structural.`,
+    greenSource: 'Sources: Jones, J.M. Prejudice and Racism (1997); Bonilla-Silva, E. Racism Without Racists (2003); Ture, K. & Hamilton, C. Black Power: The Politics of Liberation (1967)',
+    locExcerpt: 'Stokely Carmichael and Charles Hamilton's Black Power (1967), available through the Library of Congress, introduced the concept of institutional racism into political discourse — distinguishing individual racist acts from the systemic operation of racially biased institutions.',
+    claudeExcerpt: 'Sociologist Eduardo Bonilla-Silva's concept of "racism without racists" — documented in peer-reviewed research — describes how racial inequality can be produced and maintained by institutional systems without requiring individual actors who identify as racist.',
+    geminiExcerpt: 'Social psychology research distinguishes explicit prejudice (conscious negative attitudes) from implicit bias (unconscious associations) from structural racism (institutional patterns). All three are documented phenomena with distinct research literatures and distinct remedies.',
+    gptExcerpt: 'The distinction between prejudice and systemic racism is foundational in contemporary sociology and critical race theory. The academic consensus is that racial inequality in outcomes cannot be fully explained by individual prejudice and requires structural analysis.',
+    related: ['Systemic Racism', 'Implicit Bias Research', 'Structural Inequality', 'Black Power Movement', 'Civil Rights vs. Human Rights', 'What Is White Privilege?'],
+    book: { title: "Race Matters", author: "Cornel West", note: "West draws the line between individual prejudice and systemic power more clearly than almost anyone. This is the distinction that changes how you see everything." }
+  }
+
+
+  'What is the CROWN Act?': {
+    headline: 'What is the CROWN Act — and why did we need a law about hair?',
+    greenAnswer: `Before there was the CROWN Act, there was the <strong>Tignon Law</strong> — a 1786 Louisiana ordinance that made it illegal for Black women to display their natural hair in public. The law required them to cover their heads with a tignon, a type of headwrap. The reasoning was explicit: natural Black hair was considered a symbol of status and beauty that made Black women "too attractive" and therefore threatening to the social order. That was not an accident. That was control.`,
+    greenAnswer2: `Fast forward to 2019: <strong>HR 116, the CROWN Act</strong> — Creating a Respectful and Open World for Natural Hair — was introduced in Congress to explicitly prohibit discrimination based on hair texture or hairstyles commonly associated with a particular race or nationality. The fact that this law had to be written tells you everything. Black students were being sent home from school. Black adults were being fired from jobs. Black soldiers were being told their locs violated military regulations. The Tignon Law changed its name. It did not change its intention.`,
+    greenSource: 'Sources: Tignon Law, Louisiana 1786; CROWN Act, HR 116, 116th Congress (2019); Byrd, A. & Tharps, L. Hair Story: Untangling the Roots of Black Hair in America (2001)',
+    locExcerpt: 'The Library of Congress holds the legislative record of the CROWN Act and its state-by-state passage history, documenting over 20 states that enacted CROWN Act protections before federal passage was achieved.',
+    claudeExcerpt: 'Research in workplace discrimination law documents consistent patterns of Black employees being penalized for natural hairstyles including locs, braids, and Afros — practices the CROWN Act was designed to explicitly prohibit.',
+    geminiExcerpt: 'The CROWN Act has been adopted in numerous states and represents the first explicit federal protection against hair discrimination. Legal scholars note it closes a loophole in anti-discrimination law that had allowed hairstyle-based bias to continue under the guise of "neutral" grooming policies.',
+    gptExcerpt: 'Historical analysis of the Tignon Law reveals it was designed to suppress Black social mobility by criminalizing an expression of African cultural identity. The CROWN Act addresses the same impulse through modern legal language nearly 240 years later.',
+    related: ['Tignon Law', 'Black Hair & Identity', 'Workplace Discrimination', 'CROWN Act By State', 'Cultural Erasure', 'Black Culture IS American Culture'],
+    book: { title: "The Autobiography of Malcolm X", author: "Alex Haley", note: "Malcolm X's transformation — including his relationship with his own hair — is one of the most powerful personal narratives of Black identity in American literature." }
+  },
+  'What was Operation Hope?': {
+    headline: 'What was Operation Hope — and what did it actually accomplish?',
+    greenAnswer: `On April 29, 1992, four Los Angeles police officers who had beaten Rodney King on video were acquitted by a jury. The city erupted. Six days of uprising left 63 people dead, over 2,000 injured, and caused more than $1 billion in damage. What the news covered as "riots," many historians describe as a rebellion — a community's response to decades of documented police brutality with no accountability. The Rodney King beating was not an isolated incident. It was a recorded confirmation of what Black and Brown Angelenos had been saying for years.`,
+    greenAnswer2: `What emerged from the uprising was <strong>Operation HOPE</strong> — founded by John Bryant in the aftermath — an interracial financial literacy and economic empowerment coalition that became one of the most significant community solidarity movements in American history. Operation HOPE operated on the premise that economic inclusion was the missing piece of the civil rights agenda. It wasn't just about Black and Brown solidarity — it was about building something where the uprising happened. The lesson: every moment of destruction in American history contains, if you look closely enough, a seed of something being built.`,
+    greenSource: 'Sources: Los Angeles Times, April–May 1992 Archives; Bryant, J. Love Leadership (2009); Cannon, L. Official Negligence: How Rodney King and the Riots Changed Los Angeles and the LAPD (1997)',
+    locExcerpt: 'The Library of Congress holds extensive archival coverage of the 1992 Los Angeles uprising including congressional testimony, federal commission reports, and community impact assessments documenting both the causes and aftermath of the events.',
+    claudeExcerpt: 'Sociological analysis of the 1992 Los Angeles uprising documents that the conditions preceding it — concentrated poverty, disinvestment, and documented police misconduct — were well-established before the King verdict. The uprising was not spontaneous but the culmination of decades of systemic neglect.',
+    geminiExcerpt: 'Operation HOPE grew from a single bank branch opened in South Central Los Angeles in 1992 into a national financial empowerment organization serving millions. Its founding in the immediate aftermath of the uprising represents one of the most documented examples of community rebuilding following civic unrest in American history.',
+    gptExcerpt: 'Historical scholarship on the 1992 Los Angeles uprising has increasingly framed it as a rebellion rather than a riot — distinguishing between the destruction of property and the political expression of communities that had been systematically failed by institutions. The King verdict was a trigger, not a cause.',
+    related: ['Rodney King & Police Brutality', 'LAPD History', '1992 Los Angeles Uprising', 'Operation HOPE', 'Black & Brown Coalition', 'Police Accountability'],
+    book: { title: "Race Matters", author: "Cornel West", note: "West wrote Race Matters in direct response to the 1992 uprising. It remains the most clear-eyed account of what the uprising revealed about American society." }
+  }
+
   'What was Reconstruction?': {
     headline: 'What was Reconstruction — and why did it end the way it did?',
     greenAnswer: `Reconstruction (1865–1877) was the period following the Civil War in which the federal government attempted to reintegrate the Confederate states and establish political and civil rights for four million formerly enslaved people. In its brief, extraordinary window, Reconstruction produced: <strong>the 13th, 14th, and 15th Amendments</strong> to the Constitution; over 2,000 Black elected officials, including 16 U.S. Congressmen and 2 U.S. Senators; Black-founded public schools serving both Black and white children; and a genuine, if fragile, experiment in multiracial democracy in the American South.`,
@@ -471,14 +738,18 @@ function loadDemo(question) {
   const chips = document.getElementById('relatedChips');
   chips.innerHTML = data.related.map(r => `<a href="#" class="related-chip" onclick="event.preventDefault();loadDemo('${Object.keys(DEMO_DATA)[0]}')">${r}</a>`).join('');
 
+  // Book recommendation
+  const readsEl = document.getElementById('greenReads');
+  if (data.book) {
+    document.getElementById('bookTitle').textContent = data.book.title;
+    document.getElementById('bookAuthor').textContent = data.book.author;
+    document.getElementById('bookNote').textContent = data.book.note;
+    document.getElementById('bookCoverLabel').textContent = data.book.title;
+    readsEl.classList.add('visible');
+  } else {
+    readsEl.classList.remove('visible');
+  }
+
   document.getElementById('resultsArea').classList.add('visible');
   document.getElementById('suggestedSection').style.display = 'none';
   document.getElementById('protoNote').style.display = 'none';
-
-  setTimeout(() => {
-    document.getElementById('resultsArea').scrollIntoView({behavior:'smooth', block:'start'});
-  }, 100);
-}
-</script>
-</body>
-</html>
