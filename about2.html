@@ -295,6 +295,14 @@
   .nav-dropdown-menu a:last-child{border-bottom:none;}
   .nav-dropdown-menu a:hover{color:var(--gold);}
   .nav-dropdown > a::after{content:' ▾';font-size:0.6rem;}
+
+  .tl-gal-wrap{display:flex;gap:4px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;height:100%;}
+  .tl-gal-wrap::-webkit-scrollbar{display:none;}
+  .tl-gal-tile{flex-shrink:0;width:100%;height:100%;position:relative;cursor:pointer;}
+  .tl-gal-tile img{width:100%;height:100%;object-fit:cover;display:block;}
+  .tl-gal-cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.9));font-family:var(--font-body);font-size:0.68rem;color:var(--text);padding:1rem 0.5rem 0.4rem;opacity:0;transition:opacity 0.2s;}
+  .tl-gal-tile:hover .tl-gal-cap{opacity:1;}
+  .tl-gal-count{font-family:var(--font-head);font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);text-align:center;padding:0.3rem 0;background:var(--card);}
 </style>
 </head>
 <body>
@@ -960,7 +968,21 @@ document.addEventListener('DOMContentLoaded', renderGal);
         <div class="tl-desc">Honored in Harlem for visionary educational leadership and sustained community advocacy — recognized by the Malcolm X Institute and Governor Kathy Hochul of New York with a Certificate of Recognition, February 21, 2026.</div>
       </div>
       <div class="tl-center"><div class="tl-year">2025</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><img src="img_ny_gov.jpg" alt="Vanguard Award Ceremony" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
+      <div class="tl-media"><div class="tl-gal-wrap">
+        <div class="tl-gal-tile" title="Vanguard Ceremony · Harlem">
+          <img src="img_vanguard_stage.jpg" alt="Vanguard Ceremony · Harlem" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          <div class="tl-gal-cap">Vanguard Ceremony · Harlem</div>
+        </div><div class="tl-gal-tile" title="Mr. & Mrs. Green · Audubon Ballroom">
+          <img src="img_vanguard_couple.jpg" alt="Mr. & Mrs. Green · Audubon Ballroom" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          <div class="tl-gal-cap">Mr. & Mrs. Green · Audubon Ballroom</div>
+        </div><div class="tl-gal-tile" title="Vanguard Award Trophy">
+          <img src="img_vanguard_trophy.jpg" alt="Vanguard Award Trophy" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          <div class="tl-gal-cap">Vanguard Award Trophy</div>
+        </div><div class="tl-gal-tile" title="Certificate — Governor Kathy Hochul">
+          <img src="img_ny_gov.jpg" alt="Certificate — Governor Kathy Hochul" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          <div class="tl-gal-cap">Certificate — Governor Kathy Hochul</div>
+        </div>
+      </div></div>
     </div>
 
     <div class="timeline-item">
@@ -980,7 +1002,15 @@ document.addEventListener('DOMContentLoaded', renderGal);
         <div class="tl-desc">65 students toured historic North and West Oakland — visiting Lois The Pie Queen, the Black Panther Party museum, and Marcus Bookstore. Projects critiqued by UC Berkeley Urban Geographer Dr. Brandi Thompson Summers.</div>
       </div>
       <div class="tl-center"><div class="tl-year">2024</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><img src="teach.jpeg" alt="Redlining Field Trip — Mr. Green in the Classroom" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
+      <div class="tl-media"><div class="tl-gal-wrap">
+        <div class="tl-gal-tile" title="College Board Certificate of Recognition · 2024–25">
+          <img src="CB_APAAS_cert.jpg" alt="College Board Certificate of Recognition · 2024–25" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          <div class="tl-gal-cap">College Board Certificate of Recognition · 2024–25</div>
+        </div><div class="tl-gal-tile" title="California State Capitol — Presenting AP African American Studies">
+          <img src="img_capitol.jpg" alt="California State Capitol — Presenting AP African American Studies" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          <div class="tl-gal-cap">California State Capitol — Presenting AP African American Studies</div>
+        </div>
+      </div></div>
     </div>
 
     <div class="timeline-item">
@@ -990,7 +1020,15 @@ document.addEventListener('DOMContentLoaded', renderGal);
         <div class="tl-desc">The College Board launches AP African American Studies nationally. Mr. Green is among the founding teachers — having been teaching this material for decades before the College Board formalized it.</div>
       </div>
       <div class="tl-center"><div class="tl-year">2022</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><img src="img_capitol.jpg" alt="California State Capitol — AP African American Studies" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
+      <div class="tl-media"><div class="tl-gal-wrap">
+        <div class="tl-gal-tile" title="College Board Certificate of Recognition · 2024–25">
+          <img src="CB_APAAS_cert.jpg" alt="College Board Certificate of Recognition · 2024–25" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          <div class="tl-gal-cap">College Board Certificate of Recognition · 2024–25</div>
+        </div><div class="tl-gal-tile" title="California State Capitol — Presenting AP African American Studies">
+          <img src="img_capitol.jpg" alt="California State Capitol — Presenting AP African American Studies" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          <div class="tl-gal-cap">California State Capitol — Presenting AP African American Studies</div>
+        </div>
+      </div></div>
     </div>
 
     <div class="timeline-item">
@@ -1030,7 +1068,7 @@ document.addEventListener('DOMContentLoaded', renderGal);
         <div class="tl-desc">Two decades at the same institution. By this point, Mr. Green has coached athletes to national championships, built the BSU into a nationally recognized program, and taught thousands of students the history their textbooks left out.</div>
       </div>
       <div class="tl-center"><div class="tl-year">2006</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><img src="img_naacp.jpg" alt="Mr. & Mrs. Green — NAACP" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="img_naacp.jpg" alt="NAACP Civic Engagement Award — Mr. & Mrs. Green" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
     </div>
 
 
@@ -1131,7 +1169,18 @@ document.addEventListener('DOMContentLoaded', renderGal);
         <div class="tl-desc">Founded 1988–89 school year. Mr. Green shepherded a student-led effort with mentorship from Dr. Oba T'Shaka (SF State Black Studies Chair), Dr. Richard Navies (who founded the first high school BSU at Berkeley High), and Dr. David Skinner. O'Dowd's BSU has never stopped running — making it the oldest continuously running high school BSU in the Bay Area and the United States.</div>
       </div>
       <div class="tl-center"><div class="tl-year">1988</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><img src="BSU_yearbook_2.jpg" alt="BSU founding era" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
+      <div class="tl-media"><div class="tl-gal-wrap">
+        <div class="tl-gal-tile" title="BSU — Giving Students Unity & Confidence">
+          <img src="BSU_yearbook_2.jpg" alt="BSU — Giving Students Unity & Confidence" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          <div class="tl-gal-cap">BSU — Giving Students Unity & Confidence</div>
+        </div><div class="tl-gal-tile" title="Black History Month Assembly">
+          <img src="BSU_yearbook.jpg" alt="Black History Month Assembly" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          <div class="tl-gal-cap">Black History Month Assembly</div>
+        </div><div class="tl-gal-tile" title=""I Am Somebody" — Early BSU">
+          <img src="BSU_Yearbook_3.jpeg" alt=""I Am Somebody" — Early BSU" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          <div class="tl-gal-cap">"I Am Somebody" — Early BSU</div>
+        </div>
+      </div></div>
     </div>
 
     <div class="timeline-item">
@@ -1161,7 +1210,7 @@ document.addEventListener('DOMContentLoaded', renderGal);
         <div class="tl-desc">Mr. Green begins his teaching career at Homestead High School — alma mater of Apple co-founder Steve Wozniak. From Silicon Valley's backyard, he develops the standard of rigor and truth-telling that will define 46 years of teaching.</div>
       </div>
       <div class="tl-center"><div class="tl-year">1980</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><img src="Homestead_Quad_Cupertino.jpeg" alt="Homestead High School, Cupertino" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="Homestead_Quad_Cupertino.jpeg" alt="Homestead High School · Cupertino, CA" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
     </div>
 
     <div class="timeline-item">
@@ -1171,7 +1220,7 @@ document.addEventListener('DOMContentLoaded', renderGal);
         <div class="tl-desc">In the Floyd Terrace Housing Project in Vallejo, young Anthony Green is introduced to athletics and Black History at the same time. His breakfast program is connected to the Black Panthers. His neighborhood athletics are organized by Alpha Phi Alpha mentors through the Omega Boys Club. Both will shape everything that follows.</div>
       </div>
       <div class="tl-center"><div class="tl-year">1960s</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><img src="Vallejo.png" alt="Floyd Terrace, Vallejo" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="Vallejo.png" alt="Floyd Terrace Neighborhood · Vallejo, CA" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
     </div>
 
     <div class="timeline-endcap">
@@ -1408,7 +1457,21 @@ window.addEventListener('scroll', () => {
         <div class="tl-desc">Honored in Harlem for visionary educational leadership and sustained community advocacy — recognized by the Malcolm X Institute and Governor Kathy Hochul of New York with a Certificate of Recognition, February 21, 2026.</div>
       </div>
       <div class="tl-center"><div class="tl-year">2025</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><img src="img_ny_gov.jpg" alt="Vanguard Award Ceremony" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
+      <div class="tl-media"><div class="tl-gal-wrap">
+        <div class="tl-gal-tile" title="Vanguard Ceremony · Harlem">
+          <img src="img_vanguard_stage.jpg" alt="Vanguard Ceremony · Harlem" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          <div class="tl-gal-cap">Vanguard Ceremony · Harlem</div>
+        </div><div class="tl-gal-tile" title="Mr. & Mrs. Green · Audubon Ballroom">
+          <img src="img_vanguard_couple.jpg" alt="Mr. & Mrs. Green · Audubon Ballroom" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          <div class="tl-gal-cap">Mr. & Mrs. Green · Audubon Ballroom</div>
+        </div><div class="tl-gal-tile" title="Vanguard Award Trophy">
+          <img src="img_vanguard_trophy.jpg" alt="Vanguard Award Trophy" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          <div class="tl-gal-cap">Vanguard Award Trophy</div>
+        </div><div class="tl-gal-tile" title="Certificate — Governor Kathy Hochul">
+          <img src="img_ny_gov.jpg" alt="Certificate — Governor Kathy Hochul" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          <div class="tl-gal-cap">Certificate — Governor Kathy Hochul</div>
+        </div>
+      </div></div>
     </div>
 
     <div class="timeline-item">
@@ -1428,7 +1491,15 @@ window.addEventListener('scroll', () => {
         <div class="tl-desc">65 students toured historic North and West Oakland — visiting Lois The Pie Queen, the Black Panther Party museum, and Marcus Bookstore. Projects critiqued by UC Berkeley Urban Geographer Dr. Brandi Thompson Summers.</div>
       </div>
       <div class="tl-center"><div class="tl-year">2024</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><img src="teach.jpeg" alt="Redlining Field Trip — Mr. Green in the Classroom" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
+      <div class="tl-media"><div class="tl-gal-wrap">
+        <div class="tl-gal-tile" title="College Board Certificate of Recognition · 2024–25">
+          <img src="CB_APAAS_cert.jpg" alt="College Board Certificate of Recognition · 2024–25" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          <div class="tl-gal-cap">College Board Certificate of Recognition · 2024–25</div>
+        </div><div class="tl-gal-tile" title="California State Capitol — Presenting AP African American Studies">
+          <img src="img_capitol.jpg" alt="California State Capitol — Presenting AP African American Studies" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          <div class="tl-gal-cap">California State Capitol — Presenting AP African American Studies</div>
+        </div>
+      </div></div>
     </div>
 
     <div class="timeline-item">
@@ -1438,7 +1509,15 @@ window.addEventListener('scroll', () => {
         <div class="tl-desc">The College Board launches AP African American Studies nationally. Mr. Green is among the founding teachers — having been teaching this material for decades before the College Board formalized it.</div>
       </div>
       <div class="tl-center"><div class="tl-year">2022</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><img src="img_capitol.jpg" alt="California State Capitol — AP African American Studies" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
+      <div class="tl-media"><div class="tl-gal-wrap">
+        <div class="tl-gal-tile" title="College Board Certificate of Recognition · 2024–25">
+          <img src="CB_APAAS_cert.jpg" alt="College Board Certificate of Recognition · 2024–25" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          <div class="tl-gal-cap">College Board Certificate of Recognition · 2024–25</div>
+        </div><div class="tl-gal-tile" title="California State Capitol — Presenting AP African American Studies">
+          <img src="img_capitol.jpg" alt="California State Capitol — Presenting AP African American Studies" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          <div class="tl-gal-cap">California State Capitol — Presenting AP African American Studies</div>
+        </div>
+      </div></div>
     </div>
 
     <div class="timeline-item">
@@ -1579,7 +1658,18 @@ window.addEventListener('scroll', () => {
         <div class="tl-desc">Founded 1988–89 school year. Mr. Green shepherded a student-led effort with mentorship from Dr. Oba T'Shaka (SF State Black Studies Chair), Dr. Richard Navies (who founded the first high school BSU at Berkeley High), and Dr. David Skinner. O'Dowd's BSU has never stopped running — making it the oldest continuously running high school BSU in the Bay Area and the United States.</div>
       </div>
       <div class="tl-center"><div class="tl-year">1988</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><img src="BSU_yearbook_2.jpg" alt="BSU founding era" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
+      <div class="tl-media"><div class="tl-gal-wrap">
+        <div class="tl-gal-tile" title="BSU — Giving Students Unity & Confidence">
+          <img src="BSU_yearbook_2.jpg" alt="BSU — Giving Students Unity & Confidence" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          <div class="tl-gal-cap">BSU — Giving Students Unity & Confidence</div>
+        </div><div class="tl-gal-tile" title="Black History Month Assembly">
+          <img src="BSU_yearbook.jpg" alt="Black History Month Assembly" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          <div class="tl-gal-cap">Black History Month Assembly</div>
+        </div><div class="tl-gal-tile" title=""I Am Somebody" — Early BSU">
+          <img src="BSU_Yearbook_3.jpeg" alt=""I Am Somebody" — Early BSU" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          <div class="tl-gal-cap">"I Am Somebody" — Early BSU</div>
+        </div>
+      </div></div>
     </div>
 
     <div class="timeline-item">
@@ -1609,7 +1699,7 @@ window.addEventListener('scroll', () => {
         <div class="tl-desc">Mr. Green begins his teaching career at Homestead High School — alma mater of Apple co-founder Steve Wozniak. From Silicon Valley's backyard, he develops the standard of rigor and truth-telling that will define 46 years of teaching.</div>
       </div>
       <div class="tl-center"><div class="tl-year">1980</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><img src="Homestead_Quad_Cupertino.jpeg" alt="Homestead High School, Cupertino" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="Homestead_Quad_Cupertino.jpeg" alt="Homestead High School · Cupertino, CA" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
     </div>
 
     <div class="timeline-item">
@@ -1619,7 +1709,7 @@ window.addEventListener('scroll', () => {
         <div class="tl-desc">In the Floyd Terrace Housing Project in Vallejo, young Anthony Green is introduced to athletics and Black History at the same time. His breakfast program is connected to the Black Panthers. His neighborhood athletics are organized by Alpha Phi Alpha mentors through the Omega Boys Club. Both will shape everything that follows.</div>
       </div>
       <div class="tl-center"><div class="tl-year">1960s</div><div class="tl-dot"></div></div>
-      <div class="tl-media"><div class="tl-img"><img src="Vallejo.png" alt="Floyd Terrace, Vallejo" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
+      <div class="tl-media"><div class="tl-img"><img src="Vallejo.png" alt="Floyd Terrace Neighborhood · Vallejo, CA" style="width:100%;height:100%;object-fit:cover;display:block;"/></div></div>
     </div>
 
     <div class="timeline-endcap">
