@@ -289,11 +289,17 @@
         <a href="about2.html">About — Version 2 ★</a>
       </div>
     </li>
-    <li><a href="search.html">Explore History</a></li>
+    <li class="nav-dropdown">
+      <a href="search.html">Explore History</a>
+      <div class="nav-dropdown-menu">
+        <a href="search.html">Search History</a>
+        <a href="bookshelf.html">Mr. Green's Bookshelf</a>
+      </div>
+    </li>
     <li><a href="myths.html">Myth vs. Reality</a></li>
-    <li><a href="blackpeople.html">Black People You Don't See</a></li>
-    <li><a href="model.html">Learn the Model</a></li>
-    <li><a href="contact.html">Contact</a></li>
+    <li><a href="blackpeople.html">Black People You Don't See on TV</a></li>
+    <li><a href="model.html">For Educators</a></li>
+    <li><a href="contact.html">Share What You Learned</a></li>
   </ul>
   <a href="quiz.html" class="nav-cta">Start Here</a>
 </nav>
@@ -476,11 +482,10 @@
 
 <!-- BSU HIGHLIGHT -->
 <div class="bsu-highlight">
-  <div class="bsu-eyebrow">A Living Legacy — Founded 33 Years Ago</div>
-  <h3 class="bsu-headline">The Oldest Running Black<br/>Student Union in America</h3>
+  <div class="bsu-eyebrow">A Living Legacy — Founded in the 1980s</div>
+  <h3 class="bsu-headline">Oldest in the Bay Area.<br/>Oldest Continuously Running High School BSU in America.</h3>
   <p class="bsu-body">
-    Mr. Green founded the Bishop O'Dowd Black Student Union 33 years ago — through the mentorship 
-    of Dr. Oba T'Shaka, Dr. Richard Navies, and Dr. David Skinner. It never stopped running. 
+    Mr. Green founded the Bishop O'Dowd Black Student Union in the early 1980s — through the mentorship of Dr. Oba T'Shaka, Dr. Richard Navies, and Dr. David Skinner. It never stopped running. 
     Decades later, it remains an active, student-led institution that has brought civil rights icons, 
     scholars, activists, and community leaders into a high school auditorium in Oakland, CA. 
     What began as an act of advocacy became a permanent feature of one of California's most 
@@ -599,152 +604,76 @@
     </a>
   </div>
 
-  <!-- PHOTO GALLERY -->
-  <div style="font-family:var(--font-head);font-weight:300;font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;">Photo Gallery</div>
-  <div style="position:relative;">
-    <div id="photoStrip" style="display:flex;gap:3px;overflow:hidden;">
-      <div id="photoTrack" style="display:flex;gap:3px;animation:photoScroll 36s linear infinite;" onmouseover="this.style.animationPlayState='paused'" onmouseout="this.style.animationPlayState='running'">
-
-    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
-      <img src="img_vanguard_couple.jpg" alt="Mr. & Mrs. Green at Vanguard Award" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;" />
-      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
-        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">Vanguard Award 2026</div>
-        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">Mr. & Mrs. Green at the Malcolm X 61st Commemoration, Audubon Ballroom, Harlem</div>
-      </div>
-    </div>
-
-    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
-      <img src="img_vanguard_trophy.jpg" alt="Vanguard Award Trophy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;" />
-      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
-        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">Vanguard Award Trophy</div>
-        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">Malcolm X & Dr. Betty Shabazz Memorial and Educational Center</div>
-      </div>
-    </div>
-
-    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
-      <img src="img_vanguard_stage.jpg" alt="Vanguard stage" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;" />
-      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
-        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">Vanguard Ceremony · Harlem</div>
-        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">With honorees at the 61st Annual Commemoration of Malcolm X</div>
-      </div>
-    </div>
-
-    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
-      <img src="img_ny_gov.jpg" alt="NY Governor Certificate" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;" />
-      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
-        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">State of New York</div>
-        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">Certificate of Recognition — Governor Kathy Hochul, February 21, 2026</div>
-      </div>
-    </div>
-
-    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
-      <img src="img_capitol.jpg" alt="California State Capitol" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;" />
-      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
-        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">California State Capitol</div>
-        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">Presenting AP African American Studies to the State Assembly</div>
-      </div>
-    </div>
-
-    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
-      <img src="img_naacp.jpg" alt="NAACP Award" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;" />
-      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
-        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">NAACP 2022</div>
-        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">Civic Engagement Award Recipients — Mr. & Mrs. Green</div>
-      </div>
-    </div>
-
-    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
-      <img src="img_nba.jpg" alt="NBA All Star Teacher" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;" />
-      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
-        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">NBC Sports · All-Star Teacher</div>
-        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">Tony Green recognized as All-Star Teacher Candidate at live event</div>
-      </div>
-    </div>
-
-    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
-      <img src="img_stanford_kwanzaa.jpg" alt="Stanford Kwanzaa Keynote" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;" />
-      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
-        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">Stanford University</div>
-        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">Kwanzaa Keynote — Stanford University Hospital</div>
-      </div>
-    </div>
-
-    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
-      <img src="img_ghana.jpg" alt="ASWAAD Conference Ghana" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;" />
-      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
-        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">University of Ghana</div>
-        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">ASWAAD 11th Biennial Conference · August 2023</div>
-      </div>
-    </div>
-
-    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
-      <img src="img_aha.jpg" alt="American Historical Association" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;" />
-      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
-        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">American Historical Association</div>
-        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">National Meeting Presentation</div>
-      </div>
-    </div>
-
-    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
-      <img src="img_freight_salvage.jpg" alt="Freight and Salvage" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;" />
-      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
-        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">Freight & Salvage · Berkeley</div>
-        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">Oral History Presentation</div>
-      </div>
-    </div>
-
-    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
-      <img src="img_blk_activism.jpg" alt="Black Activism in the Bay" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;" />
-      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
-        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">Stanford University</div>
-        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">Black Activism in the Bay — 55th Anniversary of the Black Panther Party</div>
-      </div>
-    </div>
-
-    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
-      <img src="Superman.png" alt="DC Comics Superman" style="width:100%;height:100%;object-fit:cover;display:block;"/>
-      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
-        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">DC Comics</div>
-        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">Superman Smashes the Klan — Mr. Green served as historian reviewer</div>
-      </div>
-    </div>
-    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
-      <img src="teach.jpeg" alt="In the Classroom" style="width:100%;height:100%;object-fit:cover;display:block;"/>
-      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
-        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">In the Classroom</div>
-        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">Mr. Green in Room 213 — where the whole story gets told</div>
-      </div>
-    </div>
-    <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0">
-      <img src="Live.jpeg" alt="Roots of Empowerment" style="width:100%;height:100%;object-fit:cover;display:block;"/>
-      <div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.5rem 1rem 1rem;opacity:0;transition:opacity 0.25s;">
-        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">Roots of Empowerment</div>
-        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">Tony Green and the Journey of African American Studies</div>
-      </div>
-    </div>
-      </div><!-- /photoTrack -->
-      <!-- Duplicate for seamless loop -->
-      <div style="display:flex;gap:3px;animation:photoScroll 36s linear infinite;flex-shrink:0;" onmouseover="this.style.animationPlayState='paused'" onmouseout="this.style.animationPlayState='running'">
-        <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0"><img src="img_vanguard_couple.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"/><div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1rem;opacity:0;transition:opacity 0.25s;"><div style="font-family:var(--font-head);font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);">Vanguard Award 2026</div></div></div>
-        <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0"><img src="img_vanguard_trophy.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"/><div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1rem;opacity:0;transition:opacity 0.25s;"><div style="font-family:var(--font-head);font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);">Vanguard Trophy</div></div></div>
-        <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0"><img src="img_capitol.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"/><div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1rem;opacity:0;transition:opacity 0.25s;"><div style="font-family:var(--font-head);font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);">California State Capitol</div></div></div>
-        <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0"><img src="img_ghana.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"/><div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1rem;opacity:0;transition:opacity 0.25s;"><div style="font-family:var(--font-head);font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);">University of Ghana</div></div></div>
-        <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0"><img src="img_naacp.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"/><div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1rem;opacity:0;transition:opacity 0.25s;"><div style="font-family:var(--font-head);font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);">NAACP 2022</div></div></div>
-        <div style="position:relative;overflow:hidden;cursor:pointer;height:260px;width:260px;flex-shrink:0;" onmouseover="this.querySelector('.photo-caption').style.opacity=1" onmouseout="this.querySelector('.photo-caption').style.opacity=0"><img src="img_stanford_kwanzaa.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"/><div class="photo-caption" style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1rem;opacity:0;transition:opacity 0.25s;"><div style="font-family:var(--font-head);font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);">Stanford Kwanzaa</div></div></div>
-      </div><!-- /duplicate -->
-    </div><!-- /photoStrip -->
-    <!-- fade edges -->
-    <div style="position:absolute;top:0;left:0;bottom:0;width:80px;background:linear-gradient(to right,var(--bg),transparent);pointer-events:none;z-index:2;"></div>
-    <div style="position:absolute;top:0;right:0;bottom:0;width:80px;background:linear-gradient(to left,var(--bg),transparent);pointer-events:none;z-index:2;"></div>
-  </div>
-</section>
-
+<!-- PHOTO GALLERY -->
 <style>
-@keyframes photoScroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-100%); }
-}
+  .gal-fade-wrap{position:relative;padding:0 0 2rem;}
+  .gal-fade-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;transition:opacity 1.5s ease;}
+  .gal-fade-grid.fading{opacity:0;}
+  .gal-tile{position:relative;overflow:hidden;cursor:pointer;aspect-ratio:1/1;}
+  .gal-tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;}
+  .gal-tile:hover img{transform:scale(1.04);}
+  .gal-tile .photo-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(8,8,8,0.92));padding:1.25rem 1rem 1rem;opacity:0;transition:opacity 0.25s;}
+  .gal-tile:hover .photo-caption{opacity:1;}
+  .gal-counter-auto{font-family:var(--font-head);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);text-align:center;margin-top:1rem;}
+  .gal-counter-auto span{color:var(--gold);}
 </style>
+
+<div class="gal-fade-wrap">
+  <div class="gal-fade-grid" id="galFadeGrid"></div>
+  <div class="gal-counter-auto">Set <span id="galFadeCur">1</span> of <span id="galFadeTotal"></span></div>
+</div>
+
+<script>
+const galFadePhotos = [
+  {src:'img_vanguard_couple.jpg', label:'Vanguard Award 2026', caption:'Mr. & Mrs. Green at the Malcolm X 61st Commemoration, Audubon Ballroom, Harlem'},
+  {src:'img_vanguard_trophy.jpg', label:'Vanguard Award Trophy', caption:'Malcolm X & Dr. Betty Shabazz Memorial and Educational Center'},
+  {src:'img_vanguard_stage.jpg',  label:'Vanguard Ceremony · Harlem', caption:'With honorees at the 61st Annual Commemoration of Malcolm X'},
+  {src:'img_ny_gov.jpg',          label:'State of New York', caption:'Certificate of Recognition — Governor Kathy Hochul, February 21, 2026'},
+  {src:'img_capitol.jpg',         label:'California State Capitol', caption:'Presenting AP African American Studies to the State Assembly'},
+  {src:'img_naacp.jpg',           label:'NAACP 2022', caption:'Civic Engagement Award Recipients — Mr. & Mrs. Green'},
+  {src:'img_nba.jpg',             label:'NBC Sports · All-Star Teacher', caption:'Tony Green recognized as All-Star Teacher Candidate'},
+  {src:'img_stanford_kwanzaa.jpg',label:'Stanford University', caption:'Kwanzaa Keynote — Stanford University Hospital'},
+  {src:'img_ghana.jpg',           label:'University of Ghana', caption:'ASWAAD 11th Biennial Conference · August 2023'},
+  {src:'img_aha.jpg',             label:'American Historical Association', caption:'National Meeting Presentation'},
+  {src:'img_freight_salvage.jpg', label:'Freight & Salvage · Berkeley', caption:'Oral History Presentation'},
+  {src:'img_blk_activism.jpg',    label:'Stanford University', caption:'Black Activism in the Bay — 55th Anniversary of the Black Panther Party'},
+  {src:'Superman.png',            label:'DC Comics', caption:'Superman Smashes the Klan — Mr. Green served as historian reviewer'},
+  {src:'teach.jpeg',              label:'In the Classroom', caption:'Mr. Green in Room 213 — where the whole story gets told'},
+  {src:'Live.jpeg',               label:'Roots of Empowerment', caption:'Tony Green and the Journey of African American Studies'},
+  {src:'Live.jpeg',               label:'Roots of Empowerment', caption:'Tony Green and the Journey of African American Studies'},
+];
+const GAL_PER = 3;
+let galFadePage = 0;
+const totalPages = Math.ceil(galFadePhotos.length / GAL_PER);
+
+function renderGalFade(page) {
+  const grid = document.getElementById('galFadeGrid');
+  const slice = galFadePhotos.slice(page * GAL_PER, page * GAL_PER + GAL_PER);
+  grid.innerHTML = slice.map(p => `
+    <div class="gal-tile">
+      <img src="${p.src}" alt="${p.label}"/>
+      <div class="photo-caption">
+        <div style="font-family:var(--font-head);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:0.2rem;">${p.label}</div>
+        <div style="font-family:var(--font-body);font-size:0.78rem;color:var(--text);">${p.caption}</div>
+      </div>
+    </div>`).join('');
+  document.getElementById('galFadeCur').textContent = page + 1;
+  document.getElementById('galFadeTotal').textContent = totalPages;
+}
+
+function cycleGalFade() {
+  const grid = document.getElementById('galFadeGrid');
+  grid.classList.add('fading');
+  setTimeout(() => {
+    galFadePage = (galFadePage + 1) % totalPages;
+    renderGalFade(galFadePage);
+    grid.classList.remove('fading');
+  }, 1500);
+}
+
+renderGalFade(0);
+setInterval(cycleGalFade, 30000);
+</script>
 
 <!-- RECOGNITION -->
 <section style="padding:7rem 4rem;background:var(--surface);border-bottom:1px solid var(--faint);" id="recognition">
@@ -1044,7 +973,7 @@
       <div class="tl-content">
         <div class="tl-tag">BSU Founded · Oakland</div>
         <div class="tl-title">Black Student Union — Bishop O'Dowd High School</div>
-        <div class="tl-desc">Mr. Green founds the BSU through the mentorship of Dr. Oba T'Shaka, Dr. Richard Navies, and Dr. David Skinner. It will become the oldest continuously running Black Student Union in the United States.</div>
+        <div class="tl-desc">Mr. Green founds the BSU through the mentorship of Dr. Oba T'Shaka, Dr. Richard Navies, and Dr. David Skinner. It will become the oldest continuously running Black Student Union at a high school in the Bay Area — and no older high school BSU has been documented anywhere in the United States.</div>
       </div>
       <div class="tl-center"><div class="tl-year">1993</div><div class="tl-dot"></div></div>
       <div class="tl-media"><div class="tl-img"><div class="tl-img-label">BSU Founding · Photo Placeholder</div></div></div>
@@ -1098,6 +1027,64 @@
 </section>
 
 <footer>
+  <!-- TOP ROW: Brand + Quote -->
+  <div class="footer-row-top">
+    <div class="footer-brand-col">
+      <div class="footer-brand-name">The Whole<br/>Story.</div>
+      <p class="footer-brand-sub">
+        Real American history includes Black American history.<br/>
+        Guided by Mr. Anthony Green — Bishop O'Dowd High School, Oakland CA.<br/>
+        46 years in the classroom. Every fact sourced. Every entry documented.
+      </p>
+    </div>
+    <div class="footer-tagline">"Education is the passport to the future, for tomorrow belongs to those that prepare for it today." — Malcolm X</div>
+  </div>
+
+  <!-- NAV ROW: 4 columns -->
+  <div class="footer-row-nav">
+    <div>
+      <div class="footer-col-title">Explore</div>
+      <ul class="footer-links">
+        <li><a href="search.html">Explore History</a></li>
+        <li><a href="myths.html">Myth vs. Reality</a></li>
+        <li><a href="bookshelf.html">Mr. Green's Bookshelf</a></li>
+        <li><a href="quiz.html">Find Your Starting Point</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Mr. Green</div>
+      <ul class="footer-links">
+        <li><a href="about.html">Biography</a></li>
+        <li><a href="about.html#timeline">Timeline</a></li>
+        <li><a href="about.html#recognition">Awards &amp; Recognition</a></li>
+        <li><a href="about.html#media">In the Media</a></li>
+        <li><a href="about.html#reading">Reading List</a></li>
+        <li><a href="model.html">For Educators</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Community</div>
+      <ul class="footer-links">
+        <li><a href="blackpeople.html">Black People You Don't See on TV</a></li>
+        <li><a href="profile.html">Add Your Profile</a></li>
+        <li><a href="contact.html#story">Share What You Learned</a></li>
+        <li><a href="contact.html">Contact Mr. Green</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Connect &amp; Support</div>
+      <ul class="footer-links">
+        <li><a href="index.html#donate">Support Mr. Green's Work</a></li>
+        <li><a href="index.html#donate">Give Monthly</a></li>
+        <li><a href="https://www.linkedin.com/in/tony-green-5127aa23/" target="_blank">LinkedIn</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#97e3f0e5f2f2f9d7f5fee4fff8e7f8f3f8e0f3b9f8e5f0">Email Mr. Green</a></li>
+        <li><a href="https://www.bishopodowd.org/faculty-staff/anthony-green" target="_blank">O'Dowd Faculty Page</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-divider"></div>
+
   <div class="footer-bottom">
     <div class="footer-copy">© 2026 The Whole Story. Prototype — <strong>for Mr. Anthony Green</strong>.</div>
     <div class="footer-copy">All facts cited. All history documented.</div>
@@ -1105,7 +1092,7 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function toggleVisitor(btn) {
   const full = btn.nextElementSibling;
   const summary = btn.previousElementSibling;
@@ -1167,9 +1154,4 @@ window.addEventListener('scroll', () => {
   const tl = document.getElementById('timeline');
   const btn = document.getElementById('timelineFloat');
   if (!tl || !btn) return;
-  btn.style.opacity = tl.getBoundingClientRect().top > 100 ? '1' : '0';
-  btn.style.pointerEvents = tl.getBoundingClientRect().top > 100 ? 'auto' : 'none';
-});
-</script>
-</body>
-</html>
+  btn.style.opacity = tl.getBound
